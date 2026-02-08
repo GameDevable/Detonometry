@@ -5,7 +5,7 @@ extends Node2D
 var phase_time: float = 0.0
 var is_up_pulse: bool = false
 var pulse_time: float = 0.46
-const RED_CIRCLE_TEXTURE = preload("uid://dkiuwqe4ix6im")
+const RED_CIRCLE_TEXTURE = preload("res://bomb/assets/red_circle.svg")
 const EXPLOSION_SOUND = preload("res://bomb/assets/audio/explosion-01.ogg")
 const EXPLOSION_PARTICLES_PATH: String = "res://bomb/assets/particles/explosion_particles.tscn"
 const DEBRIS_PARTICLES_PATH: String = "res://bomb/assets/particles/debris_particles.tscn"
@@ -57,11 +57,11 @@ func _handle_explosion_effects() -> void:
 	var pitch: float = 0.75
 	AudioManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	
-	#SignalManager.spawn_particles.emit(BLAST_PARTICLE_PATH, position)
-	var delay: float = 0.075
-	SignalManager.spawn_particles.emit(SPARK_PARTICLE_PATH, position, delay)
-	SignalManager.spawn_particles.emit(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)
-	SignalManager.spawn_particles.emit(EXPLOSION_PARTICLES_PATH, position, delay)
+	ParticleManager.spawn_particles(BLAST_PARTICLE_PATH, position)
+	var delay: float = 0.05
+	ParticleManager.spawn_particles(SPARK_PARTICLE_PATH, position, delay)
+	ParticleManager.spawn_particles(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)
+	ParticleManager.spawn_particles(EXPLOSION_PARTICLES_PATH, position, delay)
 
 
 func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:

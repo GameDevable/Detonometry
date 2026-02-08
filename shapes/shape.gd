@@ -26,7 +26,7 @@ const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overl
 
 @onready var health: Health = $Health
 
-const LUCKY_TRIANGLE_PARTICLES = preload("uid://cywo1eoh606v7")
+const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_triangle_particles.tscn")
 const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
 func _ready() -> void:
 	SignalManager.health_changed.connect(_on_health_changed)
@@ -37,11 +37,12 @@ func _ready() -> void:
 		_apply_modifier(modifier)
 		
 	shape_sprite.texture = shape_data.shape_texture
-	shadow_sprite.scale = Vector2.ZERO
-	shape_sprite.scale = Vector2.ZERO
-	modifier_overlay_sprites.scale = Vector2.ZERO
+	var initial_scale = Vector2(0.01, 0.01)
+	shadow_sprite.scale = initial_scale
+	shape_sprite.scale = initial_scale
+	modifier_overlay_sprites.scale = initial_scale
 	var scale_up_tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
-	var scale_up_time: float = 0.1
+	var scale_up_time: float = 0.2
 	var final_scale: Vector2 = Vector2(1.0, 1.0) * Constants.SPRITE_SCALE
 	scale_up_tween.tween_property(shape_sprite, "scale", final_scale, scale_up_time)
 	scale_up_tween.parallel().tween_property(shadow_sprite, "scale", final_scale, scale_up_time)
@@ -186,4 +187,4 @@ func _on_health_depleted(health_node: Health) -> void:
 					modifier_arrays_array[i] = [Enums.ShapeModifiers.SIERPINSKIES]
 			SignalManager.spawn_sierpinski_triangles.emit(position, modifier_arrays_array)
 		SignalManager.shape_broken.emit(self)
-		SignalManager.spawn_particles.emit(BREAK_PARTICLE_SCENE_PATH, position)
+		ParticleManager.spawn_particles(BREAK_PARTICLE_SCENE_PATH, position)

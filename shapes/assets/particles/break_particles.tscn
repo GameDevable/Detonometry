@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj1jgl6835u7y"]
+[gd_scene format=3 uid="uid://bj1jgl6835u7y"]
 
-[ext_resource type="Texture2D" uid="uid://d4l3vooeufqss" path="res://shapes/assets/particles/textures/break_particles_texture_sheet.svg" id="1_p5fi6"]
+[ext_resource type="Texture2D" uid="uid://b5wyw4gfsynki" path="res://shapes/assets/particles/textures/break_particles_texture_sheet.svg" id="1_p5fi6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ysxj3"]
 particles_animation = true
@@ -30,25 +30,26 @@ emission_sphere_radius = 73.37
 angle_min = -179.99998
 angle_max = 180.00002
 spread = 180.0
-initial_velocity_min = 175.0
-initial_velocity_max = 200.0
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
 angular_velocity_min = -150.00002
 angular_velocity_max = 149.99998
 gravity = Vector3(0, 0, 0)
 damping_min = 59.284004
 damping_max = 59.284004
-scale_min = 0.25
-scale_max = 0.29999998
+scale_min = 0.55
+scale_max = 0.7
 scale_curve = SubResource("CurveTexture_atr3j")
 alpha_curve = SubResource("CurveTexture_ysxj3")
 anim_offset_max = 1.0
 
-[node name="BreakParticles" type="GPUParticles2D"]
+[node name="BreakParticles" type="GPUParticles2D" unique_id=736198278]
 material = SubResource("CanvasItemMaterial_ysxj3")
 emitting = false
-amount = 6
+amount = 4
 texture = ExtResource("1_p5fi6")
 one_shot = true
+speed_scale = 1.35
 explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_atr3j")

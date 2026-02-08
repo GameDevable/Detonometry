@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://jjxpg78gpkdj"]
+[gd_scene format=3 uid="uid://jjxpg78gpkdj"]
 
-[ext_resource type="Texture2D" uid="uid://cq1kn2iuv5qw4" path="res://bomb/assets/particles/textures/spark_particle_texture.svg" id="1_d65q5"]
+[ext_resource type="Texture2D" uid="uid://bn7fu3ljufckm" path="res://bomb/assets/particles/textures/spark_particle_texture.svg" id="1_d65q5"]
 
 [sub_resource type="Curve" id="Curve_pp8cu"]
 _data = [Vector2(0.023404256, 0.9844358), 0.0, 0.0, 0, 0, Vector2(1, 0.2996109), 0.0, 0.0, 0, 0]
@@ -10,43 +10,44 @@ point_count = 2
 curve = SubResource("Curve_pp8cu")
 
 [sub_resource type="Gradient" id="Gradient_pp8cu"]
-offsets = PackedFloat32Array(0, 0.27568492, 0.760274, 0.9914383)
-colors = PackedColorArray(1, 0.25237823, 0, 1, 1, 0.5198238, 0, 1, 1, 1, 0, 1, 1, 0.9529412, 0.41568628, 1)
+offsets = PackedFloat32Array(0, 0.38268158, 0.8072626, 0.9636871)
+colors = PackedColorArray(1, 0.25237823, 0, 1, 1, 0.5198238, 0, 1, 1, 1, 0, 1, 0.9999996, 0.98914975, 0.821922, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_kj07g"]
 gradient = SubResource("Gradient_pp8cu")
 
 [sub_resource type="Curve" id="Curve_d65q5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.84435797), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6731518), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_pp8cu"]
 curve = SubResource("Curve_d65q5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ydw15"]
-lifetime_randomness = 0.42
+lifetime_randomness = 0.59
 particle_flag_align_y = true
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 36.44
 spread = 180.0
-initial_velocity_min = 225.0
-initial_velocity_max = 225.0
+initial_velocity_min = 340.0
+initial_velocity_max = 360.0
 gravity = Vector3(0, 0, 0)
 damping_min = 82.909004
 damping_max = 82.909004
-scale_min = 0.5
-scale_max = 0.7
+scale_min = 0.39999998
+scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_pp8cu")
 color_initial_ramp = SubResource("GradientTexture1D_kj07g")
 alpha_curve = SubResource("CurveTexture_kj07g")
 
-[node name="SparksParticles" type="GPUParticles2D"]
+[node name="SparksParticles" type="GPUParticles2D" unique_id=1783862989]
 z_index = 5
 emitting = false
-amount = 16
+amount = 15
+amount_ratio = 0.9
 texture = ExtResource("1_d65q5")
-lifetime = 0.5
+lifetime = 0.41000000000000003
 one_shot = true
 speed_scale = 1.2
 explosiveness = 1.0

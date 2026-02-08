@@ -10,10 +10,10 @@ const RING_FILL_RED: Texture2D = preload("res://ui/assets/radial_progress_bar_te
 const RING_FILL_WHITE: Texture2D = preload("res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg")
 const RING_FILL_YELLOW: Texture2D = preload("res://ui/assets/radial_progress_bar_textures/ring_fill_yellow.svg")
 const BUTTON_SCALE_TIME: float = 0.4
-const BOMB_PLACE_SOUND1 = preload("uid://cwqyhfm5ndh77")
-const CANT_PLACE = preload("uid://c6vb8u4pod7d2")
+const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
+const CANT_PLACE = preload("res://bomb/assets/audio/cant_place.ogg")
 
-@onready var points_label: Label = $InfoBox/PointsLabel
+@onready var points_label: Label = $PointsLabel
 @onready var place_delay_progress_bar: TextureProgressBar = $MouseFollowerWrapper/PlaceDelayProgressBar
 @onready var plus_sign_rect: TextureRect = $UpgradeHubButton/PlusSignRect
 @onready var upgrade_hub_button: Button = $UpgradeHubButton

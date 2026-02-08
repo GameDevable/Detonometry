@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://k7nqsblly5gs"]
+[gd_scene format=3 uid="uid://k7nqsblly5gs"]
 
-[ext_resource type="Script" uid="uid://vwrqyfjerpum" path="res://game/world.gd" id="1_vn0wg"]
-[ext_resource type="Script" uid="uid://uxk2gctotf6f" path="res://game/shape_spawner.gd" id="2_aseec"]
-[ext_resource type="Script" uid="uid://dqanl875ga8m6" path="res://game/camera.gd" id="2_tvmmn"]
-[ext_resource type="Script" uid="uid://cpc1o46lwdj2q" path="res://components/shake_component.gd" id="3_4xpgs"]
-[ext_resource type="Script" uid="uid://b30xb5mlgidda" path="res://game/particle_manager.gd" id="5_805w3"]
+[ext_resource type="Script" uid="uid://cmvmnywadbhdj" path="res://game/world.gd" id="1_vn0wg"]
+[ext_resource type="Script" uid="uid://cmr1iag588u7a" path="res://game/shape_spawner.gd" id="2_aseec"]
+[ext_resource type="Script" uid="uid://cxwwyok0dnfkm" path="res://game/camera.gd" id="2_tvmmn"]
+[ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_4xpgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhh06"]
 size = Vector2(1280, 10)
@@ -12,58 +11,54 @@ size = Vector2(1280, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4twg"]
 size = Vector2(10, 720)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=1062341711]
 script = ExtResource("1_vn0wg")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=301931326]
 script = ExtResource("2_tvmmn")
 
-[node name="ShakeComponent" type="Node" parent="Camera"]
+[node name="ShakeComponent" type="Node" parent="Camera" unique_id=1631131573]
 script = ExtResource("3_4xpgs")
-metadata/_custom_type_script = "uid://cpc1o46lwdj2q"
 
-[node name="BreakableSpawner" type="Node2D" parent="."]
+[node name="BreakableSpawner" type="Node2D" parent="." unique_id=579955111]
 script = ExtResource("2_aseec")
 
-[node name="BombContainer" type="Node2D" parent="."]
+[node name="BombContainer" type="Node2D" parent="." unique_id=700774503]
 
-[node name="WorldBounds" type="Node2D" parent="."]
+[node name="WorldBounds" type="Node2D" parent="." unique_id=1972739478]
 
-[node name="TopBound" type="StaticBody2D" parent="WorldBounds"]
+[node name="TopBound" type="StaticBody2D" parent="WorldBounds" unique_id=1713505958]
 position = Vector2(0, -360)
 collision_layer = 5
 collision_mask = 5
 
-[node name="TopCollider" type="CollisionShape2D" parent="WorldBounds/TopBound"]
+[node name="TopCollider" type="CollisionShape2D" parent="WorldBounds/TopBound" unique_id=1846133112]
 shape = SubResource("RectangleShape2D_fhh06")
 
-[node name="BottomBound" type="StaticBody2D" parent="WorldBounds"]
+[node name="BottomBound" type="StaticBody2D" parent="WorldBounds" unique_id=1098936623]
 position = Vector2(0, 360)
 collision_layer = 5
 collision_mask = 5
 
-[node name="BottomCollider" type="CollisionShape2D" parent="WorldBounds/BottomBound"]
+[node name="BottomCollider" type="CollisionShape2D" parent="WorldBounds/BottomBound" unique_id=1179729209]
 shape = SubResource("RectangleShape2D_fhh06")
 
-[node name="LeftBounds" type="StaticBody2D" parent="WorldBounds"]
+[node name="LeftBounds" type="StaticBody2D" parent="WorldBounds" unique_id=78310480]
 position = Vector2(-640, 0)
 collision_layer = 5
 collision_mask = 5
 
-[node name="LeftCollider" type="CollisionShape2D" parent="WorldBounds/LeftBounds"]
+[node name="LeftCollider" type="CollisionShape2D" parent="WorldBounds/LeftBounds" unique_id=1588469181]
 shape = SubResource("RectangleShape2D_m4twg")
 
-[node name="RightBounds" type="StaticBody2D" parent="WorldBounds"]
+[node name="RightBounds" type="StaticBody2D" parent="WorldBounds" unique_id=2125403485]
 position = Vector2(640, 0)
 collision_layer = 5
 collision_mask = 5
 
-[node name="RightCollider" type="CollisionShape2D" parent="WorldBounds/RightBounds"]
+[node name="RightCollider" type="CollisionShape2D" parent="WorldBounds/RightBounds" unique_id=1021152856]
 shape = SubResource("RectangleShape2D_m4twg")
 
-[node name="PlaceDelayTimer" type="Timer" parent="."]
-
-[node name="ParticleManager" type="Node2D" parent="."]
-script = ExtResource("5_805w3")
+[node name="PlaceDelayTimer" type="Timer" parent="." unique_id=6329191]
 
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]

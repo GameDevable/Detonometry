@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://4m7xyo6hpaba"]
+[gd_scene format=3 uid="uid://cd4h0wnidkafg"]
 
-[ext_resource type="Script" uid="uid://cyv2e0yf0j5mn" path="res://ui/ui_animator_component.gd" id="1_lseh0"]
+[ext_resource type="Script" uid="uid://dynbaqvr24uno" path="res://ui/ui_animator_component.gd" id="1_lseh0"]
 
-[node name="UiAnimatorComponent" type="Node"]
+[node name="UiAnimatorComponent" type="Node" unique_id=1599874781]
 script = ExtResource("1_lseh0")

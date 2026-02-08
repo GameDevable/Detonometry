@@ -11,7 +11,6 @@ var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 }
 
 
-
 func _ready() -> void:
 	SignalManager.spawn_shape_request.connect(_on_spawn_shape_requested)
 	SignalManager.spawn_shape_bunch_request.connect(_on_spawn_shape_bunch_requested)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://db1td87mfq0rt"]
+[gd_scene format=3 uid="uid://db1td87mfq0rt"]
 
-[ext_resource type="Texture2D" uid="uid://e3iwyquj5xuo" path="res://bomb/assets/particles/textures/blast_particle_texture.svg" id="1_m7eu1"]
+[ext_resource type="Texture2D" uid="uid://ismw56jgrxve" path="res://bomb/assets/particles/textures/blast_particle_texture.svg" id="1_m7eu1"]
 
 [sub_resource type="Curve" id="Curve_m7eu1"]
 _data = [Vector2(0, 0.28404677), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -12,15 +12,16 @@ curve = SubResource("Curve_m7eu1")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onhj7"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-scale_min = 1.5
-scale_max = 1.5
+scale_min = 1.75
+scale_max = 1.8499999
 scale_curve = SubResource("CurveTexture_onhj7")
 
-[node name="BlastParticle" type="GPUParticles2D"]
+[node name="BlastParticle" type="GPUParticles2D" unique_id=1219778156]
 z_index = 4
 emitting = false
 amount = 1
 texture = ExtResource("1_m7eu1")
+lifetime = 0.8
 one_shot = true
-speed_scale = 5.0
+speed_scale = 6.0
 process_material = SubResource("ParticleProcessMaterial_onhj7")

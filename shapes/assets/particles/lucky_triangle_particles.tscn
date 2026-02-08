@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cywo1eoh606v7"]
+[gd_scene format=3 uid="uid://cywo1eoh606v7"]
 
-[ext_resource type="Texture2D" uid="uid://cu2twj66utprb" path="res://shapes/assets/particles/textures/lucky_particle_texture.svg" id="1_ravm8"]
+[ext_resource type="Texture2D" uid="uid://dj0qtr3h4twh1" path="res://shapes/assets/particles/textures/lucky_particle_texture.svg" id="1_ravm8"]
 
 [sub_resource type="Curve" id="Curve_ravm8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -30,7 +30,7 @@ scale_min = 0.25
 scale_max = 0.39999998
 scale_curve = SubResource("CurveTexture_wty36")
 
-[node name="LuckyTriangleParticles" type="GPUParticles2D"]
+[node name="LuckyTriangleParticles" type="GPUParticles2D" unique_id=1119926768]
 position = Vector2(-1, 0)
 amount = 4
 amount_ratio = 0.9

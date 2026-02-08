@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3 uid="uid://cwj2k3aew66ln"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cwj2k3aew66ln"]
 
-[ext_resource type="Texture2D" uid="uid://s2barhtkwjn5" path="res://upgrade system/assets/upgrade icons/bomb/explosion_radius_icon.svg" id="1_jlelo"]
-[ext_resource type="Script" uid="uid://b3mtk4duhjde4" path="res://game/upgrade_data.gd" id="1_xnaqi"]
+[ext_resource type="Texture2D" uid="uid://d5yykd6tg77f" path="res://upgrade system/assets/upgrade icons/bomb/explosion_radius_icon.svg" id="1_jlelo"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_xnaqi"]
 
 [resource]
 script = ExtResource("1_xnaqi")
@@ -13,4 +13,3 @@ description = "Increases the explosion radius"
 modify_stat_name = "explosion_radius_size_percent"
 extra_character = "%"
 icon = ExtResource("1_jlelo")
-metadata/_custom_type_script = "uid://b3mtk4duhjde4"

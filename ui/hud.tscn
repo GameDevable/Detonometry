@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://tdoscbf6lnd6"]
+[gd_scene format=3 uid="uid://tdoscbf6lnd6"]
 
-[ext_resource type="Script" uid="uid://4as2tdux84hn" path="res://ui/hud.gd" id="1_rbyyf"]
+[ext_resource type="Script" uid="uid://pp45ai3654ql" path="res://ui/hud.gd" id="1_rbyyf"]
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_276te"]
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="3_1v5rv"]
 [ext_resource type="Texture2D" uid="uid://cia4pi0df1vql" path="res://ui/plus_sign.svg" id="3_7ihmi"]
-[ext_resource type="Script" uid="uid://cpc1o46lwdj2q" path="res://components/shake_component.gd" id="3_546lt"]
-[ext_resource type="Texture2D" uid="uid://c2nau2t4kid3p" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
+[ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_546lt"]
+[ext_resource type="Texture2D" uid="uid://dyk83uiiw75cf" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
 [ext_resource type="PackedScene" uid="uid://4m7xyo6hpaba" path="res://ui/ui_animator_component.tscn" id="5_q43x7"]
 
-[node name="Hud" type="Control"]
+[node name="Hud" type="Control" unique_id=579881151]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,33 +18,28 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rbyyf")
 
-[node name="InfoBox" type="VBoxContainer" parent="."]
+[node name="PointsLabel" type="Label" parent="." unique_id=290357642]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -131.0
-offset_right = 131.0
-offset_bottom = 135.0
-grow_horizontal = 2
-
-[node name="PointsLabel" type="Label" parent="InfoBox"]
-layout_mode = 2
+anchors_preset = -1
+anchor_left = 0.39765626
+anchor_top = 0.0125
+anchor_right = 0.60234374
+anchor_bottom = 0.125
 theme_override_fonts/font = ExtResource("2_276te")
 theme_override_font_sizes/font_size = 64
 text = "$0"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="ShakeComponent" type="Node" parent="."]
+[node name="ShakeComponent" type="Node" parent="." unique_id=1651614623]
 script = ExtResource("3_546lt")
-metadata/_custom_type_script = "uid://cpc1o46lwdj2q"
 
-[node name="MouseFollowerWrapper" type="Control" parent="."]
+[node name="MouseFollowerWrapper" type="Control" parent="." unique_id=1837705660]
 layout_mode = 1
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="PlaceDelayProgressBar" type="TextureProgressBar" parent="MouseFollowerWrapper"]
+[node name="PlaceDelayProgressBar" type="TextureProgressBar" parent="MouseFollowerWrapper" unique_id=749340104]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -63,7 +58,7 @@ value = 100.0
 fill_mode = 4
 texture_progress = ExtResource("5_en2x2")
 
-[node name="UpgradeHubButton" type="Button" parent="."]
+[node name="UpgradeHubButton" type="Button" parent="." unique_id=677914338]
 custom_minimum_size = Vector2(246, 50)
 layout_mode = 1
 anchors_preset = 7
@@ -79,7 +74,7 @@ grow_vertical = 0
 theme = ExtResource("3_1v5rv")
 text = "Upgrades Hub"
 
-[node name="PlusSignRect" type="TextureRect" parent="UpgradeHubButton"]
+[node name="PlusSignRect" type="TextureRect" parent="UpgradeHubButton" unique_id=603716435]
 visible = false
 layout_mode = 1
 anchors_preset = 1
@@ -92,7 +87,7 @@ offset_bottom = 13.0
 grow_horizontal = 0
 texture = ExtResource("3_7ihmi")
 
-[node name="ButtonAnimator" parent="UpgradeHubButton" instance=ExtResource("5_q43x7")]
+[node name="ButtonAnimator" parent="UpgradeHubButton" unique_id=1971661051 instance=ExtResource("5_q43x7")]
 
 [connection signal="mouse_entered" from="UpgradeHubButton" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradeHubButton" to="." method="_on_button_mouse_exited"]

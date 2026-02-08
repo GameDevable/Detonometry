@@ -1,63 +1,56 @@
-[gd_scene load_steps=7 format=3 uid="uid://btmk54xyeo44e"]
+[gd_scene format=3 uid="uid://btmk54xyeo44e"]
 
-[ext_resource type="Script" uid="uid://d3iknp440glsy" path="res://shapes/shape.gd" id="1_4fy8l"]
-[ext_resource type="Texture2D" uid="uid://do071axbmjpwf" path="res://shapes/assets/sprites/triangle.svg" id="2_4fy8l"]
-[ext_resource type="Texture2D" uid="uid://bnl1jljd5rsfu" path="res://shapes/assets/sprites/triangle_shadow.svg" id="2_e6dkk"]
+[ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
+[ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="2_4fy8l"]
+[ext_resource type="Texture2D" uid="uid://b7cbxvilwrwts" path="res://shapes/assets/sprites/triangle_shadow.svg" id="2_e6dkk"]
 [ext_resource type="PackedScene" uid="uid://bcjrft2uixwu1" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
-[ext_resource type="Script" uid="uid://dyakc7t63f14m" path="res://components/health_system/health.gd" id="4_bo2oq"]
-[ext_resource type="Shape2D" uid="uid://82yjdnrv6lqq" path="res://shapes/collision_shapes/triangle_collision_shape.tres" id="4_o1kad"]
+[ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
 
-[node name="Shape" type="CharacterBody2D"]
+[node name="Shape" type="CharacterBody2D" unique_id=1276430996]
 collision_mask = 6
 script = ExtResource("1_4fy8l")
 
-[node name="ShadowSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 4.5)
-scale = Vector2(0.5, 0.5)
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=965740919]
+position = Vector2(0, 5)
 texture = ExtResource("2_e6dkk")
 
-[node name="ShapeSprite" type="Sprite2D" parent="."]
+[node name="ShapeSprite" type="Sprite2D" parent="." unique_id=1865982620]
 texture = ExtResource("2_4fy8l")
 
-[node name="ModifierOverlaySprites" type="Node2D" parent="."]
+[node name="ModifierOverlaySprites" type="Node2D" parent="." unique_id=1356149085]
 scale = Vector2(0.5, 0.5)
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_node") instance=ExtResource("3_e6dkk")]
-health_node = NodePath("../Health")
+[node name="Hurtbox" parent="." unique_id=972808678 instance=ExtResource("3_e6dkk")]
 
-[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox"]
-disabled = true
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox" unique_id=592913156]
 
-[node name="ExplosionDetector" type="Area2D" parent="."]
+[node name="ExplosionDetector" type="Area2D" parent="." unique_id=1606969675]
 
-[node name="DetectorCollider" type="CollisionShape2D" parent="ExplosionDetector"]
-shape = ExtResource("4_o1kad")
+[node name="DetectorCollider" type="CollisionShape2D" parent="ExplosionDetector" unique_id=1053692255]
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." unique_id=79317347]
 script = ExtResource("4_bo2oq")
-metadata/_custom_type_script = "uid://dyakc7t63f14m"
 
-[node name="ShapeCollider" type="CollisionShape2D" parent="."]
+[node name="ShapeCollider" type="CollisionShape2D" parent="." unique_id=671919204]
 
-[node name="WallRays" type="Node2D" parent="."]
+[node name="WallRays" type="Node2D" parent="." unique_id=1583692325]
 
-[node name="Up" type="RayCast2D" parent="WallRays"]
+[node name="Up" type="RayCast2D" parent="WallRays" unique_id=143443712]
 target_position = Vector2(0, -55)
 collision_mask = 4
 hit_from_inside = true
 
-[node name="Down" type="RayCast2D" parent="WallRays"]
+[node name="Down" type="RayCast2D" parent="WallRays" unique_id=393165593]
 target_position = Vector2(0, 55)
 collision_mask = 4
 hit_from_inside = true
 
-[node name="Right" type="RayCast2D" parent="WallRays"]
+[node name="Right" type="RayCast2D" parent="WallRays" unique_id=496296582]
 target_position = Vector2(55, 0)
 collision_mask = 4
 hit_from_inside = true
 
-[node name="Left" type="RayCast2D" parent="WallRays"]
+[node name="Left" type="RayCast2D" parent="WallRays" unique_id=755189624]
 target_position = Vector2(-55, 0)
 collision_mask = 4
 hit_from_inside = true

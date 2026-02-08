@@ -4,6 +4,7 @@ var data: UpgradeData
 var current_unpurchased_tier: int = 1
 var current_purchased_tier: int = 0
 const PRICE_SCALE: float = 2.2
+
 func has_reached_max_tier() -> bool:
 	return current_purchased_tier >= data.tier_modifiers.size() 
  

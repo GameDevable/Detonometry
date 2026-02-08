@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcjrft2uixwu1"]
+[gd_scene format=3 uid="uid://rw8hfp2bieqe"]
 
-[ext_resource type="Script" uid="uid://btxrrs02owvs1" path="res://components/health_system/hurtbox.gd" id="1_04ti6"]
+[ext_resource type="Script" uid="uid://bh5aiqnwupubh" path="res://components/health_system/hurtbox.gd" id="1_04ti6"]
 
-[node name="Hurtbox" type="Area2D"]
+[node name="Hurtbox" type="Area2D" unique_id=977185970]
 script = ExtResource("1_04ti6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

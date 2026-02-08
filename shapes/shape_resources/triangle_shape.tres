@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="ShapeData" load_steps=4 format=3 uid="uid://b3cbcvl8liiky"]
+[gd_resource type="Resource" script_class="ShapeData" format=3 uid="uid://b3cbcvl8liiky"]
 
-[ext_resource type="Script" uid="uid://db71gp8sseu3x" path="res://shapes/shape_data.gd" id="1_82isx"]
+[ext_resource type="Script" uid="uid://jdn1dbvehnav" path="res://shapes/shape_data.gd" id="1_82isx"]
 [ext_resource type="Shape2D" uid="uid://82yjdnrv6lqq" path="res://shapes/collision_shapes/triangle_collision_shape.tres" id="2_w8wc2"]
-[ext_resource type="Texture2D" uid="uid://do071axbmjpwf" path="res://shapes/assets/sprites/triangle.svg" id="3_p7lhc"]
+[ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="3_p7lhc"]
 
 [resource]
 script = ExtResource("1_82isx")
 shape_texture = ExtResource("3_p7lhc")
 shape_collider = ExtResource("2_w8wc2")
-metadata/_custom_type_script = "uid://db71gp8sseu3x"

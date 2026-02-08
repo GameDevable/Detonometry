@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="BlastForge"
+config/name="Detonometry"
 run/main_scene="uid://cw1imw7chr2ul"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://do5361g8a3kp3"
 
 [autoload]
@@ -23,8 +27,9 @@ Enums="*res://main/autoloads/enums.gd"
 SaveSystem="*res://main/autoloads/save_system.gd"
 UiManager="*res://main/autoloads/ui_manager.gd"
 StatManager="*res://main/autoloads/stat_manager.gd"
-Console="*res://addons/console/console.gd"
+Console="*uid://qca3sqetpnah"
 AudioManager="*res://main/autoloads/audio_manager.gd"
+ParticleManager="*uid://bp1mog1jq5f5d"
 
 [debug]
 

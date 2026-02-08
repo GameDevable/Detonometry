@@ -1,8 +1,8 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bmi00awkluvkt"]
+[gd_resource type="Theme" format=3 uid="uid://bmi00awkluvkt"]
 
-[ext_resource type="Texture2D" uid="uid://cg5chnp8suxaq" path="res://upgrade system/assets/button backgrounds/ui_hover_affordable_button_background.svg" id="1_df5c3"]
-[ext_resource type="Texture2D" uid="uid://tjmvki8qvy1" path="res://upgrade system/assets/button backgrounds/ui_affordable_button_background.svg" id="2_22128"]
-[ext_resource type="Texture2D" uid="uid://b8wsely0dq71s" path="res://upgrade system/assets/button backgrounds/ui_pressed_affordable_button_background.svg" id="3_x1gej"]
+[ext_resource type="Texture2D" uid="uid://trwafvgj1nax" path="res://upgrade system/assets/button backgrounds/ui_hover_affordable_button_background.svg" id="1_df5c3"]
+[ext_resource type="Texture2D" uid="uid://b4golbta8km0o" path="res://upgrade system/assets/button backgrounds/ui_affordable_button_background.svg" id="2_22128"]
+[ext_resource type="Texture2D" uid="uid://t6vj1em15538" path="res://upgrade system/assets/button backgrounds/ui_pressed_affordable_button_background.svg" id="3_x1gej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axa3j"]
 

@@ -4,8 +4,8 @@ var held_bomb: Bomb = null
 var total_points: int = 0
 var can_create_bomb: bool = true
 var time_since_bomb_creation: float = 0.0
-const BOMB_PLACE_SOUND1 = preload("uid://cwqyhfm5ndh77")
-const BOMB_PLACE_SOUND2 = preload("uid://cm6wa1wcmhjn0")
+const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
+const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
 @onready var bomb_container: Node2D = $BombContainer
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 

@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw1imw7chr2ul"]
+[gd_scene format=3 uid="uid://cw1imw7chr2ul"]
 
 [ext_resource type="PackedScene" uid="uid://k7nqsblly5gs" path="res://game/world.tscn" id="1_53q0u"]
-[ext_resource type="Script" uid="uid://dt6y51teng0f2" path="res://main/main.gd" id="1_pjrb6"]
+[ext_resource type="Script" uid="uid://gloui5xno38j" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://b0p1igqr57bjq" path="res://upgrade system/upgrade_hub.tscn" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://tdoscbf6lnd6" path="res://ui/hud.tscn" id="3_xwkvk"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=2002669623]
 process_mode = 3
 script = ExtResource("1_pjrb6")
 
-[node name="World" parent="." instance=ExtResource("1_53q0u")]
+[node name="World" parent="." unique_id=1297967042 instance=ExtResource("1_53q0u")]
 process_mode = 1
 
-[node name="UiCanvasLayer" type="CanvasLayer" parent="."]
+[node name="UiCanvasLayer" type="CanvasLayer" parent="." unique_id=125579151]
 
-[node name="Menus" type="Control" parent="UiCanvasLayer"]
+[node name="Menus" type="Control" parent="UiCanvasLayer" unique_id=359383754]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,12 +23,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="UpgradeHub" parent="UiCanvasLayer/Menus" instance=ExtResource("3_c651c")]
+[node name="UpgradeHub" parent="UiCanvasLayer/Menus" unique_id=1453158358 instance=ExtResource("3_c651c")]
 process_mode = 2
 visible = false
 layout_mode = 1
 
-[node name="Overlays" type="Control" parent="UiCanvasLayer"]
+[node name="Overlays" type="Control" parent="UiCanvasLayer" unique_id=884325236]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,10 +37,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Hud" parent="UiCanvasLayer/Overlays" instance=ExtResource("3_xwkvk")]
+[node name="Hud" parent="UiCanvasLayer/Overlays" unique_id=1664704056 instance=ExtResource("3_xwkvk")]
 layout_mode = 1
 
-[node name="AudioHolder" type="Node" parent="."]
+[node name="AudioHolder" type="Node" parent="." unique_id=1381456759]
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
 volume_db = -6.0

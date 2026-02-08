@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://ct3xcei10tcq0"]
+[gd_scene format=4 uid="uid://ct3xcei10tcq0"]
 
-[ext_resource type="Script" uid="uid://dmw3gpe8emwgh" path="res://bomb/bomb.gd" id="1_1h7gg"]
-[ext_resource type="Texture2D" uid="uid://cor8vbtknq68y" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
-[ext_resource type="Texture2D" uid="uid://bfacder6y156x" path="res://bomb/assets/green_circle.svg" id="3_27ssy"]
+[ext_resource type="Script" uid="uid://dbo8hmxfu2l6x" path="res://bomb/bomb.gd" id="1_1h7gg"]
+[ext_resource type="Texture2D" uid="uid://bss8tmln0vxq8" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
+[ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/green_circle.svg" id="3_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dgtb8vq48acyh" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
 [ext_resource type="PackedScene" uid="uid://cc8hnlp15466b" path="res://bomb/assets/particles/explosion_particles.tscn" id="5_f3gsr"]
 
@@ -28,47 +28,47 @@ tags = {
 "title": "21"
 }
 
-[node name="Bomb" type="Node2D"]
+[node name="Bomb" type="Node2D" unique_id=1924273752]
 script = ExtResource("1_1h7gg")
 keep_detection_active = true
 
-[node name="BombSprite" type="Sprite2D" parent="."]
+[node name="BombSprite" type="Sprite2D" parent="." unique_id=2088059123]
 z_index = 2
 position = Vector2(0, -4)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_f3gsr")
 
-[node name="ExplosionAreaSprite" type="Sprite2D" parent="."]
+[node name="ExplosionAreaSprite" type="Sprite2D" parent="." unique_id=1069695329]
 self_modulate = Color(1, 1, 1, 0.41568628)
 texture = ExtResource("3_27ssy")
 
-[node name="ExplosionAreaHitbox" parent="." instance=ExtResource("4_5f04w")]
+[node name="ExplosionAreaHitbox" parent="." unique_id=624666355 instance=ExtResource("4_5f04w")]
 visible = false
 
-[node name="HitboxCollider" type="CollisionShape2D" parent="ExplosionAreaHitbox"]
+[node name="HitboxCollider" type="CollisionShape2D" parent="ExplosionAreaHitbox" unique_id=1081593323]
 shape = SubResource("CircleShape2D_00hdp")
 disabled = true
 
-[node name="ExplosionDetectionArea" type="Area2D" parent="."]
+[node name="ExplosionDetectionArea" type="Area2D" parent="." unique_id=1945675667]
 visible = false
 
-[node name="DetectionAreaCollider" type="CollisionShape2D" parent="ExplosionDetectionArea"]
+[node name="DetectionAreaCollider" type="CollisionShape2D" parent="ExplosionDetectionArea" unique_id=1302705095]
 shape = SubResource("CircleShape2D_wvlh0")
 
-[node name="ExplosionPushArea" type="Area2D" parent="."]
+[node name="ExplosionPushArea" type="Area2D" parent="." unique_id=1903273781]
 visible = false
 collision_layer = 2
 
-[node name="PushAreaCollider" type="CollisionShape2D" parent="ExplosionPushArea"]
+[node name="PushAreaCollider" type="CollisionShape2D" parent="ExplosionPushArea" unique_id=1459979567]
 shape = SubResource("CircleShape2D_5rd10")
 disabled = true
 
-[node name="DetonationTimer" type="Timer" parent="."]
+[node name="DetonationTimer" type="Timer" parent="." unique_id=1026349839]
 
-[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=2120746864]
 stream = SubResource("AudioStreamOggVorbis_1h7gg")
 
-[node name="ExplosionParticles" parent="." instance=ExtResource("5_f3gsr")]
+[node name="ExplosionParticles" parent="." unique_id=961253427 instance=ExtResource("5_f3gsr")]
 position = Vector2(0, 11)
 
 [connection signal="body_entered" from="ExplosionPushArea" to="." method="_on_explosion_push_area_body_entered"]

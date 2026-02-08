@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0fwik5w87jwj"]
+
+[ext_resource type="Script" uid="uid://b4kab64nff6na" path="res://upgrade system/upgrade_connector.gd" id="1_ys1ix"]
+
+[node name="UpgradeConnector" type="Line2D" unique_id=1322821640]
+script = ExtResource("1_ys1ix")
