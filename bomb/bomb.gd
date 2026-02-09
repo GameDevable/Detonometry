@@ -1,7 +1,6 @@
 class_name Bomb
 extends Node2D
 @export var keep_detection_active: bool = false
-@export var detonation_time: float = 1.5
 var phase_time: float = 0.0
 var is_up_pulse: bool = false
 var pulse_time: float = 0.46
@@ -33,9 +32,7 @@ func _process(delta: float) -> void:
 
 
 func handle_placed() -> void:
-	# TO DO: Play a placing sound
-	
-	detonation_timer.start(detonation_time)
+	detonation_timer.start(StatManager.bomb_stats["explosion_time"])
 
 	if not keep_detection_active:
 		explosion_detection_area.monitorable = false

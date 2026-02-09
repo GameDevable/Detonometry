@@ -17,7 +17,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Detonometry"
 run/main_scene="uid://cw1imw7chr2ul"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="uid://do5361g8a3kp3"
+config/icon="uid://c0vxf7fa51it3"
+
+[audio]
+
+buses/default_bus_layout="uid://cj3esdr506ogs"
 
 [autoload]
 

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dynbaqvr24uno" path="res://ui/ui_animator_component.gd" id="1_lseh0"]
 
-[node name="UiAnimatorComponent" type="Node" unique_id=1599874781]
+[node name="UiAnimatorComponent" type="Node" unique_id=474882475]
 script = ExtResource("1_lseh0")

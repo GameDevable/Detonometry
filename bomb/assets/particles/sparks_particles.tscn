@@ -17,7 +17,7 @@ colors = PackedColorArray(1, 0.25237823, 0, 1, 1, 0.5198238, 0, 1, 1, 1, 0, 1, 0
 gradient = SubResource("Gradient_pp8cu")
 
 [sub_resource type="Curve" id="Curve_d65q5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6731518), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7509728), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_pp8cu"]
@@ -35,8 +35,8 @@ initial_velocity_max = 360.0
 gravity = Vector3(0, 0, 0)
 damping_min = 82.909004
 damping_max = 82.909004
-scale_min = 0.39999998
-scale_max = 0.59999996
+scale_min = 0.5
+scale_max = 0.65
 scale_curve = SubResource("CurveTexture_pp8cu")
 color_initial_ramp = SubResource("GradientTexture1D_kj07g")
 alpha_curve = SubResource("CurveTexture_kj07g")
@@ -47,7 +47,7 @@ emitting = false
 amount = 15
 amount_ratio = 0.9
 texture = ExtResource("1_d65q5")
-lifetime = 0.41000000000000003
+lifetime = 0.41
 one_shot = true
 speed_scale = 1.2
 explosiveness = 1.0

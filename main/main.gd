@@ -16,7 +16,3 @@ func _ready() -> void:
 	Console.pause_enabled = true
 	Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.OPEN_HAND_CURSOR_ICON.get_size() / 2)
 	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
-	
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-
-	

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b32dbo5wg88xq"]
+
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_d74py"]
+[ext_resource type="Texture2D" uid="uid://602ulfk2s0y2" path="res://upgrade system/assets/upgrade icons/bomb/explosion_delay_icon.svg" id="1_vnqfg"]
+
+[resource]
+script = ExtResource("1_d74py")
+name = "Explosion Delay"
+tier_modifiers = Array[float]([1.2])
+base_value = 1.5
+base_price = 20
+description = "Decreases the time it takes for a bomb to explode"
+modify_stat_name = "explosion_time"
+extra_character = "s"
+icon = ExtResource("1_vnqfg")
+metadata/_custom_type_script = "uid://dsonbba73212j"

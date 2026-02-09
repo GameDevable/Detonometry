@@ -37,6 +37,7 @@ func _ready() -> void:
 		_apply_modifier(modifier)
 		
 	shape_sprite.texture = shape_data.shape_texture
+	
 	var initial_scale = Vector2(0.01, 0.01)
 	shadow_sprite.scale = initial_scale
 	shape_sprite.scale = initial_scale

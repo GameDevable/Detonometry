@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
 [ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="2_4fy8l"]
 [ext_resource type="Texture2D" uid="uid://b7cbxvilwrwts" path="res://shapes/assets/sprites/triangle_shadow.svg" id="2_e6dkk"]
-[ext_resource type="PackedScene" uid="uid://bcjrft2uixwu1" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
+[ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
 [ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
 
 [node name="Shape" type="CharacterBody2D" unique_id=1276430996]
@@ -20,9 +20,10 @@ texture = ExtResource("2_4fy8l")
 [node name="ModifierOverlaySprites" type="Node2D" parent="." unique_id=1356149085]
 scale = Vector2(0.5, 0.5)
 
-[node name="Hurtbox" parent="." unique_id=972808678 instance=ExtResource("3_e6dkk")]
+[node name="Hurtbox" parent="." unique_id=977185970 node_paths=PackedStringArray("health_node") instance=ExtResource("3_e6dkk")]
+health_node = NodePath("../Health")
 
-[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox" unique_id=592913156]
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox" unique_id=1323193065]
 
 [node name="ExplosionDetector" type="Area2D" parent="." unique_id=1606969675]
 

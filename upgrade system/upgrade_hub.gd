@@ -2,10 +2,11 @@ extends Control
 var is_dragging: bool = false
 var can_drag: bool = true
 var base_button_minimum_size: Vector2 = Vector2.ZERO
+var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
 # Left, right, Bottom, Top
-const DRAG_BOUNDS: Array[float] = [-200, 700, -175, 100]
+const DRAG_BOUNDS: Array[float] = [-250, 250, -150, 150]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
@@ -14,6 +15,10 @@ const DRAG_BOUNDS: Array[float] = [-200, 700, -175, 100]
 
 func _ready() -> void:
 	SignalManager.points_changed.connect(_on_points_changed)
+	SignalManager.upgrade_unlocked.connect(func(_upgrade: Upgrade) -> void:
+		var purchasable_node_count: int = _update_buttons(upgrade_nodes, cached_points)
+		SignalManager.purchase_amount_changed.emit(purchasable_node_count)
+		)
 	back_to_game_button.mouse_entered.connect(_on_mouse_entered)
 	back_to_game_button.mouse_exited.connect(_on_mouse_exited)
 	# Recursively loops through a
@@ -68,6 +73,7 @@ func _set_up_buttons(parent_node: Control) -> void:
 
 func _on_points_changed(value: int) -> void:
 	points_label.text = "$ " + str(value)
+	cached_points = value
 	# Recursively finds the upgrade nodes and adds the number of upgrades that can be purchased to a variable
 	var purchasable_node_count: int = _update_buttons(upgrade_nodes, value)
 	SignalManager.purchase_amount_changed.emit(purchasable_node_count)

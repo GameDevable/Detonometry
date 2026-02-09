@@ -16,7 +16,7 @@ func scale_custom_scale_parent(final_scale: Vector2, time: float, easing: Tween.
 
 
 func bounce() -> void:
-	var base_scale = get_parent().scale
+	var _base_scale = get_parent().scale
 	pass
 
 

@@ -1,8 +1,8 @@
 class_name UpgradeNode
 extends Control
-@export var data: UpgradeData 
-@export var is_locked: bool = false
-var upgrade: Upgrade = null 
+@export var data: UpgradeData
+@export var is_locked: bool = true
+var upgrade: Upgrade = null
 var can_purchase: bool = false
 var base_position: Vector2 = Vector2.ZERO
 var connecting_point: Vector2 = Vector2.ZERO
@@ -21,6 +21,10 @@ const TRANSITOIN_TYPE: Tween.TransitionType = Tween.TRANS_BOUNCE
 
 const PURCHASE_SOUND = preload("uid://bgqnendordq35")
 
+const NORMAL_LOCK_TEXTURE: Texture2D = preload("uid://dmpf5mmfqu6gc")
+const HOVER_LOCK_TEXTURE: Texture2D = preload("uid://cexmjh73ifghx")
+const PRESSED_LOCK_TEXTURE: Texture2D = preload("uid://vy6squcty0gf")
+
 @onready var name_display: PanelContainer = $UpgradeDataDisplay/NameDisplay
 @onready var name_label: Label = $UpgradeDataDisplay/NameDisplay/NameLabel
 @onready var description_label: Label = $UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels/DescriptionLabel
@@ -30,6 +34,7 @@ const PURCHASE_SOUND = preload("uid://bgqnendordq35")
 @onready var button_animator: Node = $PurchaseButton/ButtonAnimator
 @onready var upgrade_data_display: VBoxContainer = $UpgradeDataDisplay
 @onready var button_icon: TextureRect = $PurchaseButton/ButtonIcon
+@onready var lock_icon: TextureRect = $PurchaseButton/LockIcon
 
 
 func _ready() -> void:
@@ -48,6 +53,7 @@ func _ready() -> void:
 	base_position = purchase_button.position
 	connecting_point = purchase_button.global_position + purchase_button.size * 0.25
 	button_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+	purchase_button.icon = null
 
 
 func is_at_max_tier() -> bool:
@@ -71,11 +77,14 @@ func purchase_tier(tier: int) -> void:
 func unlock() -> void:
 	is_locked = false
 	SignalManager.upgrade_unlocked.emit(upgrade)
+	lock_icon.visible = false
 	update_theme()
+	_update_display()
 
 
 func update_theme() -> void:
 	if not is_locked:
+		name_display.visible  = true
 		if upgrade.has_reached_max_tier():
 			purchase_button.theme = UPGRADE_NODE_MAXED_THEME
 			name_display.theme = MAXED_PANEL
@@ -109,6 +118,7 @@ func _on_purchase_button_mouse_entered() -> void:
 		upgrade_data_display.visible = true
 	
 	AudioManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
+	lock_icon.texture = HOVER_LOCK_TEXTURE
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
 	button_animator.scale_custom_scale_parent(end_scale, SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_ELASTIC)
 
@@ -116,6 +126,7 @@ func _on_purchase_button_mouse_entered() -> void:
 func _on_purchase_button_mouse_exited() -> void:
 	upgrade_data_display.visible = false
 	var end_scale: Vector2 = Vector2(1.0, 1.0) * Constants.SPRITE_SCALE
+	lock_icon.texture = NORMAL_LOCK_TEXTURE
 	button_animator.scale_custom_scale_parent(end_scale, SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_BACK)
 
 
@@ -134,6 +145,14 @@ func _on_purchase_button_pressed() -> void:
 		var pitch: float = 0.25
 		var volume: float = -6.5
 		AudioManager.play_sfx(PURCHASE_SOUND, 0.0, volume, pitch)
+
+
+func _on_purchase_button_button_up() -> void:
+	lock_icon.texture = HOVER_LOCK_TEXTURE
+
+
+func _on_purchase_button_button_down() -> void:
+	lock_icon.texture = PRESSED_LOCK_TEXTURE
 
 
 func _on_purchase_button_resized() -> void:
