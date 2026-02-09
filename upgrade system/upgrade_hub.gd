@@ -11,7 +11,7 @@ const DRAG_BOUNDS: Array[float] = [-250, 250, -150, 150]
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
 @onready var back_to_game_button: Button = $BackgroundPanel/BackToGameButton
-@onready var button_animator: Node = $BackgroundPanel/BackToGameButton/ButtonAnimator
+@onready var button_scale_effect: UiEffectComponent = $BackgroundPanel/BackToGameButton/ButtonScaleEffect
 
 func _ready() -> void:
 	SignalManager.points_changed.connect(_on_points_changed)
@@ -112,11 +112,11 @@ func _on_mouse_entered() -> void:
 	AudioManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
-	button_animator.scale_parent(end_scale, base_button_minimum_size, BUTTON_SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_ELASTIC)
+	button_scale_effect.scale_ui(back_to_game_button.scale, end_scale)
 
 
 func _on_mouse_exited() -> void:
 	can_drag = true
 	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
-	button_animator.scale_parent(end_scale, base_button_minimum_size, BUTTON_SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_BACK)
+	button_scale_effect.scale_ui(back_to_game_button.scale, end_scale, Tween.TRANS_EXPO)

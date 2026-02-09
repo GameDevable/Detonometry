@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cd4h0wnidkafg"]
+
+[ext_resource type="Script" uid="uid://c8yr6fvvkbdyj" path="res://ui/ui_effect_component.gd" id="1_lseh0"]
+
+[node name="UiEffectComponent" type="Node" unique_id=1259690829]
+script = ExtResource("1_lseh0")

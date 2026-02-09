@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5x3gqve5sar" path="res://upgrade system/assets/upgrade icons/bomb/bomb_place_delay_icon.svg" id="3_timap"]
 [ext_resource type="Texture2D" uid="uid://dmpf5mmfqu6gc" path="res://ui/assets/base_lock.svg" id="4_q8yqo"]
 [ext_resource type="Theme" uid="uid://btycb2sjvvcvy" path="res://ui/themes/maxed_panel.tres" id="4_qim07"]
-[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_animator_component.tscn" id="4_timap"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="5_q8yqo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qim07"]
 
@@ -24,15 +24,17 @@ anchors_preset = 0
 script = ExtResource("1_sigt7")
 
 [node name="PurchaseButton" type="Button" parent="." unique_id=1158978565]
-custom_minimum_size = Vector2(192, 192)
 layout_mode = 1
-offset_right = 192.0
-offset_bottom = 192.0
+offset_left = -96.0
+offset_top = -25.0
+offset_right = 96.0
+offset_bottom = 167.0
 scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(-96, 24)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_2m2d3")
 icon_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonIcon" type="TextureRect" parent="PurchaseButton" unique_id=228071888]
 layout_mode = 1
@@ -62,7 +64,9 @@ grow_vertical = 2
 texture = ExtResource("4_q8yqo")
 stretch_mode = 3
 
-[node name="ButtonAnimator" parent="PurchaseButton" unique_id=474882475 instance=ExtResource("4_timap")]
+[node name="ButtonScaleEffect" parent="PurchaseButton" unique_id=1259690829 instance=ExtResource("5_q8yqo")]
+anim_time = 0.4
+trans_type = 9
 
 [node name="UpgradeDataDisplay" type="VBoxContainer" parent="." unique_id=83698601]
 visible = false
@@ -77,6 +81,7 @@ offset_top = -148.0
 offset_right = 152.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 1)
 theme_override_constants/separation = -2
 
 [node name="NameDisplay" type="PanelContainer" parent="UpgradeDataDisplay" unique_id=1842079204]
@@ -143,6 +148,10 @@ theme = ExtResource("2_m2iyk")
 theme_override_font_sizes/font_size = 18
 text = "$1000"
 horizontal_alignment = 1
+
+[node name="DisplayScaleEffect" parent="UpgradeDataDisplay" unique_id=1008009883 instance=ExtResource("5_q8yqo")]
+anim_time = 0.4
+trans_type = 5
 
 [connection signal="button_down" from="PurchaseButton" to="." method="_on_purchase_button_button_down"]
 [connection signal="button_up" from="PurchaseButton" to="." method="_on_purchase_button_button_up"]

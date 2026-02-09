@@ -17,7 +17,7 @@ const CANT_PLACE = preload("res://bomb/assets/audio/cant_place.ogg")
 @onready var place_delay_progress_bar: TextureProgressBar = $MouseFollowerWrapper/PlaceDelayProgressBar
 @onready var plus_sign_rect: TextureRect = $UpgradeHubButton/PlusSignRect
 @onready var upgrade_hub_button: Button = $UpgradeHubButton
-@onready var button_animator: Node = $UpgradeHubButton/ButtonAnimator
+@onready var button_scale_effect: UiEffectComponent = $UpgradeHubButton/ButtonScaleEffect
 
 func _ready() -> void:
 	base_button_minimum_size = upgrade_hub_button.custom_minimum_size
@@ -116,9 +116,9 @@ func _on_button_mouse_entered() -> void:
 	else:
 		mouse_was_hidden = false
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
+	button_scale_effect.scale_ui(upgrade_hub_button.scale, end_scale)
 	var base_pitch: float = 1.0
 	AudioManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
-	button_animator.scale_parent(end_scale, base_button_minimum_size, BUTTON_SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_ELASTIC)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.POINTER_HAND_CURSOR_ICON.get_size() / 2)
 
@@ -129,7 +129,7 @@ func _on_button_mouse_exited() -> void:
 		return
 	progress_bar_cancel = false
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
-	button_animator.scale_parent(end_scale, base_button_minimum_size, BUTTON_SCALE_TIME, Tween.EASE_OUT, Tween.TRANS_BACK)
+	button_scale_effect.scale_ui(upgrade_hub_button.scale, end_scale, Tween.TRANS_EXPO)
 	if mouse_was_hidden:
 		place_delay_progress_bar.visible = true
 		if UiManager.active_menu == null and visible:
