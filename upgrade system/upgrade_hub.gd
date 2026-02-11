@@ -6,7 +6,7 @@ var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
 # Left, right, Bottom, Top
-const DRAG_BOUNDS: Array[float] = [-250, 250, -150, 150]
+const DRAG_BOUNDS: Array[float] = [-250, 250, -225, 225]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes

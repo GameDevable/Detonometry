@@ -6,10 +6,11 @@
 [resource]
 script = ExtResource("1_xnaqi")
 name = "Explosion Radius"
-tier_modifiers = Array[float]([125.0, 140.0])
+tier_modifiers = Array[float]([135.0, 180.0, 225.0, 260.0])
 base_value = 100.0
-base_price = 5
+base_price = 6
 description = "Increases the explosion radius"
 modify_stat_name = "explosion_radius_size_percent"
 extra_character = "%"
 icon = ExtResource("1_jlelo")
+price_scale = 2.5

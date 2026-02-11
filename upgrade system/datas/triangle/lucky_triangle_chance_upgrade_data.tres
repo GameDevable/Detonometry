@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3 uid="uid://da4oqddqo13o3"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://da4oqddqo13o3"]
 
-[ext_resource type="Texture2D" uid="uid://d0rm14l5u2qbk" path="res://upgrade system/assets/upgrade icons/triangle/lucky_triangle_chance_icon.svg" id="1_rogxp"]
-[ext_resource type="Script" uid="uid://b3mtk4duhjde4" path="res://game/upgrade_data.gd" id="1_ufsmo"]
+[ext_resource type="Texture2D" uid="uid://b3ugjpkl4kbyg" path="res://upgrade system/assets/upgrade icons/triangle/lucky_triangle_chance_icon.svg" id="1_rogxp"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_ufsmo"]
 
 [resource]
 script = ExtResource("1_ufsmo")
 name = "Lucky Triangle Chance"
-tier_modifiers = Array[float]([1.0, 3.0])
-base_price = 50
+tier_modifiers = Array[float]([1.0, 3.0, 5.0])
+base_price = 45
 description = "Increases the chance for a Lucky Triangle to spawn"
 modify_stat_name = "lucky_triangle_chance"
 extra_character = "%"
 icon = ExtResource("1_rogxp")
-metadata/_custom_type_script = "uid://b3mtk4duhjde4"

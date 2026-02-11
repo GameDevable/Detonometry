@@ -7,6 +7,7 @@ var can_purchase: bool = false
 var base_position: Vector2 = Vector2.ZERO
 var connecting_point: Vector2 = Vector2.ZERO
 var base_display_min_size: Vector2 = Vector2.ZERO
+
 const UPGRADE_NODE_CAN_AFFORD_THEME = preload("uid://bmi00awkluvkt")
 const UPGRADE_NODE_CANT_AFFORD_THEME = preload("uid://cpbqs1ys1nkeb")
 const UPGRADE_NODE_MAXED_THEME = preload("uid://b6ntk2x4lk85")

@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3 uid="uid://bsdi6fr81gafw"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bsdi6fr81gafw"]
 
-[ext_resource type="Script" uid="uid://b3mtk4duhjde4" path="res://game/upgrade_data.gd" id="1_1n7gh"]
-[ext_resource type="Texture2D" uid="uid://c6c7k6q0csddi" path="res://upgrade system/assets/upgrade icons/shape spawning/spawn_rate_decrease_icon.svg" id="1_lwd5t"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_1n7gh"]
+[ext_resource type="Texture2D" uid="uid://5qpw31qlwr8n" path="res://upgrade system/assets/upgrade icons/shape spawning/spawn_rate_decrease_icon.svg" id="1_lwd5t"]
 
 [resource]
 script = ExtResource("1_1n7gh")
 name = "Shape Spawn Rate"
-tier_modifiers = Array[float]([2.5])
+tier_modifiers = Array[float]([2.25, 1.5, 1.0])
 base_value = 3.0
-base_price = 25
+base_price = 16
 description = "Decreases the time it takes to spawn shapes"
 modify_stat_name = "spawn_time"
 extra_character = "s"
-operation_type = 4
 icon = ExtResource("1_lwd5t")
-metadata/_custom_type_script = "uid://b3mtk4duhjde4"
+price_scale = 1.8

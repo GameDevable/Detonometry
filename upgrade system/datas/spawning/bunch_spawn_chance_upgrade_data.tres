@@ -1,17 +1,15 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3 uid="uid://dj1gg3ys2qwx6"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dj1gg3ys2qwx6"]
 
-[ext_resource type="Script" uid="uid://b3mtk4duhjde4" path="res://game/upgrade_data.gd" id="1_miwv1"]
-[ext_resource type="Texture2D" uid="uid://bk6g6vuhuhg4g" path="res://upgrade system/assets/upgrade icons/shape spawning/bunch_spawn_chance_icon.svg" id="1_rrwpu"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_miwv1"]
+[ext_resource type="Texture2D" uid="uid://dmxdr5h0uhe4m" path="res://upgrade system/assets/upgrade icons/shape spawning/bunch_spawn_chance_icon.svg" id="1_rrwpu"]
 
 [resource]
 script = ExtResource("1_miwv1")
 name = "Bunch Chance"
-tier_modifiers = Array[float]([5.0])
+tier_modifiers = Array[float]([3.0, 5.0])
 base_value = 2.0
-base_price = 15
+base_price = 20
 description = "Increases the chance for multiple shapes to spawn in a bunch"
 modify_stat_name = "bunch_spawn_chance"
 extra_character = "%"
-operation_type = 4
 icon = ExtResource("1_rrwpu")
-metadata/_custom_type_script = "uid://b3mtk4duhjde4"

@@ -9,4 +9,4 @@ extends Resource
 @export var modify_stat_name: String = ""
 @export var extra_character: String = ""
 @export var icon: Texture2D = null
-var price_scale: float = 1.5
+@export var price_scale: float = 1.5

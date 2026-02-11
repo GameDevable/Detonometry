@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3 uid="uid://bhgcpjiomii1"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bhgcpjiomii1"]
 
-[ext_resource type="Script" uid="uid://b3mtk4duhjde4" path="res://game/upgrade_data.gd" id="1_nwksr"]
-[ext_resource type="Texture2D" uid="uid://bkgimdkpyy1vk" path="res://upgrade system/assets/upgrade icons/triangle/lucky_triangle_multiplier_icon.svg" id="1_v3er3"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_nwksr"]
+[ext_resource type="Texture2D" uid="uid://dhd3aprcujaqc" path="res://upgrade system/assets/upgrade icons/triangle/lucky_triangle_multiplier_icon.svg" id="1_v3er3"]
 
 [resource]
 script = ExtResource("1_nwksr")
 name = "Lucky Triangle Multiplier"
-tier_modifiers = Array[float]([6.0, 7.0, 8.0])
-base_value = 5.0
-base_price = 65
+tier_modifiers = Array[float]([5.0, 6.0, 7.0])
+base_value = 4.0
+base_price = 55
 description = "Increases the value multiplier of Lucky Shapes on triangles"
 modify_stat_name = "lucky_triangle_multiplier"
 icon = ExtResource("1_v3er3")
-metadata/_custom_type_script = "uid://b3mtk4duhjde4"
