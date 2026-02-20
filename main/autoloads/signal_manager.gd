@@ -24,7 +24,9 @@ signal spawn_sierpinski_triangles(triangle_position: Vector2, modifier_arrays_ar
 # World
 signal spawn_bomb(bomb_position: Vector2)
 signal unsuccessful_bomb_place
-signal play_music
+signal session_restarted
+signal session_timer_updated(value: float)
+signal session_ended(session_data)
 # Upgrades
 signal upgrade_purchased(upgrade: Upgrade)
 signal upgrade_unlocked(upgrade: Upgrade)

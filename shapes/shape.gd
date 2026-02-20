@@ -73,6 +73,12 @@ func handle_despawn() -> void:
 		queue_free()
 
 
+func get_value() -> float:
+	var base_value: int = StatManager.get_shape_value(shape_data.shape_type)
+	var total_value: int = (base_value + modifier_value_adders_total) * modifier_multipliers_total 
+	return total_value
+
+
 func _is_offscreen(check_position: Vector2) -> bool:
 	# Handles horizontal axis
 	@warning_ignore("integer_division")
@@ -179,7 +185,7 @@ func _on_health_depleted(health_node: Health) -> void:
 	if health_node in get_children():
 		#var volume: float = -7.5
 		#var pitch_range: Vector2 = Vector2(0.5, 0.65)
-		#AudioManager.play_sfx(SHAPE_BREAK_1, 0.05, volume, 1.0, true, pitch_range)
+		#EffectManager.play_sfx(SHAPE_BREAK_1, 0.05, volume, 1.0, true, pitch_range)
 		if shape_modifiers.has(Enums.ShapeModifiers.SIERPINSKIES):
 			var modifier_arrays_array: Array[Array] = [[], [], []]
 			for i in range(3):
@@ -188,4 +194,4 @@ func _on_health_depleted(health_node: Health) -> void:
 					modifier_arrays_array[i] = [Enums.ShapeModifiers.SIERPINSKIES]
 			SignalManager.spawn_sierpinski_triangles.emit(position, modifier_arrays_array)
 		SignalManager.shape_broken.emit(self)
-		ParticleManager.spawn_particles(BREAK_PARTICLE_SCENE_PATH, position)
+		EffectManager.spawn_particles(BREAK_PARTICLE_SCENE_PATH, position)

@@ -13,8 +13,10 @@
 [ext_resource type="Resource" uid="uid://dj1gg3ys2qwx6" path="res://upgrade system/datas/spawning/bunch_spawn_chance_upgrade_data.tres" id="9_8rb21"]
 [ext_resource type="Resource" uid="uid://bx2qhdj5l0a5a" path="res://upgrade system/datas/spawning/bunch_spawn_number_upgrade_data.tres" id="10_g0dhu"]
 [ext_resource type="Resource" uid="uid://b32dbo5wg88xq" path="res://upgrade system/datas/bomb/explosion_time_upgrade.tres" id="10_vyd20"]
+[ext_resource type="Resource" uid="uid://bunbyvt2wyp7i" path="res://upgrade system/datas/bomb/cluster_multiplier_upgrade.tres" id="11_pa0n2"]
 [ext_resource type="Resource" uid="uid://ba3vxeyrhsrvf" path="res://upgrade system/datas/spawning/spawn_limit_upgrade_data.tres" id="11_wmd6r"]
 [ext_resource type="Resource" uid="uid://bsdi6fr81gafw" path="res://upgrade system/datas/spawning/spawn_rate_upgrade_data.tres" id="12_7qdkh"]
+[ext_resource type="Resource" uid="uid://bgkrxghbgkg24" path="res://upgrade system/datas/bomb/cluster_exceed_bonus_upgrade.tres" id="12_qppun"]
 [ext_resource type="Resource" uid="uid://87nxhpxrfg6b" path="res://upgrade system/datas/triangle/fractalization_chance_upgrade_data.tres" id="13_y0csd"]
 [ext_resource type="Resource" uid="uid://bhgcpjiomii1" path="res://upgrade system/datas/triangle/lucky_triangle_multiplier_upgrade_data.tres" id="14_1qpes"]
 [ext_resource type="Resource" uid="uid://da4oqddqo13o3" path="res://upgrade system/datas/triangle/lucky_triangle_chance_upgrade_data.tres" id="15_6kss2"]
@@ -97,7 +99,6 @@ theme = ExtResource("3_xxrst")
 text = "Back To Game"
 
 [node name="ButtonScaleEffect" parent="BackgroundPanel/BackToGameButton" unique_id=1259690829 instance=ExtResource("4_vyd20")]
-anim_time = 0.4
 trans_type = 9
 
 [node name="DraggableNodes" type="Control" parent="." unique_id=1896776005]
@@ -150,9 +151,9 @@ is_locked = null
 
 [node name="EDamageUpgrade" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1143697040 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 650.0
+offset_left = 1050.0
 offset_top = 150.0
-offset_right = 650.0
+offset_right = 1050.0
 offset_bottom = 150.0
 data = ExtResource("8_cxl72")
 is_locked = null
@@ -165,6 +166,22 @@ offset_right = 850.0
 offset_bottom = 150.0
 data = ExtResource("10_vyd20")
 is_locked = null
+
+[node name="CMultUpgrade" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1859334275 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 150.0
+offset_right = 650.0
+offset_bottom = 150.0
+data = ExtResource("11_pa0n2")
+
+[node name="CEBonusUpgrade" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1280961048 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 650.0
+offset_top = -50.0
+offset_right = 650.0
+offset_bottom = -50.0
+data = ExtResource("12_qppun")
 
 [node name="SpawnUpgrades" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=498220096]
 layout_mode = 1
@@ -297,10 +314,19 @@ root_node = NodePath("../../../UpgradeNodes/BombUpgrades/BAreaUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/SRateUpgrade")
 
 [node name="EDamEDCon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=920910809 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 222, 851, 222)
+points = PackedVector2Array(1051, 222, 851, 222)
 root_node = NodePath("../../../UpgradeNodes/BombUpgrades/EDelayUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/EDamageUpgrade")
 unlock_threshold = 2
+
+[node name="BACMCon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=1705029796 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+points = PackedVector2Array(651, 222, 651, 422)
+root_node = NodePath("../../../UpgradeNodes/BombUpgrades/BAreaUpgrade")
+dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/CMultUpgrade")
+
+[node name="CMCEBonusCon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=112692496 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+root_node = NodePath("../../../UpgradeNodes/BombUpgrades/CMultUpgrade")
+dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/CEBonusUpgrade")
 
 [node name="SpawnConnectors" type="Control" parent="DraggableNodes/Connectors" unique_id=1114916300]
 anchors_preset = 0

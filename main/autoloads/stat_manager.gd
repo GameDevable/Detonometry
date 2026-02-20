@@ -5,7 +5,7 @@ var bomb_stats: Dictionary[String, float] = {
 	"explosion_radius": 77.0,
 	"explosion_radius_size_percent": 100.0,
 	"explosion_time": 1.5,
-	"place_delay": 4,
+	"place_delay": 3.5,
 }
 
 # Shape Spawning
@@ -13,11 +13,10 @@ var shape_spawn_stats: Dictionary[String, float] = {
 	"spawn_limit": 5,
 	"bunch_spawn_chance": 2,
 	"bunch_spawn_number": 2,
-	"spawn_time": 3,
+	"spawn_time": 2.5,
 }
 var despawn_time_multiplier: float = 2.1
 var despawn_threshold_ratio: float = 0.75
-var bunch_multiplier: float = 1.5
 
 
 var shape_type_weights: Dictionary[Enums.ShapeType, float] = {
@@ -45,6 +44,16 @@ var special_modifier_stats: Dictionary[String, float] = {
 	"lucky_triangle_multiplier": 5.0,
 	"reinforced_triangle_chance": 0.0,
 }
+
+var bonus_stats: Dictionary[String, float] = {
+	
+}
+
+var multiplier_stats: Dictionary[String, float] = {
+	"cluster_multiplier" : 1.0,
+	"cluster_threshold" : 3.0,
+	"cluster_exceed_bonus" : 0.0,
+}
 var unlocked_upgrades: Dictionary[String, Upgrade] = {}
 
 func get_bomb_stats() -> Dictionary[String, float]:
@@ -59,6 +68,22 @@ func get_bomb_stat(key: String) -> float:
 	if key == "explosion_radius":
 		return Constants.BASE_BOMB_RADIUS * (get_bomb_stat("explosion_radius_size_percent") / 100.0)
 	return bomb_stats[key]
+
+
+func get_bonus_stat(key: String) -> float:
+	if unlocked_upgrades.has(key):
+		var upgrade: Upgrade = unlocked_upgrades[key]
+		var upgraded_stat: float = upgrade.get_upgraded_stat()
+		return upgraded_stat
+	return bonus_stats[key]
+
+
+func get_multiplier_stat(key: String) -> float:
+	if unlocked_upgrades.has(key):
+		var upgrade: Upgrade = unlocked_upgrades[key]
+		var upgraded_stat: float = upgrade.get_upgraded_stat()
+		return upgraded_stat
+	return multiplier_stats[key]
 
 
 func get_shape_spawn_stats() -> Dictionary[String, float]:
@@ -81,8 +106,6 @@ func get_despawn_threshold() -> float:
 	return shape_spawn_stats["spawn_limit"] * despawn_threshold_ratio
 
 
-func get_bunch_multiplier() -> float:
-	return bunch_multiplier 
 
 
 func get_despawn_time() -> float:

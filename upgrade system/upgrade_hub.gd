@@ -21,7 +21,7 @@ func _ready() -> void:
 		)
 	back_to_game_button.mouse_entered.connect(_on_mouse_entered)
 	back_to_game_button.mouse_exited.connect(_on_mouse_exited)
-	# Recursively loops through a
+	# Recursively loops through the buttons
 	_set_up_buttons(upgrade_nodes)
 	base_button_minimum_size = back_to_game_button.custom_minimum_size
 
@@ -100,16 +100,17 @@ func _update_buttons(parent_node: Control, points_value: int) -> int:
 
 
 func _on_back_to_game_button_pressed() -> void:
-	AudioManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
+	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.swap_menu("None")
 	UiManager.show_overlay("Hud")
+	SignalManager.session_restarted.emit()
 	Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.OPEN_HAND_CURSOR_ICON.get_size() / 2)
 
 
 func _on_mouse_entered() -> void:
 	can_drag = false
 	var base_pitch: float = 1.0
-	AudioManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
+	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
 	button_scale_effect.scale_ui(back_to_game_button.scale, end_scale)

@@ -7,8 +7,31 @@
    viewBox="0 0 110.00001 112"
    version="1.1"
    id="svg1"
+   sodipodi:docname="ui_hover_locked_button_background.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.2242992"
+     inkscape:cx="207.87403"
+     inkscape:cy="372.45799"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
   <defs
      id="defs1" />
   <g
@@ -41,5 +64,14 @@
        y="6"
        rx="13.541661"
        ry="13.541666" />
+    <rect
+       style="fill:#383838;stroke:#ffffff;stroke-width:1.00012"
+       id="rect4"
+       width="5.6188607"
+       height="0.64833009"
+       x="98.546173"
+       y="146.30649"
+       rx="15.277778"
+       ry="0.64833009" />
   </g>
 </svg>

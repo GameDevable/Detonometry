@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://pp45ai3654ql" path="res://ui/hud.gd" id="1_rbyyf"]
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_276te"]
-[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="3_1v5rv"]
-[ext_resource type="Texture2D" uid="uid://cia4pi0df1vql" path="res://ui/plus_sign.svg" id="3_7ihmi"]
 [ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_546lt"]
 [ext_resource type="Texture2D" uid="uid://dyk83uiiw75cf" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
-[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="7_q43x7"]
 
 [node name="Hud" type="Control" unique_id=579881151]
 layout_mode = 3
@@ -17,22 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rbyyf")
-
-[node name="PointsLabel" type="Label" parent="." unique_id=290357642]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.39765626
-anchor_top = 0.0125
-anchor_right = 0.60234374
-anchor_bottom = 0.125
-theme_override_fonts/font = ExtResource("2_276te")
-theme_override_font_sizes/font_size = 64
-text = "$0"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="ShakeComponent" type="Node" parent="." unique_id=1651614623]
-script = ExtResource("3_546lt")
 
 [node name="MouseFollowerWrapper" type="Control" parent="." unique_id=1837705660]
 layout_mode = 1
@@ -58,41 +39,19 @@ value = 100.0
 fill_mode = 4
 texture_progress = ExtResource("5_en2x2")
 
-[node name="UpgradeHubButton" type="Button" parent="." unique_id=677914338]
-custom_minimum_size = Vector2(246, 50)
+[node name="SessionTimeLabel" type="Label" parent="." unique_id=1830259486]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -50.0
-offset_right = 123.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
 grow_horizontal = 2
-grow_vertical = 0
-pivot_offset_ratio = Vector2(0.5, 1)
-theme = ExtResource("3_1v5rv")
-text = "Upgrades Hub"
+theme_override_fonts/font = ExtResource("2_276te")
+theme_override_font_sizes/font_size = 64
+text = "10.0"
+horizontal_alignment = 1
 
-[node name="PlusSignRect" type="TextureRect" parent="UpgradeHubButton" unique_id=603716435]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -14.0
-offset_top = -15.0
-offset_right = 14.0
-offset_bottom = 13.0
-grow_horizontal = 0
-texture = ExtResource("3_7ihmi")
-
-[node name="ButtonScaleEffect" parent="UpgradeHubButton" unique_id=1259690829 instance=ExtResource("7_q43x7")]
-anim_time = 0.4
-trans_type = 9
-
-[connection signal="mouse_entered" from="UpgradeHubButton" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="UpgradeHubButton" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="UpgradeHubButton" to="." method="_on_button_pressed"]
-[connection signal="resized" from="UpgradeHubButton" to="." method="_on_upgrade_hub_button_resized"]
+[node name="ShakeComponent" type="Node" parent="." unique_id=1651614623]
+script = ExtResource("3_546lt")

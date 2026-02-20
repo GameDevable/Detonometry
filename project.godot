@@ -32,8 +32,7 @@ SaveSystem="*res://main/autoloads/save_system.gd"
 UiManager="*res://main/autoloads/ui_manager.gd"
 StatManager="*res://main/autoloads/stat_manager.gd"
 Console="*uid://qca3sqetpnah"
-AudioManager="*res://main/autoloads/audio_manager.gd"
-ParticleManager="*uid://bp1mog1jq5f5d"
+EffectManager="*uid://cmcev4gfav1il"
 
 [debug]
 

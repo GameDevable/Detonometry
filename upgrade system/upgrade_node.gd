@@ -77,7 +77,7 @@ func purchase_tier(tier: int) -> void:
 	upgrade.current_unpurchased_tier = upgrade.current_purchased_tier + 1
 	SignalManager.upgrade_purchased.emit(upgrade)
 	_update_display()
-	if upgrade.has_reached_max_tier():
+	if upgrade.has_reached_max_tier(): 
 		can_purchase = false
 
 
@@ -123,7 +123,7 @@ func _on_purchase_button_mouse_entered() -> void:
 	var base_pitch: float = 1.0
 	if not is_locked:
 		upgrade_data_display.visible = true
-	AudioManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
+	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	lock_icon.texture = HOVER_LOCK_TEXTURE
 	var end_scale: Vector2 = Vector2(0.55, 0.55)
 	button_scale_effect.scale_ui(purchase_button.scale, end_scale)
@@ -153,7 +153,7 @@ func _on_purchase_button_pressed() -> void:
 		purchase_tier(upgrade.current_unpurchased_tier)
 		var pitch: float = 0.25
 		var volume: float = -6.5
-		AudioManager.play_sfx(PURCHASE_SOUND, 0.0, volume, pitch)
+		EffectManager.play_sfx(PURCHASE_SOUND, 0.0, volume, pitch)
 
 
 func _on_purchase_button_button_up() -> void:

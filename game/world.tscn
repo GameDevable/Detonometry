@@ -20,7 +20,7 @@ script = ExtResource("2_tvmmn")
 [node name="ShakeComponent" type="Node" parent="Camera" unique_id=1631131573]
 script = ExtResource("3_4xpgs")
 
-[node name="BreakableSpawner" type="Node2D" parent="." unique_id=579955111]
+[node name="ShapeSpawner" type="Node2D" parent="." unique_id=579955111]
 script = ExtResource("2_aseec")
 
 [node name="BombContainer" type="Node2D" parent="." unique_id=700774503]
@@ -61,4 +61,9 @@ shape = SubResource("RectangleShape2D_m4twg")
 
 [node name="PlaceDelayTimer" type="Timer" parent="." unique_id=6329191]
 
+[node name="SessionTimer" type="Timer" parent="." unique_id=2032151156]
+wait_time = 30.0
+autostart = true
+
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]
+[connection signal="timeout" from="SessionTimer" to="." method="_on_session_timer_timeout"]

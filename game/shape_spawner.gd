@@ -15,6 +15,7 @@ func _ready() -> void:
 	SignalManager.spawn_shape_request.connect(_on_spawn_shape_requested)
 	SignalManager.spawn_shape_bunch_request.connect(_on_spawn_shape_bunch_requested)
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
+	SignalManager.session_restarted.connect(_on_session_restarted)
 
 
 func _process(delta: float) -> void:
@@ -186,6 +187,13 @@ func _choose_random_direction() -> Vector2:
 
 func _choose_random_speed() -> int:
 	return randi_range(Constants.MIN_SHAPE_SPEED ,Constants.MAX_SHAPE_SPEED)
+
+
+func _on_session_restarted() -> void:
+	for child in get_children():
+		child.queue_free()
+	spawn_time_passed = 0.0
+	despawn_time_passed = 0.0
 
 
 func _on_spawn_shape_requested(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[Enums.ShapeModifiers]) -> void:

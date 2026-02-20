@@ -37,11 +37,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Hud" parent="UiCanvasLayer/Overlays" unique_id=1664704056 instance=ExtResource("3_xwkvk")]
+[node name="Hud" parent="UiCanvasLayer/Overlays" unique_id=1664704056 node_paths=PackedStringArray("world") instance=ExtResource("3_xwkvk")]
 layout_mode = 1
+world = NodePath("../../../World")
 
 [node name="AudioHolder" type="Node" parent="." unique_id=1381456759]
 process_mode = 3
+
+[node name="ParticleHolder" type="Node2D" parent="." unique_id=1605238279]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
 volume_db = -6.0

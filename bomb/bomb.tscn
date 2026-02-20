@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dbo8hmxfu2l6x" path="res://bomb/bomb.gd" id="1_1h7gg"]
 [ext_resource type="Texture2D" uid="uid://bss8tmln0vxq8" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
 [ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/green_circle.svg" id="3_27ssy"]
-[ext_resource type="PackedScene" uid="uid://dgtb8vq48acyh" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
+[ext_resource type="PackedScene" uid="uid://diivo8pqh7pnw" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
 [ext_resource type="PackedScene" uid="uid://cc8hnlp15466b" path="res://bomb/assets/particles/explosion_particles.tscn" id="5_f3gsr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_00hdp"]
@@ -58,6 +58,8 @@ shape = SubResource("CircleShape2D_wvlh0")
 [node name="ExplosionPushArea" type="Area2D" parent="." unique_id=1903273781]
 visible = false
 collision_layer = 2
+monitoring = false
+monitorable = false
 
 [node name="PushAreaCollider" type="CollisionShape2D" parent="ExplosionPushArea" unique_id=1459979567]
 shape = SubResource("CircleShape2D_5rd10")

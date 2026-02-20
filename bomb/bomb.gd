@@ -52,13 +52,13 @@ func _set_radii(explosion_radius: float) -> void:
 func _handle_explosion_effects() -> void:
 	var volume: float = 3.75
 	var pitch: float = 0.75
-	AudioManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
+	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	
-	ParticleManager.spawn_particles(BLAST_PARTICLE_PATH, position)
+	EffectManager.spawn_particles(BLAST_PARTICLE_PATH, position)
 	var delay: float = 0.05
-	ParticleManager.spawn_particles(SPARK_PARTICLE_PATH, position, delay)
-	ParticleManager.spawn_particles(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)
-	ParticleManager.spawn_particles(EXPLOSION_PARTICLES_PATH, position, delay)
+	EffectManager.spawn_particles(SPARK_PARTICLE_PATH, position, delay)
+	EffectManager.spawn_particles(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)
+	EffectManager.spawn_particles(EXPLOSION_PARTICLES_PATH, position, delay)
 
 
 func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:
