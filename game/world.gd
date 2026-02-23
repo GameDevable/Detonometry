@@ -99,7 +99,6 @@ func _command_set_points(amount: String) -> void:
 func _command_quit_session() -> void:
 	session_timer.wait_time = 30
 	_on_session_timer_timeout()
-	
 
 
 func _set_points(amount: int) -> void:
@@ -152,9 +151,8 @@ func _on_place_delay_timer_timeout() -> void:
 
 
 func _on_session_timer_timeout() -> void:
-	UiManager.hide_overlay("Hud")
-	UiManager.swap_menu("UpgradeHub")
-	SignalManager.session_ended.emit(session_data)
+	UiManager.transition_to("UpgradeHub")
+	session_timer.stop()
 
 
 func _on_session_restarted() -> void:
@@ -164,6 +162,7 @@ func _on_session_restarted() -> void:
 	can_create_bomb = true
 	current_run_gain = 0
 	place_delay_timer.stop()
+	session_timer.start()
 	session_data = [0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()

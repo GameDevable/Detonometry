@@ -1,10 +1,10 @@
 extends Node
-
 var ui_menus: Dictionary[String, Control] = {}
 var ui_overlays: Dictionary[String, Control] = {}
 var active_overlays: Array[Control] = []
 var active_overlay_names: Array[String] = []
 var active_menu: Control = null
+var ui_canvas: CanvasLayer = null
 
 func set_up_ui(canvas_layer: CanvasLayer) -> void:
 	var menus: Control = canvas_layer.get_child(0)
@@ -15,6 +15,7 @@ func set_up_ui(canvas_layer: CanvasLayer) -> void:
 	# Sets up overlays
 	for overlay in overlays.get_children():
 		ui_overlays.set(overlay.name, overlay)
+	ui_canvas = canvas_layer
 
 
 func show_overlay(overlay_key: String) -> void:
@@ -56,3 +57,18 @@ func swap_menu(menu_key: String) -> void:
 	get_tree().paused = true
 	active_menu = menu
 	active_menu.visible = true
+
+
+func transition_to(menu_key: String) -> void:
+	if menu_key == "None":
+		SignalManager.session_restarted.emit()
+	var transition_effect: Control = ui_canvas.find_child("TransitionEffect", true, true)
+	transition_effect.visible = true
+	await transition_effect.transition_position(Vector2.ZERO)
+	
+	swap_menu(menu_key)
+	hide_overlay("Hud")
+	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
+	transition_effect.reset()
+	
+	

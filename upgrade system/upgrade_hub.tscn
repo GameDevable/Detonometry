@@ -325,6 +325,7 @@ root_node = NodePath("../../../UpgradeNodes/BombUpgrades/BAreaUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/CMultUpgrade")
 
 [node name="CMCEBonusCon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=112692496 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+points = PackedVector2Array(651, 22, 651, 222)
 root_node = NodePath("../../../UpgradeNodes/BombUpgrades/CMultUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/CEBonusUpgrade")
 

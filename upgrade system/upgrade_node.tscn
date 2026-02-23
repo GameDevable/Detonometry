@@ -65,7 +65,6 @@ texture = ExtResource("4_q8yqo")
 stretch_mode = 3
 
 [node name="ButtonScaleEffect" parent="PurchaseButton" unique_id=1259690829 instance=ExtResource("5_q8yqo")]
-anim_time = 0.4
 trans_type = 9
 
 [node name="UpgradeDataDisplay" type="VBoxContainer" parent="." unique_id=83698601]
@@ -150,7 +149,6 @@ text = "$1000"
 horizontal_alignment = 1
 
 [node name="DisplayScaleEffect" parent="UpgradeDataDisplay" unique_id=1008009883 instance=ExtResource("5_q8yqo")]
-anim_time = 0.4
 trans_type = 5
 
 [connection signal="button_down" from="PurchaseButton" to="." method="_on_purchase_button_button_down"]

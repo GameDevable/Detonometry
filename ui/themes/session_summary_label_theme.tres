@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://clwtuapj1bdr"]
+
+[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="1_gaohe"]
+
+[resource]
+default_font = ExtResource("1_gaohe")
+default_font_size = 12

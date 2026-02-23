@@ -62,7 +62,7 @@ shape = SubResource("RectangleShape2D_m4twg")
 [node name="PlaceDelayTimer" type="Timer" parent="." unique_id=6329191]
 
 [node name="SessionTimer" type="Timer" parent="." unique_id=2032151156]
-wait_time = 30.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]

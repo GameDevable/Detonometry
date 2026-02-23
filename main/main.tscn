@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://gloui5xno38j" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://b0p1igqr57bjq" path="res://upgrade system/upgrade_hub.tscn" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://cjusof64q6j8a" path="res://ui/hud.tscn" id="3_xwkvk"]
+[ext_resource type="Script" uid="uid://da0o0f4mlbpgr" path="res://game/transition_effect.gd" id="5_3wy1v"]
 
 [node name="Main" type="Node" unique_id=2002669623]
 process_mode = 3
@@ -40,6 +41,28 @@ mouse_filter = 2
 [node name="Hud" parent="UiCanvasLayer/Overlays" unique_id=1664704056 node_paths=PackedStringArray("world") instance=ExtResource("3_xwkvk")]
 layout_mode = 1
 world = NodePath("../../../World")
+
+[node name="TransitionEffect" type="Control" parent="UiCanvasLayer/Overlays" unique_id=300944635]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_3wy1v")
+
+[node name="ColorRect" type="ColorRect" parent="UiCanvasLayer/Overlays/TransitionEffect" unique_id=895427401]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1280.0
+offset_right = -1280.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AudioHolder" type="Node" parent="." unique_id=1381456759]
 process_mode = 3

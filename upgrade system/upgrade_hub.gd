@@ -101,9 +101,8 @@ func _update_buttons(parent_node: Control, points_value: int) -> int:
 
 func _on_back_to_game_button_pressed() -> void:
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
-	UiManager.swap_menu("None")
+	await UiManager.transition_to("None")
 	UiManager.show_overlay("Hud")
-	SignalManager.session_restarted.emit()
 	Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.OPEN_HAND_CURSOR_ICON.get_size() / 2)
 
 
