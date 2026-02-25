@@ -6,7 +6,7 @@ var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
 # Left, right, Bottom, Top
-const DRAG_BOUNDS: Array[float] = [-250, 250, -225, 225]
+const DRAG_BOUNDS: Array[float] = [-250, 250, -375, 225]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
@@ -44,15 +44,49 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if is_dragging:
 			event = event as InputEventMouseMotion
+			# Updates the position of basically the hub based on the speed and direction of the mouse
 			draggable_nodes.position += event.relative * DRAG_SPEED
 			draggable_nodes.position.x = clamp(draggable_nodes.position.x, DRAG_BOUNDS[0], DRAG_BOUNDS[1])
 			draggable_nodes.position.y = clamp(draggable_nodes.position.y, DRAG_BOUNDS[2], DRAG_BOUNDS[3])
+
+
+func save() -> Dictionary:
+	var unlocked_upgrades_data: Dictionary = {}
+	
+	for upgrade in StatManager.unlocked_upgrades.values():
+		print(upgrade.data.modify_stat_name)
+		upgrade = upgrade as Upgrade
+		unlocked_upgrades_data[upgrade.data.modify_stat_name] = upgrade.save()
+	return {"unlocked_upgrades" : unlocked_upgrades_data}
+
+
+func load_save_data(data: Dictionary) -> void:
+	var unlocked_upgrade_data = data["unlocked_upgrades"]
+	for saved_upgrade_data in unlocked_upgrade_data:
+		var upgrade: Upgrade = Upgrade.new()
+		upgrade.load_saved_data(data["unlocked_upgrades"][saved_upgrade_data])
+		StatManager.unlocked_upgrades[upgrade.data.modify_stat_name] = upgrade
+	# Loops through the upgrade holders to access and save the actual nodes.
+	for upgrade_container in upgrade_nodes.get_children():
+			
+		for upgrade_node in upgrade_container.get_children():
+			
+			var upgrade_name: String = upgrade_node.upgrade.data.modify_stat_name
+			if upgrade_name in StatManager.unlocked_upgrades.keys():
+				upgrade_node = upgrade_node as UpgradeNode
+				upgrade_node.upgrade = StatManager.unlocked_upgrades[upgrade_name]
+				# Since unlocking it already updates the display we are good!
+				upgrade_node.unlock()
+				
+				# To update the connectors
+				SignalManager.upgrade_advanced.emit(upgrade_node.upgrade)
 
 
 func handle_entered() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
 	draggable_nodes.position = Vector2.ZERO
+	
 
 
 func _set_up_buttons(parent_node: Control) -> void:

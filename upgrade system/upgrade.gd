@@ -3,7 +3,7 @@ extends RefCounted
 var data: UpgradeData
 var current_unpurchased_tier: int = 1
 var current_purchased_tier: int = 0
-const PRICE_SCALE: float = 2.2
+const PRICE_SCALE: float = 1.5
 
 func has_reached_max_tier() -> bool:
 	return current_purchased_tier >= data.tier_modifiers.size() 
@@ -44,3 +44,13 @@ func get_upgraded_stat() -> float:
 
 func _calculate_price(base_value: int, n: int, price_scale: float) -> int:
 	return int(base_value + (n - 1) * (base_value * price_scale))
+
+
+func save() -> Dictionary:
+	return {"upgrade_data" : data.resource_path, "current_purchased_tier" : current_purchased_tier}
+
+
+func load_saved_data(save_data: Dictionary) -> void:
+	data = load(save_data["upgrade_data"])
+	current_purchased_tier = save_data["current_purchased_tier"]
+	current_unpurchased_tier = current_purchased_tier + 1

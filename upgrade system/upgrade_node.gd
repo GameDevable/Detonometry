@@ -72,10 +72,16 @@ func can_purchase_tier(player_points: int) -> bool:
 
 
 func purchase_tier(tier: int) -> void:
-	StatManager.unlocked_upgrades[data.modify_stat_name] = upgrade
-	upgrade.current_purchased_tier = tier 
-	upgrade.current_unpurchased_tier = upgrade.current_purchased_tier + 1
+	advance_tier(tier)
 	SignalManager.upgrade_purchased.emit(upgrade)
+	SaveManager.save_game()
+
+
+func advance_tier(current_tier: int) -> void:
+	upgrade.current_purchased_tier = current_tier 
+	upgrade.current_unpurchased_tier = upgrade.current_purchased_tier + 1
+	StatManager.unlocked_upgrades[data.modify_stat_name] = upgrade
+	SignalManager.upgrade_advanced.emit(upgrade)
 	_update_display()
 	if upgrade.has_reached_max_tier(): 
 		can_purchase = false

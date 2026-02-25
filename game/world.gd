@@ -52,6 +52,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			held_bomb.position = get_global_mouse_position()
 
 
+func save() -> Dictionary:
+	return {"points" : total_points}
+
+
+func load_save_data(data: Dictionary) -> void:
+	total_points = data["points"]
+	SignalManager.points_changed.emit(total_points)
+
+
 # Initializes an bomb at a certain position (usually the mouse position)
 func create_bomb(spawn_position: Vector2) -> Bomb:
 	var packed_bomb_scene: PackedScene = load(Constants.BOMB_SCENE_PATH)
@@ -152,6 +161,7 @@ func _on_place_delay_timer_timeout() -> void:
 
 func _on_session_timer_timeout() -> void:
 	UiManager.transition_to("UpgradeHub")
+	SaveManager.save_game()
 	session_timer.stop()
 
 
@@ -162,8 +172,7 @@ func _on_session_restarted() -> void:
 	can_create_bomb = true
 	current_run_gain = 0
 	place_delay_timer.stop()
-	session_timer.start()
+	session_timer.start(StatManager.get_session_stat("session_time"))
 	session_data = [0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()
-	

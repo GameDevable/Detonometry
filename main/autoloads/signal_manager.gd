@@ -29,5 +29,6 @@ signal session_timer_updated(value: float)
 signal session_ended(session_data)
 # Upgrades
 signal upgrade_purchased(upgrade: Upgrade)
+signal upgrade_advanced(upgrade: Upgrade)
 signal upgrade_unlocked(upgrade: Upgrade)
 signal purchase_amount_changed(value: int)

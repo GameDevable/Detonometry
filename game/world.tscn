@@ -11,11 +11,12 @@ size = Vector2(1280, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4twg"]
 size = Vector2(10, 720)
 
-[node name="World" type="Node2D" unique_id=1062341711]
+[node name="World" type="Node2D" unique_id=1062341711 groups=["Persist"]]
 script = ExtResource("1_vn0wg")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=301931326]
 script = ExtResource("2_tvmmn")
+base_shake_intensity = 6.0
 
 [node name="ShakeComponent" type="Node" parent="Camera" unique_id=1631131573]
 script = ExtResource("3_4xpgs")
@@ -62,7 +63,7 @@ shape = SubResource("RectangleShape2D_m4twg")
 [node name="PlaceDelayTimer" type="Timer" parent="." unique_id=6329191]
 
 [node name="SessionTimer" type="Timer" parent="." unique_id=2032151156]
-wait_time = 5.0
+wait_time = 30.0
 autostart = true
 
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]

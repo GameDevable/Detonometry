@@ -54,6 +54,13 @@ var multiplier_stats: Dictionary[String, float] = {
 	"cluster_threshold" : 3.0,
 	"cluster_exceed_bonus" : 0.0,
 }
+
+var session_stats: Dictionary[String, float] = {
+	"session_time" : 30.0,
+	
+}
+
+
 var unlocked_upgrades: Dictionary[String, Upgrade] = {}
 
 func get_bomb_stats() -> Dictionary[String, float]:
@@ -84,6 +91,14 @@ func get_multiplier_stat(key: String) -> float:
 		var upgraded_stat: float = upgrade.get_upgraded_stat()
 		return upgraded_stat
 	return multiplier_stats[key]
+
+
+func get_session_stat(key: String) -> float:
+	if unlocked_upgrades.has(key):
+		var upgrade: Upgrade = unlocked_upgrades[key]
+		var upgraded_stat: float = upgrade.get_upgraded_stat()
+		return upgraded_stat
+	return session_stats[key]
 
 
 func get_shape_spawn_stats() -> Dictionary[String, float]:

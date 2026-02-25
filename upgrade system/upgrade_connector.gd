@@ -11,12 +11,13 @@ func _ready() -> void:
 		visible = false 
 		dependent_node.visible = false
 		
-	SignalManager.upgrade_purchased.connect(_on_upgrade_purchased)
+	SignalManager.upgrade_advanced.connect(_on_upgrade_advanced)
 	SignalManager.upgrade_unlocked.connect(_on_upgrade_unlocked)
 
 
-func _on_upgrade_purchased(upgrade: Upgrade) -> void:
-	if root_node.upgrade == upgrade and upgrade.current_purchased_tier == unlock_threshold:
+func _on_upgrade_advanced(upgrade: Upgrade) -> void:
+	print(upgrade)
+	if root_node.upgrade == upgrade:
 		dependent_node.unlock()
 
 

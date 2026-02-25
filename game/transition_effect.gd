@@ -18,7 +18,7 @@ func transition_position(final_val: Vector2) -> void:
 
 
 func set_up_tween() -> void:
-	tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
+	tween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 
