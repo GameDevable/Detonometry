@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bss8tmln0vxq8" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
 [ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/green_circle.svg" id="3_27ssy"]
 [ext_resource type="PackedScene" uid="uid://diivo8pqh7pnw" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
-[ext_resource type="PackedScene" uid="uid://cc8hnlp15466b" path="res://bomb/assets/particles/explosion_particles.tscn" id="5_f3gsr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_00hdp"]
 radius = 68.0
@@ -27,6 +26,15 @@ tags = {
 "artist": "NIIIEMAND",
 "title": "21"
 }
+
+[sub_resource type="Gradient" id="Gradient_f3gsr"]
+offsets = PackedFloat32Array(0, 0.3669355, 0.6895161)
+colors = PackedColorArray(1, 1, 1, 1, 0.46783626, 0.46783626, 0.46783626, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_27ssy"]
+gradient = SubResource("Gradient_f3gsr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Bomb" type="Node2D" unique_id=1924273752]
 script = ExtResource("1_1h7gg")
@@ -70,8 +78,12 @@ disabled = true
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=2120746864]
 stream = SubResource("AudioStreamOggVorbis_1h7gg")
 
-[node name="ExplosionParticles" parent="." unique_id=961253427 instance=ExtResource("5_f3gsr")]
-position = Vector2(0, 11)
+[node name="RadiusLight" type="PointLight2D" parent="." unique_id=936152016]
+light_mask = 2
+scale = Vector2(2.75, 2.75)
+color = Color(9.385496e-06, 0.9666987, 0, 1)
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_27ssy")
 
 [connection signal="body_entered" from="ExplosionPushArea" to="." method="_on_explosion_push_area_body_entered"]
 [connection signal="timeout" from="DetonationTimer" to="." method="_on_detonation_timer_timeout"]

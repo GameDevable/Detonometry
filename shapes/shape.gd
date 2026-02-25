@@ -11,6 +11,8 @@ var base_speed: float = 0.0
 var modifier_multipliers_total: float = 1.0
 var modifier_value_adders_total: float = 0.0
 var shape_data: ShapeData = null
+var spin_direction: int = 0
+var spin_speed: float = 0.0
 const OFFSCREEN_PADDING: int = 20
 const FRICTION: int = 11500
 const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/reinforced_"
@@ -30,6 +32,11 @@ const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_tr
 const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
 func _ready() -> void:
 	SignalManager.health_changed.connect(_on_health_changed)
+	while spin_direction == 0:
+		spin_direction = _choose_random_spin_direction()
+	rotation = _choose_random_rotation()
+	spin_speed = _choose_random_spin_speed()
+	$WallRays.global_rotation = 0.0
 	prev_pos = position
 	_set_up_colliders()
 	_set_up_health()
@@ -57,6 +64,8 @@ func _physics_process(delta: float) -> void:
 	if speed > base_speed:
 		speed = move_toward(speed, base_speed, delta * FRICTION)
 	velocity = speed * move_direction * delta
+	rotation += delta * spin_direction  * spin_speed
+	$WallRays.rotation -= delta * spin_direction * spin_speed
 	_check_wall_rays()
 	move_and_slide()
 
@@ -77,6 +86,18 @@ func get_value() -> float:
 	var base_value: int = StatManager.get_shape_value(shape_data.shape_type)
 	var total_value: int = (base_value + modifier_value_adders_total) * modifier_multipliers_total 
 	return total_value
+
+
+func _choose_random_spin_direction() -> int:
+	return randi_range(-1, 1)
+
+
+func _choose_random_spin_speed() -> float:
+	return randf_range(0.8, 1.4)
+
+
+func _choose_random_rotation() -> float:
+	return randi_range(-180, 180)
 
 
 func _is_offscreen(check_position: Vector2) -> bool:

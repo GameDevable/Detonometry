@@ -27,9 +27,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="4.0569188"
-     inkscape:cx="17.131228"
-     inkscape:cy="39.192305"
+     inkscape:zoom="6.3625"
+     inkscape:cx="40"
+     inkscape:cy="39.13556"
      inkscape:window-width="1366"
      inkscape:window-height="731"
      inkscape:window-x="0"
@@ -45,7 +45,7 @@
      transform="translate(-0.50667467,-0.00250405)">
     <g
        id="g1"
-       transform="matrix(0.71966667,0,0,0.71966667,1.729538,7.0177906e-4)">
+       transform="matrix(0.72,0,0,0.66,1.7293691,8.5120029e-4)">
       <path
          sodipodi:type="star"
          style="display:inline;fill:#5ce1e6;fill-opacity:1;stroke-width:0.264583"

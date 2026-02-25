@@ -26,7 +26,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		var lerp_weight: float = 10.5
 		offset = lerp(offset, Vector2.ZERO, lerp_weight * delta)
-	get_parent().position += offset
+	get_parent().position = Vector2.ZERO + offset
+	#get_parent().position += offset
 
 func shake(intensity: float, time: float) -> void:
 	# Makes sure that it is different every time

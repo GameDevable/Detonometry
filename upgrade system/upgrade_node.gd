@@ -83,7 +83,7 @@ func advance_tier(current_tier: int) -> void:
 	StatManager.unlocked_upgrades[data.modify_stat_name] = upgrade
 	SignalManager.upgrade_advanced.emit(upgrade)
 	_update_display()
-	if upgrade.has_reached_max_tier(): 
+	if upgrade.has_reached_max_tier():
 		can_purchase = false
 
 
@@ -91,6 +91,10 @@ func unlock() -> void:
 	is_locked = false
 	SignalManager.upgrade_unlocked.emit(upgrade)
 	lock_icon.visible = false
+	var intensity: int = 3 # >1 brightens, <1 darkens
+	modulate.r =  intensity
+	modulate.g =  intensity
+	modulate.b =  intensity
 	update_theme()
 	_update_display()
 
@@ -131,7 +135,7 @@ func _on_purchase_button_mouse_entered() -> void:
 		upgrade_data_display.visible = true
 	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	lock_icon.texture = HOVER_LOCK_TEXTURE
-	var end_scale: Vector2 = Vector2(0.55, 0.55)
+	var end_scale: Vector2 = Vector2(0.6, 0.6)
 	button_scale_effect.scale_ui(purchase_button.scale, end_scale)
 	display_scale_effect.scale_ui(upgrade_data_display.scale, Vector2(1.0, 1.0))
 

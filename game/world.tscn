@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://k7nqsblly5gs"]
 
 [ext_resource type="Script" uid="uid://cmvmnywadbhdj" path="res://game/world.gd" id="1_vn0wg"]
+[ext_resource type="Texture2D" uid="uid://01o3fcsp0yd1" path="res://game/drawing.svg" id="2_805w3"]
 [ext_resource type="Script" uid="uid://cmr1iag588u7a" path="res://game/shape_spawner.gd" id="2_aseec"]
 [ext_resource type="Script" uid="uid://cxwwyok0dnfkm" path="res://game/camera.gd" id="2_tvmmn"]
 [ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_4xpgs"]
+[ext_resource type="Gradient" uid="uid://b5vgng22j8v0x" path="res://new_gradient.tres" id="6_fhh06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhh06"]
 size = Vector2(1280, 10)
@@ -11,15 +13,30 @@ size = Vector2(1280, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4twg"]
 size = Vector2(10, 720)
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhh06"]
+gradient = ExtResource("6_fhh06")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="World" type="Node2D" unique_id=1062341711 groups=["Persist"]]
+light_mask = 15
 script = ExtResource("1_vn0wg")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=2073474270]
+modulate = Color(0.31061712, 0.31061712, 0.31061706, 1)
+scale = Vector2(51.6, 29.119999)
+texture = ExtResource("2_805w3")
+metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=301931326]
 script = ExtResource("2_tvmmn")
-base_shake_intensity = 6.0
+base_shake_intensity = 5.0
+shake_time = 1.1
 
 [node name="ShakeComponent" type="Node" parent="Camera" unique_id=1631131573]
 script = ExtResource("3_4xpgs")
+shake_time_speed = 100.0
 
 [node name="ShapeSpawner" type="Node2D" parent="." unique_id=579955111]
 script = ExtResource("2_aseec")
@@ -65,6 +82,22 @@ shape = SubResource("RectangleShape2D_m4twg")
 [node name="SessionTimer" type="Timer" parent="." unique_id=2032151156]
 wait_time = 30.0
 autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1817899458]
+position = Vector2(0, 370)
+scale = Vector2(43.000004, 10.8125)
+energy = 0.8
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_fhh06")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=2056972476]
+position = Vector2(0, -370)
+scale = Vector2(43.000004, 10.8125)
+energy = 0.8
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_fhh06")
 
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]
 [connection signal="timeout" from="SessionTimer" to="." method="_on_session_timer_timeout"]

@@ -39,6 +39,7 @@ func handle_placed() -> void:
 		explosion_detection_area.monitoring = false
 		
 	explosion_area_sprite.texture = RED_CIRCLE_TEXTURE
+	$RadiusLight.color = Color(1.0, 0.195, 0.145, 1.0)
 	_start_pulse(Vector2(0.9, 0.9) * Constants.SPRITE_SCALE, 0.47)
 
 
@@ -47,6 +48,7 @@ func _set_radii(explosion_radius: float) -> void:
 	explosion_area_sprite.scale = Vector2(scale_factor, scale_factor)
 	hitbox_collider.shape.radius = explosion_radius
 	detection_area_collider.shape.radius = explosion_radius
+	$RadiusLight.texture_scale = scale_factor
 
 
 func _handle_explosion_effects() -> void:
@@ -55,6 +57,7 @@ func _handle_explosion_effects() -> void:
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	
 	EffectManager.spawn_particles(BLAST_PARTICLE_PATH, position)
+	
 	var delay: float = 0.05
 	EffectManager.spawn_particles(SPARK_PARTICLE_PATH, position, delay)
 	EffectManager.spawn_particles(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)

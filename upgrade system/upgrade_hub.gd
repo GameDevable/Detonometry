@@ -6,7 +6,7 @@ var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
 # Left, right, Bottom, Top
-const DRAG_BOUNDS: Array[float] = [-250, 250, -375, 225]
+const DRAG_BOUNDS: Array[float] = [-250, 250, -450, 275]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
@@ -54,7 +54,6 @@ func save() -> Dictionary:
 	var unlocked_upgrades_data: Dictionary = {}
 	
 	for upgrade in StatManager.unlocked_upgrades.values():
-		print(upgrade.data.modify_stat_name)
 		upgrade = upgrade as Upgrade
 		unlocked_upgrades_data[upgrade.data.modify_stat_name] = upgrade.save()
 	return {"unlocked_upgrades" : unlocked_upgrades_data}

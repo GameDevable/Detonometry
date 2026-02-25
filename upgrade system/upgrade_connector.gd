@@ -16,9 +16,12 @@ func _ready() -> void:
 
 
 func _on_upgrade_advanced(upgrade: Upgrade) -> void:
-	print(upgrade)
 	if root_node.upgrade == upgrade:
 		dependent_node.unlock()
+		var intensity: int = 3
+		modulate.r = intensity
+		modulate.b = intensity
+		modulate.g = intensity
 
 
 func _on_upgrade_unlocked(upgrade: Upgrade) -> void:
