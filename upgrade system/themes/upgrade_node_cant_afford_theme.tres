@@ -1,22 +1,30 @@
 [gd_resource type="Theme" format=3 uid="uid://cpbqs1ys1nkeb"]
 
-[ext_resource type="Texture2D" uid="uid://f5ku6m3sab0k" path="res://upgrade system/assets/button backgrounds/ui_hover_cant_afford_button_background.svg" id="1_2kqir"]
-[ext_resource type="Texture2D" uid="uid://b3goqcl5qgoj0" path="res://upgrade system/assets/button backgrounds/ui_cant_afford_button_background.svg" id="2_hupjm"]
-[ext_resource type="Texture2D" uid="uid://xtyyyvm7gflp" path="res://upgrade system/assets/button backgrounds/ui_pressed_cant_afford_button_background.svg" id="3_6n20n"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3sei"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nie0x"]
-texture = ExtResource("1_2kqir")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyeqd"]
+bg_color = Color(1, 0.13725491, 0.13725491, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxt7e"]
-texture = ExtResource("2_hupjm")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_by2cu"]
+bg_color = Color(0.8784314, 0.043137256, 0.043137256, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4bd1f"]
-texture = ExtResource("3_6n20n")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32mod"]
+bg_color = Color(0.72156864, 0.043137256, 0.043137256, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_n3sei")
-Button/styles/hover = SubResource("StyleBoxTexture_nie0x")
-Button/styles/normal = SubResource("StyleBoxTexture_rxt7e")
-Button/styles/pressed = SubResource("StyleBoxTexture_4bd1f")
+Button/styles/hover = SubResource("StyleBoxFlat_fyeqd")
+Button/styles/normal = SubResource("StyleBoxFlat_by2cu")
+Button/styles/pressed = SubResource("StyleBoxFlat_32mod")

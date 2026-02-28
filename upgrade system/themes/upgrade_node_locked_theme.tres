@@ -1,22 +1,30 @@
 [gd_resource type="Theme" format=3 uid="uid://brntsa6831d7c"]
 
-[ext_resource type="Texture2D" uid="uid://bn32ap337b6sa" path="res://upgrade system/assets/button backgrounds/ui_hover_locked_button_background.svg" id="1_h1ew5"]
-[ext_resource type="Texture2D" uid="uid://dcq8julc7l32v" path="res://upgrade system/assets/button backgrounds/ui_locked_button_background.svg" id="2_6dwpt"]
-[ext_resource type="Texture2D" uid="uid://loctc2djn12d" path="res://upgrade system/assets/button backgrounds/ui_pressed_locked_button_background.svg" id="3_uyny3"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_timap"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m2iyk"]
-texture = ExtResource("1_h1ew5")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bemrb"]
+bg_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2m2d3"]
-texture = ExtResource("2_6dwpt")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcnp7"]
+bg_color = Color(0.20392157, 0.20392157, 0.20392157, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_601ce"]
-texture = ExtResource("3_uyny3")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdpgt"]
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_timap")
-Button/styles/hover = SubResource("StyleBoxTexture_m2iyk")
-Button/styles/normal = SubResource("StyleBoxTexture_2m2d3")
-Button/styles/pressed = SubResource("StyleBoxTexture_601ce")
+Button/styles/hover = SubResource("StyleBoxFlat_bemrb")
+Button/styles/normal = SubResource("StyleBoxFlat_bcnp7")
+Button/styles/pressed = SubResource("StyleBoxFlat_gdpgt")

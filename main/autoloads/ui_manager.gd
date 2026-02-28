@@ -70,7 +70,6 @@ func transition_to(menu_key: String) -> void:
 	await transition_effect.transition_position(Vector2.ZERO)
 	
 	swap_menu(menu_key)
-	hide_overlay("Hud")
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
 	transition_effect.reset()
 	

@@ -84,6 +84,7 @@ wait_time = 30.0
 autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1817899458]
+visible = false
 position = Vector2(0, 370)
 scale = Vector2(43.000004, 10.8125)
 energy = 2.5
@@ -92,6 +93,7 @@ shadow_filter = 1
 texture = SubResource("GradientTexture2D_fhh06")
 
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=2056972476]
+visible = false
 position = Vector2(0, -370)
 scale = Vector2(43.000004, 10.8125)
 energy = 2.5

@@ -13,6 +13,7 @@ corner_radius_bottom_left = 5
 expand_margin_left = 5.0
 expand_margin_top = 4.0
 expand_margin_right = 5.0
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxrst"]
 bg_color = Color(0.11288986, 0.11288986, 0.11288986, 1)

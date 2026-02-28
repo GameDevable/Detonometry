@@ -1,22 +1,30 @@
 [gd_resource type="Theme" format=3 uid="uid://b6ntk2x4lk85"]
 
-[ext_resource type="Texture2D" uid="uid://lchc10sg36ks" path="res://upgrade system/assets/button backgrounds/ui_hover_maxed_button_background.svg" id="1_boafn"]
-[ext_resource type="Texture2D" uid="uid://b7kxxt00se8ud" path="res://upgrade system/assets/button backgrounds/ui_maxed_button_background.svg" id="2_8uenl"]
-[ext_resource type="Texture2D" uid="uid://bcchgxq6k0hef" path="res://upgrade system/assets/button backgrounds/ui_pressed_maxed_button_background.svg" id="3_ilaxf"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_noxcd"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_igwwp"]
-texture = ExtResource("1_boafn")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3trki"]
+bg_color = Color(1, 0.8862745, 0.43529412, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3xya5"]
-texture = ExtResource("2_8uenl")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpsto"]
+bg_color = Color(1, 0.8235294, 0.12156863, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ut03d"]
-texture = ExtResource("3_ilaxf")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8s1q"]
+bg_color = Color(0.8392157, 0.6784314, 0.023529412, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [resource]
 Button/styles/focus = SubResource("StyleBoxEmpty_noxcd")
-Button/styles/hover = SubResource("StyleBoxTexture_igwwp")
-Button/styles/normal = SubResource("StyleBoxTexture_3xya5")
-Button/styles/pressed = SubResource("StyleBoxTexture_ut03d")
+Button/styles/hover = SubResource("StyleBoxFlat_3trki")
+Button/styles/normal = SubResource("StyleBoxFlat_rpsto")
+Button/styles/pressed = SubResource("StyleBoxFlat_i8s1q")

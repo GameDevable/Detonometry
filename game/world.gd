@@ -161,6 +161,7 @@ func _on_place_delay_timer_timeout() -> void:
 
 func _on_session_timer_timeout() -> void:
 	UiManager.transition_to("UpgradeHub")
+	UiManager.hide_overlay("Hud")
 	SaveManager.save_game()
 	session_timer.stop()
 

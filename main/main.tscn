@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjusof64q6j8a" path="res://ui/hud.tscn" id="3_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://cfqg1n3m3o6ab" path="res://ui/settings_menu.tscn" id="4_kfbq2"]
 [ext_resource type="Script" uid="uid://da0o0f4mlbpgr" path="res://game/transition_effect.gd" id="5_3wy1v"]
+[ext_resource type="PackedScene" uid="uid://cseoj1s61cxu4" path="res://ui/main_menu.tscn" id="5_4dugh"]
 
 [node name="Main" type="Node" unique_id=2002669623]
 process_mode = 3
@@ -31,6 +32,12 @@ visible = false
 layout_mode = 1
 
 [node name="SettingsMenu" parent="UiCanvasLayer/Menus" unique_id=926415462 instance=ExtResource("4_kfbq2")]
+process_mode = 2
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" parent="UiCanvasLayer/Menus" unique_id=1380756693 instance=ExtResource("5_4dugh")]
+process_mode = 2
 visible = false
 layout_mode = 1
 
@@ -44,11 +51,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Hud" parent="UiCanvasLayer/Overlays" unique_id=1664704056 node_paths=PackedStringArray("world") instance=ExtResource("3_xwkvk")]
+visible = false
 layout_mode = 1
 world = NodePath("../../../World")
 
 [node name="TransitionEffect" type="Control" parent="UiCanvasLayer/Overlays" unique_id=300944635]
-z_index = 2
+z_index = 100
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,5 +83,5 @@ process_mode = 3
 [node name="ParticleHolder" type="Node2D" parent="." unique_id=1605238279]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
-volume_db = 8.0
+volume_db = 6.0
 bus = &"Music"

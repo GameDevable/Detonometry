@@ -40,7 +40,6 @@ func _on_back_button_pressed() -> void:
 func _on_back_button_mouse_entered() -> void:
 	var base_pitch: float = 1.0
 	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
-	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
 	button_scale_effect.scale_ui(back_button.scale, end_scale)
 

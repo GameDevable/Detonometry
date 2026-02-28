@@ -8,10 +8,9 @@ extends TextureRect
 
 # Current velocity
 var velocity: Vector2
-var bounds_multiplier: Vector2 = Vector2(1.1, 1.1)
+var bounds_multiplier: Vector2 = Vector2(1.0, 1.0)
 func _ready() -> void:
 	velocity = speed
-	position = Vector2(100, 100)  # starting position
 
 func _process(delta: float) -> void:
 	# Move the triangle

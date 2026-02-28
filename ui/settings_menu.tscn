@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_a6yft"]
 [ext_resource type="Theme" uid="uid://cq887hj5yy3eh" path="res://ui/themes/audio_slider_theme.tres" id="3_a6yft"]
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="4_2ty5h"]
+[ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="4_23nap"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="5_tog15"]
 [ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="6_ap6h8"]
 [ext_resource type="Script" uid="uid://cibcoomtn1wvd" path="res://ui/menu_triangle.gd" id="7_jpwvl"]
@@ -62,17 +63,13 @@ script = ExtResource("1_h6jc8")
 [node name="BackgroundPanel" type="Panel" parent="." unique_id=2047230282]
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -640.0
-offset_top = -360.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 720.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xutny")
 
 [node name="MenuTriangle" type="TextureRect" parent="." unique_id=1066793993]
@@ -94,12 +91,19 @@ offset_left = -250.0
 offset_right = 250.0
 offset_bottom = 719.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 12
 
 [node name="ContentLayout" type="VBoxContainer" parent="ContentMargins" unique_id=314577965]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="ContentMargins/ContentLayout" unique_id=369598187]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_23nap")
+theme_override_font_sizes/font_size = 64
+text = "Settings"
 
 [node name="Audio" type="VBoxContainer" parent="ContentMargins/ContentLayout" unique_id=2110017336]
 layout_mode = 2
@@ -108,7 +112,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_a6yft")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 40
 text = "Audio"
 
 [node name="MasterVolumeLabel" type="Label" parent="ContentMargins/ContentLayout/Audio" unique_id=756564267]
@@ -160,12 +164,13 @@ value = 0.7
 
 [node name="Display" type="VBoxContainer" parent="ContentMargins/ContentLayout" unique_id=1038925638]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="DisplayLabel" type="Label" parent="ContentMargins/ContentLayout/Display" unique_id=781659694]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_a6yft")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 40
 text = "Display"
 
 [node name="ResolutionLabel" type="Label" parent="ContentMargins/ContentLayout/Display" unique_id=399288697]
@@ -211,18 +216,25 @@ theme_override_font_sizes/font_size = 20
 text = "Full Screen"
 
 [node name="BackButton" type="Button" parent="." unique_id=1032040572]
-layout_mode = 0
-anchor_left = 0.46875
-anchor_top = 0.925
-anchor_right = 0.53125
-anchor_bottom = 0.98194444
+custom_minimum_size = Vector2(160, 45)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -57.0
+offset_right = 80.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_2ty5h")
 text = "Back"
-metadata/_edit_use_anchors_ = true
 
 [node name="ButtonScaleEffect" parent="BackButton" unique_id=1259690829 instance=ExtResource("5_tog15")]
 anim_duration = 0.4
