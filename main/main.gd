@@ -9,6 +9,8 @@ func _ready() -> void:
 	SaveManager.load_game()
 	UiManager.set_up_ui(get_child(1))
 	UiManager.show_overlay("Hud")
+	
+	UiManager.swap_menu("SettingsMenu")
 	EffectManager.set_music_node($Music)
 	EffectManager.set_audio_contianer($AudioHolder)
 	EffectManager.set_particle_container($ParticleHolder)

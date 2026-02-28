@@ -8,6 +8,7 @@ func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = 10
 	if is_pitch_shifted:
 		pitch = _get_pitch_shift(shift_scale.x, shift_scale.y)
 	var sfx_player: AudioStreamPlayer2D = _create_sfx_player(stream, volume, pitch)
+	sfx_player.bus = "SFX"
 	audio_holder.add_child(sfx_player)
 	sfx_player.play(play_at_time)
 	await sfx_player.finished
@@ -62,5 +63,4 @@ func spawn_particles(path: String, spawn_position: Vector2, delay: float = 0.0) 
 	particle_holder.add_child(particle_node)
 	particle_node.emitting = true
 	await particle_node.finished
-	print("SDF")
 	particle_node.queue_free()

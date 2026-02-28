@@ -10,7 +10,11 @@ const DRAG_BOUNDS: Array[float] = [-250, 250, -450, 275]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
+
+@onready var settings_button: Button = $BackgroundPanel/SettingsButton
 @onready var back_to_game_button: Button = $BackgroundPanel/BackToGameButton
+@onready var main_menu_button: Button = $BackgroundPanel/MainMenuButton
+
 @onready var button_scale_effect: UiEffectComponent = $BackgroundPanel/BackToGameButton/ButtonScaleEffect
 
 func _ready() -> void:
@@ -21,6 +25,7 @@ func _ready() -> void:
 		)
 	back_to_game_button.mouse_entered.connect(_on_mouse_entered)
 	back_to_game_button.mouse_exited.connect(_on_mouse_exited)
+	
 	# Recursively loops through the buttons
 	_set_up_buttons(upgrade_nodes)
 	base_button_minimum_size = back_to_game_button.custom_minimum_size
@@ -28,13 +33,14 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if Input.is_action_pressed("bomb_place_action") and can_drag:
+		if Input.is_action_pressed("bomb_place_action") and can_drag and UiManager.active_menu.name == name:
 			
 			is_dragging = true
 			SignalManager.mouse_dragging.emit(is_dragging)
 			back_to_game_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			
 			Input.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON, Input.CURSOR_ARROW)#, Constants.DRAG_HAND_CURSOR_ICON.get_size() / 2)
-		if Input.is_action_just_released("bomb_place_action") and is_dragging:
+		if Input.is_action_just_released("bomb_place_action") and is_dragging and UiManager.active_menu.name == name:
 			is_dragging = false
 			SignalManager.mouse_dragging.emit(is_dragging)
 			back_to_game_button.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -139,6 +145,10 @@ func _on_back_to_game_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.OPEN_HAND_CURSOR_ICON.get_size() / 2)
 
 
+func _on_settings_button_pressed() -> void:
+	UiManager.transition_to("SettingsMenu")
+
+
 func _on_mouse_entered() -> void:
 	can_drag = false
 	var base_pitch: float = 1.0
@@ -153,3 +163,35 @@ func _on_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
 	button_scale_effect.scale_ui(back_to_game_button.scale, end_scale, Tween.TRANS_EXPO)
+
+
+func _on_main_menu_button_mouse_entered() -> void:
+	can_drag = false
+	var base_pitch: float = 1.0
+	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
+	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
+	var end_scale: Vector2 = Vector2(1.1, 1.1)
+	$BackgroundPanel/MainMenuButton/ButtonScaleEffect.scale_ui(main_menu_button.scale, end_scale)
+
+
+func _on_main_menu_button_mouse_exited() -> void:
+	can_drag = true
+	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+	var end_scale: Vector2 = Vector2(1.0, 1.0)
+	$BackgroundPanel/MainMenuButton/ButtonScaleEffect.scale_ui(main_menu_button.scale, end_scale, Tween.TRANS_EXPO)
+
+
+func _on_settings_button_mouse_entered() -> void:
+	can_drag = false
+	var base_pitch: float = 1.0
+	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
+	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
+	var end_scale: Vector2 = Vector2(1.1, 1.1)
+	$BackgroundPanel/SettingsButton/ButtonScaleEffect.scale_ui(settings_button.scale, end_scale)
+
+
+func _on_settings_button_mouse_exited() -> void:
+	can_drag = true
+	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+	var end_scale: Vector2 = Vector2(1.0, 1.0)
+	$BackgroundPanel/SettingsButton/ButtonScaleEffect.scale_ui(settings_button.scale, end_scale, Tween.TRANS_EXPO)

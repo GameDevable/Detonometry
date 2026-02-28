@@ -5,7 +5,7 @@ var active_overlays: Array[Control] = []
 var active_overlay_names: Array[String] = []
 var active_menu: Control = null
 var ui_canvas: CanvasLayer = null
-
+var previous_menu: String = "None"
 func set_up_ui(canvas_layer: CanvasLayer) -> void:
 	var menus: Control = canvas_layer.get_child(0)
 	var overlays: Control = canvas_layer.get_child(1)
@@ -40,8 +40,10 @@ func hide_overlay(overlay_key: String) -> void:
 
 
 func swap_menu(menu_key: String) -> void:
+	print(previous_menu)
 	if menu_key == "None":
 		if active_menu:
+			previous_menu = active_menu.name
 			active_menu.visible = false
 			active_menu = null
 			get_tree().paused = false
@@ -50,6 +52,7 @@ func swap_menu(menu_key: String) -> void:
 		push_error("Menu %s does not exist")
 	var menu: Control = ui_menus[menu_key]
 	if active_menu:
+		previous_menu = active_menu.name
 		active_menu.visible = false
 	if menu.has_method("handle_entered"):
 		menu.handle_entered()

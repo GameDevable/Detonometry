@@ -77,6 +77,7 @@ disabled = true
 
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=2120746864]
 stream = SubResource("AudioStreamOggVorbis_1h7gg")
+bus = &"SFX"
 
 [node name="RadiusLight" type="PointLight2D" parent="." unique_id=936152016]
 light_mask = 2

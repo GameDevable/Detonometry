@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://gloui5xno38j" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://b0p1igqr57bjq" path="res://upgrade system/upgrade_hub.tscn" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://cjusof64q6j8a" path="res://ui/hud.tscn" id="3_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://cfqg1n3m3o6ab" path="res://ui/settings_menu.tscn" id="4_kfbq2"]
 [ext_resource type="Script" uid="uid://da0o0f4mlbpgr" path="res://game/transition_effect.gd" id="5_3wy1v"]
 
 [node name="Main" type="Node" unique_id=2002669623]
@@ -26,6 +27,10 @@ mouse_filter = 1
 
 [node name="UpgradeHub" parent="UiCanvasLayer/Menus" unique_id=1453158358 instance=ExtResource("3_c651c")]
 process_mode = 2
+visible = false
+layout_mode = 1
+
+[node name="SettingsMenu" parent="UiCanvasLayer/Menus" unique_id=926415462 instance=ExtResource("4_kfbq2")]
 visible = false
 layout_mode = 1
 
@@ -70,4 +75,5 @@ process_mode = 3
 [node name="ParticleHolder" type="Node2D" parent="." unique_id=1605238279]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
-volume_db = -6.0
+volume_db = 8.0
+bus = &"Music"
