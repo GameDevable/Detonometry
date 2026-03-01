@@ -35,6 +35,8 @@ Panel/styles/panel = SubResource("StyleBoxFlat_0fe3o")
 bg_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="UpgradeHub" type="Control" unique_id=1856736731 groups=["Persist"]]
+process_mode = 2
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

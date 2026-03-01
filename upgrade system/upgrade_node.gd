@@ -15,6 +15,7 @@ const UPGRADE_NODE_MAXED_THEME = preload("uid://b6ntk2x4lk85")
 const CANT_AFFORD_PANEL = preload("uid://deq5w1mtbccoi")
 const CAN_AFFORD_PANEL = preload("uid://cfd2g0xp8w05i")
 const MAXED_PANEL = preload("uid://btycb2sjvvcvy")
+const UPGRADE_NODE_LOCKED_THEME = preload("uid://brntsa6831d7c")
 
 const SCALE_TIME: float = 0.6
 const EASING_TYPE: Tween.EaseType = Tween.EASE_IN
@@ -99,6 +100,18 @@ func unlock() -> void:
 	_update_display()
 
 
+func lock() -> void:
+	is_locked = true
+	lock_icon.visible = true
+	SignalManager.upgrade_locked.emit(upgrade)
+	var intensity: int = 1 # >1 brightens, <1 darkens
+	modulate.r =  intensity
+	modulate.g =  intensity
+	modulate.b =  intensity
+	update_theme()
+	_update_display()
+
+
 func update_theme() -> void:
 	if not is_locked:
 		name_display.visible  = true
@@ -117,6 +130,7 @@ func update_theme() -> void:
 			price_label.add_theme_color_override("font_color", Color("ff2323"))
 	else:
 		name_display.visible = false
+		purchase_button.theme = UPGRADE_NODE_LOCKED_THEME
 
 
 func _update_display() -> void:

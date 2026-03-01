@@ -82,9 +82,12 @@ func load_save_data(data: Dictionary) -> void:
 				upgrade_node.upgrade = StatManager.unlocked_upgrades[upgrade_name]
 				# Since unlocking it already updates the display we are good!
 				upgrade_node.unlock()
-				
 				# To update the connectors
 				SignalManager.upgrade_advanced.emit(upgrade_node.upgrade)
+
+
+func reset() -> void:
+	pass
 
 
 func handle_entered() -> void:

@@ -58,7 +58,6 @@ func _get_pitch_shift(min_pitch: float, max_pitch: float) -> float:
 func spawn_particles(path: String, spawn_position: Vector2, delay: float = 0.0) -> void:
 	var particle_node: GPUParticles2D = load(path).instantiate()
 	particle_node.position = spawn_position
-	print(delay)
 	await get_tree().create_timer(delay).timeout
 	particle_holder.add_child(particle_node)
 	particle_node.emitting = true

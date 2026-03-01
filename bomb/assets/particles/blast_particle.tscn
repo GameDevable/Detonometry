@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://db1td87mfq0rt"]
 
 [ext_resource type="Texture2D" uid="uid://ismw56jgrxve" path="res://bomb/assets/particles/textures/blast_particle_texture.svg" id="1_m7eu1"]
-[ext_resource type="Script" uid="uid://cibnulb7w4nv7" path="res://bomb/assets/particles/blast_particle.gd" id="2_onhj7"]
 
 [sub_resource type="Curve" id="Curve_m7eu1"]
 _data = [Vector2(0, 0.28404677), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -34,7 +33,6 @@ texture = ExtResource("1_m7eu1")
 lifetime = 0.13
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_onhj7")
-script = ExtResource("2_onhj7")
 
 [node name="BlastLight" type="PointLight2D" parent="." unique_id=1445692821]
 scale = Vector2(2.5625, 2.65625)

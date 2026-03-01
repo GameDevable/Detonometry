@@ -10,9 +10,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 5.0
+expand_margin_left = 10.0
 expand_margin_top = 4.0
-expand_margin_right = 5.0
+expand_margin_right = 10.0
 shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxrst"]
@@ -21,9 +21,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 5.0
+expand_margin_left = 10.0
 expand_margin_top = 4.0
-expand_margin_right = 5.0
+expand_margin_right = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdk3p"]
 bg_color = Color(0.04169083, 0.04169083, 0.04169083, 1)
@@ -31,13 +31,14 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 5.0
+expand_margin_left = 10.0
 expand_margin_top = 4.0
-expand_margin_right = 5.0
+expand_margin_right = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hb223"]
 
 [resource]
+default_font_size = 40
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_y0wwx")

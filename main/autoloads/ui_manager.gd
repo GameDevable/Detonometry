@@ -6,6 +6,8 @@ var active_overlay_names: Array[String] = []
 var active_menu: Control = null
 var ui_canvas: CanvasLayer = null
 var previous_menu: String = "None"
+
+
 func set_up_ui(canvas_layer: CanvasLayer) -> void:
 	var menus: Control = canvas_layer.get_child(0)
 	var overlays: Control = canvas_layer.get_child(1)
@@ -40,7 +42,6 @@ func hide_overlay(overlay_key: String) -> void:
 
 
 func swap_menu(menu_key: String) -> void:
-	print(previous_menu)
 	if menu_key == "None":
 		if active_menu:
 			previous_menu = active_menu.name
@@ -72,5 +73,16 @@ func transition_to(menu_key: String) -> void:
 	swap_menu(menu_key)
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
 	transition_effect.reset()
-	
-	
+
+
+func reset_saved_ui() -> void:
+	if not ui_canvas:
+		return
+	for child in ui_canvas.get_child(0).get_children():
+		if child.name == "UpgradeHub":
+			child.free()
+	const UPGRADE_HUB = preload("uid://b0p1igqr57bjq")
+	var upgrade_hub = UPGRADE_HUB.instantiate()
+	ui_canvas.get_child(0).add_child(upgrade_hub)
+	ui_menus.erase(upgrade_hub.name)
+	ui_menus[upgrade_hub.name] = upgrade_hub

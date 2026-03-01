@@ -27,3 +27,18 @@ func scale_ui(beginning_scale: Vector2, final_scale: Vector2, trans_override: Tw
 		ease_type = ease_override
 	reset_tween(easing_type, transition_type)
 	tween.tween_property(ui, "scale", final_scale, anim_duration).from(beginning_scale)
+
+func scale_ui_min_size( beginning_size: Vector2, final_size: Vector2, trans_override: Tween.TransitionType = trans_type, ease_override: Tween.EaseType = ease_type) -> void:
+
+	var easing_type: Tween.EaseType = ease_type
+	var transition_type: Tween.TransitionType = trans_type
+
+	if trans_override != trans_type:
+		transition_type = trans_override
+
+	if ease_override != ease_type:
+		easing_type = ease_override
+
+	reset_tween(easing_type, transition_type)
+
+	tween.tween_property(ui, "custom_minimum_size", final_size, anim_duration).from(beginning_size)

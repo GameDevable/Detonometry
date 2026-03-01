@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dsc11tbnd1lbv"]
+
+[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="1_a5bu1"]
+[ext_resource type="Script" uid="uid://bck8e6rpbuwn" path="res://ui/menu_buttons/settings_button.gd" id="2_666i7"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="2_k0866"]
+
+[node name="SettingsButton" type="Button" unique_id=278250214]
+custom_minimum_size = Vector2(225, 75)
+offset_left = 527.5
+offset_top = 322.5
+offset_right = 752.5
+offset_bottom = 397.5
+pivot_offset_ratio = Vector2(0.5, 1)
+size_flags_horizontal = 4
+theme = ExtResource("1_a5bu1")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+script = ExtResource("2_666i7")
+
+[node name="SettingsButtonAnimator" parent="." unique_id=1259690829 instance=ExtResource("2_k0866")]
+trans_type = 9
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

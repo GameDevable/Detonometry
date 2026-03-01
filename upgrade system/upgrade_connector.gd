@@ -15,6 +15,11 @@ func _ready() -> void:
 	SignalManager.upgrade_unlocked.connect(_on_upgrade_unlocked)
 
 
+func _on_upgrade_locked(upgrade: Upgrade) -> void:
+	if root_node.upgrade == upgrade:
+		visible = false
+		dependent_node.visible = false
+
 func _on_upgrade_advanced(upgrade: Upgrade) -> void:
 	if root_node.upgrade == upgrade:
 		dependent_node.unlock()

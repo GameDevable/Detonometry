@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dnajflx3ikxdh"]
+
+[ext_resource type="Script" uid="uid://uk460k75d1ot" path="res://ui/menu_buttons/continue_button.gd" id="1_dmlor"]
+[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="1_ku8ai"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="2_ku8ai"]
+
+[node name="ContinueButton" type="Button" unique_id=1342725064]
+custom_minimum_size = Vector2(0, 75)
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("1_ku8ai")
+theme_override_font_sizes/font_size = 40
+text = "Continue"
+script = ExtResource("1_dmlor")
+
+[node name="ContinueButtonAnimator" parent="." unique_id=1259690829 instance=ExtResource("2_ku8ai")]
+trans_type = 9
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
