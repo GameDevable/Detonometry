@@ -1,7 +1,28 @@
 extends Node
 const SAVE_FILE_PATH: String = "user://save_file.json"
 const BASE_SAVE_FILE_PATH: String = "res://main/base_save_file.json"
+const SETTINGS_CONFIG_PATH: String = "user://setting_cfg.json"
 var empty_save_file: bool = false
+
+func save_settings(settings_data: Dictionary) -> void:
+	var settings_cfg = FileAccess.open(SETTINGS_CONFIG_PATH, FileAccess.WRITE)
+	if settings_cfg:
+		var json_string = JSON.stringify(settings_data)
+		settings_cfg.store_line(json_string)
+		settings_cfg.close()
+
+func get_settings_cfg() -> Dictionary:
+	if not FileAccess.file_exists(SETTINGS_CONFIG_PATH):
+		return {}
+	var settings_cfg = FileAccess.open(SETTINGS_CONFIG_PATH, FileAccess.READ)
+	var json_text =  settings_cfg.get_as_text()
+	if json_text != "":
+		var parse_result = JSON.parse_string(json_text)
+		if parse_result:
+			return parse_result
+	return {}
+	
+
 func save_game() -> void:
 	var save_file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	var data: Dictionary = {}

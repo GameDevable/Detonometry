@@ -207,7 +207,7 @@ popup/item_4/id = 1
 popup/item_5/text = "3840x2160"
 popup/item_5/id = 3
 
-[node name="CheckBox" type="CheckBox" parent="ContentMargins/ContentLayout/Display" unique_id=659426172]
+[node name="FullscreenCheckbox" type="CheckBox" parent="ContentMargins/ContentLayout/Display" unique_id=659426172]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
@@ -244,9 +244,9 @@ trans_type = 9
 [connection signal="value_changed" from="ContentMargins/ContentLayout/Audio/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="value_changed" from="ContentMargins/ContentLayout/Audio/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="item_selected" from="ContentMargins/ContentLayout/Display/ResolutionOptions" to="." method="_on_option_button_item_selected"]
-[connection signal="mouse_entered" from="ContentMargins/ContentLayout/Display/CheckBox" to="." method="_on_check_box_mouse_entered"]
-[connection signal="mouse_exited" from="ContentMargins/ContentLayout/Display/CheckBox" to="." method="_on_check_box_mouse_exited"]
-[connection signal="toggled" from="ContentMargins/ContentLayout/Display/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="mouse_entered" from="ContentMargins/ContentLayout/Display/FullscreenCheckbox" to="." method="_on_check_box_mouse_entered"]
+[connection signal="mouse_exited" from="ContentMargins/ContentLayout/Display/FullscreenCheckbox" to="." method="_on_check_box_mouse_exited"]
+[connection signal="toggled" from="ContentMargins/ContentLayout/Display/FullscreenCheckbox" to="." method="_on_check_box_toggled"]
 [connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="mouse_exited" from="BackButton" to="." method="_on_back_button_mouse_exited"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

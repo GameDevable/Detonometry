@@ -18,7 +18,7 @@ func _ready() -> void:
 	Console.add_command("delete_save", SaveManager.reset_file)
 	SignalManager.session_restarted.connect(_on_session_restarted)
 	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
-	Input.set_custom_mouse_cursor(Constants.POINTER_HAND_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
+	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
 
 
 func _on_session_restarted() -> void:
