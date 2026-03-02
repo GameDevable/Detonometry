@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="68"
-   height="68.000008"
-   viewBox="0 0 17.991667 17.991669"
+   width="136"
+   height="136"
+   viewBox="0 0 35.983334 35.983334"
    version="1.1"
    id="svg5"
    sodipodi:docname="sierpinskies_triangle_overlay.svg"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="3.1765316"
-     inkscape:cx="-5.8239621"
-     inkscape:cy="61.702518"
+     inkscape:zoom="2.729987"
+     inkscape:cx="80.769615"
+     inkscape:cy="48.718181"
      inkscape:window-width="1366"
      inkscape:window-height="731"
      inkscape:window-x="0"
@@ -37,7 +37,7 @@
      id="defs2" />
   <g
      id="layer1"
-     transform="translate(-0.51084187,-0.16878104)">
+     transform="matrix(1.9895789,0,0,1.7860416,-0.92261372,0.44582012)">
     <g
        id="g1"
        transform="matrix(-0.36188564,0,0,-0.36188564,14.213604,18.161356)"

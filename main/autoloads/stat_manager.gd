@@ -43,6 +43,7 @@ var special_modifier_stats: Dictionary[String, float] = {
 	"lucky_triangle_chance": 0.0,
 	"lucky_triangle_multiplier": 5.0,
 	"reinforced_triangle_chance": 0.0,
+	"reinforced_triangle_multiplier": 3.0
 }
 
 var bonus_stats: Dictionary[String, float] = {

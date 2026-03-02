@@ -25,6 +25,8 @@
 [ext_resource type="Resource" uid="uid://wof8ud5yktqs" path="res://upgrade system/datas/session/session_time_upgrade_data.tres" id="17_xsyck"]
 [ext_resource type="Resource" uid="uid://de56bx33q55qd" path="res://upgrade system/datas/triangle/triangle_value_upgrade_data.tres" id="18_qppun"]
 [ext_resource type="Script" uid="uid://c038iaaigywjl" path="res://upgrade system/editor_line_updater.gd" id="19_1qpes"]
+[ext_resource type="Resource" uid="uid://dr0owyqhlfiso" path="res://upgrade system/datas/triangle/reinforced_triangle_chance_upgrade_data.tres" id="21_7x73d"]
+[ext_resource type="Resource" uid="uid://bjn3xungukyiv" path="res://upgrade system/datas/triangle/reinforced_multiplier_upgrade.tres" id="22_m05us"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fe3o"]
 bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -226,9 +228,9 @@ data = ExtResource("18_qppun")
 [node name="LTChanceUpgrade" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=23235675 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
 offset_left = 650.0
-offset_top = 750.0
+offset_top = 950.0
 offset_right = 650.0
-offset_bottom = 750.0
+offset_bottom = 950.0
 data = ExtResource("15_6kss2")
 
 [node name="STChanceUpgrade" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=805641859 instance=ExtResource("5_8xrc4")]
@@ -249,9 +251,9 @@ data = ExtResource("13_y0csd")
 
 [node name="LTMultUpgrade" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=209796217 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 650.0
+offset_left = 450.0
 offset_top = 950.0
-offset_right = 650.0
+offset_right = 450.0
 offset_bottom = 950.0
 data = ExtResource("14_1qpes")
 
@@ -262,6 +264,22 @@ offset_top = 750.0
 offset_right = 850.0
 offset_bottom = 750.0
 data = ExtResource("17_pa0n2")
+
+[node name="RTChanceUpgradeNode" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=971782632 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 750.0
+offset_right = 650.0
+offset_bottom = 750.0
+data = ExtResource("21_7x73d")
+
+[node name="RTMultUpgrade" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=1432785726 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 750.0
+offset_right = 450.0
+offset_bottom = 750.0
+data = ExtResource("22_m05us")
 
 [node name="Connectors" type="Control" parent="DraggableNodes" unique_id=1713683288]
 anchors_preset = 0
@@ -336,10 +354,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TVLTCCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=239763886 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+[node name="TVRTCCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=239763886 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
 points = PackedVector2Array(651, 822, 651, 622)
 root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/TValUpgrade")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTChanceUpgrade")
+dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/RTChanceUpgradeNode")
 
 [node name="TVSTCCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1269960223 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
 points = PackedVector2Array(851, 622, 651, 622)
@@ -352,7 +370,7 @@ root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/STChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/FChanceUpgrade")
 
 [node name="LTCLTMCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1260000317 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 1022, 651, 822)
+points = PackedVector2Array(651, 1222, 651, 1022)
 root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTMultUpgrade")
 
@@ -360,6 +378,16 @@ dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTMultUpgrade"
 points = PackedVector2Array(851, 822, 851, 622)
 root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/STChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SubTValUpgrade")
+
+[node name="RTCLTCCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1460232668 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+points = PackedVector2Array(651, 1022, 651, 822)
+root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/RTChanceUpgradeNode")
+dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTChanceUpgrade")
+
+[node name="RTCRTMCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=757189089 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
+points = PackedVector2Array(451, 822, 651, 822)
+root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/RTChanceUpgradeNode")
+dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/RTMultUpgrade")
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)

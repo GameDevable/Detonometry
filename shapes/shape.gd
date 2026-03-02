@@ -120,7 +120,7 @@ func _apply_modifier(modifier_type: Enums.ShapeModifiers) -> void:
 			_add_modifier_overlay(load(reinforced_overlay_shape_path), "ReinforcedOverlay")
 			health.health *= 2
 			health.max_health *= 2
-			modifier_multipliers_total *= 3
+			modifier_multipliers_total *= StatManager.get_special_modifier_stat("reinforced_tirangle_multiplier")
 		Enums.ShapeModifiers.LUCKY:
 			add_child(LUCKY_TRIANGLE_PARTICLES.instantiate())
 			modifier_multipliers_total *= StatManager.get_special_modifier_stat("lucky_triangle_multiplier")

@@ -26,8 +26,8 @@ angular_velocity_max = 49.99998
 gravity = Vector3(0, 0, 0)
 damping_min = 57.627003
 damping_max = 57.627003
-scale_min = 0.25
-scale_max = 0.39999998
+scale_min = 0.5
+scale_max = 0.79999995
 scale_curve = SubResource("CurveTexture_wty36")
 
 [node name="LuckyTriangleParticles" type="GPUParticles2D" unique_id=1119926768]
