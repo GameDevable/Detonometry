@@ -27,8 +27,6 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="UpgradeHub" parent="UiCanvasLayer/Menus" unique_id=1453158358 instance=ExtResource("3_c651c")]
-process_mode = 2
-visible = false
 layout_mode = 1
 
 [node name="SettingsMenu" parent="UiCanvasLayer/Menus" unique_id=926415462 instance=ExtResource("4_kfbq2")]
@@ -83,5 +81,5 @@ process_mode = 3
 [node name="ParticleHolder" type="Node2D" parent="." unique_id=1605238279]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
-volume_db = 6.0
+volume_db = -14.0
 bus = &"Music"

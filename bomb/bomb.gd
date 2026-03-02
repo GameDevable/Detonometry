@@ -53,7 +53,7 @@ func _set_radii(explosion_radius: float) -> void:
 
 func _handle_explosion_effects() -> void:
 	var volume: float = 3.75
-	var pitch: float = 0.75
+	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	
 	EffectManager.spawn_particles(BLAST_PARTICLE_PATH, position)

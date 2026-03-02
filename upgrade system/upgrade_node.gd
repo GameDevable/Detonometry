@@ -178,6 +178,7 @@ func _on_purchase_button_pressed() -> void:
 		var pitch: float = 0.25
 		var volume: float = -6.5
 		EffectManager.play_sfx(PURCHASE_SOUND, 0.0, volume, pitch)
+	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 
 
 func _on_purchase_button_button_up() -> void:

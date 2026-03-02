@@ -20,9 +20,13 @@ const DRAG_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/grab_c
 const POINTER_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/point_hand_cursor.svg")
 const OPEN_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/open_hand_cursor.svg")
 const NORMAL_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/cursor.svg")
-const BUTTON_CLICK_SOUND = preload("res://ui/assets/audio/button_click_sound.ogg")
-const BUTTON_HOVER_SOUND: AudioStream = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
-const ENTER_BUTTON_VOLUME: float = 1
+const BUTTON_CLICK_SOUND = preload("res://ui/assets/audio/click-3.wav")
+const BUTTON_HOVER_SOUND: AudioStream = preload("res://ui/assets/audio/hover-3.wav")
+const ENTER_BUTTON_VOLUME: float = -20.0
 const ENTER_PITCH_RANGE: Vector2 = Vector2(0.9, 1.1)
-const BUTTON_CLICK_VOLUME: float = -2.0
+const BUTTON_CLICK_VOLUME: float = -10.0
 const BUTTON_CLICK_PITCH: float = 0.47
+
+
+const GAME_MUSIC = preload("uid://cveyrt0b6bu53")
+const GAME_MUSIC_2 = preload("uid://dim1e62fq3om8")

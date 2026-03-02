@@ -2,8 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="1_fd50i"]
 [ext_resource type="Script" uid="uid://bnflhpemd7tex" path="res://upgrade system/upgrade_hub.gd" id="1_t07eb"]
-[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="3_xxrst"]
-[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="4_vyd20"]
+[ext_resource type="PackedScene" uid="uid://dsc11tbnd1lbv" path="res://ui/menu_buttons/settings_button.tscn" id="2_qppun"]
+[ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="3_xsyck"]
+[ext_resource type="PackedScene" uid="uid://br0ww6jthrbxw" path="res://ui/menu_buttons/main_menu_button.tscn" id="4_xsyck"]
 [ext_resource type="Script" uid="uid://bvsl4sv8ovqq" path="res://upgrade system/editor_icon_updater.gd" id="5_1qpes"]
 [ext_resource type="PackedScene" uid="uid://cuh5eo4mk36ak" path="res://upgrade system/upgrade_node.tscn" id="5_8xrc4"]
 [ext_resource type="Resource" uid="uid://cwj2k3aew66ln" path="res://upgrade system/datas/bomb/explosion_radius_upgrade_data.tres" id="6_d2kyv"]
@@ -55,70 +56,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_os6ug")
 theme_override_styles/panel = SubResource("StyleBoxFlat_qppun")
-
-[node name="SettingsButton" type="Button" parent="BackgroundPanel" unique_id=840635993]
-modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
-z_index = 2
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 0
-offset_left = 291.5
-offset_top = 648.0
-offset_right = 491.5
-offset_bottom = 708.0
-pivot_offset_ratio = Vector2(0.5, 1)
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-theme = ExtResource("3_xxrst")
-text = "Settings"
-metadata/_edit_use_anchors_ = true
-
-[node name="ButtonScaleEffect" parent="BackgroundPanel/SettingsButton" unique_id=1259690829 instance=ExtResource("4_vyd20")]
-anim_duration = 0.4
-trans_type = 9
-
-[node name="BackToGameButton" type="Button" parent="BackgroundPanel" unique_id=1446240543]
-process_priority = 2
-modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
-z_index = 2
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 0
-offset_left = 523.5
-offset_top = 648.0
-offset_right = 756.5
-offset_bottom = 708.0
-pivot_offset_ratio = Vector2(0.5, 1)
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-theme = ExtResource("3_xxrst")
-text = "Back To Game"
-metadata/_edit_use_anchors_ = true
-
-[node name="ButtonScaleEffect" parent="BackgroundPanel/BackToGameButton" unique_id=466730781 instance=ExtResource("4_vyd20")]
-anim_duration = 0.4
-trans_type = 9
-
-[node name="MainMenuButton" type="Button" parent="BackgroundPanel" unique_id=1076256928]
-modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
-z_index = 2
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 0
-offset_left = 788.5
-offset_top = 648.0
-offset_right = 988.5
-offset_bottom = 708.0
-pivot_offset_ratio = Vector2(0.5, 1)
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-theme = ExtResource("3_xxrst")
-text = "Main Menu"
-metadata/_edit_use_anchors_ = true
-
-[node name="ButtonScaleEffect" parent="BackgroundPanel/MainMenuButton" unique_id=1927408056 instance=ExtResource("4_vyd20")]
-anim_duration = 0.4
-trans_type = 9
 
 [node name="TitleLabel" type="Label" parent="BackgroundPanel" unique_id=1646330060]
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
@@ -424,10 +361,34 @@ points = PackedVector2Array(851, 822, 851, 622)
 root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/STChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SubTValUpgrade")
 
-[connection signal="mouse_entered" from="BackgroundPanel/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
-[connection signal="mouse_exited" from="BackgroundPanel/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
-[connection signal="pressed" from="BackgroundPanel/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="BackgroundPanel/BackToGameButton" to="." method="_on_back_to_game_button_pressed"]
-[connection signal="mouse_entered" from="BackgroundPanel/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
-[connection signal="mouse_exited" from="BackgroundPanel/MainMenuButton" to="." method="_on_main_menu_button_mouse_exited"]
-[connection signal="pressed" from="BackgroundPanel/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
+modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -384.5
+offset_top = -89.0
+offset_right = 384.5
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 64
+
+[node name="SettingsButton" parent="Buttons" unique_id=278250214 instance=ExtResource("2_qppun")]
+modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+layout_mode = 2
+
+[node name="ContinueButton" parent="Buttons" unique_id=1342725064 instance=ExtResource("3_xsyck")]
+modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+layout_mode = 2
+
+[node name="MainMenuButton" parent="Buttons" unique_id=1431176260 instance=ExtResource("4_xsyck")]
+modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+z_index = 3
+layout_mode = 2

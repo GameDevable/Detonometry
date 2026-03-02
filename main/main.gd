@@ -1,20 +1,14 @@
 extends Node
-const MYSTERY = preload("uid://cdbe4cwxplk83")
-const SUSPENSE_PULSE = preload("uid://gwupsm1qifj7")
-const SUSPENSE_PULSE_TENSE = preload("uid://csl7fpgep6fag")
-const SUSPENSE_TENSION = preload("uid://bc8pxvib31qyn")
-const DARK_AMBIENT_MUSIC = preload("uid://cbh6a3ltatnma")
-const SOLITUDE_DARK_AMBIENT_MUSIC = preload("uid://dl3t2dd0ha6gg")
 
 
 func _ready() -> void:
 	SaveManager.load_game()
 	UiManager.set_up_ui(get_child(1))
-	UiManager.swap_menu("MainMenu")
 	EffectManager.set_music_node($Music)
 	EffectManager.set_audio_contianer($AudioHolder)
 	EffectManager.set_particle_container($ParticleHolder)
-	EffectManager.start_music(DARK_AMBIENT_MUSIC)
+	UiManager.swap_menu("MainMenu")
+	EffectManager.start_music(Constants.GAME_MUSIC)
 	Console.add_command("delete_save", SaveManager.reset_file)
 	SignalManager.session_restarted.connect(_on_session_restarted)
 	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)

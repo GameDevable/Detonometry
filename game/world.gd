@@ -75,8 +75,10 @@ func create_bomb(spawn_position: Vector2) -> Bomb:
  
 func place_bomb() -> void:
 	if held_bomb:
-		EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.12, 6.0, 0.92)
-		EffectManager.play_sfx(BOMB_PLACE_SOUND2, 0, 5.0, 0.93)
+		var vol1 = 2.0
+		var vol2 = 1.0
+		EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.12, vol1, 0.92)
+		EffectManager.play_sfx(BOMB_PLACE_SOUND2, 0, vol2, 0.93)
 		
 		held_bomb.call_deferred("handle_placed")
 		# This effectively "places" the bomb by not resetting its position to the mouse

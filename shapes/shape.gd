@@ -19,7 +19,6 @@ const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overl
 
 
 @onready var shape_sprite: Sprite2D = $ShapeSprite
-@onready var shadow_sprite: Sprite2D = $ShadowSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
 
 @onready var hurtbox_collider: CollisionShape2D = $Hurtbox/HurtboxCollider
@@ -28,8 +27,12 @@ const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overl
 
 @onready var health: Health = $Health
 
+const SHAPE_BREAK = preload("uid://wvbgrwinvj57")
+const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
+
 const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_triangle_particles.tscn")
 const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
+
 func _ready() -> void:
 	SignalManager.health_changed.connect(_on_health_changed)
 	while spin_direction == 0:
@@ -46,14 +49,12 @@ func _ready() -> void:
 	shape_sprite.texture = shape_data.shape_texture
 	
 	var initial_scale = Vector2(0.01, 0.01)
-	shadow_sprite.scale = initial_scale
 	shape_sprite.scale = initial_scale
 	modifier_overlay_sprites.scale = initial_scale
 	var scale_up_tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 	var scale_up_time: float = 0.2
 	var final_scale: Vector2 = Vector2(1.0, 1.0) * Constants.SPRITE_SCALE
 	scale_up_tween.tween_property(shape_sprite, "scale", final_scale, scale_up_time)
-	scale_up_tween.parallel().tween_property(shadow_sprite, "scale", final_scale, scale_up_time)
 	scale_up_tween.parallel().tween_property(modifier_overlay_sprites, "scale", final_scale, scale_up_time)
 	# This will make it feel a little nicer
 	await get_tree().create_timer(scale_up_time / 2).timeout
@@ -204,9 +205,9 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 
 func _on_health_depleted(health_node: Health) -> void:
 	if health_node in get_children():
-		#var volume: float = -7.5
-		#var pitch_range: Vector2 = Vector2(0.5, 0.65)
-		#EffectManager.play_sfx(SHAPE_BREAK_1, 0.05, volume, 1.0, true, pitch_range)
+		var volume: float = -7.0
+		var pitch_range: Vector2 = Vector2(0.8, 0.9)
+		EffectManager.play_sfx(SHAPE_BREAK, 0.1, volume, 1.0, true, pitch_range)
 		if shape_modifiers.has(Enums.ShapeModifiers.SIERPINSKIES):
 			var modifier_arrays_array: Array[Array] = [[], [], []]
 			for i in range(3):

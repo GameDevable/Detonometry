@@ -66,7 +66,6 @@ func _on_unsuccessful_bomb_place() -> void:
 	
 	place_delay_progress_bar.texture_progress = RING_FILL_RED
 	EffectManager.play_sfx(CANT_PLACE, 0.0, 2.0, 0.8)
-	#EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.0, -5.0, 5.0)
 	await ring_scale_up_tween.finished
 	await get_tree().create_timer(hold_time).timeout
 	place_delay_progress_bar.texture_progress = RING_FILL_YELLOW

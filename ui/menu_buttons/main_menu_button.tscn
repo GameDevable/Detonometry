@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://br0ww6jthrbxw"]
+
+[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="1_cv56p"]
+[ext_resource type="Script" uid="uid://8vq4tvqm2fd" path="res://ui/menu_buttons/main_menu_button.gd" id="1_evtl3"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="2_cv56p"]
+
+[node name="MainMenuButton" type="Button" unique_id=1431176260]
+custom_minimum_size = Vector2(225, 75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -37.5
+offset_right = 114.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("1_cv56p")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+script = ExtResource("1_evtl3")
+
+[node name="MainMenuButtonAnimator" parent="." unique_id=1259690829 instance=ExtResource("2_cv56p")]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

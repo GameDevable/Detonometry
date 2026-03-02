@@ -72,6 +72,7 @@ func _load_saved_data(data: Dictionary) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.transition_to(UiManager.previous_menu)
 	SaveManager.save_settings(_get_settings_data())
 

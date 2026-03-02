@@ -2,34 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
 [ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="2_4fy8l"]
-[ext_resource type="Texture2D" uid="uid://b7cbxvilwrwts" path="res://shapes/assets/sprites/triangle_shadow.svg" id="2_e6dkk"]
 [ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
 [ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
 [ext_resource type="Shape2D" uid="uid://82yjdnrv6lqq" path="res://shapes/collision_shapes/triangle_collision_shape.tres" id="6_o1kad"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4fy8l"]
-polygon = PackedVector2Array(0, -68, -66, 64, 68, 64)
-
-[sub_resource type="Gradient" id="Gradient_o1kad"]
-offsets = PackedFloat32Array(0, 0.69758064)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e6dkk"]
-gradient = SubResource("Gradient_o1kad")
-width = 68
-height = 68
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Shape" type="CharacterBody2D" unique_id=1276430996]
 collision_mask = 6
 script = ExtResource("1_4fy8l")
-
-[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=965740919]
-visible = false
-modulate = Color(0.5294118, 0.5294118, 0.5294118, 1)
-position = Vector2(0, -14)
-texture = ExtResource("2_e6dkk")
 
 [node name="ShapeSprite" type="Sprite2D" parent="." unique_id=1865982620]
 position = Vector2(0, -19)
@@ -79,20 +58,6 @@ hit_from_inside = true
 target_position = Vector2(-55, 0)
 collision_mask = 4
 hit_from_inside = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=862888131]
-position = Vector2(0, -21)
-scale = Vector2(0.5, 0.5)
-occluder = SubResource("OccluderPolygon2D_4fy8l")
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1116197027]
-visible = false
-light_mask = 0
-position = Vector2(0, -10)
-scale = Vector2(1.59375, 1.4999999)
-color = Color(0.84313726, 1, 1, 1)
-energy = 0.8
-texture = SubResource("GradientTexture2D_e6dkk")
 
 [connection signal="area_entered" from="ExplosionDetector" to="." method="_on_explosion_detector_area_entered"]
 [connection signal="area_exited" from="ExplosionDetector" to="." method="_on_explosion_detector_area_exited"]
