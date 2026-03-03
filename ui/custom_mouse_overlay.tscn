@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ctk4el1qe4c6c"]
+
+[ext_resource type="Script" uid="uid://bnop5wdgjgma0" path="res://ui/custom_mouse_overlay.gd" id="1_ikw5y"]
+
+[node name="CustomMouseOverlay" type="Control" unique_id=464870460]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ikw5y")
+
+[node name="MouseFollowerWrapper" type="Control" parent="." unique_id=354586569]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MouseFollowerWrapper" unique_id=1731686283]
+z_index = 2000
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

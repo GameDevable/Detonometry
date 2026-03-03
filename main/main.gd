@@ -1,9 +1,11 @@
 extends Node
+@onready var ui_canvas_layer: CanvasLayer = $UiCanvasLayer
+@onready var mouse_layer: CanvasLayer = $MouseLayer
 
 
 func _ready() -> void:
 	SaveManager.load_game()
-	UiManager.set_up_ui(get_child(1))
+	UiManager.set_up_ui(ui_canvas_layer, mouse_layer)
 	EffectManager.set_music_node($Music)
 	EffectManager.set_audio_contianer($AudioHolder)
 	EffectManager.set_particle_container($ParticleHolder)
@@ -11,8 +13,8 @@ func _ready() -> void:
 	EffectManager.start_music(Constants.GAME_MUSIC)
 	Console.add_command("delete_save", SaveManager.reset_file)
 	SignalManager.session_restarted.connect(_on_session_restarted)
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_POINTING_HAND)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func _on_session_restarted() -> void:

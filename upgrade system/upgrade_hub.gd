@@ -1,6 +1,7 @@
 extends Control
 var is_dragging: bool = false
 var can_drag: bool = true
+var mouse_inside_button: bool = false
 var base_button_minimum_size: Vector2 = Vector2.ZERO
 var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
@@ -24,22 +25,25 @@ func _ready() -> void:
 		)
 	
 	# Recursively loops through the buttons
+	#settings_button.mouse_entered.connect(_on_mouse_entered)
+	#settings_button.mouse_exited.connect(_on_mouse_exited)
+	
 	_set_up_buttons(upgrade_nodes)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if Input.is_action_pressed("bomb_place_action") and can_drag and UiManager.active_menu.name == name:
-			
-			is_dragging = true
-			SignalManager.mouse_dragging.emit(is_dragging)
-			
-			Input.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON, Input.CURSOR_ARROW)#, Constants.DRAG_HAND_CURSOR_ICON.get_size() / 2)
+		if _check_drag():
+			await get_tree().create_timer(0.1).timeout
+			if _check_drag():
+				is_dragging = true
+				SignalManager.mouse_dragging.emit(is_dragging)
+				UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
 		if Input.is_action_just_released("bomb_place_action") and is_dragging and UiManager.active_menu.name == name:
 			is_dragging = false
 			SignalManager.mouse_dragging.emit(is_dragging)
 			
-			Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+			UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 
 	if event is InputEventMouseMotion:
 		if is_dragging:
@@ -85,10 +89,9 @@ func reset() -> void:
 
 
 func handle_entered() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+	UiManager.set_mouse_cursor_visible(true)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	draggable_nodes.position = Vector2.ZERO
-	
 
 
 func _set_up_buttons(parent_node: Control) -> void:
@@ -114,7 +117,9 @@ func _on_points_changed(value: int) -> void:
 	var purchasable_node_count: int = _update_buttons(upgrade_nodes, value)
 	SignalManager.purchase_amount_changed.emit(purchasable_node_count)
 
-
+func _check_drag() -> bool:
+	return Input.is_action_pressed("bomb_place_action") and can_drag and UiManager.active_menu.name == name
+	
 func _update_buttons(parent_node: Control, points_value: int) -> int:
 	var purchasable_node_count: int = 0
 	for child in parent_node.get_children():
@@ -135,19 +140,6 @@ func _update_buttons(parent_node: Control, points_value: int) -> int:
 	return purchasable_node_count
 
 
-func _on_back_to_game_button_pressed() -> void:
-	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
-	await UiManager.transition_to("None")
-	UiManager.show_overlay("Hud")
-	Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.OPEN_HAND_CURSOR_ICON.get_size() / 2)
-
-
-func _on_settings_button_pressed() -> void:
-	UiManager.transition_to("SettingsMenu")
-
-
-func _on_main_menu_button_pressed() -> void:
-	UiManager.transition_to("MainMenu")
 
 
 func _on_mouse_entered() -> void:
@@ -158,11 +150,11 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	can_drag = true
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
-
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 
 func _on_main_menu_button_mouse_entered() -> void:
 	can_drag = false
+	mouse_inside_button = true
 	var base_pitch: float = 1.0
 	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	var end_scale: Vector2 = Vector2(1.1, 1.1)
@@ -171,7 +163,7 @@ func _on_main_menu_button_mouse_entered() -> void:
 
 func _on_main_menu_button_mouse_exited() -> void:
 	can_drag = true
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
 	$BackgroundPanel/MainMenuButton/ButtonScaleEffect.scale_ui(main_menu_button.scale, end_scale, Tween.TRANS_EXPO)
 
@@ -186,6 +178,6 @@ func _on_settings_button_mouse_entered() -> void:
 
 func _on_settings_button_mouse_exited() -> void:
 	can_drag = true
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
 	$BackgroundPanel/SettingsButton/ButtonScaleEffect.scale_ui(settings_button.scale, end_scale, Tween.TRANS_EXPO)

@@ -11,7 +11,6 @@ func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = 10
 	sfx_player.bus = "SFX"
 	audio_holder.add_child(sfx_player)
 	sfx_player.play(play_at_time)
-	print("playing")
 	await sfx_player.finished
 	sfx_player.queue_free()
 

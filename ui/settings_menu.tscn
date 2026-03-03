@@ -51,6 +51,8 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="Theme" id="Theme_23nap"]
+
 [node name="SettingsMenu" type="Control" unique_id=926415462]
 layout_mode = 3
 anchors_preset = 15
@@ -70,6 +72,7 @@ offset_left = -640.0
 offset_right = 640.0
 offset_bottom = 720.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xutny")
 
 [node name="MenuTriangle" type="TextureRect" parent="." unique_id=1066793993]
@@ -84,13 +87,11 @@ script = ExtResource("7_jpwvl")
 
 [node name="ContentMargins" type="MarginContainer" parent="." unique_id=1635050552]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -250.0
-offset_right = 250.0
-offset_bottom = 719.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 12
 
@@ -125,6 +126,7 @@ text = "Master Volume"
 [node name="MasterVolumeSlider" type="HSlider" parent="ContentMargins/ContentLayout/Audio" unique_id=652028265]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
 max_value = 1.0
@@ -141,6 +143,7 @@ text = "SFX Volume"
 [node name="SFXVolumeSlider" type="HSlider" parent="ContentMargins/ContentLayout/Audio" unique_id=1001517732]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
 max_value = 1.0
@@ -155,7 +158,9 @@ theme_override_font_sizes/font_size = 28
 text = "Music Volume"
 
 [node name="MusicSlider" type="HSlider" parent="ContentMargins/ContentLayout/Audio" unique_id=875633894]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
 max_value = 1.0
@@ -181,10 +186,10 @@ theme_override_font_sizes/font_size = 28
 text = "Resolution"
 
 [node name="ResolutionOptions" type="OptionButton" parent="ContentMargins/ContentLayout/Display" unique_id=567908319]
+z_as_relative = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_default_cursor_shape = 2
 theme = SubResource("Theme_jpwvl")
 theme_override_fonts/font = ExtResource("2_a6yft")
 theme_override_font_sizes/font_size = 20
@@ -210,7 +215,7 @@ popup/item_5/id = 3
 [node name="FullscreenCheckbox" type="CheckBox" parent="ContentMargins/ContentLayout/Display" unique_id=659426172]
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_default_cursor_shape = 2
+theme = SubResource("Theme_23nap")
 theme_override_fonts/font = ExtResource("2_a6yft")
 theme_override_font_sizes/font_size = 20
 text = "Full Screen"
@@ -232,7 +237,6 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 8
-mouse_default_cursor_shape = 2
 theme = ExtResource("4_2ty5h")
 text = "Back"
 

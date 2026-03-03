@@ -132,18 +132,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Buttons1" type="VBoxContainer" parent="." unique_id=1129812245]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -112.5
-offset_top = -136.5
-offset_right = 112.5
-offset_bottom = 136.5
+anchors_preset = -1
+anchor_left = 0.41210938
+anchor_top = 0.34583333
+anchor_right = 0.5878906
+anchor_bottom = 0.725
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
+metadata/_edit_use_anchors_ = true
 
 [node name="NewGameButton" parent="Buttons1" unique_id=456011415 instance=ExtResource("5_ubpvv")]
 layout_mode = 2
@@ -194,4 +191,4 @@ offset_right = 40.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.1.0"
+text = "v0.1.1"

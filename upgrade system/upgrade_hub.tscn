@@ -56,6 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = SubResource("Theme_os6ug")
 theme_override_styles/panel = SubResource("StyleBoxFlat_qppun")
 
@@ -63,16 +64,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qppun")
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
 z_index = 2
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+anchors_preset = -1
+anchor_left = 0.3894531
+anchor_top = 0.013888889
+anchor_right = 0.6105469
+anchor_bottom = 0.1125
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_fd50i")
 theme_override_font_sizes/font_size = 56
 text = "Upgrades"
+metadata/_edit_use_anchors_ = true
 
 [node name="PointsLabel" type="Label" parent="BackgroundPanel" unique_id=2000245348]
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
@@ -370,7 +371,7 @@ root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/STChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/FChanceUpgrade")
 
 [node name="LTCLTMCon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1260000317 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 1222, 651, 1022)
+points = PackedVector2Array(451, 1022, 651, 1022)
 root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTChanceUpgrade")
 dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LTMultUpgrade")
 
@@ -391,8 +392,6 @@ dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/RTMultUpgrade"
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)
-z_index = 2
-z_as_relative = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -410,10 +409,12 @@ theme_override_constants/separation = 64
 
 [node name="SettingsButton" parent="Buttons" unique_id=278250214 instance=ExtResource("2_qppun")]
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+z_index = 1
 layout_mode = 2
 
 [node name="ContinueButton" parent="Buttons" unique_id=1342725064 instance=ExtResource("3_xsyck")]
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+z_index = 1
 layout_mode = 2
 
 [node name="MainMenuButton" parent="Buttons" unique_id=1431176260 instance=ExtResource("4_xsyck")]

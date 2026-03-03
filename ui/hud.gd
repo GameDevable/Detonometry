@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 	SignalManager.bomb_placed.connect(func() -> void:
 		dragging_bomb = false
-		Input.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.DRAG_HAND_CURSOR_ICON.get_size() / 2)
+		UiManager.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON)
 	)
 	SignalManager.place_delay_timer_changed.connect(_on_place_delay_timer_changed)
 	SignalManager.unsuccessful_bomb_place.connect(_on_unsuccessful_bomb_place)
@@ -29,7 +29,7 @@ func _ready() -> void:
 	SignalManager.bomb_created.connect(func() -> void:
 		place_delay_progress_bar.visible = false
 		dragging_bomb = true
-		Input.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON, Input.CURSOR_ARROW, Constants.DRAG_HAND_CURSOR_ICON.get_size() / 2)
+		UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
 		)
 
 	place_delay_progress_bar.pivot_offset = place_delay_progress_bar.size * 0.5
@@ -81,14 +81,13 @@ func _on_place_delay_timer_changed(value: float) -> void:
 	if value > 0.0:
 		if not place_delay_progress_bar.visible and not progress_bar_cancel:
 			place_delay_progress_bar.visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			UiManager.set_mouse_cursor_visible(false)
 		if not place_delay_progress_bar.texture_progress == RING_FILL_YELLOW and not is_handling_unsuccessful_place and not progress_bar_cancel:
 			place_delay_progress_bar.texture_progress = RING_FILL_YELLOW
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			UiManager.set_mouse_cursor_visible(false)
 		place_delay_progress_bar.value = place_delay_progress_bar.max_value * (1 - value / StatManager.get_bomb_stat("place_delay"))
 	else:
 		place_delay_progress_bar.value = 100
 		place_delay_progress_bar.visible = false
-		if not Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		UiManager.set_mouse_cursor_visible(true)
 	

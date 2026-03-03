@@ -17,6 +17,7 @@ script = ExtResource("1_dmlor")
 [node name="ContinueButtonAnimator" parent="." unique_id=1259690829 instance=ExtResource("2_ku8ai")]
 trans_type = 9
 
+[connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

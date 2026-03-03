@@ -5,10 +5,13 @@ var active_overlays: Array[Control] = []
 var active_overlay_names: Array[String] = []
 var active_menu: Control = null
 var ui_canvas: CanvasLayer = null
+var mouse_canvas: CanvasLayer = null
 var previous_menu: String = "None"
 
 
-func set_up_ui(canvas_layer: CanvasLayer) -> void:
+func set_up_ui(canvas_layer: CanvasLayer, mouse_canvas_layer) -> void:
+	ui_canvas = canvas_layer
+	mouse_canvas = mouse_canvas_layer
 	var menus: Control = canvas_layer.get_child(0)
 	var overlays: Control = canvas_layer.get_child(1)
 	# Sets up menus
@@ -17,7 +20,6 @@ func set_up_ui(canvas_layer: CanvasLayer) -> void:
 	# Sets up overlays
 	for overlay in overlays.get_children():
 		ui_overlays.set(overlay.name, overlay)
-	ui_canvas = canvas_layer
 
 
 func show_overlay(overlay_key: String) -> void:
@@ -86,3 +88,47 @@ func reset_saved_ui() -> void:
 	ui_canvas.get_child(0).add_child(upgrade_hub)
 	ui_menus.erase(upgrade_hub.name)
 	ui_menus[upgrade_hub.name] = upgrade_hub
+
+
+func swap_custom_cursor_icon_resolutions(new_resolution: Vector2i) -> void:
+	if new_resolution.x <= 640:
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_32.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_32.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_32.svg")
+	elif new_resolution.x <= 1280:
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_64.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_64.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_64.svg")
+	elif new_resolution.x <= 1600: 
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_80.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_80.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_80.svg")
+	elif new_resolution.x <= 1920:
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_96.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_96.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_96.svg")
+	elif new_resolution.x <= 2560:
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_128.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_128.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_128.svg")
+	else:
+		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_192.svg")
+		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_192.svg")
+		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_192.svg")
+	if not ui_canvas:
+		return
+	set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+
+
+func set_custom_mouse_cursor(texture: Texture2D) -> void:
+	#var mouse_texture_rect: TextureRect = ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
+	var mouse_texture_rect: TextureRect = mouse_canvas.get_child(0).get_child(0).get_child(0)
+	mouse_texture_rect.texture = texture
+	
+
+
+func set_mouse_cursor_visible(is_on) -> void:
+	#var mouse_texture_rect: TextureRect =ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
+	var mouse_texture_rect: TextureRect = mouse_canvas.get_child(0).get_child(0).get_child(0)
+	mouse_texture_rect.visible = is_on
+	

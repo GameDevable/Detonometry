@@ -3,7 +3,7 @@ var resolutions: Dictionary[String, Vector2i] = {
 	"640x360": Vector2i(640, 360),
 	"1280x720": Vector2i(1280, 720),
 	"1600x900": Vector2i(1600, 900),
-	"1920x960": Vector2i(1920, 960),
+	"1920x1080": Vector2i(1920, 1080),
 	"2560x1440": Vector2i(2560, 1440),
 	"3840x2160": Vector2i(3840, 2160)
 }
@@ -66,9 +66,12 @@ func _load_saved_data(data: Dictionary) -> void:
 	resolution_options.selected = current_resolution_idx
 	DisplayServer.window_set_size(resolutions[current_resolution])
 	
+	UiManager.swap_custom_cursor_icon_resolutions(resolutions[current_resolution])
 	is_fullscreened = display_data["fullscreened"]
 	if is_fullscreened:
-		fullscreen_checkbox.toggled.emit(true)
+		fullscreen_checkbox.button_pressed = true
+		_on_check_box_toggled(true)
+
 
 
 func _on_back_button_pressed() -> void:
@@ -85,25 +88,16 @@ func _on_back_button_mouse_entered() -> void:
 
 
 func _on_back_button_mouse_exited() -> void:
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON, Input.CURSOR_ARROW)
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
 	button_scale_effect.scale_ui(back_button.scale, end_scale, Tween.TRANS_EXPO)
 
 
-func _on_check_box_toggled(toggled_on: bool) -> void:
-	is_fullscreened = toggled_on
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-
 func _on_drag_started() -> void:
-	Input.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
+	UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
 
 
 func _on_drag_ended(_value_changed: bool) -> void:
-	Input.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 
 
 func _on_master_volume_slider_value_changed(value: float) -> void:
@@ -122,13 +116,30 @@ func _on_music_slider_value_changed(value: float) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
+	if DisplayServer.get_name() == "web":
+		return
 	var option_string: String = resolution_options.get_item_text(index)
 	var new_resolution: Vector2i = resolutions[option_string] 
 	current_resolution = option_string
 	current_resolution_idx = index
 	var window = get_window()
+	
 	window.size = new_resolution
+	if is_fullscreened:
+		UiManager.swap_custom_cursor_icon_resolutions(DisplayServer.screen_get_size())
+	else:
+		UiManager.swap_custom_cursor_icon_resolutions(new_resolution)
 	_center_window()
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	is_fullscreened = toggled_on
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		UiManager.swap_custom_cursor_icon_resolutions(DisplayServer.screen_get_size())
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		UiManager.swap_custom_cursor_icon_resolutions(resolutions[current_resolution])
 
 
 func _center_window() -> void:
