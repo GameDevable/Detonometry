@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_nwksr")
 name = "Lucky Triangle Multiplier"
-tier_modifiers = Array[float]([5.0, 6.0, 7.0])
-base_value = 4.0
+tier_modifiers = Array[float]([6.0, 7.0, 8.0])
+base_value = 5.0
 base_price = 70
 description = "Increases the value multiplier of Lucky Shapes on triangles"
 modify_stat_name = "lucky_triangle_multiplier"

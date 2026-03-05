@@ -17,9 +17,11 @@ func set_up_ui(canvas_layer: CanvasLayer, mouse_canvas_layer) -> void:
 	# Sets up menus
 	for menu in menus.get_children():
 		ui_menus.set(menu.name, menu)
+		#menu.visible = false
 	# Sets up overlays
 	for overlay in overlays.get_children():
 		ui_overlays.set(overlay.name, overlay)
+		#overlay.visible = false
 
 
 func show_overlay(overlay_key: String) -> void:

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_p6kjr")
 name = "Spawn Limit"
-tier_modifiers = Array[float]([8.0, 12.0, 15.0])
+tier_modifiers = Array[float]([8.0, 11.0, 15.0])
 base_value = 5.0
 base_price = 12
 description = "Increases the amount of shapes that can spawn"

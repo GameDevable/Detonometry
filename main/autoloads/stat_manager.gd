@@ -5,12 +5,12 @@ var bomb_stats: Dictionary[String, float] = {
 	"explosion_radius": 77.0,
 	"explosion_radius_size_percent": 100.0,
 	"explosion_time": 1.5,
-	"place_delay": 3.5,
+	"place_delay": 3.0,
 }
 
 # Shape Spawning
 var shape_spawn_stats: Dictionary[String, float] = {
-	"spawn_limit": 5,
+	"spawn_limit": 6,
 	"bunch_spawn_chance": 2,
 	"bunch_spawn_number": 2,
 	"spawn_time": 2.5,

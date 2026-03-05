@@ -21,7 +21,7 @@ func _on_upgrade_locked(upgrade: Upgrade) -> void:
 		dependent_node.visible = false
 
 func _on_upgrade_advanced(upgrade: Upgrade) -> void:
-	if root_node.upgrade == upgrade:
+	if root_node.upgrade == upgrade and upgrade.current_purchased_tier >= unlock_threshold:
 		dependent_node.unlock()
 		var intensity: int = 3
 		modulate.r = intensity
