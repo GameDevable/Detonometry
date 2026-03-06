@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="52.916668mm"
+   height="37.463921mm"
+   viewBox="0 0 52.916668 37.463921"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="mailing_list_icon.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8714765"
+     inkscape:cx="33.954657"
+     inkscape:cy="101.34159"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-1.547122,-5.4756365)">
+    <g
+       id="g1"
+       transform="matrix(1.9667415,0,0,1.9667415,-1.495667,-5.293525)">
+      <rect
+         style="fill:#808080;fill-opacity:1;stroke:#ffffff;stroke-width:0"
+         id="rect5"
+         width="26.905756"
+         height="19.048727"
+         x="1.547122"
+         y="5.4756365"
+         ry="1.3689361" />
+      <rect
+         style="fill:#ededed;stroke:#ffffff;stroke-width:0"
+         id="rect2"
+         width="25.135416"
+         height="17.197916"
+         x="2.432292"
+         y="6.401042"
+         ry="1.2359276" />
+      <path
+         d="M 26.520266,6.2218592 14.941261,15.275559 3.3622547,6.2218592 2.2965007,7.055124 14.941261,16.942089 27.58602,7.055124 Z"
+         style="fill:#808080;fill-opacity:1;stroke:#ffffff;stroke-width:0"
+         id="path5" />
+    </g>
+  </g>
+</svg>

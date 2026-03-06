@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="31.25in"
+   height="31.25in"
+   clip-rule="evenodd"
+   fill-rule="evenodd"
+   image-rendering="optimizeQuality"
+   shape-rendering="geometricPrecision"
+   text-rendering="geometricPrecision"
+   version="1.1"
+   viewBox="0 0 31250 31250"
+   id="svg3"
+   sodipodi:docname="playtest_form_icon.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="in"
+     showgrid="false"
+     inkscape:zoom="0.16966667"
+     inkscape:cx="1653.2416"
+     inkscape:cy="1662.0825"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <defs
+     id="defs1">
+    <style
+       type="text/css"
+       id="style1">.fil3 {fill:none} .fil0 {fill:#373F47} .fil1 {fill:#373F47} .fil2 {fill:#4B5259;fill-rule:nonzero}</style>
+  </defs>
+  <path
+     class="fil0"
+     d="m5031 1927.1h17429v3820.3h3748.2v23586h-21178v-27406zm1167.8 1511.2h15040v3399h3802v20985h-18842v-24384z"
+     id="path1"
+     style="fill:#eeeeee;fill-opacity:1" />
+  <path
+     class="fil1"
+     d="m7366.8 4805.5h12650v3095h3855.6v19109h-16506v-22204zm6269.1 17132h3828.2v1257.8h-3828.2v-1257.8zm0-6304h8093.9v1257.8h-8093.9v-1257.8zm0-5906.4h5906.3v1257.8h-5906.3v-1257.8zm-4539.1 11375h2679.8v2679.8h-2679.8v-2679.8zm0-6097.8h2679.8v2679.8h-2679.8v-2679.8zm0-6097.7h2679.8v2679.8h-2679.8v-2679.8z"
+     id="path2"
+     style="fill:#eeeeee;fill-opacity:1" />
+  <path
+     class="fil2"
+     d="m22460 1927.1 3748.2 3820.3h-3748.2v-3820.3z"
+     id="path3"
+     style="fill:#e3e3e3;fill-opacity:1" />
+  <rect
+     class="fil3"
+     x="13010"
+     y="13021"
+     width="5218.8"
+     height="5218.8"
+     id="rect3" />
+</svg>

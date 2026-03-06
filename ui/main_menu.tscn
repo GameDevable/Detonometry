@@ -8,9 +8,45 @@
 [ext_resource type="PackedScene" uid="uid://dsc11tbnd1lbv" path="res://ui/menu_buttons/settings_button.tscn" id="6_arv2f"]
 [ext_resource type="PackedScene" uid="uid://bq6mtaqygkwbo" path="res://ui/menu_buttons/quit_button.tscn" id="7_5klac"]
 [ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="8_lsdqh"]
+[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="9_arv2f"]
+[ext_resource type="Texture2D" uid="uid://cf6b3s1gnf6ll" path="res://ui/assets/playtest_form_icon.svg" id="10_5klac"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="11_lsdqh"]
+[ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="12_jiymt"]
+[ext_resource type="Texture2D" uid="uid://2iykrxtmtdh6" path="res://ui/assets/discord_icon.svg" id="13_bgtsx"]
+[ext_resource type="Texture2D" uid="uid://dolkgcpf8v1b7" path="res://ui/assets/mailing_list_icon.svg" id="14_kaxbk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkrt"]
 bg_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgtsx"]
+bg_color = Color(0.11372549, 0.11372549, 0.11372549, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 10.0
+expand_margin_top = 4.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaxbk"]
+bg_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 10.0
+expand_margin_top = 4.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nobx"]
+bg_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 10.0
+expand_margin_top = 4.0
+expand_margin_right = 10.0
 
 [node name="MainMenu" type="Control" unique_id=1380756693 groups=["Persist"]]
 layout_mode = 3
@@ -56,11 +92,10 @@ offset_left = -32.0
 offset_top = -27.199997
 offset_right = 32.0
 offset_bottom = 27.200012
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.6, 0.58)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
-metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle2" type="TextureRect" parent="." unique_id=778206793]
 layout_mode = 0
@@ -68,7 +103,7 @@ offset_left = 394.0
 offset_top = 454.0
 offset_right = 554.0
 offset_bottom = 590.0
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.6, 0.58)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
@@ -85,13 +120,12 @@ offset_left = -32.0
 offset_top = -27.199997
 offset_right = 32.0
 offset_bottom = 27.200012
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.6, 0.58)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
 speed = Vector2(-60, -80)
 rotation_speed = 0.7
-metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle4" type="TextureRect" parent="." unique_id=2120643090]
 layout_mode = 0
@@ -103,13 +137,12 @@ offset_left = -31.999939
 offset_top = -27.200012
 offset_right = 31.999878
 offset_bottom = 27.199951
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.6, 0.58)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
 speed = Vector2(100, 40)
 rotation_speed = 0.5
-metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle5" type="TextureRect" parent="." unique_id=1674589122]
 layout_mode = 0
@@ -121,13 +154,12 @@ offset_left = -32.0
 offset_top = -27.199997
 offset_right = 32.0
 offset_bottom = 27.199997
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.6, 0.58)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
 speed = Vector2(40, 40)
 rotation_speed = -0.6
-metadata/_edit_use_anchors_ = true
 
 [node name="Buttons1" type="VBoxContainer" parent="." unique_id=1129812245]
 visible = false
@@ -183,12 +215,134 @@ layout_mode = 2
 
 [node name="VersionLabel" type="Label" parent="." unique_id=825922912]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
+anchors_preset = -1
+anchor_left = 0.02109375
+anchor_top = 0.90416664
+anchor_right = 0.13125
+anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.2.0"
+text = "v0.2.2"
+metadata/_edit_use_anchors_ = true
+
+[node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4421875
+anchor_top = 0.8902778
+anchor_right = 0.70703125
+anchor_bottom = 0.93333334
+theme = ExtResource("12_jiymt")
+theme_override_font_sizes/font_size = 24
+text = "Give your feedback here ->"
+metadata/_edit_use_anchors_ = true
+
+[node name="PlaytestButton" type="Button" parent="." unique_id=1111484618]
+custom_minimum_size = Vector2(70, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.73828125
+anchor_top = 0.8527778
+anchor_right = 0.79296875
+anchor_bottom = 0.97083336
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("9_arv2f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bgtsx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kaxbk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0nobx")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonIcon" type="TextureRect" parent="PlaytestButton" unique_id=330618171]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_5klac")
+
+[node name="PlaytestButtonAnimator" parent="PlaytestButton" unique_id=1259690829 instance=ExtResource("11_lsdqh")]
+trans_type = 5
+
+[node name="DiscordButton" type="Button" parent="." unique_id=293093104]
+custom_minimum_size = Vector2(75, 85)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82421875
+anchor_top = 0.8527778
+anchor_right = 0.8828125
+anchor_bottom = 0.97083336
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("9_arv2f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bgtsx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kaxbk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0nobx")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonIcon" type="TextureRect" parent="DiscordButton" unique_id=2126579701]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -23.5
+offset_right = 31.5
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_bgtsx")
+
+[node name="DiscordButtonAnimator" parent="DiscordButton" unique_id=190384914 instance=ExtResource("11_lsdqh")]
+trans_type = 5
+
+[node name="MailingListButton" type="Button" parent="." unique_id=1072589479]
+custom_minimum_size = Vector2(75, 85)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9140625
+anchor_top = 0.8527778
+anchor_right = 0.97265625
+anchor_bottom = 0.97083336
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("9_arv2f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bgtsx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kaxbk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0nobx")
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonIcon" type="TextureRect" parent="MailingListButton" unique_id=1737002234]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -23.5
+offset_right = 31.5
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_kaxbk")
+
+[node name="MailingListButtonAnimator" parent="MailingListButton" unique_id=1369305931 instance=ExtResource("11_lsdqh")]
+trans_type = 5
+
+[connection signal="mouse_entered" from="PlaytestButton" to="." method="_on_playtest_button_mouse_entered"]
+[connection signal="mouse_exited" from="PlaytestButton" to="." method="_on_playtest_button_mouse_exited"]
+[connection signal="pressed" from="PlaytestButton" to="." method="_on_playtest_button_pressed"]
+[connection signal="mouse_entered" from="DiscordButton" to="." method="_on_discord_button_mouse_entered"]
+[connection signal="mouse_exited" from="DiscordButton" to="." method="_on_discord_button_mouse_exited"]
+[connection signal="pressed" from="DiscordButton" to="." method="_on_discord_button_pressed"]
+[connection signal="mouse_entered" from="MailingListButton" to="." method="_on_mailing_list_button_mouse_entered"]
+[connection signal="mouse_exited" from="MailingListButton" to="." method="_on_mailing_list_button_mouse_exited"]
+[connection signal="pressed" from="MailingListButton" to="." method="_on_mailing_list_button_pressed"]
