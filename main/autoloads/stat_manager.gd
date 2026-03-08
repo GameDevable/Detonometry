@@ -4,7 +4,7 @@ var bomb_stats: Dictionary[String, float] = {
 	"damage" : 1.0,
 	"explosion_radius": 77.0,
 	"explosion_radius_size_percent": 100.0,
-	"explosion_time": 1.5,
+	"explosion_time": 1.25,
 	"place_delay": 3.0,
 }
 

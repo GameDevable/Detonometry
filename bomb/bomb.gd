@@ -1,15 +1,20 @@
 class_name Bomb
 extends Node2D
 @export var keep_detection_active: bool = false
-var phase_time: float = 0.0
+var pulse_time: float = 0.35
 var is_up_pulse: bool = false
-var pulse_time: float = 0.46
+var is_pulsing: bool = true
 const RED_CIRCLE_TEXTURE = preload("res://bomb/assets/red_circle.svg")
 const EXPLOSION_SOUND = preload("res://bomb/assets/audio/explosion-01.ogg")
-const EXPLOSION_PARTICLES_PATH: String = "res://bomb/assets/particles/explosion_particles.tscn"
-const DEBRIS_PARTICLES_PATH: String = "res://bomb/assets/particles/debris_particles.tscn"
-const SPARK_PARTICLE_PATH: String = "res://bomb/assets/particles/sparks_particles.tscn"
-const BLAST_PARTICLE_PATH: String = "res://bomb/assets/particles/blast_particle.tscn"
+
+const DEBRIS_PARTICLES = preload("uid://cwvgah0m7wfey")
+const BLAST_PARTICLE = preload("uid://db1td87mfq0rt")
+const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
+const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
+
+
+
+
 @onready var bomb_sprite: Sprite2D = $BombSprite
 @onready var explosion_area_sprite: Sprite2D = $ExplosionAreaSprite
 @onready var explosion_area_hitbox: Hitbox = $ExplosionAreaHitbox
@@ -25,12 +30,6 @@ func _ready() -> void:
 	_set_radii(radius)
 
 
-func _process(delta: float) -> void:
-	phase_time += delta
-	if phase_time > 1.0:
-		phase_time -= 1.0
-
-
 func handle_placed() -> void:
 	detonation_timer.start(StatManager.bomb_stats["explosion_time"])
 
@@ -40,7 +39,8 @@ func handle_placed() -> void:
 		
 	explosion_area_sprite.texture = RED_CIRCLE_TEXTURE
 	$RadiusLight.color = Color(1.0, 0.195, 0.145, 1.0)
-	_start_pulse(Vector2(0.9, 0.9) * Constants.SPRITE_SCALE, 0.47)
+	var transparency_value: float = 0.47
+	_start_pulse(Vector2(0.9, 0.9) * Constants.SPRITE_SCALE, transparency_value)
 
 
 func _set_radii(explosion_radius: float) -> void:
@@ -56,12 +56,12 @@ func _handle_explosion_effects() -> void:
 	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	
-	EffectManager.spawn_particles(BLAST_PARTICLE_PATH, position)
+	EffectManager.spawn_particles(BLAST_PARTICLE, position)
 	
-	var delay: float = 0.05
-	EffectManager.spawn_particles(SPARK_PARTICLE_PATH, position, delay)
-	EffectManager.spawn_particles(DEBRIS_PARTICLES_PATH, position + Vector2(0, 20), delay)
-	EffectManager.spawn_particles(EXPLOSION_PARTICLES_PATH, position, delay)
+	var delay: float = 0.03 
+	EffectManager.spawn_particles(SPARK_PARTICLES, position, delay)
+	EffectManager.spawn_particles(DEBRIS_PARTICLES, position + Vector2(0, 20), delay)
+	EffectManager.spawn_particles(EXPLOSION_PARTICLES, position, delay)
 
 
 func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:
@@ -74,6 +74,9 @@ func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:
 
 
 func _start_pulse(scale_value: Vector2, alpha_value: float) -> void:
+	if not is_pulsing:
+		return
+	pulse_time = StatManager.bomb_stats["explosion_time"] * 0.36
 	var pulse_tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO)
 	pulse_tween.parallel().tween_property(
 		explosion_area_sprite,
@@ -97,6 +100,8 @@ func _turn_off_colliders() -> void:
 	$ExplosionPushArea/PushAreaCollider.disabled = true
 
 func _on_pulse_tween_finished() -> void:
+	if not is_pulsing:
+		return
 	var pulse_scale: Vector2 = Vector2.ZERO
 	var pulse_alpha: float = 0.0
 	var min_alpha: float = 0.45
@@ -126,8 +131,9 @@ func _on_detonation_timer_timeout() -> void:
 	# TO DO: Handle all explosion effects, particles, sounds, etc...
 	hitbox_collider.disabled = false
 	push_area_collider.disabled = false
+	is_pulsing = false
 	var tween_time: float = 0.08
-	var final_scale: Vector2 = Vector2(1.5, 1.5) * Constants.SPRITE_SCALE
+	var final_scale: Vector2 = Vector2(1.6, 1.6) * Constants.SPRITE_SCALE
 	
 	var scale_up_explosion_tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
 	scale_up_explosion_tween.tween_property(bomb_sprite, "scale", final_scale, tween_time)

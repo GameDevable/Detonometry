@@ -26,11 +26,11 @@ func get_before_after() -> String:
 
 
 func get_current_price() -> int:
-	return _calculate_price(data.base_price, current_unpurchased_tier, PRICE_SCALE)
+	return _calculate_price(data.base_price, current_unpurchased_tier, data.custom_price_scale)
 
 
 func get_previous_price() -> int:
-	return _calculate_price(data.base_price, current_purchased_tier, PRICE_SCALE)
+	return _calculate_price(data.base_price, current_purchased_tier, data.custom_price_scale)
 
 
 func get_name() -> String:

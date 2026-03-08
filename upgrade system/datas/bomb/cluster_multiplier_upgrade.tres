@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("1_fdumk")
 name = "Cluster Multiplier"
-tier_modifiers = Array[float]([1.5, 2.0])
+tier_modifiers = Array[float]([2.0, 3.0, 4.0])
 base_value = 1.0
 base_price = 16
 description = "Increases the bonus multiplier of destroying a cluster of shapes"
 modify_stat_name = "cluster_multiplier"
 extra_character = "x"
 icon = ExtResource("1_5ihc5")
+custom_price_scale = 2.0
 metadata/_custom_type_script = "uid://dsonbba73212j"

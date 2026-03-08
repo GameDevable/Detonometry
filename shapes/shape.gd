@@ -17,6 +17,13 @@ const OFFSCREEN_PADDING: int = 20
 const FRICTION: int = 11500
 const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/reinforced_"
 
+const SHAPE_BREAK = preload("uid://wvbgrwinvj57")
+const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
+
+const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
+
+const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_triangle_particles.tscn")
+const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
 
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
@@ -27,11 +34,6 @@ const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overl
 
 @onready var health: Health = $Health
 
-const SHAPE_BREAK = preload("uid://wvbgrwinvj57")
-const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
-
-const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_triangle_particles.tscn")
-const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
 
 func _ready() -> void:
 	SignalManager.health_changed.connect(_on_health_changed)
@@ -216,4 +218,4 @@ func _on_health_depleted(health_node: Health) -> void:
 					modifier_arrays_array[i] = [Enums.ShapeModifiers.SIERPINSKIES]
 			SignalManager.spawn_sierpinski_triangles.emit(position, modifier_arrays_array)
 		SignalManager.shape_broken.emit(self)
-		EffectManager.spawn_particles(BREAK_PARTICLE_SCENE_PATH, position)
+		EffectManager.spawn_particles(BREAK_PARTICLES, position)

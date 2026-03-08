@@ -29,13 +29,13 @@
      showgrid="false"
      inkscape:zoom="6.3625"
      inkscape:cx="40"
-     inkscape:cy="39.13556"
+     inkscape:cy="35.049116"
      inkscape:window-width="1366"
      inkscape:window-height="731"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g1" />
   <defs
      id="defs2" />
   <g
@@ -45,10 +45,11 @@
      transform="translate(-0.50667467,-0.00250405)">
     <g
        id="g1"
-       transform="matrix(0.72,0,0,0.66,1.7293691,8.5120029e-4)">
+       transform="matrix(0.72,0,0,0.66,1.7293691,8.5120029e-4)"
+       style="stroke-width:0.99949588;stroke-dasharray:none">
       <path
          sodipodi:type="star"
-         style="display:inline;fill:#5ce1e6;fill-opacity:1;stroke-width:0.264583"
+         style="display:inline;fill:#5ce1e6;fill-opacity:1;stroke-width:3.61953051;stroke-dasharray:none"
          id="path1"
          inkscape:flatsided="false"
          sodipodi:sides="3"

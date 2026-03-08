@@ -7,7 +7,7 @@ var can_purchase: bool = false
 var base_position: Vector2 = Vector2.ZERO
 var connecting_point: Vector2 = Vector2.ZERO
 var base_display_min_size: Vector2 = Vector2.ZERO
-
+var base_display_position: Vector2 = Vector2.ZERO
 const UPGRADE_NODE_CAN_AFFORD_THEME = preload("uid://bmi00awkluvkt")
 const UPGRADE_NODE_CANT_AFFORD_THEME = preload("uid://cpbqs1ys1nkeb")
 const UPGRADE_NODE_MAXED_THEME = preload("uid://b6ntk2x4lk85")
@@ -62,6 +62,7 @@ func _ready() -> void:
 	connecting_point = purchase_button.global_position + purchase_button.size * 0.25
 	button_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	purchase_button.icon = null
+	base_display_position = upgrade_data_display.position
 
 
 func is_at_max_tier() -> bool:
@@ -144,6 +145,10 @@ func _update_display() -> void:
 
 
 func _on_purchase_button_mouse_entered() -> void:
+	if global_position.y < get_viewport_rect().size.y / 3:
+		upgrade_data_display.position.y = -base_display_position.y - 10 
+	else:
+		upgrade_data_display.position.y = base_display_position.y
 	var base_pitch: float = 1.0
 	if not is_locked:
 		upgrade_data_display.visible = true

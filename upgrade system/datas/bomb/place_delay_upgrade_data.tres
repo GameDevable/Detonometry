@@ -6,10 +6,11 @@
 [resource]
 script = ExtResource("1_2oula")
 name = "Place Delay"
-tier_modifiers = Array[float]([2.5, 2.0, 1.5])
+tier_modifiers = Array[float]([2.75, 2.25, 1.5])
 base_value = 3.0
 base_price = 6
 description = "Decreases the time it takes to place a bomb"
 modify_stat_name = "place_delay"
 extra_character = "s"
 icon = ExtResource("1_nqm75")
+custom_price_scale = 1.6

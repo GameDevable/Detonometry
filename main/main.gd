@@ -15,6 +15,7 @@ func _ready() -> void:
 	SignalManager.session_restarted.connect(_on_session_restarted)
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Engine.time_scale = 1.0
 
 
 func _on_session_restarted() -> void:

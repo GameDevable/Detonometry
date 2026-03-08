@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cmr1iag588u7a" path="res://game/shape_spawner.gd" id="2_aseec"]
 [ext_resource type="Script" uid="uid://cxwwyok0dnfkm" path="res://game/camera.gd" id="2_tvmmn"]
 [ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_4xpgs"]
+[ext_resource type="Script" uid="uid://bekatimhldfst" path="res://game/bomb_container.gd" id="6_fhh06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhh06"]
 size = Vector2(1280, 10)
@@ -35,6 +36,7 @@ shake_time_speed = 100.0
 script = ExtResource("2_aseec")
 
 [node name="BombContainer" type="Node2D" parent="." unique_id=700774503]
+script = ExtResource("6_fhh06")
 
 [node name="WorldBounds" type="Node2D" parent="." unique_id=1972739478]
 
@@ -76,5 +78,6 @@ shape = SubResource("RectangleShape2D_m4twg")
 wait_time = 30.0
 autostart = true
 
+[connection signal="child_exiting_tree" from="BombContainer" to="BombContainer" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]
 [connection signal="timeout" from="SessionTimer" to="." method="_on_session_timer_timeout"]

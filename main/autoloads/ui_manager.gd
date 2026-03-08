@@ -131,6 +131,9 @@ func set_custom_mouse_cursor(texture: Texture2D) -> void:
 
 func set_mouse_cursor_visible(is_on) -> void:
 	#var mouse_texture_rect: TextureRect =ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
-	var mouse_texture_rect: TextureRect = mouse_canvas.get_child(0).get_child(0).get_child(0)
-	mouse_texture_rect.visible = is_on
-	
+	mouse_canvas.get_child(0).set_cursor_visible(is_on)
+
+
+func set_progress_visible(is_on) -> void:
+	#var mouse_texture_rect: TextureRect =ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
+	mouse_canvas.get_child(0).set_progress_visible(is_on)

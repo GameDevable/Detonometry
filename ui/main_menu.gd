@@ -36,7 +36,7 @@ func handle_entered() -> void:
 
 func _on_playtest_button_pressed() -> void:
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
-	OS.shell_open("https://game-devable.kit.com/b7d75e609a")
+	OS.shell_open("https://docs.google.com/forms/d/1HANikLtPWjl8UpeAejbwBBAJAaE0f1C7P3WvZoPq9Y0/viewform?edit_requested=true")
 
 
 func _on_playtest_button_mouse_entered() -> void:

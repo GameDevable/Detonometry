@@ -6,6 +6,9 @@ var base_button_minimum_size: Vector2 = Vector2.ZERO
 var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
+const MIN_SCALE: Vector2 = Vector2(0.6, 0.6)
+const MAX_SCALE: Vector2 = Vector2(1.0, 1.0)
+const SCROLL_SPEED: float = 1.0
 # Left, right, Bottom, Top
 const DRAG_BOUNDS: Array[float] = [-250, 250, -600, 275]
 @onready var points_label: Label = $BackgroundPanel/PointsLabel
@@ -33,6 +36,13 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		var mouse_event = event as InputEventMouseButton
+		if mouse_event.pressed:
+			if mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				_zoom(1)
+			elif mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				_zoom(-1)
+
 		if _check_drag():
 			await get_tree().create_timer(0.1).timeout
 			if _check_drag():
@@ -91,7 +101,16 @@ func reset() -> void:
 func handle_entered() -> void:
 	UiManager.set_mouse_cursor_visible(true)
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	UiManager.set_progress_visible(false)
 	draggable_nodes.position = Vector2.ZERO
+
+
+func _zoom(direction: int) -> void:
+	var zoom_change: float = SCROLL_SPEED * 0.05
+	var new_scale = draggable_nodes.scale + Vector2.ONE * direction * zoom_change
+	new_scale.x = clamp(new_scale.x, MIN_SCALE.x, MAX_SCALE.x)
+	new_scale.y = clamp(new_scale.y, MIN_SCALE.y, MAX_SCALE.y)
+	draggable_nodes.scale = new_scale
 
 
 func _set_up_buttons(parent_node: Control) -> void:

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_1n7gh")
 name = "Shape Spawn Rate"
-tier_modifiers = Array[float]([2.0, 1.5, 1.25])
+tier_modifiers = Array[float]([2.0, 1.5, 1.0])
 base_value = 2.5
 base_price = 8
 description = "Decreases the time it takes to spawn shapes"

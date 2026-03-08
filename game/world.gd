@@ -162,10 +162,13 @@ func _on_place_delay_timer_timeout() -> void:
 
 
 func _on_session_timer_timeout() -> void:
+	session_timer.stop()
+	if bomb_container.get_child_count() > 0:
+		await bomb_container.emptied
+		await get_tree().create_timer(0.5).timeout
 	UiManager.transition_to("UpgradeHub")
 	UiManager.hide_overlay("Hud")
 	SaveManager.save_game()
-	session_timer.stop()
 
 
 func _on_session_restarted() -> void:
