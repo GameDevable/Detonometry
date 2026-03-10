@@ -14,4 +14,3 @@ func _process(delta: float) -> void:
 func _on_child_exiting_tree(node: Node) -> void:
 	if get_child_count() == 1:
 		emptied.emit()
-		print("SDF")

@@ -14,23 +14,24 @@ var shape_spawn_stats: Dictionary[String, float] = {
 	"bunch_spawn_chance": 2,
 	"bunch_spawn_number": 2,
 	"spawn_time": 2.5,
+	
 }
 var despawn_time_multiplier: float = 2.1
 var despawn_threshold_ratio: float = 0.75
 
 
-var shape_type_weights: Dictionary[Enums.ShapeType, float] = {
-	Enums.ShapeType.TRIANGLE : 1.0,
-	Enums.ShapeType.SQUARE : 0.0,
-	Enums.ShapeType.PENTAGON : 0.0,
-	Enums.ShapeType.HEXAGON : 0.0,
-	Enums.ShapeType.CIRCLE : 0.0
+var shape_type_weights: Dictionary[String, float] = {
+	"triangle_spawn_weight": 1.0,
+	"square_spawn_weight" : 0.0,
+	"pentagon_spawn_weight" : 0.0,
+	"hexagon_spawn_weight" : 0.0,
+	"circle_spawn_weight" : 0.0
 }
 
 
 var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 	Enums.ShapeType.TRIANGLE : {"points" : 1, "health" : 1},
-	Enums.ShapeType.SQUARE : {"points" : 1, "health" : 1},
+	Enums.ShapeType.SQUARE : {"points" : 5, "health" : 2 },
 	Enums.ShapeType.PENTAGON : {"points" : 1, "health" : 1},
 	Enums.ShapeType.HEXAGON : {"points" : 1, "health" : 1},
 	Enums.ShapeType.CIRCLE : {"points" : 1, "health" : 1},
@@ -41,9 +42,12 @@ var special_modifier_stats: Dictionary[String, float] = {
 	"fractalization_chance": 0.0,
 	"subtriangle_value" : 1.0,
 	"lucky_triangle_chance": 0.0,
+	"lucky_square_chance": 0.0,
 	"lucky_triangle_multiplier": 5.0,
 	"reinforced_triangle_chance": 0.0,
-	"reinforced_triangle_multiplier": 3.0
+	"reinforced_square_chance": 0.0,
+	"reinforced_triangle_multiplier": 3.0,
+	"reinforced_square_multiplier": 3.0,
 }
 
 var bonus_stats: Dictionary[String, float] = {
@@ -114,14 +118,16 @@ func get_shape_spawn_stat(key: String) -> float:
 	return shape_spawn_stats[key]
 
 
-func get_shape_type_weights() -> Dictionary[Enums.ShapeType, float]:
+func get_shape_type_weights() -> Dictionary[String, float]:
 	return shape_type_weights
+
+
+func get_shape_spawn_weight() -> float:
+	return 0.0
 
 
 func get_despawn_threshold() -> float:
 	return shape_spawn_stats["spawn_limit"] * despawn_threshold_ratio
-
-
 
 
 func get_despawn_time() -> float:
@@ -143,4 +149,8 @@ func get_shape_health(shape_type: Enums.ShapeType) -> int:
 
 
 func get_special_modifier_stat(key: String) -> float:
-	return special_modifier_stats[key]
+	if unlocked_upgrades.has(key):
+		var upgrade: Upgrade = unlocked_upgrades[key]
+		var upgraded_shape_value: float = upgrade.get_upgraded_stat()
+		return upgraded_shape_value
+	return 0.0

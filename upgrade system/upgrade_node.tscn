@@ -5,8 +5,21 @@
 [ext_resource type="Theme" uid="uid://bmtgglhybhoi" path="res://ui/themes/upgrade_label.tres" id="2_m2iyk"]
 [ext_resource type="Texture2D" uid="uid://5x3gqve5sar" path="res://upgrade system/assets/upgrade icons/bomb/bomb_place_delay_icon.svg" id="3_timap"]
 [ext_resource type="Texture2D" uid="uid://dmpf5mmfqu6gc" path="res://ui/assets/base_lock.svg" id="4_q8yqo"]
-[ext_resource type="Theme" uid="uid://btycb2sjvvcvy" path="res://ui/themes/maxed_panel.tres" id="4_qim07"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://ui/ui_effect_component.tscn" id="5_q8yqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timap"]
+bg_color = Color(0.1847857, 0.18478566, 0.18478566, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_q8yqo"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_timap")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qim07"]
 
@@ -69,6 +82,7 @@ trans_type = 9
 
 [node name="UpgradeDataDisplay" type="VBoxContainer" parent="." unique_id=83698601]
 visible = false
+modulate = Color(2.844042, 2.844042, 2.844042, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -81,6 +95,7 @@ offset_right = 152.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
+mouse_filter = 2
 theme_override_constants/separation = -2
 
 [node name="NameDisplay" type="PanelContainer" parent="UpgradeDataDisplay" unique_id=1842079204]
@@ -89,7 +104,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 1
-theme = ExtResource("4_qim07")
+theme = SubResource("Theme_q8yqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="NameLabel" type="Label" parent="UpgradeDataDisplay/NameDisplay" unique_id=1200388976]

@@ -70,5 +70,4 @@ func load_game() -> void:
 
 func reset_file() -> void:
 	DirAccess.remove_absolute(SAVE_FILE_PATH)
-	print("Resetting file")
 	load_game()

@@ -9,6 +9,7 @@ const CANT_PLACE = preload("res://bomb/assets/audio/cant_place.ogg")
 
 @onready var place_delay_progress_bar: TextureProgressBar = $MouseFollowerWrapper/PlaceDelayProgressBar
 @onready var mouse_icon: TextureRect = $MouseFollowerWrapper/MouseIcon
+@onready var mouse_follower_wrapper: Control = $MouseFollowerWrapper
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,8 +23,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	$MouseFollowerWrapper.position = get_global_mouse_position() 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		event = event as InputEventMouseMotion
+		mouse_follower_wrapper.position = event.position
 
 
 func set_cursor_visible(is_on: bool) -> void:

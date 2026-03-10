@@ -6,7 +6,7 @@ var is_scaled: bool = false
 var move_direction: Vector2 = Vector2(1, 1)
 var prev_pos: Vector2 = Vector2.ZERO
 var shape_modifiers: Array[Enums.ShapeModifiers] = []
-var speed: float = 0.0
+var speed: float = 10.0
 var base_speed: float = 0.0
 var modifier_multipliers_total: float = 1.0
 var modifier_value_adders_total: float = 0.0
@@ -14,7 +14,7 @@ var shape_data: ShapeData = null
 var spin_direction: int = 0
 var spin_speed: float = 0.0
 const OFFSCREEN_PADDING: int = 20
-const FRICTION: int = 11500
+const FRICTION: int = 1000
 const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/reinforced_"
 
 const SHAPE_BREAK = preload("uid://wvbgrwinvj57")
@@ -122,7 +122,7 @@ func _apply_modifier(modifier_type: Enums.ShapeModifiers) -> void:
 			_add_modifier_overlay(load(reinforced_overlay_shape_path), "ReinforcedOverlay")
 			health.health *= 2
 			health.max_health *= 2
-			modifier_multipliers_total *= StatManager.get_special_modifier_stat("reinforced_tirangle_multiplier")
+			modifier_multipliers_total *= StatManager.get_special_modifier_stat("reinforced_triangle_multiplier")
 		Enums.ShapeModifiers.LUCKY:
 			add_child(LUCKY_TRIANGLE_PARTICLES.instantiate())
 			modifier_multipliers_total *= StatManager.get_special_modifier_stat("lucky_triangle_multiplier")

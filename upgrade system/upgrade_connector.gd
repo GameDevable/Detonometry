@@ -23,7 +23,7 @@ func _on_upgrade_locked(upgrade: Upgrade) -> void:
 func _on_upgrade_advanced(upgrade: Upgrade) -> void:
 	if root_node.upgrade == upgrade and upgrade.current_purchased_tier >= unlock_threshold:
 		dependent_node.unlock()
-		var intensity: int = 3
+		var intensity: float = 2
 		modulate.r = intensity
 		modulate.b = intensity
 		modulate.g = intensity

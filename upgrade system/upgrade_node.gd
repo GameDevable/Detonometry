@@ -97,6 +97,9 @@ func unlock() -> void:
 	modulate.r =  intensity
 	modulate.g =  intensity
 	modulate.b =  intensity
+	upgrade_data_display.modulate.r = 1
+	upgrade_data_display.modulate.g = 1
+	upgrade_data_display.modulate.b = 1
 	update_theme()
 	_update_display()
 
@@ -130,7 +133,7 @@ func update_theme() -> void:
 			purchase_button.theme = UPGRADE_NODE_CANT_AFFORD_THEME
 			price_label.add_theme_color_override("font_color", Color("ff2323"))
 	else:
-		name_display.visible = false
+		name_display.visible = true
 		purchase_button.theme = UPGRADE_NODE_LOCKED_THEME
 
 
@@ -145,18 +148,17 @@ func _update_display() -> void:
 
 
 func _on_purchase_button_mouse_entered() -> void:
-	if global_position.y < get_viewport_rect().size.y / 3:
-		upgrade_data_display.position.y = -base_display_position.y - 10 
+	if global_position.y < get_viewport_rect().size.y / 4:
+		upgrade_data_display.position.y = -base_display_position.y - 10
 	else:
 		upgrade_data_display.position.y = base_display_position.y
 	var base_pitch: float = 1.0
-	if not is_locked:
-		upgrade_data_display.visible = true
+	upgrade_data_display.visible = true
 	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
 	lock_icon.texture = HOVER_LOCK_TEXTURE
 	var end_scale: Vector2 = Vector2(0.6, 0.6)
 	button_scale_effect.scale_ui(purchase_button.scale, end_scale)
-	display_scale_effect.scale_ui(upgrade_data_display.scale, Vector2(1.0, 1.0))
+	display_scale_effect.scale_ui(Vector2.ZERO, Vector2(1.0, 1.0))
 
 
 func _on_purchase_button_mouse_exited() -> void:

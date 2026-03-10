@@ -403,7 +403,7 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 100
 
 [node name="SettingsButton" parent="Buttons" unique_id=278250214 instance=ExtResource("2_qppun")]
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)

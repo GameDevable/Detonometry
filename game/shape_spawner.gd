@@ -116,17 +116,10 @@ func _handle_auto_bunch_spawn(world_spawn_bounds: Array[int]) -> void:
 	spawn_shape_bunch(shape_spawn_bunch_number, spawn_positions, shape_types, [])
 
 
-func _handle_shape_auto_despawn(delta) -> void:
-	despawn_time_passed += delta
-	var despawn_time: float = StatManager.get_despawn_time()
-	if despawn_time_passed >= despawn_time and get_child_count() >= StatManager.get_despawn_threshold():
-		despawn_time_passed = 0.0
-		get_child(0).handle_despawn()
-
 # Generic weighted table total function
 func _calc_weighted_table_total(weighted_table: Dictionary) -> float:
 	var total: float = 0.0
-	for value in weighted_table:
+	for value in weighted_table.values():
 		total += value
 	return total
 
@@ -136,6 +129,8 @@ func _add_modifiers(shape: Shape) -> void:
 	for modifier_type in Enums.ShapeModifiers.values():
 		var shape_name: String = Enums.ShapeType.keys()[shape.shape_data.shape_type].to_lower()
 		var modifier_name: String = Enums.ShapeModifiers.keys()[modifier_type].to_lower()
+		if shape_name != "triangle" and "sierpinski" in modifier_name: 
+			return
 		var modifier_chance_stat_name: String = modifier_name + "_" + shape_name + "_chance"
 		if _should_add_modifier(StatManager.get_special_modifier_stat(modifier_chance_stat_name)):
 			modifiers.append(modifier_type)
@@ -151,13 +146,15 @@ func _should_add_modifier(modifier_chance: float) -> bool:
 
 # Chooses a random shape type based off of a weighted table
 func _choose_random_shape_type() -> Enums.ShapeType:
-	var shape_type_weights: Dictionary[Enums.ShapeType, float] = StatManager.get_shape_type_weights()
+	var shape_type_weights: Dictionary[String, float] = StatManager.get_shape_type_weights()
 	var weight_roll: float = randf() * _calc_weighted_table_total(shape_type_weights)
 	# Goes through the weights to eventually choose the type
 	for shape_type in shape_type_weights.keys():
 		weight_roll -= shape_type_weights[shape_type]
-		if weight_roll <= 0.0: return shape_type
+		
+		if weight_roll <= 0.0: return _convert_variable_name_to_type(shape_type)
 	# Fall back
+	print("Fallback")
 	return Enums.ShapeType.TRIANGLE
 
 
@@ -187,6 +184,17 @@ func _choose_random_direction() -> Vector2:
 
 func _choose_random_speed() -> int:
 	return randi_range(Constants.MIN_SHAPE_SPEED ,Constants.MAX_SHAPE_SPEED)
+
+
+func _convert_variable_name_to_type(var_name: String) -> Enums.ShapeType:
+	if "triangle" in var_name:
+		return Enums.ShapeType.TRIANGLE
+	elif "sqaure" in var_name:
+		return Enums.ShapeType.SQUARE
+	elif "pentagon" in var_name:
+		return Enums.ShapeType.PENTAGON
+	else:
+		return Enums.ShapeType.CIRCLE
 
 
 func _on_session_restarted() -> void:

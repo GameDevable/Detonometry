@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://btmk54xyeo44e"]
 
 [ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
-[ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="2_4fy8l"]
 [ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
 [ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
-[ext_resource type="Shape2D" uid="uid://82yjdnrv6lqq" path="res://shapes/collision_shapes/triangle_collision_shape.tres" id="6_o1kad"]
 
 [node name="Shape" type="CharacterBody2D" unique_id=1276430996]
 collision_mask = 6
@@ -12,7 +10,6 @@ script = ExtResource("1_4fy8l")
 
 [node name="ShapeSprite" type="Sprite2D" parent="." unique_id=1865982620]
 position = Vector2(0, -19)
-texture = ExtResource("2_4fy8l")
 
 [node name="ModifierOverlaySprites" type="Node2D" parent="." unique_id=1356149085]
 position = Vector2(0, -19)
@@ -33,9 +30,9 @@ script = ExtResource("4_bo2oq")
 
 [node name="ShapeCollider" type="CollisionShape2D" parent="." unique_id=671919204]
 position = Vector2(0, -19)
-shape = ExtResource("6_o1kad")
 
 [node name="WallRays" type="Node2D" parent="." unique_id=1583692325]
+position = Vector2(0, -17)
 
 [node name="Up" type="RayCast2D" parent="WallRays" unique_id=143443712]
 target_position = Vector2(0, -55)

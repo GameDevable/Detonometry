@@ -223,7 +223,7 @@ anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.2.3"
+text = "v0.3.1"
 metadata/_edit_use_anchors_ = true
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]

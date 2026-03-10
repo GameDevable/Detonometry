@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ufsmo")
 name = "Lucky Triangle Chance"
-tier_modifiers = Array[float]([3.0, 5.0, 8.0])
+tier_modifiers = Array[float]([5.0, 10.0, 15.0])
 base_price = 60
 description = "Increases the chance for a Lucky Triangle to spawn"
 modify_stat_name = "lucky_triangle_chance"

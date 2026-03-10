@@ -18,6 +18,7 @@ var settings_data: Dictionary = {}
 @onready var music_slider: HSlider = $ContentMargins/ContentLayout/Audio/MusicSlider
 @onready var resolution_options: OptionButton = $ContentMargins/ContentLayout/Display/ResolutionOptions
 @onready var fullscreen_checkbox: CheckBox = $ContentMargins/ContentLayout/Display/FullscreenCheckbox
+@onready var resolution_label: Label = $ContentMargins/ContentLayout/Display/ResolutionLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +33,9 @@ func _ready() -> void:
 	master_volume_slider.value = starting_bus_volume
 	sfx_volume_slider.value = starting_bus_volume
 	music_slider.value = starting_bus_volume
+	if DisplayServer.get_name() == "web":
+		resolution_label.queue_free()
+		resolution_options.queue_free()
 	_on_master_volume_slider_value_changed(starting_bus_volume)
 	_on_sfx_volume_slider_value_changed(starting_bus_volume)
 	_on_music_slider_value_changed(starting_bus_volume)
@@ -116,8 +120,7 @@ func _on_music_slider_value_changed(value: float) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
-	if DisplayServer.get_name() == "web":
-		return
+	
 	var option_string: String = resolution_options.get_item_text(index)
 	var new_resolution: Vector2i = resolutions[option_string] 
 	current_resolution = option_string

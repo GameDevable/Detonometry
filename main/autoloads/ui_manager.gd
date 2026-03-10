@@ -93,6 +93,7 @@ func reset_saved_ui() -> void:
 
 
 func swap_custom_cursor_icon_resolutions(new_resolution: Vector2i) -> void:
+	return
 	if new_resolution.x <= 640:
 		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_32.svg")
 		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_32.svg")
@@ -125,8 +126,9 @@ func swap_custom_cursor_icon_resolutions(new_resolution: Vector2i) -> void:
 func set_custom_mouse_cursor(texture: Texture2D) -> void:
 	#var mouse_texture_rect: TextureRect = ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
 	var mouse_texture_rect: TextureRect = mouse_canvas.get_child(0).get_child(0).get_child(0)
-	mouse_texture_rect.texture = texture
+	var mouse_wrapper: Control = mouse_canvas.get_child(0).get_child(0)
 	
+	mouse_texture_rect.texture = texture
 
 
 func set_mouse_cursor_visible(is_on) -> void:

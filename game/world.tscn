@@ -41,7 +41,7 @@ script = ExtResource("6_fhh06")
 [node name="WorldBounds" type="Node2D" parent="." unique_id=1972739478]
 
 [node name="TopBound" type="StaticBody2D" parent="WorldBounds" unique_id=1713505958]
-position = Vector2(0, -360)
+position = Vector2(0, -367)
 collision_layer = 5
 collision_mask = 5
 
@@ -49,7 +49,7 @@ collision_mask = 5
 shape = SubResource("RectangleShape2D_fhh06")
 
 [node name="BottomBound" type="StaticBody2D" parent="WorldBounds" unique_id=1098936623]
-position = Vector2(0, 360)
+position = Vector2(0, 366)
 collision_layer = 5
 collision_mask = 5
 
@@ -57,7 +57,7 @@ collision_mask = 5
 shape = SubResource("RectangleShape2D_fhh06")
 
 [node name="LeftBounds" type="StaticBody2D" parent="WorldBounds" unique_id=78310480]
-position = Vector2(-640, 0)
+position = Vector2(-645, 0)
 collision_layer = 5
 collision_mask = 5
 
@@ -65,7 +65,7 @@ collision_mask = 5
 shape = SubResource("RectangleShape2D_m4twg")
 
 [node name="RightBounds" type="StaticBody2D" parent="WorldBounds" unique_id=2125403485]
-position = Vector2(640, 0)
+position = Vector2(645, 0)
 collision_layer = 5
 collision_mask = 5
 

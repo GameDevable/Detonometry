@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_miwv1")
 name = "Bunch Chance"
-tier_modifiers = Array[float]([3.0, 5.0])
+tier_modifiers = Array[float]([5.0, 8.0])
 base_value = 2.0
 base_price = 16
 description = "Increases the chance for multiple shapes to spawn in a bunch"

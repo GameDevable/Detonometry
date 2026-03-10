@@ -6,10 +6,9 @@
 [resource]
 script = ExtResource("1_n8o3j")
 name = "Sierpinskie's  Triangle Chance"
-tier_modifiers = Array[float]([5.0, 9.0, 12.0, 15.0])
+tier_modifiers = Array[float]([10.0, 15.0, 20.0])
 base_price = 55
 description = "Increases the chance for a triangle to be a Sierpinskie's Triangle"
 modify_stat_name = "sierpinskies_triangle_chance"
 extra_character = "%"
 icon = ExtResource("1_jt2vo")
-price_scale = 1.3
