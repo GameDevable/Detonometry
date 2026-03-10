@@ -27,6 +27,9 @@ const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_p
 
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
+@onready var hurtbox: Hurtbox = $Hurtbox
+@onready var explosion_detector: Area2D = $ExplosionDetector
+
 
 @onready var hurtbox_collider: CollisionShape2D = $Hurtbox/HurtboxCollider
 @onready var detector_collider: CollisionShape2D = $ExplosionDetector/DetectorCollider
@@ -38,9 +41,9 @@ const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_p
 func _ready() -> void:
 	SignalManager.health_changed.connect(_on_health_changed)
 	while spin_direction == 0:
-		spin_direction = _choose_random_spin_direction()
-	rotation = _choose_random_rotation()
-	spin_speed = _choose_random_spin_speed()
+		spin_direction = randi_range(-1, 1)
+	rotation = randi_range(-180, 180)
+	spin_speed = randf_range(0.8, 1.2)
 	$WallRays.global_rotation = 0.0
 	prev_pos = position
 	_set_up_colliders()
@@ -66,9 +69,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if speed > base_speed:
 		speed = move_toward(speed, base_speed, delta * FRICTION)
-	velocity = speed * move_direction * delta
-	rotation += delta * spin_direction  * spin_speed
-	$WallRays.rotation -= delta * spin_direction * spin_speed
+	velocity = speed * move_direction 
+	var rotation_increase = delta * spin_direction * spin_speed
+	shape_collider.rotation += rotation_increase
+	hurtbox.rotation += rotation_increase
+	explosion_detector.rotation += rotation_increase
+	modifier_overlay_sprites.rotation += rotation_increase
+	shape_sprite.rotation += rotation_increase
+	
 	_check_wall_rays()
 	move_and_slide()
 
@@ -89,18 +97,6 @@ func get_value() -> float:
 	var base_value: int = StatManager.get_shape_value(shape_data.shape_type)
 	var total_value: int = (base_value + modifier_value_adders_total) * modifier_multipliers_total 
 	return total_value
-
-
-func _choose_random_spin_direction() -> int:
-	return randi_range(-1, 1)
-
-
-func _choose_random_spin_speed() -> float:
-	return randf_range(0.8, 1.4)
-
-
-func _choose_random_rotation() -> float:
-	return randi_range(-180, 180)
 
 
 func _is_offscreen(check_position: Vector2) -> bool:

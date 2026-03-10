@@ -92,47 +92,12 @@ func reset_saved_ui() -> void:
 	ui_menus[upgrade_hub.name] = upgrade_hub
 
 
-func swap_custom_cursor_icon_resolutions(new_resolution: Vector2i) -> void:
-	return
-	if new_resolution.x <= 640:
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_32.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_32.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_32.svg")
-	elif new_resolution.x <= 1280:
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_64.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_64.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_64.svg")
-	elif new_resolution.x <= 1600: 
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_80.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_80.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_80.svg")
-	elif new_resolution.x <= 1920:
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_96.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_96.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_96.svg")
-	elif new_resolution.x <= 2560:
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_128.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_128.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_128.svg")
-	else:
-		Constants.NORMAL_CURSOR_ICON = preload("res://ui/assets/cursors/cursor_192.svg")
-		Constants.DRAG_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/grab_cursor_192.svg")
-		Constants.OPEN_HAND_CURSOR_ICON = preload("res://ui/assets/cursors/open_hand_cursor_192.svg")
-	if not ui_canvas:
-		return
-	set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
-
-
 func set_custom_mouse_cursor(texture: Texture2D) -> void:
-	#var mouse_texture_rect: TextureRect = ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
 	var mouse_texture_rect: TextureRect = mouse_canvas.get_child(0).get_child(0).get_child(0)
-	var mouse_wrapper: Control = mouse_canvas.get_child(0).get_child(0)
-	
 	mouse_texture_rect.texture = texture
 
 
 func set_mouse_cursor_visible(is_on) -> void:
-	#var mouse_texture_rect: TextureRect =ui_canvas.get_child(1).get_child(2).get_child(0).get_child(0)
 	mouse_canvas.get_child(0).set_cursor_visible(is_on)
 
 

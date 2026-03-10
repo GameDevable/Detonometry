@@ -36,8 +36,8 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 	
 	# Sets all the shape variables
 	shape_instance.shape_data = shape_data
-	shape_instance.speed = _choose_random_speed()
-	shape_instance.move_direction = _choose_random_direction()
+	shape_instance.speed = randi_range(Constants.MIN_SHAPE_SPEED ,Constants.MAX_SHAPE_SPEED)
+	shape_instance.move_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	shape_instance.base_speed = shape_instance.speed
 	if modifiers == [] and include_random_modifiers:
 		_add_modifiers(shape_instance)
@@ -176,14 +176,6 @@ func _choose_random_pos(spawn_position_bounds: Array[int]) -> Vector2:
 	# Snaps the position to a grid
 	var rand_position: Vector2 = Vector2(x, y).snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE))
 	return rand_position 
-
-
-func _choose_random_direction() -> Vector2:
-	return Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
-
-
-func _choose_random_speed() -> int:
-	return randi_range(Constants.MIN_SHAPE_SPEED ,Constants.MAX_SHAPE_SPEED)
 
 
 func _convert_variable_name_to_type(var_name: String) -> Enums.ShapeType:

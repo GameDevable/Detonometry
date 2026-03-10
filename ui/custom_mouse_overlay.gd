@@ -20,6 +20,7 @@ func _ready() -> void:
 		UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
 	)
 	place_delay_progress_bar.pivot_offset = place_delay_progress_bar.size * 0.5
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

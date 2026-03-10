@@ -40,6 +40,8 @@ func _ready() -> void:
 	_on_sfx_volume_slider_value_changed(starting_bus_volume)
 	_on_music_slider_value_changed(starting_bus_volume)
 	_load_saved_data(SaveManager.get_settings_cfg())
+	var popup: PopupMenu = resolution_options.get_popup()
+	popup.window_input.connect(_on_input_in_window)
 
 
 func _get_settings_data() -> Dictionary:
@@ -70,7 +72,6 @@ func _load_saved_data(data: Dictionary) -> void:
 	resolution_options.selected = current_resolution_idx
 	DisplayServer.window_set_size(resolutions[current_resolution])
 	
-	UiManager.swap_custom_cursor_icon_resolutions(resolutions[current_resolution])
 	is_fullscreened = display_data["fullscreened"]
 	if is_fullscreened:
 		fullscreen_checkbox.button_pressed = true
@@ -128,10 +129,6 @@ func _on_option_button_item_selected(index: int) -> void:
 	var window = get_window()
 	
 	window.size = new_resolution
-	if is_fullscreened:
-		UiManager.swap_custom_cursor_icon_resolutions(DisplayServer.screen_get_size())
-	else:
-		UiManager.swap_custom_cursor_icon_resolutions(new_resolution)
 	_center_window()
 
 
@@ -139,13 +136,15 @@ func _on_check_box_toggled(toggled_on: bool) -> void:
 	is_fullscreened = toggled_on
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		UiManager.swap_custom_cursor_icon_resolutions(DisplayServer.screen_get_size())
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		UiManager.swap_custom_cursor_icon_resolutions(resolutions[current_resolution])
 
 
 func _center_window() -> void:
 	var screen = DisplayServer.screen_get_size()
 	var window = DisplayServer.window_get_size()
 	DisplayServer.window_set_position((screen - window) / 2)
+
+func _on_input_in_window(event):
+	if event is InputEventMouseMotion:
+		UiManager.mouse_canvas.get_child(0).mouse_follower_wrapper.position = event.global_position
