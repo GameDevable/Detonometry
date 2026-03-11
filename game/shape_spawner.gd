@@ -1,6 +1,4 @@
 extends Node2D
-var spawn_time_passed: float = 0.0
-var despawn_time_passed: float = 0.0
 
 var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 	Enums.ShapeType.TRIANGLE : "triangle",
@@ -10,17 +8,26 @@ var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 	Enums.ShapeType.CIRCLE : "circle",
 }
 
+var shape_containers: Dictionary[Enums.ShapeType, Node2D] = {}
 
 func _ready() -> void:
-	SignalManager.spawn_shape_request.connect(_on_spawn_shape_requested)
-	SignalManager.spawn_shape_bunch_request.connect(_on_spawn_shape_bunch_requested)
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
-	SignalManager.session_restarted.connect(_on_session_restarted)
-
-
-func _process(delta: float) -> void:
-	_handle_shape_auto_spawn(delta)
-	#_handle_shape_auto_despawn(delta)
+	SignalManager.session_restarted.connect(func() -> void:
+		for child in get_children():
+			if child is Node2D:
+				for shape in child.get_children():
+					shape.queue_free()
+		)
+	shape_containers = {
+		Enums.ShapeType.TRIANGLE: $Triangles,
+		Enums.ShapeType.SQUARE: $Squares,
+		Enums.ShapeType.CIRCLE: $Circles,
+		Enums.ShapeType.PENTAGON: $Pentagons
+	}
+	_create_timer(Enums.ShapeType.TRIANGLE)
+	_create_timer(Enums.ShapeType.SQUARE)
+	_create_timer(Enums.ShapeType.CIRCLE)
+	_create_timer(Enums.ShapeType.PENTAGON)
 
 
 func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[Enums.ShapeModifiers] = [], include_random_modifiers: bool = true) -> Shape:
@@ -44,7 +51,7 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 	else:
 		shape_instance.shape_modifiers = modifiers
 	# Flushing queries issue
-	call_deferred("add_child", shape_instance)
+	shape_containers[shape_type].call_deferred("add_child", shape_instance)
 	await shape_instance.tree_entered
 	return shape_instance
 
@@ -80,25 +87,6 @@ func _spawn_sierpinski_subtriangles(triangle_position: Vector2, modifier_arrays_
 		shapes[i].base_speed = speed_array[i]
 		shapes[i].move_direction = direction_array[i]
 		shapes[i].scale = Vector2(0.9, 0.9)
-
-
-func _handle_shape_auto_spawn(delta: float) -> void:
-	spawn_time_passed += delta
-	var world_spawn_bounds: Array[int] = [-600, 600, -300, 300]
-	if spawn_time_passed >= StatManager.get_shape_spawn_stat("spawn_time"): 
-		spawn_time_passed = 0.0
-		# If the max amount of shapes has not been reached, we spawn a new one.
-		if not get_child_count() < StatManager.get_shape_spawn_stat("spawn_limit"):
-			return
-			
-		var bunch_spawn_roll: float = randi_range(0, 100)
-		if bunch_spawn_roll <= StatManager.get_shape_spawn_stat("bunch_spawn_chance"):
-			_handle_auto_bunch_spawn(world_spawn_bounds)
-		else: 
-			# Order: left, right, top, bottom
-			var shape_position: Vector2 = _choose_random_pos(world_spawn_bounds)
-			var chosen_shape_type: Enums.ShapeType = _choose_random_shape_type()
-			spawn_shape(shape_position, chosen_shape_type)
 
 
 func _handle_auto_bunch_spawn(world_spawn_bounds: Array[int]) -> void:
@@ -154,7 +142,6 @@ func _choose_random_shape_type() -> Enums.ShapeType:
 		
 		if weight_roll <= 0.0: return _convert_variable_name_to_type(shape_type)
 	# Fall back
-	print("Fallback")
 	return Enums.ShapeType.TRIANGLE
 
 
@@ -189,16 +176,32 @@ func _convert_variable_name_to_type(var_name: String) -> Enums.ShapeType:
 		return Enums.ShapeType.CIRCLE
 
 
-func _on_session_restarted() -> void:
-	for child in get_children():
-		child.queue_free()
-	spawn_time_passed = 0.0
-	despawn_time_passed = 0.0
+func _create_timer(type: Enums.ShapeType) -> void:
+	var timer: Timer = Timer.new()
+	timer.wait_time = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
+	timer.timeout.connect(func(): _on_spawn_timer_timeout(type))
+	add_child(timer)
+	timer.start()
+
+# Get the spawn limit name for a shape
+func _get_spawn_limit_name(shape_type: Enums.ShapeType) -> String:
+	var shape_name = str(Enums.ShapeType.keys()[shape_type]).to_lower()
+	return shape_name + "_spawn_limit"
 
 
-func _on_spawn_shape_requested(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[Enums.ShapeModifiers]) -> void:
-	spawn_shape(spawn_position, shape_type, modifiers)
- 
+# Get the spawn rate name for a shape
+func _get_spawn_rate_name(shape_type: Enums.ShapeType) -> String:
+	var shape_name = str(Enums.ShapeType.keys()[shape_type]).to_lower()
+	return shape_name + "_spawn_rate"
 
-func _on_spawn_shape_bunch_requested(amount: int, spawn_positions: Array[Vector2], shape_types: Array[Enums.ShapeType], modifier_array: Array[Array]) -> void:
-	spawn_shape_bunch(amount, spawn_positions, shape_types, modifier_array)
+
+func _on_spawn_timer_timeout(type: Enums.ShapeType) -> void:
+	var limit = StatManager.get_shape_spawn_stat(_get_spawn_limit_name(type))
+
+	if shape_containers[type].get_child_count() >= limit:
+		return
+	var x_limit: float = get_viewport_rect().size.x / 2.15
+	var y_limit: float = get_viewport_rect().size.x / 2.4
+	var world_bounds: Array[int] = [-x_limit, x_limit, -y_limit, y_limit]
+	var spawn_position: Vector2 = _choose_random_pos(world_bounds)
+	spawn_shape(spawn_position, type)

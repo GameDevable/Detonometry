@@ -10,5 +10,5 @@ tier_modifiers = Array[float]([8.0, 11.0, 15.0])
 base_value = 5.0
 base_price = 12
 description = "Increases the amount of shapes that can spawn"
-modify_stat_name = "spawn_limit"
+modify_stat_name = "triangle_spawn_limit"
 icon = ExtResource("1_5r5oa")

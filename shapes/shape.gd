@@ -62,6 +62,7 @@ func _ready() -> void:
 	scale_up_tween.tween_property(shape_sprite, "scale", final_scale, scale_up_time)
 	scale_up_tween.parallel().tween_property(modifier_overlay_sprites, "scale", final_scale, scale_up_time)
 	# This will make it feel a little nicer
+	move_direction = move_direction.normalized()
 	await get_tree().create_timer(scale_up_time / 2).timeout
 	hurtbox_collider.disabled = false
 
@@ -69,7 +70,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if speed > base_speed:
 		speed = move_toward(speed, base_speed, delta * FRICTION)
-	velocity = speed * move_direction 
+	velocity = speed * move_direction
 	var rotation_increase = delta * spin_direction * spin_speed
 	shape_collider.rotation += rotation_increase
 	hurtbox.rotation += rotation_increase
@@ -80,17 +81,6 @@ func _physics_process(delta: float) -> void:
 	_check_wall_rays()
 	move_and_slide()
 
-
-func handle_despawn() -> void:
-	var scale_down_tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
-	var scale_down_time: float = 0.3
-	scale_down_tween.tween_property(shape_sprite, "scale", Vector2.ZERO, scale_down_time)
-	# Allows it to still be blown up for a bit
-	await get_tree().create_timer(scale_down_time * 0.75).timeout
-	if is_instance_valid(self): # Checks if the shape has been destroyed
-		hurtbox_collider.disabled = true
-		await scale_down_tween.finished # Checks if the shape has been destroyed
-		queue_free()
 
 
 func get_value() -> float:
@@ -159,14 +149,14 @@ func _set_up_health() -> void:
 func _check_wall_rays() -> void:
 	# Checks vertical
 	if $WallRays/Up.is_colliding() and move_direction.y < 0:
-		move_direction.y = abs(move_direction.y)
+		move_direction = move_direction.bounce(Vector2.DOWN)
 	elif $WallRays/Down.is_colliding() and move_direction.y > 0:
-		move_direction.y = -abs(move_direction.y)
+		move_direction = move_direction.bounce(Vector2.UP)
 	# Checks horizontal
 	if $WallRays/Right.is_colliding() and move_direction.x > 0:
-		move_direction.x = -abs(move_direction.x)
+		move_direction = move_direction.bounce(Vector2.LEFT)
 	elif $WallRays/Left.is_colliding() and move_direction.x < 0:
-		move_direction.x = abs(move_direction.x)
+		move_direction = move_direction.bounce(Vector2.RIGHT)
 
 
 func _modulate_based_on_health(_health_ratio: float) -> void:

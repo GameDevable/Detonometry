@@ -35,6 +35,14 @@ shake_time_speed = 100.0
 [node name="ShapeSpawner" type="Node2D" parent="." unique_id=579955111]
 script = ExtResource("2_aseec")
 
+[node name="Triangles" type="Node2D" parent="ShapeSpawner" unique_id=1967727349]
+
+[node name="Squares" type="Node2D" parent="ShapeSpawner" unique_id=2032218495]
+
+[node name="Circles" type="Node2D" parent="ShapeSpawner" unique_id=629402303]
+
+[node name="Pentagons" type="Node2D" parent="ShapeSpawner" unique_id=2030302016]
+
 [node name="BombContainer" type="Node2D" parent="." unique_id=700774503]
 script = ExtResource("6_fhh06")
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d6a02rgt43js"]
+[gd_scene format=3 uid="uid://e7jeppn7terk"]
 
-[ext_resource type="Script" uid="uid://dxxu7vwdebjoo" path="res://ui/floating_text.gd" id="1_yflmp"]
+[ext_resource type="Script" uid="uid://l8bcmv8w8pq3" path="res://ui/floating_text.gd" id="1_yflmp"]
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_gvxod"]
 
-[node name="FloatingText" type="Marker2D"]
+[node name="FloatingText" type="Marker2D" unique_id=228050683]
 z_index = 2
 script = ExtResource("1_yflmp")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1504655380]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

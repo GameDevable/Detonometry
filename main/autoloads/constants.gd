@@ -11,8 +11,8 @@ const VIEWPORT_HEIGHT: int = 360
 const SCALE_RATIO: float = 0.1
 const CAMERA_SHAKE_INTENSITY_CAP: float = 8.0
 const UI_SHAKE_INTENSITY_CAP: float = 4.0
-const MIN_SHAPE_SPEED: int = 72
-const MAX_SHAPE_SPEED: int = 80
+const MIN_SHAPE_SPEED: int = 62
+const MAX_SHAPE_SPEED: int = 70
 const BASE_BOMB_RADIUS: int = 77
 const SPRITE_SCALE: float = 0.5
 

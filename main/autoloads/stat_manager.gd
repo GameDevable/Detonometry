@@ -6,28 +6,26 @@ var bomb_stats: Dictionary[String, float] = {
 	"explosion_radius_size_percent": 100.0,
 	"explosion_time": 1.25,
 	"place_delay": 3.0,
+	
 }
 
 # Shape Spawning
 var shape_spawn_stats: Dictionary[String, float] = {
-	"spawn_limit": 6,
 	"bunch_spawn_chance": 2,
 	"bunch_spawn_number": 2,
-	"spawn_time": 2.5,
-	
+
+	"triangle_spawn_limit": 6,
+	"triangle_spawn_rate": 2.5,
+
+	"square_spawn_limit": 0,
+	"square_spawn_rate": 2.5,
+
+	"pentagon_spawn_limit": 0,
+	"pentagon_spawn_rate": 2.5,
+
+	"circle_spawn_limit": 0,
+	"circle_spawn_rate": 2.5,
 }
-var despawn_time_multiplier: float = 2.1
-var despawn_threshold_ratio: float = 0.75
-
-
-var shape_type_weights: Dictionary[String, float] = {
-	"triangle_spawn_weight": 1.0,
-	"square_spawn_weight" : 0.0,
-	"pentagon_spawn_weight" : 0.0,
-	"hexagon_spawn_weight" : 0.0,
-	"circle_spawn_weight" : 0.0
-}
-
 
 var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 	Enums.ShapeType.TRIANGLE : {"points" : 1, "health" : 1},
@@ -64,7 +62,6 @@ var session_stats: Dictionary[String, float] = {
 	"session_time" : 30.0,
 	
 }
-
 
 var unlocked_upgrades: Dictionary[String, Upgrade] = {}
 
@@ -116,22 +113,6 @@ func get_shape_spawn_stat(key: String) -> float:
 		var upgraded_stat: float = upgrade.get_upgraded_stat()
 		return upgraded_stat
 	return shape_spawn_stats[key]
-
-
-func get_shape_type_weights() -> Dictionary[String, float]:
-	return shape_type_weights
-
-
-func get_shape_spawn_weight() -> float:
-	return 0.0
-
-
-func get_despawn_threshold() -> float:
-	return shape_spawn_stats["spawn_limit"] * despawn_threshold_ratio
-
-
-func get_despawn_time() -> float:
-	return shape_spawn_stats["spawn_time"] * despawn_time_multiplier
 
 
 func get_shape_value(shape_type: Enums.ShapeType) -> int:
