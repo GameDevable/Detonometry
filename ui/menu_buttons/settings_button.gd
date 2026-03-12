@@ -10,7 +10,6 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
-	var base_pitch: float = 1.0
 	var end_scale: Vector2 = Vector2(1.0, 1.0)
 	settings_button_animator.scale_ui(scale, end_scale, Tween.TRANS_EXPO)
 

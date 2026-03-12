@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dh8j4i14eauhe"]
+
+[ext_resource type="Script" uid="uid://d2m5xva3yqj2r" path="res://lucky_component.gd" id="1_54dyt"]
+[ext_resource type="PackedScene" uid="uid://cywo1eoh606v7" path="res://shapes/assets/particles/lucky_triangle_particles.tscn" id="2_m14tl"]
+
+[node name="LuckyComponent" type="Node" unique_id=371364015]
+script = ExtResource("1_54dyt")
+overlay_name = "LuckyOverlay"
+modifier_weight_name = "lucky_triangle_chance"
+particles = ExtResource("2_m14tl")

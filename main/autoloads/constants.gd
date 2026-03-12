@@ -16,10 +16,10 @@ const MAX_SHAPE_SPEED: int = 70
 const BASE_BOMB_RADIUS: int = 77
 const SPRITE_SCALE: float = 0.5
 
-var DRAG_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/grab_cursor_64.svg")
-var POINTER_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/point_hand_cursor.svg")
-var OPEN_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/open_hand_cursor_64.svg")
-var NORMAL_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/cursor_64.svg")
+const DRAG_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/grab_cursor_64.svg")
+const POINTER_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/point_hand_cursor.svg")
+const OPEN_HAND_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/open_hand_cursor_64.svg")
+const NORMAL_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/cursor_64.svg")
 
 const BUTTON_CLICK_SOUND = preload("res://ui/assets/audio/click-3.wav")
 const BUTTON_HOVER_SOUND: AudioStream = preload("res://ui/assets/audio/hover-3.wav")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://di7k4eb3imi33"]
+
+[ext_resource type="Script" uid="uid://q55donbepvv1" path="res://components/shape/reinforced_component.gd" id="1_y3rmn"]
+
+[node name="ReinforcedComponent" type="Node" unique_id=511804873]
+script = ExtResource("1_y3rmn")
+overlay_path = "res://upgrade system/assets/upgrade_overlays/reinforced_"
+overlay_name = "ReinforcedOverlay"
+modifier_weight_name = "reinforced_triangle_chance"

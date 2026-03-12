@@ -3,6 +3,7 @@ extends Node
 var music_node: AudioStreamPlayer2D = null
 var audio_holder: Node = null
 var particle_holder: Node2D = null
+
 func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = 10.0, base_pitch: float = 1.0, is_pitch_shifted: bool = false, shift_scale: Vector2 = Vector2(0.9, 1.1)) -> void:
 	var pitch: float = base_pitch
 	if is_pitch_shifted:

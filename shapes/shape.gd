@@ -5,7 +5,6 @@ var explosion_detected_modulate: Color = Color(0.5, 0.5, 0.5)
 var is_scaled: bool = false
 var move_direction: Vector2 = Vector2(1, 1)
 var prev_pos: Vector2 = Vector2.ZERO
-var shape_modifiers: Array[Enums.ShapeModifiers] = []
 var speed: float = 10.0
 var base_speed: float = 0.0
 var modifier_multipliers_total: float = 1.0
@@ -22,14 +21,10 @@ const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
 
 const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
 
-const LUCKY_TRIANGLE_PARTICLES = preload("res://shapes/assets/particles/lucky_triangle_particles.tscn")
-const BREAK_PARTICLE_SCENE_PATH: String = "res://shapes/assets/particles/break_particles.tscn"
-
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var explosion_detector: Area2D = $ExplosionDetector
-
 
 @onready var hurtbox_collider: CollisionShape2D = $Hurtbox/HurtboxCollider
 @onready var detector_collider: CollisionShape2D = $ExplosionDetector/DetectorCollider
@@ -46,16 +41,27 @@ func _ready() -> void:
 	spin_speed = randf_range(0.8, 1.2)
 	$WallRays.global_rotation = 0.0
 	prev_pos = position
-	_set_up_colliders()
-	_set_up_health()
-	for modifier in shape_modifiers:
-		_apply_modifier(modifier)
-		
+	# Sets Colliders
+	var collision_shape: Shape2D = shape_data.shape_collider
+	hurtbox_collider.set_deferred("shape", collision_shape)
+	detector_collider.set_deferred("shape", collision_shape)
+	shape_collider.set_deferred("shape", collision_shape)
+	
+	# Sets Health
+	var health_amount = StatManager.get_shape_health(shape_data.shape_type)
+	health.set_max_health(health_amount)
+	health.set_health(health_amount)
+	SignalManager.health_depleted.connect(_on_health_depleted)
+	
 	shape_sprite.texture = shape_data.shape_texture
 	
 	var initial_scale = Vector2(0.01, 0.01)
 	shape_sprite.scale = initial_scale
 	modifier_overlay_sprites.scale = initial_scale
+	for child in get_children():
+		if child is ShapeModifierComponent:
+			child.apply_modifier()
+			child.swap_textures()
 	var scale_up_tween: Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 	var scale_up_time: float = 0.2
 	var final_scale: Vector2 = Vector2(1.0, 1.0) * Constants.SPRITE_SCALE
@@ -89,38 +95,7 @@ func get_value() -> float:
 	return total_value
 
 
-func _is_offscreen(check_position: Vector2) -> bool:
-	# Handles horizontal axis
-	@warning_ignore("integer_division")
-	if check_position.x > (Constants.VIEWPORT_WIDTH / 2) + OFFSCREEN_PADDING or check_position.x < -(Constants.VIEWPORT_WIDTH / 2) - OFFSCREEN_PADDING:
-		return true
-	
-	@warning_ignore("integer_division")
-	if check_position.y > (Constants.VIEWPORT_HEIGHT / 2) + OFFSCREEN_PADDING or check_position.y < -(Constants.VIEWPORT_HEIGHT / 2) - OFFSCREEN_PADDING:
-		return true
-	return false
-
-
-func _apply_modifier(modifier_type: Enums.ShapeModifiers) -> void:
-	match modifier_type:
-		Enums.ShapeModifiers.REINFORCED:
-			var reinforced_overlay_shape_path: String = REINFORCED_PATH_BEGIN + Enums.ShapeType.keys()[shape_data.shape_type].to_lower() + "_overlay.svg"
-			_add_modifier_overlay(load(reinforced_overlay_shape_path), "ReinforcedOverlay")
-			health.health *= 2
-			health.max_health *= 2
-			modifier_multipliers_total *= StatManager.get_special_modifier_stat("reinforced_triangle_multiplier")
-		Enums.ShapeModifiers.LUCKY:
-			add_child(LUCKY_TRIANGLE_PARTICLES.instantiate())
-			modifier_multipliers_total *= StatManager.get_special_modifier_stat("lucky_triangle_multiplier")
-		Enums.ShapeModifiers.SIERPINSKIES:
-			# This modifier is triangle specific
-			if not shape_data.shape_type == Enums.ShapeType.TRIANGLE: return
-			
-			_add_modifier_overlay(load("res://upgrade system/assets/upgrade_overlays/sierpinskies_triangle_overlay.svg"), "SierpinskiesOverlay")
-			modifier_value_adders_total += StatManager.get_special_modifier_stat("subtriangle_value")
-
-
-func _add_modifier_overlay(texture: Texture2D, overlay_sprite_name: String, z_order: int = 0) -> Sprite2D:
+func add_modifier_overlay(texture: Texture2D, overlay_sprite_name: String, z_order: int = 0) -> Sprite2D:
 	var overlay_sprite: Sprite2D = Sprite2D.new()
 	overlay_sprite.texture = texture
 	overlay_sprite.z_index = z_order
@@ -129,21 +104,6 @@ func _add_modifier_overlay(texture: Texture2D, overlay_sprite_name: String, z_or
 	modifier_overlay_sprites.add_child(overlay_sprite)
 	overlay_sprite.owner = modifier_overlay_sprites
 	return overlay_sprite
-
-
-func _set_up_colliders() -> void:
-	# Sets Colliders
-	var collision_shape: Shape2D = shape_data.shape_collider
-	hurtbox_collider.set_deferred("shape", collision_shape)
-	detector_collider.set_deferred("shape", collision_shape)
-	shape_collider.set_deferred("shape", collision_shape)
-
-
-func _set_up_health() -> void:
-	var health_amount = StatManager.get_shape_health(shape_data.shape_type)
-	health.set_max_health(health_amount)
-	health.set_health(health_amount)
-	SignalManager.health_depleted.connect(_on_health_depleted)
 
 
 func _check_wall_rays() -> void:
@@ -181,13 +141,13 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 	if health_node == $Health:
 		var health_ratio: float = float(health_node.health) / float(health_node.max_health)
 		# Since Reinforced doubles the health we need to modify these checks to account for that
+		var reinforced_overlay: Sprite2D = modifier_overlay_sprites.find_child("ReinforcedOverlay")
 		if health_ratio <= 0.5:
-			var reinforced_overlay: Sprite2D = modifier_overlay_sprites.find_child("ReinforcedOverlay")
 			if reinforced_overlay:
-				reinforced_overlay.queue_free()
-			if not Enums.ShapeModifiers.REINFORCED in shape_modifiers:
+				reinforced_overlay.visible = false
+			else:
 				_modulate_based_on_health(health_ratio)
-		elif health_ratio <= 0.25 and Enums.ShapeModifiers.REINFORCED in shape_modifiers:
+		elif health_ratio <= 0.25 and reinforced_overlay:
 			_modulate_based_on_health(health_ratio)
 
 
@@ -196,12 +156,8 @@ func _on_health_depleted(health_node: Health) -> void:
 		var volume: float = -7.0
 		var pitch_range: Vector2 = Vector2(0.8, 0.9)
 		EffectManager.play_sfx(SHAPE_BREAK, 0.1, volume, 1.0, true, pitch_range)
-		if shape_modifiers.has(Enums.ShapeModifiers.SIERPINSKIES):
-			var modifier_arrays_array: Array[Array] = [[], [], []]
-			for i in range(3):
-				var chance_roll: int = randi_range(0, 100)
-				if chance_roll <= StatManager.get_special_modifier_stat("fractalization_chance"):
-					modifier_arrays_array[i] = [Enums.ShapeModifiers.SIERPINSKIES]
-			SignalManager.spawn_sierpinski_triangles.emit(position, modifier_arrays_array)
+		for child in get_children():
+			if child is ShapeModifierComponent:
+				child.activate_ability()
 		SignalManager.shape_broken.emit(self)
 		EffectManager.spawn_particles(BREAK_PARTICLES, position)

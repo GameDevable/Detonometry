@@ -3,7 +3,7 @@ extends Node
 @export var grid_size: Vector2 = Vector2(200, 200)
 @export var control_node: Control = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		for container in control_node.get_children():
 			for child in container.get_children():

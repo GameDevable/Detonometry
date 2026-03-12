@@ -10,6 +10,11 @@ var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 
 var shape_containers: Dictionary[Enums.ShapeType, Node2D] = {}
 
+const REINFORCED_COMPONENT = preload("uid://di7k4eb3imi33")
+const LUCKY_COMPONENT = preload("uid://dh8j4i14eauhe")
+const SIERPINSKIES_COMPONENT = preload("uid://bdacywg0y6sha")
+
+const SHAPE_MODIFIER_COMPONENTS: Array[PackedScene] = [REINFORCED_COMPONENT, LUCKY_COMPONENT, SIERPINSKIES_COMPONENT]
 func _ready() -> void:
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
 	SignalManager.session_restarted.connect(func() -> void:
@@ -30,7 +35,7 @@ func _ready() -> void:
 	_create_timer(Enums.ShapeType.PENTAGON)
 
 
-func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[Enums.ShapeModifiers] = [], include_random_modifiers: bool = true) -> Shape:
+func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[ShapeModifierComponent] = [], include_random_modifiers: bool = true) -> Shape:
 	# Initializes the actual shape object
 	var packed_shape_scene: PackedScene = load(Constants.SHAPE_SCENE_PATH)
 	var shape_instance: Shape = packed_shape_scene.instantiate()
@@ -49,7 +54,8 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 	if modifiers == [] and include_random_modifiers:
 		_add_modifiers(shape_instance)
 	else:
-		shape_instance.shape_modifiers = modifiers
+		for child in modifiers:
+			shape_instance.add_child(child)
 	# Flushing queries issue
 	shape_containers[shape_type].call_deferred("add_child", shape_instance)
 	await shape_instance.tree_entered
@@ -59,10 +65,10 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 func spawn_shape_bunch(amount: int, spawn_positions: Array[Vector2], shape_types: Array[Enums.ShapeType], modifiers: Array[Array], include_random_modifiers: bool = true) -> Array[Shape]:
 	var shapes: Array[Shape] = []
 	for i in range(amount):
-		var shape_modifiers: Array[Enums.ShapeModifiers]= []
+		var shape_modifiers: Array[ShapeModifierComponent]= []
 		if i < modifiers.size():
-			for m in modifiers[i]:
-				shape_modifiers.append(m as Enums.ShapeModifiers)
+			for modifier_component in modifiers[i]:
+				shape_modifiers.append(modifier_component)
 		shapes.append(await spawn_shape(spawn_positions[i], shape_types[i], shape_modifiers, include_random_modifiers))
 	return shapes
 
@@ -70,7 +76,7 @@ func spawn_shape_bunch(amount: int, spawn_positions: Array[Vector2], shape_types
 func _spawn_sierpinski_subtriangles(triangle_position: Vector2, modifier_arrays_array: Array[Array]) -> void:
 	var sub_triangle_positions: Array[Vector2] = [triangle_position + Vector2(0, -60), triangle_position + Vector2(-60, 60), triangle_position + Vector2(60, 60)]
 	var type_array: Array[Enums.ShapeType] = [Enums.ShapeType.TRIANGLE, Enums.ShapeType.TRIANGLE, Enums.ShapeType.TRIANGLE]
-		
+	
 	var shapes: Array[Shape] = await spawn_shape_bunch(3, sub_triangle_positions, type_array, modifier_arrays_array, false)
 	# Speed
 	const sub_triangle_speed: int = int((Constants.MIN_SHAPE_SPEED + Constants.MAX_SHAPE_SPEED) / 2.0)
@@ -78,15 +84,15 @@ func _spawn_sierpinski_subtriangles(triangle_position: Vector2, modifier_arrays_
 		
 	# Directions
 	var top_triangle_direction: Vector2 = Vector2(0, -1)
-	var left_triangle_direction: Vector2 = Vector2(-1, 0)
-	var right_triangle_direction: Vector2 = Vector2(1, 0)
+	var left_triangle_direction: Vector2 = Vector2(-1, 1)
+	var right_triangle_direction: Vector2 = Vector2(1, 1)
 	var direction_array: Array[Vector2] = [top_triangle_direction, left_triangle_direction, right_triangle_direction]
 	# Overrrides values
 	for i in range(shapes.size()):
 		shapes[i].speed = speed_array[i]
 		shapes[i].base_speed = speed_array[i]
 		shapes[i].move_direction = direction_array[i]
-		shapes[i].scale = Vector2(0.9, 0.9)
+		#shapes[i].scale = Vector2(0.9, 0.9)
 
 
 func _handle_auto_bunch_spawn(world_spawn_bounds: Array[int]) -> void:
@@ -113,16 +119,11 @@ func _calc_weighted_table_total(weighted_table: Dictionary) -> float:
 
 
 func _add_modifiers(shape: Shape) -> void:
-	var modifiers: Array[Enums.ShapeModifiers] = []
-	for modifier_type in Enums.ShapeModifiers.values():
-		var shape_name: String = Enums.ShapeType.keys()[shape.shape_data.shape_type].to_lower()
-		var modifier_name: String = Enums.ShapeModifiers.keys()[modifier_type].to_lower()
-		if shape_name != "triangle" and "sierpinski" in modifier_name: 
-			return
-		var modifier_chance_stat_name: String = modifier_name + "_" + shape_name + "_chance"
-		if _should_add_modifier(StatManager.get_special_modifier_stat(modifier_chance_stat_name)):
-			modifiers.append(modifier_type)
-	shape.shape_modifiers = modifiers
+	for packed_component in SHAPE_MODIFIER_COMPONENTS:
+		var component: ShapeModifierComponent = packed_component.instantiate()
+		var modifier_chance: float = StatManager.get_special_modifier_stat(component.modifier_weight_name)
+		if _should_add_modifier(modifier_chance):
+			shape.add_child(component)
 
 
 func _should_add_modifier(modifier_chance: float) -> bool:
@@ -193,6 +194,7 @@ func _get_spawn_limit_name(shape_type: Enums.ShapeType) -> String:
 func _get_spawn_rate_name(shape_type: Enums.ShapeType) -> String:
 	var shape_name = str(Enums.ShapeType.keys()[shape_type]).to_lower()
 	return shape_name + "_spawn_rate"
+
 
 
 func _on_spawn_timer_timeout(type: Enums.ShapeType) -> void:

@@ -9,15 +9,7 @@ enum ShapeType{
 # The NONE
 enum ShapeModifiers{
 	LUCKY,
-	SIERPINSKIES,
 	REINFORCED,
+	SIERPINSKIES,
 	
-}
-
-enum OperationType{
-	ADDITIVE,
-	SUBTRACTIVE, 
-	MULTIPLICATIVE,
-	DIVISITIVE,
-	SET
 }

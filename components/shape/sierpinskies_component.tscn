@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bdacywg0y6sha"]
+
+[ext_resource type="Script" uid="uid://d357di7v0jypb" path="res://sierpinskies_component.gd" id="1_nqr48"]
+[ext_resource type="Texture2D" uid="uid://dm2v5we74h6d5" path="res://upgrade system/assets/upgrade_overlays/sierpinskies_triangle_overlay.svg" id="2_bn42l"]
+
+[node name="SierpinskiesComponent" type="Node" unique_id=1720971232]
+script = ExtResource("1_nqr48")
+overlay_texture = ExtResource("2_bn42l")
+overlay_name = "SierpienskiesOverlay"
+modifier_weight_name = "sierpinskies_triangle_chance"

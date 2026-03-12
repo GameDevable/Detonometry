@@ -44,7 +44,7 @@ var special_modifier_stats: Dictionary[String, float] = {
 	"lucky_triangle_multiplier": 5.0,
 	"reinforced_triangle_chance": 0.0,
 	"reinforced_square_chance": 0.0,
-	"reinforced_triangle_multiplier": 3.0,
+	"reinforced_triangle_multiplier": 0.0,
 	"reinforced_square_multiplier": 3.0,
 }
 
@@ -134,4 +134,6 @@ func get_special_modifier_stat(key: String) -> float:
 		var upgrade: Upgrade = unlocked_upgrades[key]
 		var upgraded_shape_value: float = upgrade.get_upgraded_stat()
 		return upgraded_shape_value
-	return 0.0
+	if not special_modifier_stats.has(key):
+		return 0.0
+	return special_modifier_stats[key]

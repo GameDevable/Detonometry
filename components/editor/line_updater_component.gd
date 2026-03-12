@@ -2,7 +2,7 @@
 extends Node
 @export var connector_container: Control = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
 		return
 	for container in connector_container.get_children():
