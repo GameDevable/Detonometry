@@ -5,7 +5,6 @@ extends Control
 var upgrade: Upgrade = null
 var can_purchase: bool = false
 var base_position: Vector2 = Vector2.ZERO
-var connecting_point: Vector2 = Vector2.ZERO
 var base_display_min_size: Vector2 = Vector2.ZERO
 var base_display_position: Vector2 = Vector2.ZERO
 const UPGRADE_NODE_CAN_AFFORD_THEME = preload("uid://bmi00awkluvkt")
@@ -59,7 +58,6 @@ func _ready() -> void:
 			unlock()
 	base_position = purchase_button.position
 	base_display_min_size = upgrade_data_display.custom_minimum_size
-	connecting_point = purchase_button.global_position + purchase_button.size * 0.25
 	button_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	purchase_button.icon = null
 	base_display_position = upgrade_data_display.position

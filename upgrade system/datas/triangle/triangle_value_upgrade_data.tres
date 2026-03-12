@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://de56bx33q55qd"]
 
-[ext_resource type="Texture2D" uid="uid://e4k3d6cpgg7f" path="res://upgrade system/assets/upgrade icons/triangle/triangle_value_icon.svg" id="1_d5edu"]
+[ext_resource type="Texture2D" uid="uid://0nv5twmb7x6" path="res://upgrade system/assets/upgrade icons/triangle/triangle_value_icon.svg" id="1_d5edu"]
 [ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_r4636"]
 
 [resource]
@@ -12,4 +12,3 @@ base_price = 50
 description = "Increases the value of the triangle shapes"
 modify_stat_name = "triangle_value"
 icon = ExtResource("1_d5edu")
-price_scale = 2.25

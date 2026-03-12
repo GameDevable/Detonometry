@@ -4,29 +4,36 @@
 [ext_resource type="Script" uid="uid://bnflhpemd7tex" path="res://upgrade system/upgrade_hub.gd" id="1_t07eb"]
 [ext_resource type="PackedScene" uid="uid://dsc11tbnd1lbv" path="res://ui/menu_buttons/settings_button.tscn" id="2_qppun"]
 [ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="3_xsyck"]
+[ext_resource type="Resource" uid="uid://xa83n738b2k4" path="res://upgrade system/datas/bomb/place_delay_upgrade_data.tres" id="4_axg8a"]
 [ext_resource type="PackedScene" uid="uid://br0ww6jthrbxw" path="res://ui/menu_buttons/main_menu_button.tscn" id="4_xsyck"]
-[ext_resource type="Script" uid="uid://bvsl4sv8ovqq" path="res://upgrade system/editor_icon_updater.gd" id="5_1qpes"]
 [ext_resource type="PackedScene" uid="uid://cuh5eo4mk36ak" path="res://upgrade system/upgrade_node.tscn" id="5_8xrc4"]
-[ext_resource type="Resource" uid="uid://cwj2k3aew66ln" path="res://upgrade system/datas/bomb/explosion_radius_upgrade_data.tres" id="6_d2kyv"]
-[ext_resource type="Resource" uid="uid://xa83n738b2k4" path="res://upgrade system/datas/bomb/place_delay_upgrade_data.tres" id="7_axg8a"]
-[ext_resource type="PackedScene" uid="uid://c0fwik5w87jwj" path="res://upgrade system/upgrade_connector.tscn" id="8_axg8a"]
-[ext_resource type="Resource" uid="uid://dj1gg3ys2qwx6" path="res://upgrade system/datas/spawning/bunch_spawn_chance_upgrade_data.tres" id="9_8rb21"]
-[ext_resource type="Resource" uid="uid://bx2qhdj5l0a5a" path="res://upgrade system/datas/spawning/bunch_spawn_number_upgrade_data.tres" id="10_g0dhu"]
-[ext_resource type="Resource" uid="uid://b32dbo5wg88xq" path="res://upgrade system/datas/bomb/explosion_time_upgrade.tres" id="10_vyd20"]
-[ext_resource type="Resource" uid="uid://bunbyvt2wyp7i" path="res://upgrade system/datas/bomb/cluster_multiplier_upgrade.tres" id="11_pa0n2"]
-[ext_resource type="Resource" uid="uid://ba3vxeyrhsrvf" path="res://upgrade system/datas/spawning/spawn_limit_upgrade_data.tres" id="11_wmd6r"]
-[ext_resource type="Resource" uid="uid://bsdi6fr81gafw" path="res://upgrade system/datas/spawning/spawn_rate_upgrade_data.tres" id="12_7qdkh"]
-[ext_resource type="Resource" uid="uid://bgkrxghbgkg24" path="res://upgrade system/datas/bomb/cluster_exceed_bonus_upgrade.tres" id="12_qppun"]
-[ext_resource type="Resource" uid="uid://87nxhpxrfg6b" path="res://upgrade system/datas/triangle/fractalization_chance_upgrade_data.tres" id="13_y0csd"]
-[ext_resource type="Resource" uid="uid://bhgcpjiomii1" path="res://upgrade system/datas/triangle/lucky_triangle_multiplier_upgrade_data.tres" id="14_1qpes"]
-[ext_resource type="Resource" uid="uid://da4oqddqo13o3" path="res://upgrade system/datas/triangle/lucky_triangle_chance_upgrade_data.tres" id="15_6kss2"]
-[ext_resource type="Resource" uid="uid://b6ck0c6sbq4fh" path="res://upgrade system/datas/triangle/sierpinskies_triangle_chance_upgrade_data.tres" id="16_vyd20"]
-[ext_resource type="Resource" uid="uid://bo84g03r0gd2" path="res://upgrade system/datas/triangle/subtriangle_value_upgrade_data.tres" id="17_pa0n2"]
-[ext_resource type="Resource" uid="uid://wof8ud5yktqs" path="res://upgrade system/datas/session/session_time_upgrade_data.tres" id="17_xsyck"]
-[ext_resource type="Resource" uid="uid://de56bx33q55qd" path="res://upgrade system/datas/triangle/triangle_value_upgrade_data.tres" id="18_qppun"]
-[ext_resource type="Script" uid="uid://c038iaaigywjl" path="res://upgrade system/editor_line_updater.gd" id="19_1qpes"]
-[ext_resource type="Resource" uid="uid://dr0owyqhlfiso" path="res://upgrade system/datas/triangle/reinforced_triangle_chance_upgrade_data.tres" id="21_7x73d"]
-[ext_resource type="Resource" uid="uid://bjn3xungukyiv" path="res://upgrade system/datas/triangle/reinforced_multiplier_upgrade.tres" id="22_m05us"]
+[ext_resource type="Resource" uid="uid://b32dbo5wg88xq" path="res://upgrade system/datas/bomb/explosion_time_upgrade.tres" id="5_65mf6"]
+[ext_resource type="Resource" uid="uid://cwj2k3aew66ln" path="res://upgrade system/datas/bomb/explosion_area_upgrade_data.tres" id="6_1eihh"]
+[ext_resource type="Resource" uid="uid://ck8675fg5a5g2" path="res://upgrade system/datas/bomb/explosion_damage_upgrade_data.tres" id="7_1eihh"]
+[ext_resource type="Script" uid="uid://i7jpquifwgkb" path="res://components/editor/editor_upgrade_node_updater.gd" id="7_d2kyv"]
+[ext_resource type="Resource" uid="uid://bgkrxghbgkg24" path="res://upgrade system/datas/bomb/cluster_exceed_bonus_upgrade.tres" id="8_8rb21"]
+[ext_resource type="Resource" uid="uid://bunbyvt2wyp7i" path="res://upgrade system/datas/bomb/cluster_multiplier_upgrade.tres" id="9_g0dhu"]
+[ext_resource type="Resource" uid="uid://dj1gg3ys2qwx6" path="res://upgrade system/datas/spawning/bunch_spawn_chance_data.tres" id="10_6kss2"]
+[ext_resource type="Resource" uid="uid://bx2qhdj5l0a5a" path="res://upgrade system/datas/spawning/bunch_spawn_number_data.tres" id="11_vyd20"]
+[ext_resource type="Resource" uid="uid://4wsylvs17jyo" path="res://upgrade system/datas/spawning/circle_limit_data.tres" id="12_pa0n2"]
+[ext_resource type="Resource" uid="uid://chwsq4umi4syg" path="res://upgrade system/datas/spawning/circle_regeneration_data.tres" id="13_qppun"]
+[ext_resource type="Resource" uid="uid://ba3vxeyrhsrvf" path="res://upgrade system/datas/spawning/triangle_limit_data.tres" id="14_xsyck"]
+[ext_resource type="Resource" uid="uid://bsdi6fr81gafw" path="res://upgrade system/datas/spawning/triangle_regeneration_data.tres" id="15_7x73d"]
+[ext_resource type="Resource" uid="uid://cevvqqbqluvw0" path="res://upgrade system/datas/spawning/square_limit_data.tres" id="16_m05us"]
+[ext_resource type="Resource" uid="uid://dhruxqv3itnju" path="res://upgrade system/datas/spawning/square_regeneration_data.tres" id="17_1fwgs"]
+[ext_resource type="Resource" uid="uid://87nxhpxrfg6b" path="res://upgrade system/datas/triangle/fractalization_chance_upgrade_data.tres" id="18_vfhg7"]
+[ext_resource type="Resource" uid="uid://da4oqddqo13o3" path="res://upgrade system/datas/triangle/lucky_triangle_chance_upgrade_data.tres" id="19_gpdj0"]
+[ext_resource type="Resource" uid="uid://dr0owyqhlfiso" path="res://upgrade system/datas/triangle/reinforced_triangle_chance_upgrade_data.tres" id="20_g8e3i"]
+[ext_resource type="Resource" uid="uid://b6ck0c6sbq4fh" path="res://upgrade system/datas/triangle/sierpinskies_triangle_chance_upgrade_data.tres" id="21_hricv"]
+[ext_resource type="Resource" uid="uid://bo84g03r0gd2" path="res://upgrade system/datas/triangle/subtriangle_value_upgrade_data.tres" id="22_h5flq"]
+[ext_resource type="Resource" uid="uid://de56bx33q55qd" path="res://upgrade system/datas/triangle/triangle_value_upgrade_data.tres" id="23_vs24g"]
+[ext_resource type="Resource" uid="uid://bhgcpjiomii1" path="res://upgrade system/datas/triangle/lucky_triangle_multiplier_upgrade_data.tres" id="24_8wfwf"]
+[ext_resource type="Resource" uid="uid://bjn3xungukyiv" path="res://upgrade system/datas/triangle/reinforced_multiplier_upgrade.tres" id="25_nv5ir"]
+[ext_resource type="Resource" uid="uid://dk8uglcat2mwo" path="res://upgrade system/datas/square/square_value_data.tres" id="26_g8e3i"]
+[ext_resource type="Resource" uid="uid://wof8ud5yktqs" path="res://upgrade system/datas/session/session_time_upgrade_data.tres" id="26_mh01h"]
+[ext_resource type="Resource" uid="uid://dwfmugn5332h7" path="res://upgrade system/datas/circle/circle_value_data.tres" id="27_hricv"]
+[ext_resource type="PackedScene" uid="uid://c0fwik5w87jwj" path="res://upgrade system/upgrade_connector.tscn" id="29_hricv"]
+[ext_resource type="Script" uid="uid://lm5xhpovbe72" path="res://components/editor/line_updater_component.gd" id="34_h5flq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fe3o"]
 bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -39,7 +46,6 @@ bg_color = Color(0.07450981, 0.07450981, 0.07450981, 1)
 
 [node name="UpgradeHub" type="Control" unique_id=1856736731 groups=["Persist"]]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,295 +106,413 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="UpgradeNodes" type="Control" parent="DraggableNodes" unique_id=586683636]
+[node name="UpgradeNodes" type="Control" parent="DraggableNodes" unique_id=1529126480]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("5_1qpes")
 
-[node name="BombUpgrades" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=1114718533]
+[node name="Bomb" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=1575683470]
 layout_mode = 1
-anchors_preset = 0
-mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PlaceDelay" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1630547048 instance=ExtResource("5_8xrc4")]
+[node name="PlaceDelay" parent="DraggableNodes/UpgradeNodes/Bomb" unique_id=1630547048 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 650.0
-offset_top = 300.0
-offset_right = 650.0
-offset_bottom = 300.0
-data = ExtResource("7_axg8a")
+offset_left = 637.2223
+offset_top = 293.33334
+offset_right = 637.2223
+offset_bottom = 293.33334
+data = ExtResource("4_axg8a")
 is_locked = false
 
-[node name="ExplosionTime" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1385989826 instance=ExtResource("5_8xrc4")]
+[node name="ExplosionTime" parent="DraggableNodes/UpgradeNodes/Bomb" unique_id=1376138456 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 850.0
-offset_top = 400.0
-offset_right = 850.0
-offset_bottom = 400.0
-data = ExtResource("10_vyd20")
+offset_left = 470.55557
+offset_top = 293.33334
+offset_right = 470.55557
+offset_bottom = 293.33334
+data = ExtResource("5_65mf6")
 
-[node name="ExplosionRadius" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1457226762 instance=ExtResource("5_8xrc4")]
+[node name="ExplosionArea" parent="DraggableNodes/UpgradeNodes/Bomb" unique_id=1071292462 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 850.0
-offset_top = 200.0
-offset_right = 850.0
-offset_bottom = 200.0
-data = ExtResource("6_d2kyv")
+offset_left = 637.2223
+offset_top = 460.00003
+offset_right = 637.2223
+offset_bottom = 460.00003
+data = ExtResource("6_1eihh")
 
-[node name="ClusterMult" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1917457606 instance=ExtResource("5_8xrc4")]
+[node name="ExplosionDamage" parent="DraggableNodes/UpgradeNodes/Bomb" unique_id=891436955 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
-offset_left = 250.0
-offset_top = 200.0
-offset_right = 250.0
-offset_bottom = 200.0
-data = ExtResource("11_pa0n2")
+offset_left = 1053.8889
+offset_top = 126.66667
+offset_right = 1053.8889
+offset_bottom = 126.66667
+data = ExtResource("7_1eihh")
 
-[node name="ClusterBonus" parent="DraggableNodes/UpgradeNodes/BombUpgrades" unique_id=1776856163 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 200.0
-offset_right = 50.0
-offset_bottom = 200.0
-data = ExtResource("12_qppun")
-
-[node name="SpawnUpgrades" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=10994199]
-layout_mode = 1
-anchors_preset = 0
-mouse_filter = 2
-
-[node name="SpawnTime" parent="DraggableNodes/UpgradeNodes/SpawnUpgrades" unique_id=2128141897 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 300.0
-offset_right = 450.0
-offset_bottom = 300.0
-data = ExtResource("12_7qdkh")
-
-[node name="SpawnLimit" parent="DraggableNodes/UpgradeNodes/SpawnUpgrades" unique_id=846358810 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 400.0
-offset_right = 250.0
-offset_bottom = 400.0
-data = ExtResource("11_wmd6r")
-
-[node name="BunchNumber" parent="DraggableNodes/UpgradeNodes/SpawnUpgrades" unique_id=1088410450 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 650.0
-offset_top = -100.0
-offset_right = 650.0
-offset_bottom = -100.0
-data = ExtResource("10_g0dhu")
-
-[node name="BunchChance" parent="DraggableNodes/UpgradeNodes/SpawnUpgrades" unique_id=1746402663 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 650.0
-offset_top = 100.0
-offset_right = 650.0
-offset_bottom = 100.0
-data = ExtResource("9_8rb21")
-
-[node name="TriangleUpgrades" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=1777250999]
-layout_mode = 1
-anchors_preset = 0
-mouse_filter = 2
-
-[node name="TriangleValue" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=1567937382 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 650.0
-offset_top = 500.0
-offset_right = 650.0
-offset_bottom = 500.0
-data = ExtResource("18_qppun")
-
-[node name="SubtriangleValue" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=2116195498 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 850.0
-offset_top = 900.0
-offset_right = 850.0
-offset_bottom = 900.0
-data = ExtResource("17_pa0n2")
-
-[node name="ReinforcedChance" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=803144821 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 850.0
-offset_top = 650.0
-offset_right = 850.0
-offset_bottom = 650.0
-data = ExtResource("21_7x73d")
-
-[node name="SierpinskieChance" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=332766968 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 650.0
-offset_top = 750.0
-offset_right = 650.0
-offset_bottom = 750.0
-data = ExtResource("16_vyd20")
-
-[node name="FractalizationChance" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=1397043426 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 892.0
-offset_right = 450.0
-offset_bottom = 892.0
-data = ExtResource("13_y0csd")
-
-[node name="LuckyChance" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=933360405 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 650.0
-offset_right = 450.0
-offset_bottom = 650.0
-data = ExtResource("15_6kss2")
-
-[node name="ReinforcedMult" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=177089035 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 1050.0
-offset_top = 750.0
-offset_right = 1050.0
-offset_bottom = 750.0
-data = ExtResource("22_m05us")
-
-[node name="LuckyMult" parent="DraggableNodes/UpgradeNodes/TriangleUpgrades" unique_id=1404364054 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 750.0
-offset_right = 250.0
-offset_bottom = 750.0
-data = ExtResource("14_1qpes")
-
-[node name="SessionUpgrades" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=1987704748]
-layout_mode = 1
-anchors_preset = 0
-mouse_filter = 2
-
-[node name="SessionTime" parent="DraggableNodes/UpgradeNodes/SessionUpgrades" unique_id=84235866 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 100.0
-offset_right = 450.0
-offset_bottom = 100.0
-data = ExtResource("17_xsyck")
-
-[node name="Connectors" type="Control" parent="DraggableNodes" unique_id=1713683288]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("19_1qpes")
-
-[node name="BombConnectors" type="Control" parent="DraggableNodes/Connectors" unique_id=1380777350]
+[node name="Bonuses-Multipliers" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=842673257]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PDEDcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=1322821640 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(851, 272, 651, 372)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/PlaceDelay")
-dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/ExplosionRadius")
+[node name="ClusterExceedBonus" parent="DraggableNodes/UpgradeNodes/Bonuses-Multipliers" unique_id=310549038 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 637.2223
+offset_top = 126.66667
+offset_right = 637.2223
+offset_bottom = 126.66667
+data = ExtResource("8_8rb21")
 
-[node name="PDETcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=972341331 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(851, 472, 651, 372)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/PlaceDelay")
-dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/ExplosionTime")
-unlock_threshold = 2
+[node name="ClusterMultiplier" parent="DraggableNodes/UpgradeNodes/Bonuses-Multipliers" unique_id=261358158 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 470.55557
+offset_top = 43.333336
+offset_right = 470.55557
+offset_bottom = 43.333336
+data = ExtResource("9_g0dhu")
 
-[node name="PDBCcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=742976457 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 172, 651, 372)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/PlaceDelay")
-dependent_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/BunchChance")
-
-[node name="PDTVcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=707952095 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 572, 651, 372)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/PlaceDelay")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/TriangleValue")
-unlock_threshold = 2
-
-[node name="PDSRcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=1239150179 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(451, 372, 651, 372)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/PlaceDelay")
-dependent_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/SpawnTime")
-
-[node name="CMCBcon" parent="DraggableNodes/Connectors/BombConnectors" unique_id=741454874 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(51, 272, 251, 272)
-root_node = NodePath("../../../UpgradeNodes/BombUpgrades/ClusterMult")
-dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/ClusterBonus")
-
-[node name="SpawnConnectors" type="Control" parent="DraggableNodes/Connectors" unique_id=1096155461]
+[node name="Spawning" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=932774015]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BCBNcon" parent="DraggableNodes/Connectors/SpawnConnectors" unique_id=1205229106 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, -28, 651, 172)
-root_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/BunchChance")
-dependent_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/BunchNumber")
+[node name="BunchChance" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=767276503 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 803.8889
+offset_top = 293.33334
+offset_right = 803.8889
+offset_bottom = 293.33334
+data = ExtResource("10_6kss2")
 
-[node name="BCSTcon" parent="DraggableNodes/Connectors/SpawnConnectors" unique_id=1143873554 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(451, 172, 651, 172)
-root_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/BunchChance")
-dependent_node = NodePath("../../../UpgradeNodes/SessionUpgrades/SessionTime")
-unlock_threshold = 2
+[node name="BunchNumber" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=599355196 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 970.55566
+offset_top = 460.00003
+offset_right = 970.55566
+offset_bottom = 460.00003
+data = ExtResource("11_vyd20")
 
-[node name="SRCMcon" parent="DraggableNodes/Connectors/SpawnConnectors" unique_id=106139626 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(251, 272, 451, 372)
-root_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/SpawnTime")
-dependent_node = NodePath("../../../UpgradeNodes/BombUpgrades/ClusterMult")
+[node name="CircleLimit" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=1065775517 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 303.88892
+offset_top = 293.33334
+offset_right = 303.88892
+offset_bottom = 293.33334
+data = ExtResource("12_pa0n2")
 
-[node name="SRSLcon" parent="DraggableNodes/Connectors/SpawnConnectors" unique_id=1776260175 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(251, 472, 451, 372)
-root_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/SpawnTime")
-dependent_node = NodePath("../../../UpgradeNodes/SpawnUpgrades/SpawnLimit")
-unlock_threshold = 2
+[node name="CircleRegen" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=1377795581 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 137.22223
+offset_top = 210.00002
+offset_right = 137.22223
+offset_bottom = 210.00002
+data = ExtResource("13_qppun")
 
-[node name="TriangleConnectors" type="Control" parent="DraggableNodes/Connectors" unique_id=1380321735]
+[node name="TriangleLimit" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=1538250065 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 637.2223
+offset_top = 626.6667
+offset_right = 637.2223
+offset_bottom = 626.6667
+data = ExtResource("14_xsyck")
+
+[node name="TriangleRegen" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=693274599 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 803.8889
+offset_top = 626.6667
+offset_right = 803.8889
+offset_bottom = 626.6667
+data = ExtResource("15_7x73d")
+
+[node name="SquareLimit" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=359340418 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 970.55566
+offset_top = 293.33334
+offset_right = 970.55566
+offset_bottom = 293.33334
+data = ExtResource("16_m05us")
+
+[node name="SquareRegen" parent="DraggableNodes/UpgradeNodes/Spawning" unique_id=581283992 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 1137.2223
+offset_top = 376.6667
+offset_right = 1137.2223
+offset_bottom = 376.6667
+data = ExtResource("17_1fwgs")
+
+[node name="Triangle" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=801191077]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TVSCcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1708971571 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(651, 822, 651, 572)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/TriangleValue")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SierpinskieChance")
+[node name="FractalizationChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1942306473 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 553.8889
+offset_top = 960.00006
+offset_right = 553.8889
+offset_bottom = 960.00006
+data = ExtResource("18_vfhg7")
 
-[node name="TVLCcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=679152726 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(451, 722, 651, 572)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/TriangleValue")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LuckyChance")
+[node name="LuckyTriangleChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=847110409 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 803.8889
+offset_top = 793.3334
+offset_right = 803.8889
+offset_bottom = 793.3334
+data = ExtResource("19_gpdj0")
 
-[node name="TVRCcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1630062181 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(851, 722, 651, 572)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/TriangleValue")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/ReinforcedChance")
+[node name="ReinforcedTriangelChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1446671486 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 470.55557
+offset_top = 793.3334
+offset_right = 470.55557
+offset_bottom = 793.3334
+data = ExtResource("20_g8e3i")
 
-[node name="SCFCcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=786023616 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(451, 964, 651, 822)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SierpinskieChance")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/FractalizationChance")
+[node name="SierpinskiesChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=2016670690 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 637.2223
+offset_top = 793.3334
+offset_right = 637.2223
+offset_bottom = 793.3334
+data = ExtResource("21_hricv")
 
-[node name="SCSTcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1993149054 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(851, 972, 651, 822)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SierpinskieChance")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/SubtriangleValue")
+[node name="SubTValue" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=537067488 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 720.55554
+offset_top = 960.00006
+offset_right = 720.55554
+offset_bottom = 960.00006
+data = ExtResource("22_h5flq")
 
-[node name="LCLMcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=762483286 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(251, 822, 451, 722)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LuckyChance")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/LuckyMult")
+[node name="TriangleValue" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1075522769 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 970.55566
+offset_top = 710.00006
+offset_right = 970.55566
+offset_bottom = 710.00006
+data = ExtResource("23_vs24g")
 
-[node name="RCRMcon" parent="DraggableNodes/Connectors/TriangleConnectors" unique_id=1895304133 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("8_axg8a")]
-points = PackedVector2Array(1051, 822, 851, 722)
-root_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/ReinforcedChance")
-dependent_node = NodePath("../../../UpgradeNodes/TriangleUpgrades/ReinforcedMult")
+[node name="LuckyTriangelMultiplier" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1977341169 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 970.55566
+offset_top = 876.6667
+offset_right = 970.55566
+offset_bottom = 876.6667
+data = ExtResource("24_8wfwf")
+
+[node name="ReinforcedTriangleMultiplier" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=831809824 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 303.88892
+offset_top = 876.6667
+offset_right = 303.88892
+offset_bottom = 876.6667
+data = ExtResource("25_nv5ir")
+
+[node name="Square" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=1639117114]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SquareValue" parent="DraggableNodes/UpgradeNodes/Square" unique_id=1387223109 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 1220.5557
+offset_top = 543.3334
+offset_right = 1220.5557
+offset_bottom = 543.3334
+data = ExtResource("26_g8e3i")
+
+[node name="Circle" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=2049229062]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CircleValue" parent="DraggableNodes/UpgradeNodes/Circle" unique_id=1725960153 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = -29.444447
+offset_top = 210.00002
+offset_right = -29.444447
+offset_bottom = 210.00002
+data = ExtResource("27_hricv")
+
+[node name="Session" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=452241133]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SessionTime" parent="DraggableNodes/UpgradeNodes/Session" unique_id=1981440638 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 387.22223
+offset_top = 460.00003
+offset_right = 387.22223
+offset_bottom = 460.00003
+data = ExtResource("26_mh01h")
+
+[node name="Connectors" type="Control" parent="DraggableNodes" unique_id=1472016543]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bomb" type="Control" parent="DraggableNodes/Connectors" unique_id=15796642]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PDEDcon" parent="DraggableNodes/Connectors/Bomb" unique_id=1322821640 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(470.55557, 341.33337, 637.2223, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Bomb/PlaceDelay")
+dependent_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionTime")
+
+[node name="PDEAcon" parent="DraggableNodes/Connectors/Bomb" unique_id=1696869940 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(637.2223, 508.00006, 637.2223, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Bomb/PlaceDelay")
+dependent_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionArea")
+
+[node name="EATVcon" parent="DraggableNodes/Connectors/Bomb" unique_id=21053885 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(637.2223, 674.6667, 637.2223, 508.00006)
+root_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionArea")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/TriangleLimit")
+
+[node name="EABCcon" parent="DraggableNodes/Connectors/Bomb" unique_id=1431673606 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(803.8889, 341.33337, 637.2223, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Bomb/PlaceDelay")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/BunchChance")
+
+[node name="PDCBcon" parent="DraggableNodes/Connectors/Bomb" unique_id=1119830213 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-48.888893, -4.4444447)
+points = PackedVector2Array(686.1112, 179.11111, 686.1112, 345.77783)
+root_node = NodePath("../../../UpgradeNodes/Bomb/PlaceDelay")
+dependent_node = NodePath("../../../UpgradeNodes/Bonuses-Multipliers/ClusterExceedBonus")
+
+[node name="ETSTcon" parent="DraggableNodes/Connectors/Bomb" unique_id=1449845342 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(387.22223, 508.00006, 470.55557, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionTime")
+dependent_node = NodePath("../../../UpgradeNodes/Session/SessionTime")
+
+[node name="ETCLcon" parent="DraggableNodes/Connectors/Bomb" unique_id=57328446 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(303.88898, 341.33337, 470.55557, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionTime")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/CircleLimit")
+
+[node name="Bonuses-Multipliers" type="Control" parent="DraggableNodes/Connectors" unique_id=2035892904]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CBCMcon" parent="DraggableNodes/Connectors/Bonuses-Multipliers" unique_id=1821444486 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(470.55557, 91.33334, 637.2223, 174.66667)
+root_node = NodePath("../../../UpgradeNodes/Bonuses-Multipliers/ClusterExceedBonus")
+dependent_node = NodePath("../../../UpgradeNodes/Bonuses-Multipliers/ClusterMultiplier")
+
+[node name="Spawning" type="Control" parent="DraggableNodes/Connectors" unique_id=1790862948]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CLCRcon" parent="DraggableNodes/Connectors/Spawning" unique_id=1259876092 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(137.22223, 258.00003, 303.88898, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Spawning/CircleLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/CircleRegen")
+
+[node name="UpgradeConnector" parent="DraggableNodes/Connectors/Spawning" unique_id=10915349 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-62.222225, 0)
+points = PackedVector2Array(32.77778, 258.00003, 199.44446, 258.00003)
+root_node = NodePath("../../../UpgradeNodes/Spawning/CircleRegen")
+dependent_node = NodePath("../../../UpgradeNodes/Circle/CircleValue")
+
+[node name="BCBNcon" parent="DraggableNodes/Connectors/Spawning" unique_id=946814035 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(970.55566, 508.00006, 803.8889, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Spawning/BunchChance")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/BunchNumber")
+
+[node name="BCSLcon" parent="DraggableNodes/Connectors/Spawning" unique_id=504407232 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(970.55566, 341.33337, 803.8889, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Spawning/BunchChance")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/SquareLimit")
+
+[node name="SLEDcon" parent="DraggableNodes/Connectors/Spawning" unique_id=1945324668 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(1053.8889, 174.66667, 970.55566, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Spawning/SquareLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Bomb/ExplosionDamage")
+
+[node name="SLSRcon" parent="DraggableNodes/Connectors/Spawning" unique_id=297294654 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(1137.2223, 424.66672, 970.55566, 341.33337)
+root_node = NodePath("../../../UpgradeNodes/Spawning/SquareLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/SquareRegen")
+
+[node name="SRSVcon" parent="DraggableNodes/Connectors/Spawning" unique_id=1790101907 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-101.111115, -1.1111112)
+points = PackedVector2Array(1321.6669, 592.44446, 1238.3334, 425.77783)
+root_node = NodePath("../../../UpgradeNodes/Spawning/SquareRegen")
+dependent_node = NodePath("../../../UpgradeNodes/Square/SquareValue")
+
+[node name="TLSCcon" parent="DraggableNodes/Connectors/Spawning" unique_id=2023927827 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-3.3333335, 55.555557)
+points = PackedVector2Array(640.55566, 785.77783, 640.55566, 619.11115)
+root_node = NodePath("../../../UpgradeNodes/Spawning/TriangleLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
+
+[node name="TLTRcon" parent="DraggableNodes/Connectors/Spawning" unique_id=941381919 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(803.8889, 674.6667, 637.2223, 674.6667)
+root_node = NodePath("../../../UpgradeNodes/Spawning/TriangleLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Spawning/TriangleRegen")
+
+[node name="TRTVcon" parent="DraggableNodes/Connectors/Spawning" unique_id=1985088309 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-53.333336, 4.4444447)
+points = PackedVector2Array(1023.889, 753.55566, 857.2223, 670.2222)
+root_node = NodePath("../../../UpgradeNodes/Spawning/TriangleRegen")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/TriangleValue")
+
+[node name="Triangle" type="Control" parent="DraggableNodes/Connectors" unique_id=666398686]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RCRMcon" parent="DraggableNodes/Connectors/Triangle" unique_id=375939978 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-430, 85.55556)
+points = PackedVector2Array(733.88904, 839.1112, 900.5556, 755.77783)
+root_node = NodePath("../../../UpgradeNodes/Triangle/ReinforcedTriangelChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/ReinforcedTriangleMultiplier")
+
+[node name="LCLMcon" parent="DraggableNodes/Connectors/Triangle" unique_id=736503572 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-537.7778, -30)
+points = PackedVector2Array(1508.3334, 954.66675, 1341.6667, 871.3334)
+root_node = NodePath("../../../UpgradeNodes/Triangle/LuckyTriangleChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/LuckyTriangelMultiplier")
+
+[node name="SCFCcon" parent="DraggableNodes/Connectors/Triangle" unique_id=1107970190 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(17.777779, -65.55556)
+points = PackedVector2Array(536.1111, 1073.5557, 619.4445, 906.8889)
+root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/FractalizationChance")
+
+[node name="SCSTcon" parent="DraggableNodes/Connectors/Triangle" unique_id=1436759669 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-102.22223, -4.4444447)
+points = PackedVector2Array(822.7778, 1012.4446, 739.4445, 845.77783)
+root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/SubTValue")
+
+[node name="SCRCcon" parent="DraggableNodes/Connectors/Triangle" unique_id=1791497131 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(470.55557, 841.3334, 637.2223, 841.3334)
+root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/ReinforcedTriangelChance")
+
+[node name="SCLCcon" parent="DraggableNodes/Connectors/Triangle" unique_id=2094164226 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+points = PackedVector2Array(803.8889, 841.3334, 637.2223, 841.3334)
+root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
+dependent_node = NodePath("../../../UpgradeNodes/Triangle/LuckyTriangleChance")
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
+visible = false
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -419,3 +543,14 @@ layout_mode = 2
 modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
 z_index = 3
 layout_mode = 2
+
+[node name="UpgradeNodeUpdaterComponent" type="Node" parent="." unique_id=1523337613 node_paths=PackedStringArray("control_node")]
+process_mode = 3
+script = ExtResource("7_d2kyv")
+grid_size = Vector2(75, 75)
+control_node = NodePath("../DraggableNodes/UpgradeNodes")
+
+[node name="LineUpdater" type="Node" parent="." unique_id=475536196 node_paths=PackedStringArray("connector_container")]
+process_mode = 3
+script = ExtResource("34_h5flq")
+connector_container = NodePath("../DraggableNodes/Connectors")

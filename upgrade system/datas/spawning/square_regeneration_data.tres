@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dhruxqv3itnju"]
+
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_dql1k"]
+[ext_resource type="Texture2D" uid="uid://31g3yhu8xnmm" path="res://upgrade system/assets/upgrade icons/shape spawning/square_regeneration_icon.svg" id="1_ke5vq"]
+
+[resource]
+script = ExtResource("1_dql1k")
+name = "Square Regeneration"
+tier_modifiers = Array[float]([0.0])
+base_value = 4.0
+base_price = 15
+description = "Reduces the time it takes for a square to respawn"
+modify_stat_name = "square_spawn_rate"
+extra_character = "s"
+icon = ExtResource("1_ke5vq")
+metadata/_custom_type_script = "uid://dsonbba73212j"

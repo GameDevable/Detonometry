@@ -6,7 +6,7 @@ var base_button_minimum_size: Vector2 = Vector2.ZERO
 var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
-const MIN_SCALE: Vector2 = Vector2(0.6, 0.6)
+const MIN_SCALE: Vector2 = Vector2(0.5, 0.5)
 const MAX_SCALE: Vector2 = Vector2(1.0, 1.0)
 const SCROLL_SPEED: float = 1.0
 # Left, right, Bottom, Top
@@ -30,8 +30,8 @@ func _ready() -> void:
 	# Recursively loops through the buttons
 	#settings_button.mouse_entered.connect(_on_mouse_entered)
 	#settings_button.mouse_exited.connect(_on_mouse_exited)
-	
-	_set_up_buttons(upgrade_nodes)
+	if upgrade_nodes:
+		_set_up_buttons(upgrade_nodes)
 
 
 func _input(event: InputEvent) -> void:
@@ -80,6 +80,8 @@ func load_save_data(data: Dictionary) -> void:
 		upgrade.load_saved_data(data["unlocked_upgrades"][saved_upgrade_data])
 		StatManager.unlocked_upgrades[upgrade.data.modify_stat_name] = upgrade
 	# Loops through the upgrade holders to access and save the actual nodes.
+	if not upgrade_nodes:
+		return
 	for upgrade_container in upgrade_nodes.get_children():
 			
 		for upgrade_node in upgrade_container.get_children():
@@ -140,6 +142,8 @@ func _check_drag() -> bool:
 	return Input.is_action_pressed("bomb_place_action") and can_drag and UiManager.active_menu.name == name
 	
 func _update_buttons(parent_node: Control, points_value: int) -> int:
+	if not parent_node:
+		return 0
 	var purchasable_node_count: int = 0
 	for child in parent_node.get_children():
 		if child is not UpgradeNode:

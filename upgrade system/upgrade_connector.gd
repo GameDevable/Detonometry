@@ -1,11 +1,12 @@
 class_name UpgradeConnector
 extends Line2D
-@export var root_node: UpgradeNode = null
-@export var dependent_node: UpgradeNode = null
+@export var root_node: UpgradeNode = null 
+@export var dependent_node: UpgradeNode = null 
 @export var unlock_threshold: int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	points = [root_node.connecting_point, dependent_node.connecting_point]
+	#points = [root_node.connecting_point, dependent_node.connecting_point]
 		
 	if root_node.is_locked:
 		visible = false 

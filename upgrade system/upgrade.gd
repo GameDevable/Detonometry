@@ -24,7 +24,6 @@ func get_before_after() -> String:
 	return first_value + data.extra_character + arrow + second_value + data.extra_character
 
 
-
 func get_current_price() -> int:
 	return _calculate_price(data.base_price, current_unpurchased_tier, data.custom_price_scale)
 
@@ -43,7 +42,7 @@ func get_upgraded_stat() -> float:
 	
 
 func _calculate_price(base_value: int, n: int, price_scale: float) -> int:
-	return int(base_value + (n - 1) * (base_value * price_scale))
+	return int(base_value * pow(price_scale, n - 1))
 
 
 func save() -> Dictionary:

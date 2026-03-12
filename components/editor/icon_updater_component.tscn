@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://0ffcq0vrwfg8"]
+
+[ext_resource type="Script" uid="uid://bvsl4sv8ovqq" path="res://components/editor/editor_icon_updater.gd" id="1_wfcbp"]
+
+[node name="IconUpdaterComponent" type="Node" unique_id=670587705]
+script = ExtResource("1_wfcbp")

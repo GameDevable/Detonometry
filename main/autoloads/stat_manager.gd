@@ -18,21 +18,21 @@ var shape_spawn_stats: Dictionary[String, float] = {
 	"triangle_spawn_rate": 2.5,
 
 	"square_spawn_limit": 0,
-	"square_spawn_rate": 2.5,
+	"square_spawn_rate": 4,
 
 	"pentagon_spawn_limit": 0,
-	"pentagon_spawn_rate": 2.5,
+	"pentagon_spawn_rate": 8,
 
 	"circle_spawn_limit": 0,
-	"circle_spawn_rate": 2.5,
+	"circle_spawn_rate": 6,
 }
 
 var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 	Enums.ShapeType.TRIANGLE : {"points" : 1, "health" : 1},
 	Enums.ShapeType.SQUARE : {"points" : 5, "health" : 2 },
+	Enums.ShapeType.CIRCLE : {"points" : 10, "health" : 5},
 	Enums.ShapeType.PENTAGON : {"points" : 1, "health" : 1},
 	Enums.ShapeType.HEXAGON : {"points" : 1, "health" : 1},
-	Enums.ShapeType.CIRCLE : {"points" : 1, "health" : 1},
 }
 
 var special_modifier_stats: Dictionary[String, float] = {
