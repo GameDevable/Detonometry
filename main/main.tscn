@@ -15,6 +15,7 @@ script = ExtResource("1_pjrb6")
 
 [node name="World" parent="." unique_id=1297967042 instance=ExtResource("1_53q0u")]
 process_mode = 1
+z_index = 10
 
 [node name="UiCanvasLayer" type="CanvasLayer" parent="." unique_id=125579151]
 

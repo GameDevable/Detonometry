@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cevvqqbqluvw0"]
 
-[ext_resource type="Texture2D" uid="uid://dj6dxgst4iqwc" path="res://upgrade system/assets/upgrade icons/shape spawning/squares_icon.svg" id="1_jw2rx"]
+[ext_resource type="Texture2D" uid="uid://dj6dxgst4iqwc" path="res://upgrade system/assets/upgrade icons/shape spawning/shapes/squares_icon.svg" id="1_jw2rx"]
 [ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_s04l5"]
 
 [resource]

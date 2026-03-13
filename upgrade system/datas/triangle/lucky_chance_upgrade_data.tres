@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://da4oqddqo13o3"]
+
+[ext_resource type="Texture2D" uid="uid://b3ugjpkl4kbyg" path="res://upgrade system/assets/upgrade icons/shape spawning/lucky_chance_icon.svg" id="1_rwspt"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="2_lg0tk"]
+
+[resource]
+script = ExtResource("2_lg0tk")
+name = "Lucky Shapes  Chance"
+tier_modifiers = Array[float]([5.0, 10.0, 15.0])
+base_price = 60
+description = "Increases the chance for a Lucky Triangle to spawn"
+modify_stat_name = "lucky_chance"
+extra_character = "%"
+icon = ExtResource("1_rwspt")

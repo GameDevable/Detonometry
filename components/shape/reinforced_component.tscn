@@ -6,4 +6,4 @@
 script = ExtResource("1_y3rmn")
 overlay_path = "res://upgrade system/assets/upgrade_overlays/reinforced_"
 overlay_name = "ReinforcedOverlay"
-modifier_weight_name = "reinforced_triangle_chance"
+modifier_weight_name = "reinforced_chance"

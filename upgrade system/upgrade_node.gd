@@ -149,7 +149,7 @@ func _on_purchase_button_mouse_entered() -> void:
 	if global_position.y < get_viewport_rect().size.y / 4:
 		upgrade_data_display.position.y = -base_display_position.y - 10
 	else:
-		upgrade_data_display.position.y = base_display_position.y
+		upgrade_data_display.position.y = base_display_position.y - 10
 	var base_pitch: float = 1.0
 	upgrade_data_display.visible = true
 	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)

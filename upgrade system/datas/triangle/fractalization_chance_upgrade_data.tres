@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_i7yvt")
-name = "Fractalizatoin Chance"
+name = "Fractalization"
 tier_modifiers = Array[float]([1.0, 3.0, 5.0])
 base_price = 65
 description = "Increases the chance for a Sierpinskie's triangle to contain more Sierpinskie's triangles "

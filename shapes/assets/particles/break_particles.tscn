@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bj1jgl6835u7y"]
 
-[ext_resource type="Texture2D" uid="uid://b5wyw4gfsynki" path="res://shapes/assets/particles/textures/break_particles_texture_sheet.svg" id="1_p5fi6"]
+[ext_resource type="Texture2D" uid="uid://b5wyw4gfsynki" path="res://shapes/assets/particles/textures/break_triangle_particles_texture_sheet.svg" id="1_p5fi6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ysxj3"]
 particles_animation = true
@@ -37,8 +37,8 @@ angular_velocity_max = 149.99998
 gravity = Vector3(0, 0, 0)
 damping_min = 59.284004
 damping_max = 59.284004
-scale_min = 0.55
-scale_max = 0.7
+scale_min = 0.7
+scale_max = 0.84999996
 scale_curve = SubResource("CurveTexture_atr3j")
 alpha_curve = SubResource("CurveTexture_ysxj3")
 anim_offset_max = 1.0

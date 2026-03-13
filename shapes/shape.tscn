@@ -2,15 +2,21 @@
 
 [ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
 [ext_resource type="Texture2D" uid="uid://dmaov6xdbdbn8" path="res://shapes/assets/sprites/circle.svg" id="2_4fy8l"]
+[ext_resource type="Shader" uid="uid://dtfmmrs4rl7c0" path="res://shapes/health_alpha_shader.gdshader" id="2_o1kad"]
 [ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
 [ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="4_o1kad"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6dkk"]
+shader = ExtResource("2_o1kad")
+shader_parameter/opaque_ratio = 1.0
 
 [node name="Shape" type="CharacterBody2D" unique_id=1276430996]
 collision_mask = 6
 script = ExtResource("1_4fy8l")
 
 [node name="ShapeSprite" type="Sprite2D" parent="." unique_id=1865982620]
+material = SubResource("ShaderMaterial_e6dkk")
 position = Vector2(0, -19)
 texture = ExtResource("2_4fy8l")
 

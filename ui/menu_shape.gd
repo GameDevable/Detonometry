@@ -5,12 +5,12 @@ extends TextureRect
 
 # Rotation speed in degrees per second
 @export var rotation_speed: float = 0.6  # 180° per second
-
+var direction
 # Current velocity
 var velocity: Vector2
 var bounds_multiplier: Vector2 = Vector2(1.0, 1.0)
 func _ready() -> void:
-	velocity = speed
+	velocity = speed * Vector2(sign(randf_range(-1.0, 1.0)), sign(randf_range(-1.0, 1.0)))
 
 func _process(delta: float) -> void:
 	# Move the triangle
@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 
 	# Rotate the triangle
 	rotation += rotation_speed * delta
-
 	# Keep rotation between 0-360
 	if rotation_degrees > 360:
 		rotation_degrees -= 360

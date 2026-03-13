@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ba3vxeyrhsrvf"]
 
-[ext_resource type="Texture2D" uid="uid://is24hditierb" path="res://upgrade system/assets/upgrade icons/shape spawning/triangles_icon.svg" id="1_k6f5r"]
+[ext_resource type="Texture2D" uid="uid://is24hditierb" path="res://upgrade system/assets/upgrade icons/shape spawning/shapes/triangles_icon.svg" id="1_k6f5r"]
 [ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="2_i81rk"]
 
 [resource]

@@ -6,5 +6,5 @@
 [node name="LuckyComponent" type="Node" unique_id=371364015]
 script = ExtResource("1_54dyt")
 overlay_name = "LuckyOverlay"
-modifier_weight_name = "lucky_triangle_chance"
+modifier_weight_name = "lucky_chance"
 particles = ExtResource("2_m14tl")

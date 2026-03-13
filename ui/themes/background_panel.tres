@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://dpyaxj1kf2ib2"]
+
+[ext_resource type="Texture2D" uid="uid://cposjuxi3821f" path="res://background_checker.svg" id="1_pfgl6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jej87"]
+texture = ExtResource("1_pfgl6")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_jej87")

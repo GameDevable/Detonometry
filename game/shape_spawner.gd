@@ -122,8 +122,11 @@ func _add_modifiers(shape: Shape) -> void:
 	for packed_component in SHAPE_MODIFIER_COMPONENTS:
 		var component: ShapeModifierComponent = packed_component.instantiate()
 		var modifier_chance: float = StatManager.get_special_modifier_stat(component.modifier_weight_name)
+		print(component.modifier_weight_name)
+		print(modifier_chance)
 		if _should_add_modifier(modifier_chance):
-			shape.add_child(component)
+			if (component.is_specific_to_one_shape and shape.shape_data.shape_type == component.specific_shape) or not component.is_specific_to_one_shape:
+				shape.add_child(component)
 
 
 func _should_add_modifier(modifier_chance: float) -> bool:

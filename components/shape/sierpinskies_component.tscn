@@ -8,3 +8,4 @@ script = ExtResource("1_nqr48")
 overlay_texture = ExtResource("2_bn42l")
 overlay_name = "SierpienskiesOverlay"
 modifier_weight_name = "sierpinskies_triangle_chance"
+is_specific_to_one_shape = true

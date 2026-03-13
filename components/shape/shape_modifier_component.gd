@@ -8,11 +8,14 @@ extends Node
 @export var modifier_weight_name: String = ""
 @export var particles: PackedScene = null
 @export var sound: AudioStream = null
+@export var is_specific_to_one_shape: bool = false
+@export var specific_shape: Enums.ShapeType
 var shape: Shape = null
 
 func _ready() -> void:
 	shape = get_parent()
 	if particles:
+		await get_tree().create_timer(0.01).timeout
 		shape.add_child(particles.instantiate())
 
 # To be overridden

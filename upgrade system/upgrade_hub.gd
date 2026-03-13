@@ -11,13 +11,14 @@ const MAX_SCALE: Vector2 = Vector2(1.0, 1.0)
 const SCROLL_SPEED: float = 1.0
 # Left, right, Bottom, Top
 const DRAG_BOUNDS: Array[float] = [-250, 250, -600, 275]
-@onready var points_label: Label = $BackgroundPanel/PointsLabel
+@onready var points_label: Label = $PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
 
 @onready var settings_button: Button = $Buttons/SettingsButton
 @onready var back_to_game_button: Button = $Buttons/ContinueButton
 @onready var main_menu_button: Button = $Buttons/MainMenuButton
+@onready var background_panel: Panel = $BackgroundPanel
 
 
 func _ready() -> void:
@@ -113,6 +114,8 @@ func _zoom(direction: int) -> void:
 	new_scale.x = clamp(new_scale.x, MIN_SCALE.x, MAX_SCALE.x)
 	new_scale.y = clamp(new_scale.y, MIN_SCALE.y, MAX_SCALE.y)
 	draggable_nodes.scale = new_scale
+	#background_panel.scale = new_scale
+	
 
 
 func _set_up_buttons(parent_node: Control) -> void:

@@ -21,6 +21,11 @@ const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
 
 const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
 
+const BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET = preload("uid://hgty7lnbyr77")
+const BREAK_SQUARE_PARTICLES_TEXTURE_SHEET = preload("uid://bet2jldxif1tm")
+const BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET = preload("uid://b5wyw4gfsynki")
+
+
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -69,6 +74,7 @@ func _ready() -> void:
 	scale_up_tween.parallel().tween_property(modifier_overlay_sprites, "scale", final_scale, scale_up_time)
 	# This will make it feel a little nicer
 	move_direction = move_direction.normalized()
+	shape_sprite.material = shape_sprite.material.duplicate()
 	await get_tree().create_timer(scale_up_time / 2).timeout
 	hurtbox_collider.disabled = false
 
@@ -127,6 +133,36 @@ func _modulate_based_on_health(_health_ratio: float) -> void:
 	base_modulate.a = 1.0
 
 
+func _play_global_particles() -> void:
+	match shape_data.shape_type:
+		Enums.ShapeType.TRIANGLE:
+			EffectManager.spawn_particles(BREAK_PARTICLES, global_position, 0.0, BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET)
+		Enums.ShapeType.SQUARE:
+			EffectManager.spawn_particles(BREAK_PARTICLES, global_position, 0.0, BREAK_SQUARE_PARTICLES_TEXTURE_SHEET)
+		Enums.ShapeType.CIRCLE:
+			EffectManager.spawn_particles(BREAK_PARTICLES, global_position, 0.0, BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET)
+
+
+func _play_local_particles(particle_scale: Vector2) -> void:
+		match shape_data.shape_type:
+			Enums.ShapeType.TRIANGLE:
+				_spawn_particle(BREAK_PARTICLES, BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET, particle_scale)
+			Enums.ShapeType.SQUARE:
+				_spawn_particle(BREAK_PARTICLES, BREAK_SQUARE_PARTICLES_TEXTURE_SHEET, particle_scale)
+			Enums.ShapeType.CIRCLE:
+				_spawn_particle(BREAK_PARTICLES, BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET, particle_scale)
+
+
+func _spawn_particle(particle_scene: PackedScene, custom_texture: Texture2D, particle_scale: Vector2) -> void:
+	var particle_node: GPUParticles2D = particle_scene.instantiate()
+	particle_node.scale = particle_scale
+	if custom_texture:
+		particle_node.texture = custom_texture
+	add_child(particle_node)
+	particle_node.emitting = true
+	await particle_node.finished
+	particle_node.queue_free()
+
 func _on_explosion_detector_area_entered(area: Area2D) -> void:
 	if area.name == "ExplosionDetectionArea":
 		modulate = explosion_detected_modulate
@@ -145,10 +181,13 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 		if health_ratio <= 0.5:
 			if reinforced_overlay:
 				reinforced_overlay.visible = false
-			else:
-				_modulate_based_on_health(health_ratio)
-		elif health_ratio <= 0.25 and reinforced_overlay:
-			_modulate_based_on_health(health_ratio)
+				
+		if health.health != 0 and health.health != health.max_health:
+			_play_local_particles(Vector2(0.4, 0.4))
+		if reinforced_overlay:
+			shape_sprite.material.set_shader_parameter("opaque_ratio", health_ratio * 2)
+		else:
+			shape_sprite.material.set_shader_parameter("opaque_ratio", health_ratio)
 
 
 func _on_health_depleted(health_node: Health) -> void:
@@ -159,5 +198,5 @@ func _on_health_depleted(health_node: Health) -> void:
 		for child in get_children():
 			if child is ShapeModifierComponent:
 				child.activate_ability()
+		_play_global_particles()
 		SignalManager.shape_broken.emit(self)
-		EffectManager.spawn_particles(BREAK_PARTICLES, position)

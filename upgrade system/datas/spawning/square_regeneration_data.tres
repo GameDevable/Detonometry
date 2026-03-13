@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dhruxqv3itnju"]
 
 [ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_dql1k"]
-[ext_resource type="Texture2D" uid="uid://31g3yhu8xnmm" path="res://upgrade system/assets/upgrade icons/shape spawning/square_regeneration_icon.svg" id="1_ke5vq"]
+[ext_resource type="Texture2D" uid="uid://31g3yhu8xnmm" path="res://upgrade system/assets/upgrade icons/shape spawning/shapes/square_regeneration_icon.svg" id="1_ke5vq"]
 
 [resource]
 script = ExtResource("1_dql1k")
