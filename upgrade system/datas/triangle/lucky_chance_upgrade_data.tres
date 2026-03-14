@@ -7,7 +7,7 @@
 script = ExtResource("2_lg0tk")
 name = "Lucky Shapes  Chance"
 tier_modifiers = Array[float]([5.0, 10.0, 15.0])
-base_price = 60
+base_price = 50
 description = "Increases the chance for a Lucky Triangle to spawn"
 modify_stat_name = "lucky_chance"
 extra_character = "%"

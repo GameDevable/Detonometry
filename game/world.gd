@@ -23,8 +23,8 @@ func _ready() -> void:
 	SignalManager.session_restarted.connect(_on_session_restarted)
 	SignalManager.spawn_bomb.connect(func(spawn_position: Vector2) -> void:
 		spawn_bomb(spawn_position, false)
-		
 		)
+	SignalManager.shape_broken.connect(_on_shape_broken)
 
 
 func _process(delta: float) -> void:
@@ -151,10 +151,10 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 
 
 func _get_cluster_multiplier(cluster_size: int) -> float:
+	if session_data[4] < cluster_size and cluster_size > 1:
+		session_data[4] = cluster_size
+	
 	if cluster_size >= StatManager.get_multiplier_stat("cluster_threshold"):
-		
-		if session_data[4] < cluster_size:
-			session_data[4] = cluster_size
 		return StatManager.get_multiplier_stat("cluster_multiplier")
 	return 1.0
 
@@ -169,6 +169,7 @@ func _get_cluster_bonus(cluster_size: int) -> float:
 
 func _on_place_delay_timer_timeout() -> void:
 	place_delay_timer.stop()
+	SignalManager.delay_timer_out.emit()
 	can_create_bomb = true
 
 
@@ -177,9 +178,15 @@ func _on_session_timer_timeout() -> void:
 	if bomb_container.get_child_count() > 0:
 		await bomb_container.emptied
 		await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout
+	place_delay_timer.stop()
+	# Handles cursor issues
+	UiManager.set_progress_visible(false)
+	UiManager.set_mouse_cursor_visible(true)
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	
 	SignalManager.session_ended.emit(session_data)
 	UiManager.show_overlay("SessionSummary")
-	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	#UiManager.transition_to("UpgradeHub")
 	UiManager.hide_overlay("Hud")
 	SaveManager.save_game()
@@ -198,3 +205,7 @@ func _on_session_restarted() -> void:
 	session_data = [0, 0, 0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()
+
+
+func _on_shape_broken(shape: Shape) -> void:
+	_handle_shape_broken(shape)

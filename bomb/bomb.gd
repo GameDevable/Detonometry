@@ -12,12 +12,10 @@ const BLAST_PARTICLE = preload("uid://db1td87mfq0rt")
 const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
 const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
 
-
-
-
 @onready var bomb_sprite: Sprite2D = $BombSprite
 @onready var explosion_area_sprite: Sprite2D = $ExplosionAreaSprite
 @onready var explosion_area_hitbox: Hitbox = $ExplosionAreaHitbox
+
 @onready var hitbox_collider: CollisionShape2D = $ExplosionAreaHitbox/HitboxCollider
 @onready var detection_area_collider: CollisionShape2D = $ExplosionDetectionArea/DetectionAreaCollider
 @onready var explosion_detection_area: Area2D = $ExplosionDetectionArea
@@ -67,6 +65,8 @@ func _handle_explosion_effects() -> void:
 func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:
 	var shapes_broken: Array[Node2D] = []
 	for shape in shapes_inside_range:
+		if not is_instance_valid(shape):
+			continue
 		if shape is Shape:
 			if shape.health.health <= 0:
 				shapes_broken.append(shape)

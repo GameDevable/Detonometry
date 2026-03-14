@@ -144,6 +144,7 @@ func _center_window() -> void:
 	var window = DisplayServer.window_get_size()
 	DisplayServer.window_set_position((screen - window) / 2)
 
+
 func _on_input_in_window(event):
 	if event is InputEventMouseMotion:
 		UiManager.mouse_canvas.get_child(0).mouse_follower_wrapper.position = event.global_position

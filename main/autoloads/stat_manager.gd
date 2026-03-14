@@ -5,13 +5,12 @@ var bomb_stats: Dictionary[String, float] = {
 	"explosion_radius": 77.0,
 	"explosion_radius_size_percent": 100.0,
 	"explosion_time": 1.25,
-	"place_delay": 3.0,
-	
+	"place_delay": 3.5, 
 }
 
 # Shape Spawning
 var shape_spawn_stats: Dictionary[String, float] = {
-	"bunch_spawn_chance": 2,
+	"bunch_spawn_chance": 2.0,
 	"bunch_spawn_number": 2,
 
 	"triangle_spawn_limit": 6,
@@ -36,14 +35,18 @@ var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 }
 
 var special_modifier_stats: Dictionary[String, float] = {
-	"sierpinskies_triangle_chance": 0.0, 
+	"sierpinskies_triangle_chance": 0.0,
 	"fractalization_chance": 0.0,
 	"subtriangle_value" : 2.0,
 	"bomb_n_box_chance" : 0.0,
 	"lucky_chance" : 0.0,
 	"lucky_multiplier" : 5.0,
 	"reinforced_chance" : 0.0,
-	"reinforced_multiplier" : 3.0
+	"reinforced_multiplier" : 3.0,
+	"bouncy_ball_chance" : 0.0,
+	"bouncy_ball_damage" : 1.0,
+	"bouncy_ball_bounces" : 4.0,
+	"bouncy_ball_size_percent" : 1000.0,
 }
 
 var bonus_stats: Dictionary[String, float] = {
@@ -60,6 +63,13 @@ var session_stats: Dictionary[String, float] = {
 	"session_time" : 30.0,
 	
 }
+
+var shape_type_weights: Dictionary[Enums.ShapeType, float] = {
+	Enums.ShapeType.TRIANGLE : 6.0,
+	Enums.ShapeType.SQUARE : 4.0,
+	Enums.ShapeType.CIRCLE : 2.0
+}
+
 
 var unlocked_upgrades: Dictionary[String, Upgrade] = {}
 
@@ -132,6 +142,14 @@ func get_special_modifier_stat(key: String) -> float:
 		var upgrade: Upgrade = unlocked_upgrades[key]
 		var upgraded_shape_value: float = upgrade.get_upgraded_stat()
 		return upgraded_shape_value
+	if key == "bouncy_ball_size":
+		
+		return Constants.BASE_BOUNCY_BALL_SIZE * (get_special_modifier_stat("bouncy_ball_size_percent") / 100.0)
 	if not special_modifier_stats.has(key):
 		return 0.0
+	
 	return special_modifier_stats[key]
+
+
+func get_shape_type_weights() -> Dictionary[Enums.ShapeType, float]:
+	return shape_type_weights

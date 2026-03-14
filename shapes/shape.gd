@@ -38,7 +38,6 @@ const BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET = preload("uid://b5wyw4gfsynki")
 
 
 func _ready() -> void:
-	SignalManager.health_changed.connect(_on_health_changed)
 	while spin_direction == 0:
 		spin_direction = randi_range(-1, 1)
 	rotation = randi_range(-180, 180)
@@ -50,12 +49,12 @@ func _ready() -> void:
 	hurtbox_collider.set_deferred("shape", collision_shape)
 	detector_collider.set_deferred("shape", collision_shape)
 	shape_collider.set_deferred("shape", collision_shape)
-	
 	# Sets Health
 	var health_amount = StatManager.get_shape_health(shape_data.shape_type)
 	health.set_max_health(health_amount)
 	health.set_health(health_amount)
 	SignalManager.health_depleted.connect(_on_health_depleted)
+	SignalManager.health_changed.connect(_on_health_changed)
 	
 	shape_sprite.texture = shape_data.shape_texture
 	
@@ -190,9 +189,6 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 
 func _on_health_depleted(health_node: Health) -> void:
 	if health_node in get_children():
-		var volume: float = -7.0
-		var pitch_range: Vector2 = Vector2(0.8, 0.9)
-		EffectManager.play_sfx(SHAPE_BREAK, 0.1, volume, 1.0, true, pitch_range)
 		for child in get_children():
 			if child is ShapeModifierComponent:
 				child.activate_ability()

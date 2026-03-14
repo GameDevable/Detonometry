@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("1_d74py")
 name = "Explosion Delay"
-tier_modifiers = Array[float]([1.15, 1.0, 0.8])
+tier_modifiers = Array[float]([1.0, 0.8, 0.6])
 base_value = 1.25
-base_price = 20
+base_price = 14
 description = "Decreases the time it takes for a bomb to explode"
 modify_stat_name = "explosion_time"
 extra_character = "s"
 icon = ExtResource("1_vnqfg")
+custom_price_scale = 1.6
 metadata/_custom_type_script = "uid://dsonbba73212j"

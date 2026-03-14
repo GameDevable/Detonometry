@@ -68,16 +68,22 @@ func swap_menu(menu_key: String) -> void:
 
 
 func transition_to(menu_key: String) -> void:
-	if menu_key == "None":
-		SignalManager.session_restarted.emit()
 	var transition_effect: Control = ui_canvas.find_child("TransitionEffect", true, true)
 	transition_effect.visible = true
 	await transition_effect.transition_position(Vector2.ZERO)
 	
+	if menu_key == "None":
+		SignalManager.session_restarted.emit()
 	swap_menu(menu_key)
+	
+	#if menu_key == "None":
+	#	get_tree().paused = true
+		
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
 	transition_effect.reset()
-
+	#if menu_key == "None":
+	#	await get_tree().create_timer(1.0).timeout
+	#	get_tree().paused  = false
 
 func reset_saved_ui() -> void:
 	if not ui_canvas:

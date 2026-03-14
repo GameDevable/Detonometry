@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b48l5xnp6s5y4"]
+
+[ext_resource type="Texture2D" uid="uid://dtie17j2wxg21" path="res://upgrade system/assets/upgrade icons/circle/bouncy_ball_chance_icon.svg" id="1_1g6id"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_n4h61"]
+
+[resource]
+script = ExtResource("1_n4h61")
+name = "Bouncy Ball"
+tier_modifiers = Array[float]([4.0, 8.0, 12.0])
+base_price = 450
+description = "Increases the chance for a bouncy circle to appear"
+modify_stat_name = "bouncy_ball_chance"
+extra_character = "%"
+icon = ExtResource("1_1g6id")
+metadata/_custom_type_script = "uid://dsonbba73212j"

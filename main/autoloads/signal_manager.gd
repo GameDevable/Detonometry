@@ -15,6 +15,7 @@ signal shape_broken(instance: Shape)
 # Ui
 signal points_changed(new_value: int)
 signal place_delay_timer_changed(value: float)
+signal delay_timer_out()
 signal mouse_dragging(is_dragging: bool)
 # Spawn System
 signal spawn_shape_request(position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[ShapeModifierComponent])

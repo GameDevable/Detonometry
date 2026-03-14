@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dnvqvabvr1r7n"]
+
+[ext_resource type="Texture2D" uid="uid://ua4mxrh4gsrb" path="res://upgrade system/assets/upgrade icons/circle/bouncy_ball_size_icon.svg" id="1_7u8j5"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_upemv"]
+
+[resource]
+script = ExtResource("1_upemv")
+name = "Bouncy Ball Size"
+tier_modifiers = Array[float]([115.0, 130.0, 140.0, 150.0])
+base_value = 100.0
+base_price = 475
+description = "Increases the size of the bouncy ball"
+modify_stat_name = "bouncy_ball_size_percent"
+icon = ExtResource("1_7u8j5")
+metadata/_custom_type_script = "uid://dsonbba73212j"

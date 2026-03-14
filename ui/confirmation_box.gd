@@ -24,6 +24,11 @@ func _on_cancel_button_mouse_exited() -> void:
 
 func _on_accept_button_pressed() -> void:
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
+	UiManager.transition_to("None")
+	StatManager.unlocked_upgrades = {}
+	SaveManager.reset_file()
+	await get_tree().create_timer(0.5).timeout
+	UiManager.show_overlay("Hud")
 
 
 func _on_accept_button_mouse_entered() -> void:

@@ -11,19 +11,22 @@ extends Control
 @onready var continue_button: Button = $BackgroundPanel/ContentMargins/Buttons/ContinueButton
 @onready var continue_button_animator: UiEffectComponent = $BackgroundPanel/ContentMargins/Buttons/ContinueButton/ContinueButtonAnimator
 
+@onready var ui_effect_component: UiEffectComponent = $UiEffectComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.session_ended.connect(_on_session_ended)
 
 
-func _handle_shown() -> void:
+func handle_shown() -> void:
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	scale = Vector2(0.01, 0.01)
+	ui_effect_component.scale_ui(Vector2(0.01, 0.01), Vector2(1.0, 1.0), Tween.TRANS_EXPO)
 
 
 func _on_session_ended(data: Array[int]) -> void:
-	round_earnings_label.text = "Round Earnings: " + str(data[0])
-	total_earnings_label.text = "Total Earnings: " + str(data[1])
+	round_earnings_label.text = "Round Earnings: $" + str(data[0])
+	total_earnings_label.text = "Total Earnings: $" + str(data[1])
 	bombs_placed_label.text = "Bombs Placed: " + str(data[2])
 	total_shapes_label.text = "Total Shapes Destroyed: " + str(data[3])
 	cluster_label.text = "Max Cluster: " + str(data[4])
@@ -51,7 +54,7 @@ func _on_upgrade_hub_button_mouse_exited() -> void:
 func _on_continue_button_pressed() -> void:
 	UiManager.transition_to("None")
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.35).timeout
 	UiManager.show_overlay("Hud")
 	UiManager.hide_overlay("SessionSummary")
 

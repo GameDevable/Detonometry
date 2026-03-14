@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_6xy82")
 name = "Circle Regeneration"
-tier_modifiers = Array[float]([5.0, 4.0, 3.0, 2.0])
+tier_modifiers = Array[float]([4.0, 2.5, 1.5])
 base_value = 6.0
 base_price = 450
 description = "Reduces the time it takes for circles to respawn"

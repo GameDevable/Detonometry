@@ -14,13 +14,13 @@ const CANT_PLACE = preload("res://bomb/assets/audio/cant_place.ogg")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.place_delay_timer_changed.connect(_on_place_delay_timer_changed)
+	SignalManager.delay_timer_out.connect(_on_delay_timer_out)
 	SignalManager.unsuccessful_bomb_place.connect(_on_unsuccessful_bomb_place)
 	SignalManager.bomb_created.connect(func() -> void:
 		place_delay_progress_bar.visible = false
 		UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
 	)
 	place_delay_progress_bar.pivot_offset = place_delay_progress_bar.size * 0.5
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,10 +74,10 @@ func _on_place_delay_timer_changed(value: float) -> void:
 		if not place_delay_progress_bar.texture_progress == RING_FILL_YELLOW and not is_handling_unsuccessful_place and not progress_bar_cancel:
 			place_delay_progress_bar.texture_progress = RING_FILL_YELLOW
 		place_delay_progress_bar.value = place_delay_progress_bar.max_value * (1 - value / StatManager.get_bomb_stat("place_delay"))
-	else:
-		
-		place_delay_progress_bar.value = 100
-		await get_tree().create_timer(0.1).timeout
-		place_delay_progress_bar.visible = false
-		mouse_icon.visible = true
-	
+
+
+func _on_delay_timer_out() -> void:
+	place_delay_progress_bar.value = 100
+	await get_tree().create_timer(0.1).timeout
+	place_delay_progress_bar.visible = false
+	mouse_icon.visible = true
