@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bxly8wh0ukwp5"]
+
+[ext_resource type="Script" uid="uid://cfav8lcdqgmeb" path="res://ui/confirmation_box.gd" id="1_6xp7n"]
+[ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="1_g04q8"]
+[ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="2_mnde5"]
+[ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="4_nmurv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jgmr"]
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="ConfirmationBox" type="Panel" unique_id=2098163199]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -84.0
+offset_right = 304.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8jgmr")
+script = ExtResource("1_6xp7n")
+
+[node name="Label" type="Label" parent="." unique_id=1841452681]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02138158
+anchor_top = 0.069518715
+anchor_right = 0.97861844
+anchor_bottom = 0.4171123
+grow_horizontal = 2
+theme = ExtResource("1_g04q8")
+text = "Are you sure you want to start a new game?
+Starting a new game will delete your old save."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CancelButton" type="Button" parent="." unique_id=746954293]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.20888156
+anchor_top = 0.7056276
+anchor_right = 0.39309207
+anchor_bottom = 0.92487895
+offset_right = 1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("2_mnde5")
+text = "Cancel"
+metadata/_edit_use_anchors_ = true
+
+[node name="CancelButtonAnimator" parent="CancelButton" unique_id=1259690829 instance=ExtResource("4_nmurv")]
+
+[node name="AcceptButton" type="Button" parent="." unique_id=1504048740]
+layout_mode = 0
+anchor_left = 0.54111844
+anchor_top = 0.7012987
+anchor_right = 0.84539473
+anchor_bottom = 0.9134199
+offset_right = -35.0
+pivot_offset_ratio = Vector2(0.5, 1)
+theme = ExtResource("2_mnde5")
+text = "New Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="AcceptButtonAnimator" parent="AcceptButton" unique_id=320668390 instance=ExtResource("4_nmurv")]
+
+[connection signal="mouse_entered" from="CancelButton" to="." method="_on_cancel_button_mouse_entered"]
+[connection signal="mouse_exited" from="CancelButton" to="." method="_on_cancel_button_mouse_exited"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="mouse_entered" from="AcceptButton" to="." method="_on_accept_button_mouse_entered"]
+[connection signal="mouse_exited" from="AcceptButton" to="." method="_on_accept_button_mouse_exited"]
+[connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]

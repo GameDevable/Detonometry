@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("1_2xc51")
 name = "Circle Value"
-tier_modifiers = Array[float]([0.0])
+tier_modifiers = Array[float]([15.0, 20.0, 30.0])
+base_value = 10.0
+base_price = 650
 description = "Increases the amount of points that circles give you"
 modify_stat_name = "circle_shape"
 icon = ExtResource("1_qthxd")

@@ -2,15 +2,24 @@ extends Control
 var first_loadup: bool = true
 @onready var buttons_1: VBoxContainer = $Buttons1
 @onready var buttons_2: VBoxContainer = $Buttons2
+
 @onready var playtest_button: Button = $PlaytestButton
 @onready var playtest_button_animator: UiEffectComponent = $PlaytestButton/PlaytestButtonAnimator
+
 @onready var discord_button: Button = $DiscordButton
 @onready var discord_button_animator: UiEffectComponent = $DiscordButton/DiscordButtonAnimator
+
 @onready var mailing_list_button: Button = $MailingListButton
 @onready var mailing_list_button_animator: UiEffectComponent = $MailingListButton/MailingListButtonAnimator
 
+@onready var confirmation_box: Panel = $ConfirmationBox
+
+@onready var new_game_button_2: Button = $Buttons2/NewGameButton
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	new_game_button_2.pressed.disconnect(new_game_button_2._on_pressed)
 	if not first_loadup:
 		buttons_2.visible = true
 	else:
@@ -26,6 +35,7 @@ func load_save_data(data: Dictionary) -> void:
 
 
 func handle_entered() -> void:
+	confirmation_box.visible = false
 	if not first_loadup:
 		buttons_1.visible = false
 		buttons_2.visible = true
@@ -77,3 +87,7 @@ func _on_mailing_list_button_mouse_entered() -> void:
 
 func _on_mailing_list_button_mouse_exited() -> void:
 	mailing_list_button_animator.scale_ui(mailing_list_button.scale, Vector2(1.0, 1.0))
+
+
+func _on_new_game_button_pressed() -> void:
+	confirmation_box.visible = true

@@ -26,13 +26,13 @@
 [ext_resource type="Resource" uid="uid://da4oqddqo13o3" path="res://upgrade system/datas/triangle/lucky_chance_upgrade_data.tres" id="19_gpdj0"]
 [ext_resource type="Resource" uid="uid://dr0owyqhlfiso" path="res://upgrade system/datas/triangle/reinforced_chance_upgrade_data.tres" id="20_g8e3i"]
 [ext_resource type="Resource" uid="uid://b6ck0c6sbq4fh" path="res://upgrade system/datas/triangle/sierpinskies_triangle_chance_upgrade_data.tres" id="21_hricv"]
-[ext_resource type="Resource" uid="uid://bo84g03r0gd2" path="res://upgrade system/datas/triangle/subtriangle_value_upgrade_data.tres" id="22_h5flq"]
 [ext_resource type="Resource" uid="uid://de56bx33q55qd" path="res://upgrade system/datas/triangle/triangle_value_upgrade_data.tres" id="23_vs24g"]
 [ext_resource type="Resource" uid="uid://bhgcpjiomii1" path="res://upgrade system/datas/triangle/lucky_multiplier_upgrade_data.tres" id="24_8wfwf"]
 [ext_resource type="Resource" uid="uid://bjn3xungukyiv" path="res://upgrade system/datas/triangle/reinforced_multiplier_upgrade.tres" id="25_nv5ir"]
 [ext_resource type="Resource" uid="uid://dk8uglcat2mwo" path="res://upgrade system/datas/square/square_value_data.tres" id="26_g8e3i"]
 [ext_resource type="Resource" uid="uid://wof8ud5yktqs" path="res://upgrade system/datas/session/session_time_upgrade_data.tres" id="26_mh01h"]
 [ext_resource type="Resource" uid="uid://dwfmugn5332h7" path="res://upgrade system/datas/circle/circle_value_data.tres" id="27_hricv"]
+[ext_resource type="Resource" uid="uid://ciqwbhjb3fbrk" path="res://upgrade system/datas/square/bomb_n_box_data.tres" id="28_8wfwf"]
 [ext_resource type="PackedScene" uid="uid://c0fwik5w87jwj" path="res://upgrade system/upgrade_connector.tscn" id="29_hricv"]
 [ext_resource type="Script" uid="uid://lm5xhpovbe72" path="res://components/editor/line_updater_component.gd" id="34_h5flq"]
 
@@ -60,7 +60,6 @@ mouse_filter = 2
 theme = ExtResource("2_vs24g")
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1646330060]
-modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -75,7 +74,6 @@ text = "Upgrades"
 metadata/_edit_use_anchors_ = true
 
 [node name="PointsLabel" type="Label" parent="." unique_id=2000245348]
-modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -280,9 +278,9 @@ offset_bottom = 40.0
 [node name="FractalizationChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1942306473 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
 offset_left = 470.55557
-offset_top = 876.6667
+offset_top = 793.3334
 offset_right = 470.55557
-offset_bottom = 876.6667
+offset_bottom = 793.3334
 data = ExtResource("18_vfhg7")
 
 [node name="SierpinskiesChance" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=2016670690 instance=ExtResource("5_8xrc4")]
@@ -292,14 +290,6 @@ offset_top = 793.3334
 offset_right = 637.2223
 offset_bottom = 793.3334
 data = ExtResource("21_hricv")
-
-[node name="SubTValue" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=537067488 instance=ExtResource("5_8xrc4")]
-layout_mode = 0
-offset_left = 803.8889
-offset_top = 876.6667
-offset_right = 803.8889
-offset_bottom = 876.6667
-data = ExtResource("22_h5flq")
 
 [node name="TriangleValue" parent="DraggableNodes/UpgradeNodes/Triangle" unique_id=1075522769 instance=ExtResource("5_8xrc4")]
 layout_mode = 0
@@ -321,6 +311,14 @@ offset_top = 543.3334
 offset_right = 1220.5557
 offset_bottom = 543.3334
 data = ExtResource("26_g8e3i")
+
+[node name="BombNBox" parent="DraggableNodes/UpgradeNodes/Square" unique_id=618903863 instance=ExtResource("5_8xrc4")]
+layout_mode = 0
+offset_left = 1220.5557
+offset_top = 210.00002
+offset_right = 1220.5557
+offset_bottom = 210.00002
+data = ExtResource("28_8wfwf")
 
 [node name="Circle" type="Control" parent="DraggableNodes/UpgradeNodes" unique_id=2049229062]
 anchors_preset = 0
@@ -475,15 +473,9 @@ offset_bottom = 40.0
 
 [node name="SCFCcon" parent="DraggableNodes/Connectors/Triangle" unique_id=1107970190 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
 position = Vector2(-34.444447, -151.11111)
-points = PackedVector2Array(505.00003, 1075.7778, 671.66675, 992.44446)
+points = PackedVector2Array(505.00003, 992.44446, 671.66675, 992.44446)
 root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
 dependent_node = NodePath("../../../UpgradeNodes/Triangle/FractalizationChance")
-
-[node name="SCSTcon" parent="DraggableNodes/Connectors/Triangle" unique_id=1436759669 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
-position = Vector2(-102.22223, -4.4444447)
-points = PackedVector2Array(906.11115, 929.1112, 739.4445, 845.77783)
-root_node = NodePath("../../../UpgradeNodes/Triangle/SierpinskiesChance")
-dependent_node = NodePath("../../../UpgradeNodes/Triangle/SubTValue")
 
 [node name="GlobalSpecial" type="Control" parent="DraggableNodes/Connectors" unique_id=534387304]
 anchors_preset = 0
@@ -504,6 +496,17 @@ dependent_node = NodePath("../../../UpgradeNodes/Spawning/ReinforcedChance")
 points = PackedVector2Array(887.2223, 8, 803.8889, 174.66667)
 root_node = NodePath("../../../UpgradeNodes/Spawning/ReinforcedChance")
 dependent_node = NodePath("../../../UpgradeNodes/Spawning/ReinforcedMultiplier")
+
+[node name="Square" type="Control" parent="DraggableNodes/Connectors" unique_id=1721217270]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UpgradeConnector" parent="DraggableNodes/Connectors/Square" unique_id=809989570 node_paths=PackedStringArray("root_node", "dependent_node") instance=ExtResource("29_hricv")]
+position = Vector2(-155.55556, -24.444447)
+points = PackedVector2Array(1376.1113, 282.4445, 1126.1112, 365.77783)
+root_node = NodePath("../../../UpgradeNodes/Spawning/SquareLimit")
+dependent_node = NodePath("../../../UpgradeNodes/Square/BombNBox")
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)

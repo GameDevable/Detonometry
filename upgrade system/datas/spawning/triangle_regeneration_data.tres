@@ -8,7 +8,7 @@ script = ExtResource("2_p1b8y")
 name = "Triangle Regeneration"
 tier_modifiers = Array[float]([2.0, 1.5, 1.0])
 base_value = 2.5
-base_price = 8
+base_price = 25
 description = "Reduces the time it takes for a triangle to respawn"
 modify_stat_name = "triangle_spawn_ratevar shape_spawn_stats: Dictionary[String, float] = {    \"bunch_spawn_chance\": 2,    \"bunch_spawn_number\": 2,    \"triangle_spawn_limit\": 0,    \"triangle_spawn_rate\": 2.5,    \"square_spawn_limit\": 0,    \"square_spawn_rate\": 2.5,    \"pentagon_spawn_limit\": 0,    \"pentagon_spawn_rate\": 2.5,    \"circle_spawn_limit\": 0,    \"circle_spawn_rate\": 2.5,}"
 extra_character = "s"

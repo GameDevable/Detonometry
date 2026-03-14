@@ -12,4 +12,3 @@ base_price = 65
 description = "Increases the value of Sierpinskie's subtriangles"
 modify_stat_name = "subtriangle_value"
 icon = ExtResource("1_lg8oq")
-price_scale = 1.3

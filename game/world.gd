@@ -3,9 +3,10 @@ extends Node2D
 var held_bomb: Bomb = null
 var can_create_bomb: bool = true
 var time_since_bomb_creation: float = 0.0
-var session_data: Array[int] = [0, 0, 0]
+var session_data: Array[int] = [0, 0, 0, 0, 0] # Round Earned, Total Earned, Bombs Placed, Total Shapes, Cluster Total
 var total_points: int = 0
 var current_run_gain: int = 0
+var total_shapes_destroyed: int = 0
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
 const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
 @onready var bomb_container: Node2D = $BombContainer
@@ -20,6 +21,10 @@ func _ready() -> void:
 		_set_points(total_points - upgrade.get_previous_price())
 	)
 	SignalManager.session_restarted.connect(_on_session_restarted)
+	SignalManager.spawn_bomb.connect(func(spawn_position: Vector2) -> void:
+		spawn_bomb(spawn_position, false)
+		
+		)
 
 
 func _process(delta: float) -> void:
@@ -62,14 +67,15 @@ func load_save_data(data: Dictionary) -> void:
 
 
 # Initializes an bomb at a certain position (usually the mouse position)
-func create_bomb(spawn_position: Vector2) -> Bomb:
+func create_bomb(spawn_position: Vector2, in_hand: bool = true) -> Bomb:
 	var packed_bomb_scene: PackedScene = load(Constants.BOMB_SCENE_PATH)
 	var bomb_instance: Bomb = packed_bomb_scene.instantiate()
 	bomb_instance.position = spawn_position
 	EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.0, -3.0, 1.75)
 	# I get a bunch of errors if it is not deferred
 	bomb_container.call_deferred("add_child", bomb_instance)
-	SignalManager.bomb_created.emit()
+	if in_hand:
+		SignalManager.bomb_created.emit()
 	return bomb_instance
 
  
@@ -98,9 +104,9 @@ func spawn_floating_text(text: String, text_position: Vector2, text_color: Color
 	floating_text.queue_free()
 
 
-func spawn_bomb(bomb_position: Vector2):
-	var bomb_instance: Bomb = create_bomb(bomb_position)
-	bomb_instance.handle_placed()
+func spawn_bomb(bomb_position: Vector2, in_hand: bool = true):
+	var bomb_instance: Bomb = create_bomb(bomb_position, in_hand)
+	bomb_instance.call_deferred("handle_placed")
 
 
 func _command_set_points(amount: String) -> void:
@@ -124,6 +130,8 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 	session_data[0] = current_run_gain
 	_set_points(total_points + shape_value)
 	var text = "+$" + str(shape_value)
+	total_shapes_destroyed += 1
+	session_data[3] = total_shapes_destroyed
 	spawn_floating_text(text ,shape_instance.position + Vector2(0, -10.0), Color.GREEN, 1.15)
 	shape_instance.queue_free()
 
@@ -144,6 +152,9 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 
 func _get_cluster_multiplier(cluster_size: int) -> float:
 	if cluster_size >= StatManager.get_multiplier_stat("cluster_threshold"):
+		
+		if session_data[4] < cluster_size:
+			session_data[4] = cluster_size
 		return StatManager.get_multiplier_stat("cluster_multiplier")
 	return 1.0
 
@@ -166,7 +177,10 @@ func _on_session_timer_timeout() -> void:
 	if bomb_container.get_child_count() > 0:
 		await bomb_container.emptied
 		await get_tree().create_timer(0.5).timeout
-	UiManager.transition_to("UpgradeHub")
+	SignalManager.session_ended.emit(session_data)
+	UiManager.show_overlay("SessionSummary")
+	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	#UiManager.transition_to("UpgradeHub")
 	UiManager.hide_overlay("Hud")
 	SaveManager.save_game()
 
@@ -177,8 +191,10 @@ func _on_session_restarted() -> void:
 	held_bomb = null
 	can_create_bomb = true
 	current_run_gain = 0
+	total_shapes_destroyed = 0
+	
 	place_delay_timer.stop()
 	session_timer.start(StatManager.get_session_stat("session_time"))
-	session_data = [0, 0, 0]
+	session_data = [0, 0, 0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()

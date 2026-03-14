@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ciqwbhjb3fbrk"]
+
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_c4dqk"]
+[ext_resource type="Texture2D" uid="uid://82a53u1xlrc6" path="res://upgrade system/assets/upgrade icons/square/bomb_n_box_icon.svg" id="1_c6ark"]
+
+[resource]
+script = ExtResource("1_c4dqk")
+name = "Bomb N' Box"
+tier_modifiers = Array[float]([5.0, 12.0, 18.0])
+base_price = 110
+description = "Increases the chance for a bomb to spawn inside of a square"
+modify_stat_name = "bomb_n_box_chance"
+extra_character = "%"
+icon = ExtResource("1_c6ark")
+metadata/_custom_type_script = "uid://dsonbba73212j"

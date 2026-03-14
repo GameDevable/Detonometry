@@ -17,6 +17,7 @@
 [ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="12_jiymt"]
 [ext_resource type="Texture2D" uid="uid://2iykrxtmtdh6" path="res://ui/assets/discord_icon.svg" id="13_bgtsx"]
 [ext_resource type="Texture2D" uid="uid://dolkgcpf8v1b7" path="res://ui/assets/mailing_list_icon.svg" id="14_kaxbk"]
+[ext_resource type="PackedScene" uid="uid://bxly8wh0ukwp5" path="res://ui/confirmation_box.tscn" id="18_q75kt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgtsx"]
 bg_color = Color(0.11372549, 0.11372549, 0.11372549, 1)
@@ -292,7 +293,7 @@ anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.3.4"
+text = "v0.3.7"
 metadata/_edit_use_anchors_ = true
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]
@@ -406,6 +407,12 @@ texture = ExtResource("14_kaxbk")
 [node name="MailingListButtonAnimator" parent="MailingListButton" unique_id=1369305931 instance=ExtResource("11_lsdqh")]
 trans_type = 5
 
+[node name="ConfirmationBox" parent="." unique_id=2098163199 instance=ExtResource("18_q75kt")]
+layout_mode = 1
+offset_top = -115.5
+offset_bottom = 115.5
+
+[connection signal="pressed" from="Buttons2/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="mouse_entered" from="PlaytestButton" to="." method="_on_playtest_button_mouse_entered"]
 [connection signal="mouse_exited" from="PlaytestButton" to="." method="_on_playtest_button_mouse_exited"]
 [connection signal="pressed" from="PlaytestButton" to="." method="_on_playtest_button_pressed"]

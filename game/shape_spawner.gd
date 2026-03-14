@@ -13,8 +13,9 @@ var shape_containers: Dictionary[Enums.ShapeType, Node2D] = {}
 const REINFORCED_COMPONENT = preload("uid://di7k4eb3imi33")
 const LUCKY_COMPONENT = preload("uid://dh8j4i14eauhe")
 const SIERPINSKIES_COMPONENT = preload("uid://bdacywg0y6sha")
+const BOMB_N_BOX_COMPONENT = preload("uid://dc1gh88g5fol3")
 
-const SHAPE_MODIFIER_COMPONENTS: Array[PackedScene] = [REINFORCED_COMPONENT, LUCKY_COMPONENT, SIERPINSKIES_COMPONENT]
+const SHAPE_MODIFIER_COMPONENTS: Array[PackedScene] = [REINFORCED_COMPONENT, LUCKY_COMPONENT, SIERPINSKIES_COMPONENT, BOMB_N_BOX_COMPONENT]
 func _ready() -> void:
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
 	SignalManager.session_restarted.connect(func() -> void:
@@ -92,7 +93,7 @@ func _spawn_sierpinski_subtriangles(triangle_position: Vector2, modifier_arrays_
 		shapes[i].speed = speed_array[i]
 		shapes[i].base_speed = speed_array[i]
 		shapes[i].move_direction = direction_array[i]
-		#shapes[i].scale = Vector2(0.9, 0.9)
+		shapes[i].scale = Vector2(0.8, 0.8)
 
 
 func _handle_auto_bunch_spawn(world_spawn_bounds: Array[int]) -> void:
@@ -122,8 +123,6 @@ func _add_modifiers(shape: Shape) -> void:
 	for packed_component in SHAPE_MODIFIER_COMPONENTS:
 		var component: ShapeModifierComponent = packed_component.instantiate()
 		var modifier_chance: float = StatManager.get_special_modifier_stat(component.modifier_weight_name)
-		print(component.modifier_weight_name)
-		print(modifier_chance)
 		if _should_add_modifier(modifier_chance):
 			if (component.is_specific_to_one_shape and shape.shape_data.shape_type == component.specific_shape) or not component.is_specific_to_one_shape:
 				shape.add_child(component)

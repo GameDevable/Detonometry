@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_w443r")
 name = "Reinforced Triangle Chance"
-tier_modifiers = Array[float]([10.0, 15.0, 10.0])
-base_price = 65
+tier_modifiers = Array[float]([8.0, 14.0, 20.0])
+base_price = 36
 description = "Increases the chance for a reinforced triangle to spawn"
 modify_stat_name = "reinforced_triangle_chance"
 extra_character = "%"

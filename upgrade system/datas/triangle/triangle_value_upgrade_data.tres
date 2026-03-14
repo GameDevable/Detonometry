@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_r4636")
 name = "Triangle Value"
-tier_modifiers = Array[float]([3.0, 5.0])
+tier_modifiers = Array[float]([3.0, 5.0, 8.0])
 base_value = 1.0
 base_price = 50
 description = "Increases the value of the triangle shapes"

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://da0o0f4mlbpgr" path="res://game/transition_effect.gd" id="5_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cseoj1s61cxu4" path="res://ui/main_menu.tscn" id="5_4dugh"]
 [ext_resource type="PackedScene" uid="uid://ctk4el1qe4c6c" path="res://ui/custom_mouse_overlay.tscn" id="8_67ri8"]
+[ext_resource type="PackedScene" uid="uid://dilbliwg6ruo7" path="res://ui/session_summary.tscn" id="8_grrlh"]
 
 [node name="Main" type="Node" unique_id=2002669623]
 process_mode = 3
@@ -76,6 +77,10 @@ offset_right = -1283.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="SessionSummary" parent="UiCanvasLayer/Overlays" unique_id=326003256 instance=ExtResource("8_grrlh")]
+visible = false
+layout_mode = 1
 
 [node name="MouseLayer" type="CanvasLayer" parent="." unique_id=1748312313]
 layer = 2000

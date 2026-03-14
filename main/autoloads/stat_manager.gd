@@ -17,10 +17,10 @@ var shape_spawn_stats: Dictionary[String, float] = {
 	"triangle_spawn_limit": 6,
 	"triangle_spawn_rate": 2.5,
 
-	"square_spawn_limit": 3,
+	"square_spawn_limit": 0,
 	"square_spawn_rate": 4,
 
-	"circle_spawn_limit": 2,
+	"circle_spawn_limit": 0,
 	"circle_spawn_rate": 6,
 
 	"pentagon_spawn_limit": 0,
@@ -36,13 +36,14 @@ var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 }
 
 var special_modifier_stats: Dictionary[String, float] = {
-	"sierpinskies_triangle_chance": 0.0,
+	"sierpinskies_triangle_chance": 0.0, 
 	"fractalization_chance": 0.0,
-	"subtriangle_value" : 1.0,
+	"subtriangle_value" : 2.0,
+	"bomb_n_box_chance" : 0.0,
 	"lucky_chance" : 0.0,
-	"lucky_multiplier" : 3.0,
+	"lucky_multiplier" : 5.0,
 	"reinforced_chance" : 0.0,
-	"reinforced_multiplier" : 5.0
+	"reinforced_multiplier" : 3.0
 }
 
 var bonus_stats: Dictionary[String, float] = {

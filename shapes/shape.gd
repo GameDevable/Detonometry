@@ -25,7 +25,6 @@ const BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET = preload("uid://hgty7lnbyr77")
 const BREAK_SQUARE_PARTICLES_TEXTURE_SHEET = preload("uid://bet2jldxif1tm")
 const BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET = preload("uid://b5wyw4gfsynki")
 
-
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -94,10 +93,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-
 func get_value() -> float:
 	var base_value: int = StatManager.get_shape_value(shape_data.shape_type)
-	var total_value: int = (base_value + modifier_value_adders_total) * modifier_multipliers_total 
+	var total_value: int = (base_value + modifier_value_adders_total) * modifier_multipliers_total
 	return total_value
 
 
@@ -198,5 +196,6 @@ func _on_health_depleted(health_node: Health) -> void:
 		for child in get_children():
 			if child is ShapeModifierComponent:
 				child.activate_ability()
+				
 		_play_global_particles()
 		SignalManager.shape_broken.emit(self)

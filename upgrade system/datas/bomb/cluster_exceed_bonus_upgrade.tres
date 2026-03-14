@@ -7,9 +7,8 @@
 script = ExtResource("1_yvo7h")
 name = "Cluster Bonus"
 tier_modifiers = Array[float]([2.0, 5.0])
-base_price = 22
+base_price = 26
 description = "Rewards extra points for every shape destroyed by a single bomb over 3"
 modify_stat_name = "cluster_exceed_bonus"
 icon = ExtResource("1_a3tfv")
-custom_price_scale = 1.8
 metadata/_custom_type_script = "uid://dsonbba73212j"
