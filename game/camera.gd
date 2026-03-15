@@ -9,6 +9,8 @@ func _ready() -> void:
 
 
 func _on_bomb_detonated(_shapes_broken) -> void:
-	var shake_intensity: float =  base_shake_intensity + StatManager.get_bomb_stat("damage") * Constants.SCALE_RATIO
+	var additional_intensity_explosion_damage: float = StatManager.get_bomb_stat("damage") * 0.35
+	var additional_intensity_explosion_area: float = StatManager.get_bomb_stat("explosion_radius_size_percent") * 0.02
+	var shake_intensity: float =  base_shake_intensity + additional_intensity_explosion_area + additional_intensity_explosion_damage
 	shake_intensity = min(shake_intensity, Constants.CAMERA_SHAKE_INTENSITY_CAP)
 	shake_component.shake(shake_intensity, shake_time)

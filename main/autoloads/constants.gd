@@ -8,7 +8,6 @@ const TILE_SIZE: int = 3
 const VIEWPORT_WIDTH: int = 640
 const VIEWPORT_HEIGHT: int = 360
 
-const SCALE_RATIO: float = 0.1
 const CAMERA_SHAKE_INTENSITY_CAP: float = 8.0
 const UI_SHAKE_INTENSITY_CAP: float = 4.0
 const MIN_SHAPE_SPEED: int = 62

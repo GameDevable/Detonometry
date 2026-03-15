@@ -7,7 +7,7 @@ var active_menu: Control = null
 var ui_canvas: CanvasLayer = null
 var mouse_canvas: CanvasLayer = null
 var previous_menu: String = "None"
-
+var world: World = null
 
 func set_up_ui(canvas_layer: CanvasLayer, mouse_canvas_layer) -> void:
 	ui_canvas = canvas_layer
@@ -22,6 +22,9 @@ func set_up_ui(canvas_layer: CanvasLayer, mouse_canvas_layer) -> void:
 	for overlay in overlays.get_children():
 		ui_overlays.set(overlay.name, overlay)
 		#overlay.visible = false
+
+func set_up_world(w: World) -> void:
+	world = w
 
 
 func show_overlay(overlay_key: String) -> void:
@@ -51,7 +54,6 @@ func swap_menu(menu_key: String) -> void:
 			previous_menu = active_menu.name
 			active_menu.visible = false
 			active_menu = null
-			get_tree().paused = false
 		return
 	if not ui_menus.has(menu_key):
 		push_error("Menu %s does not exist")
@@ -76,14 +78,10 @@ func transition_to(menu_key: String) -> void:
 		SignalManager.session_restarted.emit()
 	swap_menu(menu_key)
 	
-	#if menu_key == "None":
-	#	get_tree().paused = true
-		
+	if menu_key == "None":
+		world.handle_entered()
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
 	transition_effect.reset()
-	#if menu_key == "None":
-	#	await get_tree().create_timer(1.0).timeout
-	#	get_tree().paused  = false
 
 func reset_saved_ui() -> void:
 	if not ui_canvas:

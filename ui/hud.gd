@@ -19,6 +19,6 @@ func _ready() -> void:
 
 
 func _on_bomb_detonated(_shapes_broken: Array[Node2D]) -> void:
-	var shake_intensity: float = base_shake_intensity + StatManager.get_bomb_stat("damage") * Constants.SCALE_RATIO
+	var shake_intensity: float = base_shake_intensity + StatManager.get_bomb_stat("damage") * 0.25
 	shake_intensity = min(shake_intensity, Constants.UI_SHAKE_INTENSITY_CAP)
 	$ShakeComponent.shake(shake_intensity, 0.8)

@@ -12,6 +12,7 @@ var modifier_value_adders_total: float = 0.0
 var shape_data: ShapeData = null
 var spin_direction: int = 0
 var spin_speed: float = 0.0
+var inside_area: bool = false
 const OFFSCREEN_PADDING: int = 20
 const FRICTION: int = 1000
 const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/reinforced_"
@@ -141,13 +142,14 @@ func _play_global_particles() -> void:
 
 
 func _play_local_particles(particle_scale: Vector2) -> void:
-		match shape_data.shape_type:
-			Enums.ShapeType.TRIANGLE:
-				_spawn_particle(BREAK_PARTICLES, BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET, particle_scale)
-			Enums.ShapeType.SQUARE:
-				_spawn_particle(BREAK_PARTICLES, BREAK_SQUARE_PARTICLES_TEXTURE_SHEET, particle_scale)
-			Enums.ShapeType.CIRCLE:
-				_spawn_particle(BREAK_PARTICLES, BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET, particle_scale)
+	print(particle_scale)
+	match shape_data.shape_type:
+		Enums.ShapeType.TRIANGLE:
+			_spawn_particle(BREAK_PARTICLES, BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET, particle_scale)
+		Enums.ShapeType.SQUARE:
+			_spawn_particle(BREAK_PARTICLES, BREAK_SQUARE_PARTICLES_TEXTURE_SHEET, particle_scale)
+		Enums.ShapeType.CIRCLE:
+			_spawn_particle(BREAK_PARTICLES, BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET, particle_scale)
 
 
 func _spawn_particle(particle_scene: PackedScene, custom_texture: Texture2D, particle_scale: Vector2) -> void:
@@ -160,14 +162,17 @@ func _spawn_particle(particle_scene: PackedScene, custom_texture: Texture2D, par
 	await particle_node.finished
 	particle_node.queue_free()
 
+
 func _on_explosion_detector_area_entered(area: Area2D) -> void:
 	if area.name == "ExplosionDetectionArea":
 		modulate = explosion_detected_modulate
+		inside_area = true
 
 
 func _on_explosion_detector_area_exited(area: Area2D) -> void:
 	if area.name == "ExplosionDetectionArea":
 		modulate = base_modulate
+		inside_area = false
 
 
 func _on_health_changed(health_node: Health, _diff: int) -> void:
@@ -180,7 +185,7 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 				reinforced_overlay.visible = false
 				
 		if health.health != 0 and health.health != health.max_health:
-			_play_local_particles(Vector2(0.4, 0.4))
+			_play_local_particles(Vector2(0.3, 0.3))
 		if reinforced_overlay:
 			shape_sprite.material.set_shader_parameter("opaque_ratio", health_ratio * 2)
 		else:
@@ -194,4 +199,4 @@ func _on_health_depleted(health_node: Health) -> void:
 				child.activate_ability()
 				
 		_play_global_particles()
-		SignalManager.shape_broken.emit(self)
+		SignalManager.shape_broken.emit(self, inside_area)

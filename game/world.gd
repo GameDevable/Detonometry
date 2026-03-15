@@ -9,6 +9,8 @@ var current_run_gain: int = 0
 var total_shapes_destroyed: int = 0
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
 const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
+const MONEY_GAINED_SOUND = preload("uid://fdmbqs5tq2x5")
+
 @onready var bomb_container: Node2D = $BombContainer
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 @onready var session_timer: Timer = $SessionTimer
@@ -56,6 +58,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if held_bomb:
 			held_bomb.position = get_global_mouse_position()
 
+func handle_entered() -> void:
+	SignalManager.session_timer_updated.emit(StatManager.get_session_stat("session_time"))
+	await get_tree().create_timer(1.0).timeout
+	get_tree().paused = false
 
 func save() -> Dictionary:
 	return {"points" : total_points}
@@ -71,7 +77,7 @@ func create_bomb(spawn_position: Vector2, in_hand: bool = true) -> Bomb:
 	var packed_bomb_scene: PackedScene = load(Constants.BOMB_SCENE_PATH)
 	var bomb_instance: Bomb = packed_bomb_scene.instantiate()
 	bomb_instance.position = spawn_position
-	EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.0, -3.0, 1.75)
+	#EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.0, -4.0, 1.75)
 	# I get a bunch of errors if it is not deferred
 	bomb_container.call_deferred("add_child", bomb_instance)
 	if in_hand:
@@ -81,8 +87,8 @@ func create_bomb(spawn_position: Vector2, in_hand: bool = true) -> Bomb:
  
 func place_bomb() -> void:
 	if held_bomb:
-		var vol1 = 2.0
-		var vol2 = 1.0
+		var vol1 = 0.0
+		var vol2 = -1.0
 		EffectManager.play_sfx(BOMB_PLACE_SOUND1, 0.12, vol1, 0.92)
 		EffectManager.play_sfx(BOMB_PLACE_SOUND2, 0, vol2, 0.93)
 		
@@ -132,6 +138,7 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 	var text = "+$" + str(shape_value)
 	total_shapes_destroyed += 1
 	session_data[3] = total_shapes_destroyed
+	EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -6, 0.6)
 	spawn_floating_text(text ,shape_instance.position + Vector2(0, -10.0), Color.GREEN, 1.15)
 	shape_instance.queue_free()
 
@@ -142,7 +149,7 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 	
 	total_external_multiplier *= _get_cluster_multiplier(shapes_broken.size())
 	total_external_bonus += _get_cluster_bonus(shapes_broken.size())
-	
+		
 	for shape in shapes_broken:
 		if is_instance_valid(shape) and shape is Shape:
 			_handle_shape_broken(shape, total_external_multiplier, total_external_bonus) 
@@ -207,5 +214,6 @@ func _on_session_restarted() -> void:
 		bomb.queue_free()
 
 
-func _on_shape_broken(shape: Shape) -> void:
-	_handle_shape_broken(shape)
+func _on_shape_broken(shape: Shape, by_bomb: bool) -> void:
+	if not by_bomb:
+		_handle_shape_broken(shape)

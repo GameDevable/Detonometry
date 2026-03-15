@@ -57,8 +57,9 @@ func _get_pitch_shift(min_pitch: float, max_pitch: float) -> float:
 	return  randf_range(min_pitch, max_pitch)
 
 
-func spawn_particles(particle_scene: PackedScene, spawn_position: Vector2, delay: float = 0.0, custom_texture: Texture2D = null) -> void:
+func spawn_particles(particle_scene: PackedScene, spawn_position: Vector2, delay: float = 0.0, custom_texture: Texture2D = null, scale: Vector2 = Vector2(1.0, 1.0)) -> void:
 	var particle_node: GPUParticles2D = particle_scene.instantiate()
+	particle_node.scale = scale
 	if custom_texture:
 		particle_node.texture = custom_texture
 	particle_node.position = spawn_position

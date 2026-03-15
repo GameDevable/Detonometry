@@ -50,16 +50,16 @@ func _set_radii(explosion_radius: float) -> void:
 
 
 func _handle_explosion_effects() -> void:
-	var volume: float = 3.75
+	var volume: float = 2.0
 	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
-	
-	EffectManager.spawn_particles(BLAST_PARTICLE, position)
+	var scale_factor: float = StatManager.get_bomb_stat("explosion_radius_size_percent") / 100.0
+	EffectManager.spawn_particles(BLAST_PARTICLE, position, 0.0, null, Vector2(scale_factor, scale_factor))
 	
 	var delay: float = 0.03 
-	EffectManager.spawn_particles(SPARK_PARTICLES, position, delay)
-	EffectManager.spawn_particles(DEBRIS_PARTICLES, position + Vector2(0, 20), delay)
-	EffectManager.spawn_particles(EXPLOSION_PARTICLES, position, delay)
+	EffectManager.spawn_particles(SPARK_PARTICLES, position, delay, null, Vector2(scale_factor, scale_factor))
+	EffectManager.spawn_particles(DEBRIS_PARTICLES, position + Vector2(0, 20), delay, null, Vector2(scale_factor, scale_factor))
+	EffectManager.spawn_particles(EXPLOSION_PARTICLES, position, delay, null, Vector2(scale_factor, scale_factor))
 
 
 func _handle_detonated_shapes(shapes_inside_range: Array[Node2D]) -> void:

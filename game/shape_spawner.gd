@@ -10,24 +10,21 @@ var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 
 var shape_containers: Dictionary[Enums.ShapeType, Node2D] = {}
 var can_spawn: bool = true
+
 const REINFORCED_COMPONENT = preload("uid://di7k4eb3imi33")
 const LUCKY_COMPONENT = preload("uid://dh8j4i14eauhe")
+
 const SIERPINSKIES_COMPONENT = preload("uid://bdacywg0y6sha")
 const BOMB_N_BOX_COMPONENT = preload("uid://dc1gh88g5fol3")
 const BOUNCY_BALL_MODIFIER_COMPONENT = preload("uid://coxbmwij4usst")
 
 const SHAPE_MODIFIER_COMPONENTS: Array[PackedScene] = [REINFORCED_COMPONENT, LUCKY_COMPONENT, SIERPINSKIES_COMPONENT, BOMB_N_BOX_COMPONENT, BOUNCY_BALL_MODIFIER_COMPONENT]
+const SHAPE_SPAWN_SOUND = preload("uid://c0ojavi6qx6r5")
+
 func _ready() -> void:
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
-	SignalManager.session_ended.connect(func(_data) -> void:
-		can_spawn = false
-		for child in get_children():
-			if child is Node2D:
-				for shape in child.get_children():
-					var tween = get_tree().create_tween()
-					tween.set_trans(Tween.TRANS_LINEAR)
-					tween.tween_property(shape, "scale", Vector2(0.01, 0.01), 0.6)
-		)
+	SignalManager.session_ended.connect(_on_session_restarted)
+	
 	SignalManager.session_restarted.connect(func() -> void:
 		can_spawn = true
 		)
@@ -37,6 +34,7 @@ func _ready() -> void:
 		Enums.ShapeType.CIRCLE: $Circles,
 		Enums.ShapeType.PENTAGON: $Pentagons
 	}
+	await get_tree().create_timer(0.01).timeout
 	_create_timer(Enums.ShapeType.TRIANGLE)
 	_create_timer(Enums.ShapeType.SQUARE)
 	_create_timer(Enums.ShapeType.CIRCLE)
@@ -66,6 +64,10 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 			shape_instance.add_child(child)
 	# Flushing queries issue
 	shape_containers[shape_type].call_deferred("add_child", shape_instance)
+	var spawn_sound_volume: float = -15.0
+	var spawn_sound_pitch: float = 0.35
+	EffectManager.play_sfx(SHAPE_SPAWN_SOUND, 0.0, spawn_sound_volume, spawn_sound_pitch )
+	
 	await shape_instance.tree_entered
 	return shape_instance
 
@@ -172,10 +174,11 @@ func _convert_variable_name_to_type(var_name: String) -> Enums.ShapeType:
 
 func _create_timer(type: Enums.ShapeType) -> void:
 	var timer: Timer = Timer.new()
-	timer.wait_time = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
+	var time: float = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
 	timer.timeout.connect(func(): _on_spawn_timer_timeout(type, timer))
 	add_child(timer)
-	timer.start()
+	print(time)
+	timer.start(time)
 
 # Get the spawn limit name for a shape
 func _get_spawn_limit_name(shape_type: Enums.ShapeType) -> String:
@@ -217,9 +220,23 @@ func _on_spawn_timer_timeout(type: Enums.ShapeType, timer_node: Timer) -> void:
 	if bunch_chance_roll <= StatManager.shape_spawn_stats["bunch_spawn_chance"] and type != Enums.ShapeType.PENTAGON:
 		_auto_spawn_shape_bunch(type)
 		return
-	timer_node.start(StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type)))
+	var time: float = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
+	print(time)
+	timer_node.start(time)
 	var x_limit: float = get_viewport_rect().size.x / 2.15
 	var y_limit: float = get_viewport_rect().size.x / 2.4
 	var world_bounds: Array[int] = [-x_limit, x_limit, -y_limit, y_limit]
 	var spawn_position: Vector2 = _choose_random_pos(world_bounds)
 	spawn_shape(spawn_position, type)
+
+
+func _on_session_restarted(_data: Array[int]) -> void:
+	can_spawn = false
+	for container in get_children():
+		if not container is Node2D:
+			continue
+		for shape in container.get_children():
+			var tween = get_tree().create_tween()
+			tween.set_trans(Tween.TRANS_LINEAR)
+			tween.tween_property(shape, "scale", Vector2(0.01, 0.01), 0.6)
+			shape.queue_free()

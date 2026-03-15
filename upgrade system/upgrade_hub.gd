@@ -36,7 +36,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+
+	if event is InputEventMouseButton and not get_tree().paused:
 		var mouse_event = event as InputEventMouseButton
 		if mouse_event.pressed:
 			if mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:

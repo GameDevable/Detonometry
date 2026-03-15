@@ -10,7 +10,7 @@ signal bomb_detonated(shapes_broken: Array[Node2D])
 signal bomb_created
 signal bomb_placed
 # Shapes
-signal shape_broken(instance: Shape)
+signal shape_broken(instance: Shape, by_bomb: bool)
 
 # Ui
 signal points_changed(new_value: int)
