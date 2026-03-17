@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_of76q")
-name = "Reinforced Triangle Multiplier"
+name = "Reinforced Multiplier"
 tier_modifiers = Array[float]([4.0, 5.0])
 base_value = 3.0
-base_price = 60
-description = "Increases the multiplier given by reinforced triangles"
+base_price = 55
+description = "Increases the multiplier given by reinforced shapes"
 modify_stat_name = "reinforced_multiplier"
 extra_character = "x"
 icon = ExtResource("1_5qckp")

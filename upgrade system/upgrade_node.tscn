@@ -133,7 +133,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qim07")
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 

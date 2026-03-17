@@ -23,9 +23,9 @@ const NORMAL_CURSOR_ICON: Texture2D = preload("res://ui/assets/cursors/cursor_64
 
 const BUTTON_CLICK_SOUND = preload("res://ui/assets/audio/click-3.wav")
 const BUTTON_HOVER_SOUND: AudioStream = preload("res://ui/assets/audio/hover-3.wav")
-const ENTER_BUTTON_VOLUME: float = -20.0
+const ENTER_BUTTON_VOLUME: float = -22.0
 const ENTER_PITCH_RANGE: Vector2 = Vector2(0.9, 1.1)
-const BUTTON_CLICK_VOLUME: float = -10.0
+const BUTTON_CLICK_VOLUME: float = -15.0
 const BUTTON_CLICK_PITCH: float = 0.47
 
 

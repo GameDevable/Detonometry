@@ -70,17 +70,16 @@ theme = ExtResource("2_0nobx")
 [node name="TitleLabel" type="Label" parent="." unique_id=639583218]
 z_index = 4
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -245.5
-offset_top = 23.0
-offset_right = 245.5
-offset_bottom = 114.0
+anchors_preset = -1
+anchor_left = 0.30820313
+anchor_top = 0.031944446
+anchor_right = 0.6917969
+anchor_bottom = 0.15833333
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 72
 text = "Detonometry"
+metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle" type="TextureRect" parent="." unique_id=1428283947]
 layout_mode = 0
@@ -293,7 +292,7 @@ anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.4.2"
+text = "v0.5.1"
 metadata/_edit_use_anchors_ = true
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]

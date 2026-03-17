@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200"
+   height="41.748051"
+   viewBox="0 0 52.916665 11.045838"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="break_triangle_particles_texture_sheet.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.1912918"
+     inkscape:cx="143.51184"
+     inkscape:cy="45.809266"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="52.916664"
+       height="11.045838"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <path
+     d="m 45.783767,0.6645589 -3.450435,6.8662473 3.647839,2.8509888 3.401343,-2.4877034 z"
+     style="display:inline;fill:#ececec;fill-opacity:1;stroke-width:0.264583"
+     id="path5" />
+  <path
+     d="M 35.255728,2.3946858 31.749999,5.0642902 35.206635,8.6511513 37.898461,7.7034055 36.092886,4.0762369 Z"
+     style="display:inline;fill:#ececec;fill-opacity:1;stroke-width:0.264583"
+     id="path4" />
+  <path
+     d="m 25.888858,2.9047322 -2.940389,1.2769246 0.117822,0.6490559 -1.899625,3.310909 7.326684,-0.00568 z"
+     style="display:inline;fill:#ececec;fill-opacity:1;stroke-width:0.264583"
+     id="path3" />
+  <path
+     d="m 14.18673,1.5094685 -3.603397,8.0274168 3.446818,-0.00258 1.592151,-0.00103 1.804541,-3.9367105 -0.08888,0.038757 -3.130041,-4.1082763 z"
+     style="display:inline;fill:#ececec;fill-opacity:1;stroke-width:0.264583"
+     id="path2" />
+  <path
+     d="M 5.5510822,0 4.5206542,2.050004 0,11.045837 5.4301593,11.04222 5.3908852,10.728027 9.1508623,3.0132527 Z"
+     style="display:inline;fill:#ececec;fill-opacity:1;stroke-width:0.264583"
+     id="path1" />
+</svg>

@@ -7,8 +7,8 @@
 script = ExtResource("1_s04l5")
 name = "Squares"
 tier_modifiers = Array[float]([3.0, 8.0, 12.0])
-base_price = 35
-description = "Adds additional squares for you to destroy"
+base_price = 22
+description = "Allows more squares to spawn"
 modify_stat_name = "square_spawn_limit"
 icon = ExtResource("1_jw2rx")
 metadata/_custom_type_script = "uid://dsonbba73212j"

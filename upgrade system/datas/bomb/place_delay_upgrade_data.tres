@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_2oula")
-name = "Place Delay"
-tier_modifiers = Array[float]([3.25, 2.75, 2.5])
+name = "Explosive Place Delay"
+tier_modifiers = Array[float]([3.0, 2.6, 2.2, 1.75, 1.25])
 base_value = 3.5
-base_price = 9
+base_price = 16
 description = "Decreases the time it takes to place a bomb"
 modify_stat_name = "place_delay"
 extra_character = "s"

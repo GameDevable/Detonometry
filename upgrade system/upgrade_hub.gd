@@ -22,6 +22,7 @@ const DRAG_BOUNDS: Array[float] = [-250, 250, -600, 275]
 
 
 func _ready() -> void:
+	visible = false
 	SignalManager.points_changed.connect(_on_points_changed)
 	SignalManager.upgrade_unlocked.connect(func(_upgrade: Upgrade) -> void:
 		var purchasable_node_count: int = _update_buttons(upgrade_nodes, cached_points)
@@ -29,15 +30,14 @@ func _ready() -> void:
 		)
 	
 	# Recursively loops through the buttons
-	#settings_button.mouse_entered.connect(_on_mouse_entered)
-	#settings_button.mouse_exited.connect(_on_mouse_exited)
 	if upgrade_nodes:
 		_set_up_buttons(upgrade_nodes)
 
 
 func _input(event: InputEvent) -> void:
-
-	if event is InputEventMouseButton and not get_tree().paused:
+	if not UiManager.active_menu:
+		return
+	if event is InputEventMouseButton :
 		var mouse_event = event as InputEventMouseButton
 		if mouse_event.pressed:
 			if mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:

@@ -54,7 +54,9 @@ func _on_unsuccessful_bomb_place() -> void:
 	ring_scale_up_tween.tween_property(place_delay_progress_bar, "scale", final_size, tween_time)
 	
 	place_delay_progress_bar.texture_progress = RING_FILL_RED
-	EffectManager.play_sfx(CANT_PLACE, 0.0, 0.0, 0.8)
+	var volume: float = -4.0
+	var pitch: float = 0.8
+	EffectManager.play_sfx(CANT_PLACE, 0.0, volume, pitch)
 	await ring_scale_up_tween.finished
 	await get_tree().create_timer(hold_time).timeout
 	place_delay_progress_bar.texture_progress = RING_FILL_YELLOW

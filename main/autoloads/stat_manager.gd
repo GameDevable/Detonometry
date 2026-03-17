@@ -46,7 +46,7 @@ var special_modifier_stats: Dictionary[String, float] = {
 	"bouncy_ball_chance" : 0.0,
 	"bouncy_ball_damage" : 1.0,
 	"bouncy_ball_bounces" : 4.0,
-	"bouncy_ball_size_percent" : 1000.0,
+	"bouncy_ball_size_percent" : 100.0,
 }
 
 var bonus_stats: Dictionary[String, float] = {
@@ -55,7 +55,7 @@ var bonus_stats: Dictionary[String, float] = {
 
 var multiplier_stats: Dictionary[String, float] = {
 	"cluster_multiplier" : 1.0,
-	"cluster_threshold" : 3.0,
+	"cluster_threshold" : 2.0,
 	"cluster_exceed_bonus" : 0.0,
 }
 

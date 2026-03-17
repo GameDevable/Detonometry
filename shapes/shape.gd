@@ -7,20 +7,22 @@ var move_direction: Vector2 = Vector2(1, 1)
 var prev_pos: Vector2 = Vector2.ZERO
 var speed: float = 10.0
 var base_speed: float = 0.0
-var modifier_multipliers_total: float = 1.0
-var modifier_value_adders_total: float = 0.0
+var modifier_multipliers_total: int = 1
+var modifier_value_adders_total: int = 0
 var shape_data: ShapeData = null
 var spin_direction: int = 0
 var spin_speed: float = 0.0
 var inside_area: bool = false
 const OFFSCREEN_PADDING: int = 20
 const FRICTION: int = 1000
-const REINFORCED_PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/reinforced_"
 
-const SHAPE_BREAK = preload("uid://wvbgrwinvj57")
-const SHAPE_BREAK1 = preload("uid://bttsomosik4a2")
+const CRATE_BREAK = preload("uid://bggl4xban0c58")
+const METAL_BREAK = preload("uid://bgrvdb72tv8w0")
+
+
 
 const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
+const REINFORCED_BREAK_PARTICLES = preload("uid://dx8qftu7xipko")
 
 const BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET = preload("uid://hgty7lnbyr77")
 const BREAK_SQUARE_PARTICLES_TEXTURE_SHEET = preload("uid://bet2jldxif1tm")
@@ -142,7 +144,6 @@ func _play_global_particles() -> void:
 
 
 func _play_local_particles(particle_scale: Vector2) -> void:
-	print(particle_scale)
 	match shape_data.shape_type:
 		Enums.ShapeType.TRIANGLE:
 			_spawn_particle(BREAK_PARTICLES, BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET, particle_scale)
@@ -182,6 +183,10 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 		var reinforced_overlay: Sprite2D = modifier_overlay_sprites.find_child("ReinforcedOverlay")
 		if health_ratio <= 0.5:
 			if reinforced_overlay:
+				if reinforced_overlay.visible:
+					EffectManager.spawn_particles(REINFORCED_BREAK_PARTICLES, position)
+					EffectManager.play_sfx(CRATE_BREAK, 0.0, -16, 0.35)
+					EffectManager.play_sfx(METAL_BREAK, 0.0, -32, 0.45)
 				reinforced_overlay.visible = false
 				
 		if health.health != 0 and health.health != health.max_health:

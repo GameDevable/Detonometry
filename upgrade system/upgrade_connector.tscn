@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://c0fwik5w87jwj"]
 
+[ext_resource type="Shader" uid="uid://c3tghnr3ylvvh" path="res://upgrade system/upgrade_connector_shader.gdshader" id="1_50i5w"]
 [ext_resource type="Script" uid="uid://b4kab64nff6na" path="res://upgrade system/upgrade_connector.gd" id="1_ys1ix"]
+[ext_resource type="Texture2D" uid="uid://cwtjb0b2h84u5" path="res://ui/line_texture.svg" id="2_wnldc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnldc"]
+shader = ExtResource("1_50i5w")
+shader_parameter/opaque_ratio = 1.0
 
 [node name="UpgradeConnector" type="Line2D" unique_id=1322821640]
+material = SubResource("ShaderMaterial_wnldc")
+points = PackedVector2Array(-25, 0, 23, 0)
+texture = ExtResource("2_wnldc")
+texture_mode = 2
 script = ExtResource("1_ys1ix")

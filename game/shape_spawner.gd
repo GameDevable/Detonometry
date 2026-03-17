@@ -64,9 +64,6 @@ func spawn_shape(spawn_position: Vector2, shape_type: Enums.ShapeType, modifiers
 			shape_instance.add_child(child)
 	# Flushing queries issue
 	shape_containers[shape_type].call_deferred("add_child", shape_instance)
-	var spawn_sound_volume: float = -15.0
-	var spawn_sound_pitch: float = 0.35
-	EffectManager.play_sfx(SHAPE_SPAWN_SOUND, 0.0, spawn_sound_volume, spawn_sound_pitch )
 	
 	await shape_instance.tree_entered
 	return shape_instance
@@ -78,7 +75,7 @@ func spawn_shape_bunch(amount: int, spawn_positions: Array[Vector2], shape_types
 		var shape_modifiers: Array[ShapeModifierComponent]= []
 		if i < modifiers.size():
 			for modifier_component in modifiers[i]:
-				shape_modifiers.append(modifier_component)
+				shape_modifiers.append(modifier_component.instantiate())
 		shapes.append(await spawn_shape(spawn_positions[i], shape_types[i], shape_modifiers, include_random_modifiers))
 	return shapes
 
@@ -177,7 +174,6 @@ func _create_timer(type: Enums.ShapeType) -> void:
 	var time: float = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
 	timer.timeout.connect(func(): _on_spawn_timer_timeout(type, timer))
 	add_child(timer)
-	print(time)
 	timer.start(time)
 
 # Get the spawn limit name for a shape
@@ -217,11 +213,13 @@ func _on_spawn_timer_timeout(type: Enums.ShapeType, timer_node: Timer) -> void:
 	var bunch_chance_roll: float = randi_range(0, 100)
 	if shape_containers[type].get_child_count() >= limit:
 		return
+	var spawn_sound_volume: float = -20.0
+	var spawn_sound_pitch: float = 0.3
+	EffectManager.play_sfx(SHAPE_SPAWN_SOUND, 0.0, spawn_sound_volume, spawn_sound_pitch, true, Vector2(0.28, 0.32) )
 	if bunch_chance_roll <= StatManager.shape_spawn_stats["bunch_spawn_chance"] and type != Enums.ShapeType.PENTAGON:
 		_auto_spawn_shape_bunch(type)
 		return
 	var time: float = StatManager.get_shape_spawn_stat(_get_spawn_rate_name(type))
-	print(time)
 	timer_node.start(time)
 	var x_limit: float = get_viewport_rect().size.x / 2.15
 	var y_limit: float = get_viewport_rect().size.x / 2.4

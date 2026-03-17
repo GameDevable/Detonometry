@@ -1,8 +1,8 @@
 extends Node
 
-var enabled := true
+var enabled := false
 var enable_on_release_build := false : set = set_enable_on_release_build
-var pause_enabled := false
+var pause_enabled := false 
 var font_size := 32:
 	set(value):
 		font_size = value

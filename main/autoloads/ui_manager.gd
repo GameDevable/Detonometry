@@ -8,6 +8,7 @@ var ui_canvas: CanvasLayer = null
 var mouse_canvas: CanvasLayer = null
 var previous_menu: String = "None"
 var world: World = null
+const WHOOSH = preload("uid://3vtq3m83p7g7")
 
 func set_up_ui(canvas_layer: CanvasLayer, mouse_canvas_layer) -> void:
 	ui_canvas = canvas_layer
@@ -72,16 +73,20 @@ func swap_menu(menu_key: String) -> void:
 func transition_to(menu_key: String) -> void:
 	var transition_effect: Control = ui_canvas.find_child("TransitionEffect", true, true)
 	transition_effect.visible = true
+	var whoosh_volume: float = -15.0
+	var whoosh_pitch: float = 0.3
+	EffectManager.play_sfx(WHOOSH, 0.1, whoosh_volume, whoosh_pitch)
 	await transition_effect.transition_position(Vector2.ZERO)
 	
 	if menu_key == "None":
 		SignalManager.session_restarted.emit()
 	swap_menu(menu_key)
-	
 	if menu_key == "None":
 		world.handle_entered()
+	EffectManager.play_sfx(WHOOSH, 0.1, whoosh_volume, whoosh_pitch)
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))
 	transition_effect.reset()
+
 
 func reset_saved_ui() -> void:
 	if not ui_canvas:

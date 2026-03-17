@@ -93,5 +93,5 @@ process_mode = 3
 [node name="ParticleHolder" type="Node2D" parent="." unique_id=1605238279]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=925506163]
-volume_db = -14.0
+volume_db = -10.0
 bus = &"Music"

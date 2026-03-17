@@ -12,6 +12,8 @@ const BLAST_PARTICLE = preload("uid://db1td87mfq0rt")
 const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
 const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
 
+
+
 @onready var bomb_sprite: Sprite2D = $BombSprite
 @onready var explosion_area_sprite: Sprite2D = $ExplosionAreaSprite
 @onready var explosion_area_hitbox: Hitbox = $ExplosionAreaHitbox
@@ -50,7 +52,7 @@ func _set_radii(explosion_radius: float) -> void:
 
 
 func _handle_explosion_effects() -> void:
-	var volume: float = 2.0
+	var volume: float = -2.0
 	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	var scale_factor: float = StatManager.get_bomb_stat("explosion_radius_size_percent") / 100.0

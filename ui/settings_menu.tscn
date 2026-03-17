@@ -150,7 +150,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
-max_value = 1.0
+max_value = 1.1
 step = 0.01
 value = 0.5
 
@@ -167,7 +167,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
-max_value = 1.0
+max_value = 1.2
 step = 0.01
 value = 0.5
 
@@ -184,7 +184,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_a6yft")
-max_value = 1.0
+max_value = 1.2
 step = 0.01
 value = 0.7
 

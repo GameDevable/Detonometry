@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_w443r")
-name = "Reinforced Triangle Chance"
+name = "Reinforced Chance"
 tier_modifiers = Array[float]([6.0, 12.0, 18.0])
-base_price = 38
-description = "Increases the chance that reinforced shapes spawn. They have more health but give more points."
-modify_stat_name = "reinforced_triangle_chance"
+base_price = 43
+description = "Reinforced shapes spawn more often. They have more health but give more points."
+modify_stat_name = "reinforced_chance"
 extra_character = "%"
 icon = ExtResource("1_geadp")

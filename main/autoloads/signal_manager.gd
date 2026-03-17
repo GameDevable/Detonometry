@@ -6,7 +6,7 @@ signal health_depleted
 signal damage_taken(value: int)
  
 # bombs
-signal bomb_detonated(shapes_broken: Array[Node2D])
+signal bomb_detonated(shapes_broken: Array[Shape])
 signal bomb_created
 signal bomb_placed
 # Shapes
@@ -14,6 +14,7 @@ signal shape_broken(instance: Shape, by_bomb: bool)
 
 # Ui
 signal points_changed(new_value: int)
+signal session_points_changed(new_value: int)
 signal place_delay_timer_changed(value: float)
 signal delay_timer_out()
 signal mouse_dragging(is_dragging: bool)

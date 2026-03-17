@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://pp45ai3654ql" path="res://ui/hud.gd" id="1_rbyyf"]
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_276te"]
 [ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_546lt"]
+[ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="5_1v5rv"]
 [ext_resource type="Texture2D" uid="uid://dyk83uiiw75cf" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
 
 [node name="Hud" type="Control" unique_id=579881151]
@@ -54,3 +55,16 @@ horizontal_alignment = 1
 
 [node name="ShakeComponent" type="Node" parent="." unique_id=1651614623]
 script = ExtResource("3_546lt")
+
+[node name="SessionValueLabel" type="Label" parent="." unique_id=327227513]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9195312
+anchor_top = 0.023611112
+anchor_right = 0.971875
+anchor_bottom = 0.108333334
+grow_horizontal = 0
+theme = ExtResource("5_1v5rv")
+theme_override_font_sizes/font_size = 48
+text = "$0"
+metadata/_edit_use_anchors_ = true

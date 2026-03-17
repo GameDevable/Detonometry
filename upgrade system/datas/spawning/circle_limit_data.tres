@@ -7,8 +7,8 @@
 script = ExtResource("1_eubcf")
 name = "Circles"
 tier_modifiers = Array[float]([2.0, 3.0, 5.0, 7.0])
-base_price = 300
-description = "Adds additional circles for you to destroy"
+base_price = 325
+description = "Allows more circles to spawn"
 modify_stat_name = "circle_spawn_limit"
 icon = ExtResource("1_8sef0")
 metadata/_custom_type_script = "uid://dsonbba73212j"

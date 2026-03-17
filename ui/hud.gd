@@ -5,6 +5,7 @@ extends Control
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
 
 @onready var session_time_label: Label = $SessionTimeLabel
+@onready var session_value_label: Label = $SessionValueLabel
 
 func _ready() -> void:
 	SignalManager.bomb_detonated.connect(_on_bomb_detonated)
@@ -16,6 +17,14 @@ func _ready() -> void:
 	SignalManager.session_timer_updated.connect(func(value: float) -> void:
 		session_time_label.text = str(snapped(value, 0.1))
 		)
+	SignalManager.session_points_changed.connect(func(new_value: float) -> void:
+		session_value_label.text = "$" + str(int(new_value))
+		
+		)
+	SignalManager.session_ended.connect(func(_data) -> void:
+		session_value_label.text  = "$" + str(0)
+		
+	)
 
 
 func _on_bomb_detonated(_shapes_broken: Array[Node2D]) -> void:

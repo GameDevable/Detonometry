@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-var speed = 250.0
-var base_speed = 250.0
+var speed = 500.0
+var base_speed = 500.0
 var move_direction: Vector2 = Vector2(1, 1)
 var bounce_count: int = 0
 const FRICTION = 1000
@@ -10,7 +10,6 @@ const FRICTION = 1000
 
 func _ready() -> void:
 	move_direction = Vector2((randf_range(-1, 1)), (randf_range(-1, 1))).normalized()
-	print(move_direction)
 	_set_radii(StatManager.get_special_modifier_stat("bouncy_ball_size_percent"))
 	hitbox.damage = int(StatManager.get_special_modifier_stat("bouncy_ball_damage"))
 
@@ -51,4 +50,3 @@ func _despawn() -> void:
 func _set_radii(radius: float) -> void:
 	var scale_factor = Vector2(1.0, 1.0) * radius
 	scale = scale_factor / 100 
-	print(scale)

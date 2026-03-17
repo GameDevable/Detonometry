@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://fch54yu8d7av"]
+
+[ext_resource type="Texture2D" uid="uid://dj0qtr3h4twh1" path="res://shapes/assets/particles/textures/lucky_particle_texture.svg" id="1_dwnxn"]
+
+[sub_resource type="Curve" id="Curve_vvfpn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6111111, 0.84435797), 0.0, 0.0, 0, 0, Vector2(1, 0.36186773), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dwnxn"]
+curve = SubResource("Curve_vvfpn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vvfpn"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 121.88
+spread = 180.0
+initial_velocity_min = 175.0
+initial_velocity_max = 225.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_dwnxn")
+
+[node name="ClusterBrokeParticles" type="GPUParticles2D" unique_id=1528278692]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
+emitting = false
+amount = 9
+texture = ExtResource("1_dwnxn")
+lifetime = 1.25
+one_shot = true
+speed_scale = 2.8
+explosiveness = 0.77
+process_material = SubResource("ParticleProcessMaterial_vvfpn")

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dx8qftu7xipko"]
+
+[ext_resource type="Texture2D" uid="uid://ctqqorkx4nw0s" path="res://shapes/assets/particles/textures/break_reinforced_particles_texture_sheet.svg" id="1_8qgrb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yk40x"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkrc8"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 16.038
+damping_max = 31.481
+scale_min = 0.7
+scale_max = 0.85999995
+
+[node name="ReinforcedBreakParticles" type="GPUParticles2D" unique_id=863329700]
+material = SubResource("CanvasItemMaterial_yk40x")
+emitting = false
+amount = 5
+texture = ExtResource("1_8qgrb")
+lifetime = 1.16
+one_shot = true
+speed_scale = 2.2
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_jkrc8")
