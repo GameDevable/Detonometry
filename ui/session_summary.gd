@@ -1,18 +1,12 @@
 extends Control
-@onready var round_earnings_label: Label = $BackgroundPanel/ContentMargins/Content/RoundNumbers/RoundEarningsLabel
-@onready var total_earnings_label: Label = $BackgroundPanel/ContentMargins/Content/RoundNumbers/TotalEarningsLabel
-@onready var cluster_label: Label = $BackgroundPanel/ContentMargins/Content/RoundNumbers/ClusterLabel
-@onready var total_shapes_label: Label = $BackgroundPanel/ContentMargins/Content/RoundNumbers/TotalShapesLabel
-@onready var bombs_placed_label: Label = $BackgroundPanel/ContentMargins/Content/RoundNumbers/BombsPlacedLabel
-
-@onready var upgrade_hub_button: Button = $BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton
-@onready var upgrade_button_animator: UiEffectComponent = $BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton/UpgradeButtonAnimator
-
-@onready var continue_button: Button = $BackgroundPanel/ContentMargins/Buttons/ContinueButton
-@onready var continue_button_animator: UiEffectComponent = $BackgroundPanel/ContentMargins/Buttons/ContinueButton/ContinueButtonAnimator
+@onready var upgrade_hub_button: Button = $UpgradeHubButton
+@onready var continue_button: Button = $ContinueButton
+@onready var upgrade_hub_button_animator: UiEffectComponent = $UpgradeHubButton/UpgradeHubButtonAnimator
+@onready var continue_button_animator: UiEffectComponent = $ContinueButton/ContinueButtonAnimator
 
 @onready var ui_effect_component: UiEffectComponent = $UiEffectComponent
 
+var current_session_data: Array[int] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.session_ended.connect(_on_session_ended)
@@ -24,48 +18,108 @@ func handle_shown() -> void:
 	ui_effect_component.scale_ui(Vector2(0.01, 0.01), Vector2(1.0, 1.0), Tween.TRANS_EXPO)
 
 
-func _on_session_ended(data: Array[int]) -> void:
-	round_earnings_label.text = "Round Earnings: $" + str(data[0])
-	total_earnings_label.text = "Total Earnings: $" + str(data[1])
-	bombs_placed_label.text = "Bombs Placed: " + str(data[2])
-	total_shapes_label.text = "Total Shapes Destroyed: " + str(data[3])
-	cluster_label.text = "Max Cluster: " + str(data[4])
 
+func _on_session_ended(data: Array[int]) -> void:
+	current_session_data = data
+	SignalManager.points_changed.emit(data[1])
+
+
+func _tween_label_int(label: Label, starting_value: int, ending_value: int, is_money: bool, time: float) -> void:
+	var tween := create_tween()
+	tween.tween_method(
+		func(value):
+			var display_value: int = int(value)
+			if is_money:
+				label.text = "$" + str(display_value)
+			else:
+				label.text = " " + str(display_value),
+		starting_value,
+		ending_value,
+		time
+	)
+
+
+func _tween_label_float(label: Label, starting_value: float, ending_value: float, is_money: bool, time: float) -> void:
+	var tween := create_tween()
+	tween.tween_method(
+		func(value):
+			var display_value: float = snapped(value, 0.01) # keep 2 decimals
+			if is_money:
+				label.text = "$" + str(display_value)
+			else:
+				label.text = "x" + str(display_value),
+		starting_value,
+		ending_value,
+		time
+	)
+
+
+func _play_click():
+	EffectManager.play_sfx(
+		Constants.BUTTON_CLICK_SOUND,
+		0.0,
+		Constants.BUTTON_CLICK_VOLUME,
+		Constants.BUTTON_CLICK_PITCH
+	)
+
+func _play_hover():
+	EffectManager.play_sfx(
+		Constants.BUTTON_HOVER_SOUND,
+		0.0,
+		Constants.ENTER_BUTTON_VOLUME,
+		1.0,
+		true,
+		Constants.ENTER_PITCH_RANGE
+	)
+
+
+func _scale_label_font(label: Label, font_scale: float, duration: float) -> void:
+	var tween := create_tween()
+	
+	var base_size: float = label.get_theme_font_size("font_size")
+	var target_size: float = base_size * font_scale
+	
+	tween.tween_method(
+		func(size):
+			label.add_theme_font_size_override("font_size", size),
+		base_size,
+		target_size,
+		duration
+	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+
+
+func _scale_button(animator: UiEffectComponent, button: Button, button_scale: Vector2) -> void:
+	animator.scale_ui(button.scale, button_scale, Tween.TRANS_EXPO)
+
+
+# --- Upgrade Hub Button ---
 
 func _on_upgrade_hub_button_pressed() -> void:
-	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
+	_play_click()
 	UiManager.transition_to("UpgradeHub")
 	await get_tree().create_timer(0.01).timeout
 	UiManager.hide_overlay("SessionSummary")
 
-
 func _on_upgrade_hub_button_mouse_entered() -> void:
-	var base_pitch: float = 1.0
-	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
-	var end_scale: Vector2 = Vector2(1.1, 1.1)
-	upgrade_button_animator.scale_ui(upgrade_hub_button.scale, end_scale, Tween.TRANS_EXPO)
-
+	_play_hover()
+	_scale_button(upgrade_hub_button_animator, upgrade_hub_button, Vector2(1.05, 1.05))
 
 func _on_upgrade_hub_button_mouse_exited() -> void:
-	var end_scale: Vector2 = Vector2(1.0, 1.0)
-	upgrade_button_animator.scale_ui(upgrade_hub_button.scale, end_scale, Tween.TRANS_EXPO)
+	_scale_button(upgrade_hub_button_animator, upgrade_hub_button, Vector2(1.0, 1.0))
 
+
+# --- Continue Button ---
 
 func _on_continue_button_pressed() -> void:
+	_play_click()
 	UiManager.transition_to("None")
-	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	await get_tree().create_timer(0.35).timeout
 	UiManager.show_overlay("Hud")
 	UiManager.hide_overlay("SessionSummary")
 
-
 func _on_continue_button_mouse_entered() -> void:
-	var base_pitch: float = 1.0
-	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
-	var end_scale: Vector2 = Vector2(1.1, 1.1)
-	continue_button_animator.scale_ui(continue_button.scale, end_scale, Tween.TRANS_EXPO)
-
+	_play_hover()
+	_scale_button(continue_button_animator, continue_button, Vector2(1.05, 1.05))
 
 func _on_continue_button_mouse_exited() -> void:
-	var end_scale: Vector2 = Vector2(1.0, 1.0)
-	continue_button_animator.scale_ui(continue_button.scale, end_scale, Tween.TRANS_EXPO)
+	_scale_button(continue_button_animator, continue_button, Vector2(1.0, 1.0))

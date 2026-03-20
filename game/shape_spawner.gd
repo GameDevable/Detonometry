@@ -21,6 +21,8 @@ const BOUNCY_BALL_MODIFIER_COMPONENT = preload("uid://coxbmwij4usst")
 const SHAPE_MODIFIER_COMPONENTS: Array[PackedScene] = [REINFORCED_COMPONENT, LUCKY_COMPONENT, SIERPINSKIES_COMPONENT, BOMB_N_BOX_COMPONENT, BOUNCY_BALL_MODIFIER_COMPONENT]
 const SHAPE_SPAWN_SOUND = preload("uid://c0ojavi6qx6r5")
 
+
+
 func _ready() -> void:
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
 	SignalManager.session_ended.connect(_on_session_restarted)
@@ -230,11 +232,11 @@ func _on_spawn_timer_timeout(type: Enums.ShapeType, timer_node: Timer) -> void:
 
 func _on_session_restarted(_data: Array[int]) -> void:
 	can_spawn = false
-	for container in get_children():
-		if not container is Node2D:
-			continue
-		for shape in container.get_children():
-			var tween = get_tree().create_tween()
-			tween.set_trans(Tween.TRANS_LINEAR)
-			tween.tween_property(shape, "scale", Vector2(0.01, 0.01), 0.6)
-			shape.queue_free()
+	#for container in get_children():
+	#	if not container is Node2D:
+	#		continue
+	#	for shape in container.get_children():
+	#		var tween = get_tree().create_tween()
+	#		tween.set_trans(Tween.TRANS_LINEAR)
+	#		tween.tween_property(shape, "scale", Vector2(0.01, 0.01), 0.6)
+	#		shape.queue_free()
