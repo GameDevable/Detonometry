@@ -181,6 +181,7 @@ func _handle_cluster(shapes_broken: Array[Node2D], total_external_bonus: float, 
 	
 	for shape in shapes_broken:
 		position_running_total += shape.global_position
+		print(total_external_multiplier)
 		var shape_value: int = ceil((shape.get_value() + total_external_bonus) * total_external_multiplier)
 		total += shape_value
 	camera.shake_component.shake(7, 1.0)

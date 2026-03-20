@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="68.031494"
-   height="62.362206"
-   viewBox="0 0 17.999999 16.499999"
+   width="80"
+   height="68"
+   viewBox="0 0 21.166666 17.991666"
    version="1.1"
    id="svg5"
    inkscape:export-filename="bitmap.png"
@@ -28,7 +28,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="6.3625"
-     inkscape:cx="33.870334"
+     inkscape:cx="40"
      inkscape:cy="35.049116"
      inkscape:window-width="1366"
      inkscape:window-height="731"
@@ -42,14 +42,14 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-2.0941746,-0.00250402)">
+     transform="translate(-0.50667467,-0.00250405)">
     <g
        id="g1"
        transform="matrix(0.72,0,0,0.66,1.7293691,8.5120029e-4)"
-       style="stroke-width:0.999496;stroke-dasharray:none">
+       style="stroke-width:0.99949588;stroke-dasharray:none">
       <path
          sodipodi:type="star"
-         style="display:inline;fill:#5ce1e6;fill-opacity:1;stroke-width:3.61953;stroke-dasharray:none"
+         style="display:inline;fill:#5ce1e6;fill-opacity:1;stroke-width:3.61953051;stroke-dasharray:none"
          id="path1"
          inkscape:flatsided="false"
          sodipodi:sides="3"

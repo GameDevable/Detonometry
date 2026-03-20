@@ -2,11 +2,34 @@
 
 [ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="1_fxxow"]
 [ext_resource type="Script" uid="uid://dd5u7eegajsih" path="res://ui/session_summary.gd" id="1_s5e34"]
+[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_nrnmk"]
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="2_s5e34"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="5_p51de"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrnmk"]
-bg_color = Color(0, 0, 0, 0.05490196)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxxow"]
+bg_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.07150052, 0.07150052, 0.07150049, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b553"]
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 1.0
 
 [node name="SessionSummary" type="Control" unique_id=326003256]
 layout_mode = 3
@@ -18,70 +41,151 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_s5e34")
 
-[node name="BackgroundPanel" type="Panel" parent="." unique_id=1554410765]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nrnmk")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=166049696]
+[node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1730206754]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 157.0
-offset_right = 81.0
-offset_bottom = 271.0
+offset_left = -337.0
+offset_top = -218.0
+offset_right = 338.0
+offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 32
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxxow")
 
-[node name="UpgradeHubButton" type="Button" parent="VBoxContainer" unique_id=964854084]
+[node name="ContentMargins" type="MarginContainer" parent="BackgroundPanel" unique_id=1796312061]
 layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="Content" type="VBoxContainer" parent="BackgroundPanel/ContentMargins" unique_id=1880115720]
+layout_mode = 2
+
+[node name="RoundNumbers" type="VBoxContainer" parent="BackgroundPanel/ContentMargins/Content" unique_id=566602239]
+layout_mode = 2
+
+[node name="RoundEarningsLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1123269703]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 26
+text = "Round Earnings: $0"
+horizontal_alignment = 1
+
+[node name="TotalEarningsLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1379914259]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 26
+text = "Total Earnings: $0"
+horizontal_alignment = 1
+
+[node name="DividerLabel2" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1570226597]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_fxxow")
+text = "-----------------------------------------------------------"
+horizontal_alignment = 1
+
+[node name="BombsPlacedLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1366939267]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+text = "Bombs Placed: 0"
+horizontal_alignment = 1
+
+[node name="TotalShapesLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1937097516]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+text = "Total Shapes Destroyed: 0"
+horizontal_alignment = 1
+
+[node name="ClusterLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1628936271]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 32
+text = "Max Cluster: 0"
+horizontal_alignment = 1
+
+[node name="DividerLabel3" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=384035530]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_fxxow")
+text = "-----------------------------------------------------------"
+horizontal_alignment = 1
+
+[node name="Buttons" type="Control" parent="BackgroundPanel/ContentMargins" unique_id=556688216]
+modulate = Color(0.8217887, 0.82178867, 0.82178867, 1)
+layout_mode = 2
+
+[node name="UpgradeHubButton" type="Button" parent="BackgroundPanel/ContentMargins/Buttons" unique_id=1190303010]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19593497
+anchor_top = 0.8866348
+anchor_right = 0.4593496
+anchor_bottom = 0.9844869
+offset_left = -27.337402
+offset_top = -22.758911
+offset_right = 2.126007
+offset_bottom = -16.988037
+pivot_offset_ratio = Vector2(0.5, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
+theme_override_fonts/font = ExtResource("2_nrnmk")
+theme_override_font_sizes/font_size = 40
 text = "Upgrades"
 
-[node name="UpgradeHubButtonAnimator" parent="VBoxContainer/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
+[node name="UpgradeButtonAnimator" parent="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=406555737]
-layout_mode = 2
+[node name="ContinueButton" type="Button" parent="BackgroundPanel/ContentMargins/Buttons" unique_id=245183116]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.54227644
+anchor_top = 0.88902146
+anchor_right = 0.7861789
+anchor_bottom = 0.98687357
+offset_left = 13.80896
+offset_top = -23.837708
+offset_right = 41.052856
+offset_bottom = -18.066864
+pivot_offset_ratio = Vector2(0.5, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
+theme_override_fonts/font = ExtResource("2_nrnmk")
+theme_override_font_sizes/font_size = 40
 text = "Continue"
 
-[node name="ContinueButtonAnimator" parent="VBoxContainer/ContinueButton" unique_id=1426176146 instance=ExtResource("5_p51de")]
+[node name="ContinueButtonAnimator" parent="BackgroundPanel/ContentMargins/Buttons/ContinueButton" unique_id=562678659 instance=ExtResource("5_p51de")]
 
-[node name="ShapeDestroyedBackground" type="PanelContainer" parent="." unique_id=244100657]
-layout_mode = 0
-offset_right = 177.0
-offset_bottom = 162.0
+[node name="Title" type="PanelContainer" parent="." unique_id=1889546956]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.384375
+anchor_top = 0.11111111
+anchor_right = 0.62578124
+anchor_bottom = 0.20277777
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b553")
+metadata/_edit_use_anchors_ = true
 
-[node name="ContentMargins" type="MarginContainer" parent="ShapeDestroyedBackground" unique_id=866617893]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ShapeDestroyedBackground/ContentMargins" unique_id=1807814391]
-layout_mode = 2
-
-[node name="ShapeDestroyedLabelContainer" type="VBoxContainer" parent="ShapeDestroyedBackground/ContentMargins/HBoxContainer" unique_id=1576734576]
-layout_mode = 2
-
-[node name="TriangleLabel" type="Label" parent="ShapeDestroyedBackground/ContentMargins/HBoxContainer/ShapeDestroyedLabelContainer" unique_id=260574715]
+[node name="Label" type="Label" parent="Title" unique_id=870818206]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 48
+text = "Round Over"
 
-[node name="SquareLabel" type="Label" parent="ShapeDestroyedBackground/ContentMargins/HBoxContainer/ShapeDestroyedLabelContainer" unique_id=642828498]
-layout_mode = 2
-theme = ExtResource("1_fxxow")
+[node name="UiEffectComponent" parent="." unique_id=960086942 instance=ExtResource("5_p51de")]
 
-[node name="CircleLabel" type="Label" parent="ShapeDestroyedBackground/ContentMargins/HBoxContainer/ShapeDestroyedLabelContainer" unique_id=160311349]
-layout_mode = 2
-theme = ExtResource("1_fxxow")
+[connection signal="mouse_entered" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_exited"]
+[connection signal="pressed" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_pressed"]
+[connection signal="mouse_entered" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
+[connection signal="mouse_exited" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_exited"]
+[connection signal="pressed" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
