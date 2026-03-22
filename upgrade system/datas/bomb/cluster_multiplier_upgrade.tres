@@ -13,4 +13,5 @@ description = "Increases the bonus multiplier of destroying a cluster of shapes"
 modify_stat_name = "cluster_multiplier"
 extra_character = "x"
 icon = ExtResource("1_5ihc5")
+custom_price_scale = 2.8
 metadata/_custom_type_script = "uid://dsonbba73212j"

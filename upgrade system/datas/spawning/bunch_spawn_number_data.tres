@@ -12,3 +12,4 @@ base_price = 102
 description = "Increases the amount of shapes that spawn in a bunch"
 modify_stat_name = "bunch_spawn_number"
 icon = ExtResource("1_gykyw")
+custom_price_scale = 2.2

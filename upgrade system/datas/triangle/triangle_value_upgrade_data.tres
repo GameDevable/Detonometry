@@ -12,3 +12,4 @@ base_price = 50
 description = "Increases the value of the triangle shapes"
 modify_stat_name = "triangle_value"
 icon = ExtResource("1_d5edu")
+custom_price_scale = 2.5

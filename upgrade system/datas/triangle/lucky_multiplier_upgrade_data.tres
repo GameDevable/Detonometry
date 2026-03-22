@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("2_6r8me")
 name = "Lucky Multiplier"
-tier_modifiers = Array[float]([6.0, 7.0, 8.0])
+tier_modifiers = Array[float]([6.0, 7.0])
 base_value = 5.0
 base_price = 132
 description = "Increases the value multiplier of lucky shapes"
 modify_stat_name = "lucky_multiplier"
 icon = ExtResource("1_dh3dc")
+custom_price_scale = 2.8

@@ -18,5 +18,5 @@ func _on_pressed() -> void:
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.transition_to("None")
 	UiManager.hide_overlay("SessionSummary")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.6).timeout
 	UiManager.show_overlay("Hud")

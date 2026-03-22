@@ -24,7 +24,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_timap")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qim07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qim07"]
-bg_color = Color(0.068463445, 0.068463445, 0.068463445, 1)
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12

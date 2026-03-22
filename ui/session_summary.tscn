@@ -7,29 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="5_p51de"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxxow"]
-bg_color = Color(0.06053035, 0.06053035, 0.060530342, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.07150052, 0.07150052, 0.07150049, 1)
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.43529412)
+border_color = Color(0.07058824, 0.07058824, 0.07058824, 0.12156863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b553"]
+bg_color = Color(0.11735486, 0.11735479, 0.1173548, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b553"]
-bg_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p51de"]
+bg_color = Color(0.07683582, 0.07683582, 0.0768358, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 1.0
 
 [node name="SessionSummary" type="Control" unique_id=326003256]
 layout_mode = 3
@@ -42,150 +33,271 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_s5e34")
 
 [node name="BackgroundPanel" type="PanelContainer" parent="." unique_id=1730206754]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxxow")
+
+[node name="ContentBackground" type="Panel" parent="." unique_id=1359178878]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30625
+anchor_top = 0.08611111
+anchor_right = 0.6765625
+anchor_bottom = 0.71111107
+offset_bottom = 135.00003
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b553")
+
+[node name="ContentMargins" type="MarginContainer" parent="ContentBackground" unique_id=1213264672]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -337.0
-offset_top = -218.0
-offset_right = 338.0
-offset_bottom = 188.0
+offset_left = -182.5
+offset_top = -136.5
+offset_right = 182.5
+offset_bottom = 136.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fxxow")
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 48
 
-[node name="ContentMargins" type="MarginContainer" parent="BackgroundPanel" unique_id=1796312061]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentBackground/ContentMargins" unique_id=744960697]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 18
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 10
+theme_override_constants/separation = 170
 
-[node name="Content" type="VBoxContainer" parent="BackgroundPanel/ContentMargins" unique_id=1880115720]
+[node name="LabelContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=1630108077]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="RoundNumbers" type="VBoxContainer" parent="BackgroundPanel/ContentMargins/Content" unique_id=566602239]
+[node name="MoneyEarnedMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=856965267]
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 12
 
-[node name="RoundEarningsLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1123269703]
-layout_mode = 2
-theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 26
-text = "Round Earnings: $0"
-horizontal_alignment = 1
-
-[node name="TotalEarningsLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1379914259]
+[node name="MoneyEarnedLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer/MoneyEarnedMargins" unique_id=439487326]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 26
-text = "Total Earnings: $0"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+text = "Money Earned"
 
-[node name="DividerLabel2" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1570226597]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_fxxow")
-text = "-----------------------------------------------------------"
-horizontal_alignment = 1
-
-[node name="BombsPlacedLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1366939267]
+[node name="ShapesDestroyedLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=889589364]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
-text = "Bombs Placed: 0"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+text = "Shapes Destroyed"
 
-[node name="TotalShapesLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1937097516]
+[node name="LargestClusterLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=456569723]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
-text = "Total Shapes Destroyed: 0"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+text = "Largest Cluster"
 
-[node name="ClusterLabel" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=1628936271]
+[node name="ClustertMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=1487123677]
 layout_mode = 2
-size_flags_horizontal = 4
 theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 32
-text = "Max Cluster: 0"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "Cluster Mult."
 
-[node name="DividerLabel3" type="Label" parent="BackgroundPanel/ContentMargins/Content/RoundNumbers" unique_id=384035530]
+[node name="BlastMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=1419711523]
 layout_mode = 2
-size_flags_horizontal = 4
 theme = ExtResource("1_fxxow")
-text = "-----------------------------------------------------------"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "Blast Efficiency Mult."
 
-[node name="Buttons" type="Control" parent="BackgroundPanel/ContentMargins" unique_id=556688216]
-modulate = Color(0.8217887, 0.82178867, 0.82178867, 1)
+[node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=423922769]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="TotalMoneyLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer/TotalMoneyLabelMargins" unique_id=1037922443]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 24
+text = "Total Money"
+
+[node name="DataContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=1740513851]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MoneyEarnedMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=611472511]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="MoneyEarnedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer/MoneyEarnedMargins" unique_id=1626236075]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 18
+text = "$0"
+
+[node name="ShapesDestroyedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=967879392]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 18
+text = "  0"
+
+[node name="LargestClusterValueLabels" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=355199280]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 18
+text = "  0"
+
+[node name="ClusterMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=1837634755]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 14
+text = "x0"
+
+[node name="BlastMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=631796599]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 14
+text = "x0"
+
+[node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=630656691]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = 20
+
+[node name="TotalMoneyValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer/TotalMoneyLabelMargins" unique_id=1352246143]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 24
+text = "$0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins" unique_id=1882687291]
 layout_mode = 2
 
-[node name="UpgradeHubButton" type="Button" parent="BackgroundPanel/ContentMargins/Buttons" unique_id=1190303010]
-custom_minimum_size = Vector2(200, 60)
+[node name="TitleBackground" type="Panel" parent="ContentBackground" unique_id=2109118570]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.00625
+anchor_right = 1.0
+anchor_bottom = 0.22325821
+theme_override_styles/panel = SubResource("StyleBoxFlat_p51de")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ContentBackground/TitleBackground" unique_id=552663556]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -15.5
+offset_right = 74.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 44
+text = "Round Over"
+
+[node name="UiEffectComponent" parent="ContentBackground" unique_id=960086942 instance=ExtResource("5_p51de")]
+
+[node name="DividerLabel" type="Label" parent="ContentBackground" unique_id=63604836]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -233.5
+offset_top = -210.0
+offset_right = 233.5
+offset_bottom = -179.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_fxxow")
+text = "--------------------------------------------"
+
+[node name="DividerLabel2" type="Label" parent="ContentBackground" unique_id=1301482816]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0073839664
+anchor_top = 0.32820514
+anchor_right = 0.99261606
+anchor_bottom = 0.42508012
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_fxxow")
+text = "--------------------------------------------"
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="Control" parent="ContentBackground" unique_id=556688216]
+anchors_preset = 0
+offset_left = -386.0
+offset_top = 547.0
+offset_right = 894.0
+offset_bottom = 673.0
+
+[node name="UpgradeHubButton" type="Button" parent="ContentBackground/Buttons" unique_id=1190303010]
+modulate = Color(1.6938539, 1.6938539, 1.6938539, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.19593497
 anchor_top = 0.8866348
 anchor_right = 0.4593496
 anchor_bottom = 0.9844869
-offset_left = -27.337402
-offset_top = -22.758911
-offset_right = 2.126007
-offset_bottom = -16.988037
+offset_left = 161.20325
+offset_top = -154.716
+offset_right = -5.9674683
+offset_bottom = -117.045364
 pivot_offset_ratio = Vector2(0.5, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
 theme_override_fonts/font = ExtResource("2_nrnmk")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 text = "Upgrades"
 
-[node name="UpgradeButtonAnimator" parent="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
+[node name="UpgradeButtonAnimator" parent="ContentBackground/Buttons/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
 
-[node name="ContinueButton" type="Button" parent="BackgroundPanel/ContentMargins/Buttons" unique_id=245183116]
-custom_minimum_size = Vector2(200, 60)
+[node name="ContinueButton" type="Button" parent="ContentBackground/Buttons" unique_id=245183116]
+modulate = Color(1.6938539, 1.6938539, 1.6938539, 1)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.54227644
-anchor_top = 0.88902146
-anchor_right = 0.7861789
-anchor_bottom = 0.98687357
-offset_left = 13.80896
-offset_top = -23.837708
-offset_right = 41.052856
-offset_bottom = -18.066864
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -170.0
+offset_right = 195.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
 theme_override_fonts/font = ExtResource("2_nrnmk")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 text = "Continue"
 
-[node name="ContinueButtonAnimator" parent="BackgroundPanel/ContentMargins/Buttons/ContinueButton" unique_id=562678659 instance=ExtResource("5_p51de")]
+[node name="ContinueButtonAnimator" parent="ContentBackground/Buttons/ContinueButton" unique_id=562678659 instance=ExtResource("5_p51de")]
 
-[node name="Title" type="PanelContainer" parent="." unique_id=1889546956]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.384375
-anchor_top = 0.11111111
-anchor_right = 0.62578124
-anchor_bottom = 0.20277777
-theme_override_styles/panel = SubResource("StyleBoxFlat_7b553")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Title" unique_id=870818206]
-layout_mode = 2
-theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 48
-text = "Round Over"
-
-[node name="UiEffectComponent" parent="." unique_id=960086942 instance=ExtResource("5_p51de")]
-
-[connection signal="mouse_entered" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_entered"]
-[connection signal="mouse_exited" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_exited"]
-[connection signal="pressed" from="BackgroundPanel/ContentMargins/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_pressed"]
-[connection signal="mouse_entered" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
-[connection signal="mouse_exited" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_exited"]
-[connection signal="pressed" from="BackgroundPanel/ContentMargins/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_entered"]
+[connection signal="mouse_exited" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_exited"]
+[connection signal="pressed" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_pressed"]
+[connection signal="mouse_entered" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
+[connection signal="mouse_exited" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_exited"]
+[connection signal="pressed" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]

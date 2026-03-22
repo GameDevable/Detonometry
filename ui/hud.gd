@@ -13,7 +13,7 @@ func _ready() -> void:
 	SignalManager.bomb_placed.connect(func() -> void:
 		UiManager.set_custom_mouse_cursor(Constants.OPEN_HAND_CURSOR_ICON)
 	)
-
+	
 	SignalManager.session_timer_updated.connect(func(value: float) -> void:
 		session_time_label.text = str(snapped(value, 0.1))
 		)

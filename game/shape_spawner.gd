@@ -23,11 +23,9 @@ const SHAPE_SPAWN_SOUND = preload("uid://c0ojavi6qx6r5")
 
 func _ready() -> void:
 	SignalManager.spawn_sierpinski_triangles.connect(_spawn_sierpinski_subtriangles)
-	SignalManager.session_ended.connect(_on_session_restarted)
+	SignalManager.session_ended.connect(_on_session_ended)
 	
-	SignalManager.session_restarted.connect(func() -> void:
-		can_spawn = true
-		)
+	SignalManager.session_restarted.connect(_on_session_restarted)
 	shape_containers = {
 		Enums.ShapeType.TRIANGLE: $Triangles,
 		Enums.ShapeType.SQUARE: $Squares,
@@ -228,13 +226,14 @@ func _on_spawn_timer_timeout(type: Enums.ShapeType, timer_node: Timer) -> void:
 	spawn_shape(spawn_position, type)
 
 
-func _on_session_restarted(_data: Array[int]) -> void:
+func _on_session_ended(_data: Array[int]) -> void:
 	can_spawn = false
+
+
+func _on_session_restarted() -> void:
+	can_spawn = true
 	for container in get_children():
 		if not container is Node2D:
 			continue
 		for shape in container.get_children():
-			var tween = get_tree().create_tween()
-			tween.set_trans(Tween.TRANS_LINEAR)
-			tween.tween_property(shape, "scale", Vector2(0.01, 0.01), 0.6)
 			shape.queue_free()

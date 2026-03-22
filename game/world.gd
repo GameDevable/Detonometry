@@ -3,8 +3,6 @@ extends Node2D
 var held_bomb: Bomb = null
 var can_create_bomb: bool = true
 var time_since_bomb_creation: float = 0.0
-var session_data: Array[int] = [0, 0, 0, 0, 0] # Round Earned, Total Earned, Bombs Placed, Total Shapes, Cluster Total
-var total_points: int = 0
 var current_run_gain: int = 0
 var total_shapes_destroyed: int = 0
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
@@ -24,7 +22,7 @@ func _ready() -> void:
 	Console.add_command("quit_session", _command_quit_session)
 	SignalManager.bomb_detonated.connect(_on_bomb_detonated)
 	SignalManager.upgrade_purchased.connect(func(upgrade: Upgrade) -> void:
-		_set_points(total_points - upgrade.get_previous_price())
+		_set_points(GameManager.total_points - upgrade.get_previous_price())
 	)
 	SignalManager.session_restarted.connect(_on_session_restarted)
 	SignalManager.spawn_bomb.connect(func(spawn_position: Vector2) -> void:
@@ -70,12 +68,12 @@ func handle_entered() -> void:
 
 
 func save() -> Dictionary:
-	return {"points" : total_points}
+	return {"points" : GameManager.total_points}
 
 
 func load_save_data(data: Dictionary) -> void:
-	total_points = data["points"]
-	SignalManager.points_changed.emit(total_points)
+	GameManager.total_points = data["points"]
+	SignalManager.points_changed.emit(GameManager.total_points)
 
 
 # Initializes an bomb at a certain position (usually the mouse position)
@@ -100,7 +98,7 @@ func place_bomb() -> void:
 		held_bomb.call_deferred("handle_placed")
 		# This effectively "places" the bomb by not resetting its position to the mouse
 		held_bomb = null 
-		session_data[2] += 1
+		GameManager.session_data[1] += 1
 
 
 func spawn_floating_text(text: String, text_position: Vector2, visible_time: float, text_scale: Vector2 = Vector2(1, 1)):
@@ -131,20 +129,19 @@ func _command_quit_session() -> void:
 
 
 func _set_points(amount: int) -> void:
-	total_points = amount
-	session_data[1] = total_points
-	SignalManager.points_changed.emit(total_points)
+	GameManager.total_points = amount
+	SignalManager.points_changed.emit(GameManager.total_points)
 
 
 func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: float = 1.0, total_external_bonus: float = 0.0, in_cluster: bool = false) -> void:
 	var shape_value: int = ceil((shape_instance.get_value() + total_external_bonus) * total_external_multiplier)
 	current_run_gain += shape_value
 	SignalManager.session_points_changed.emit(int(current_run_gain))
-	session_data[0] = current_run_gain
-	_set_points(total_points + shape_value)
+	GameManager.session_data[0] = current_run_gain
+	_set_points(GameManager.total_points + shape_value)
 	var text = "+$" + str(shape_value)
 	total_shapes_destroyed += 1
-	session_data[3] = total_shapes_destroyed
+	GameManager.session_data[2] = total_shapes_destroyed
 	
 	if not in_cluster:
 		var time: float = 1.15
@@ -195,8 +192,9 @@ func _handle_cluster(shapes_broken: Array[Node2D], total_external_bonus: float, 
 
 
 func _get_cluster_multiplier(cluster_size: int) -> float:
-	if session_data[4] < cluster_size and cluster_size > 1:
-		session_data[4] = cluster_size
+	var largest_cluster_size: int = GameManager.session_data[3]
+	if largest_cluster_size < cluster_size and cluster_size > 1:
+		GameManager.session_data[3] = cluster_size
 	
 	if cluster_size >= StatManager.get_multiplier_stat("cluster_threshold"):
 		return StatManager.get_multiplier_stat("cluster_multiplier")
@@ -230,7 +228,6 @@ func _on_session_timer_timeout() -> void:
 	UiManager.set_mouse_cursor_visible(true)
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	
-	SignalManager.session_ended.emit(session_data)
 	UiManager.show_overlay("SessionSummary")
 	#UiManager.transition_to("UpgradeHub")
 	UiManager.hide_overlay("Hud")
@@ -247,7 +244,7 @@ func _on_session_restarted() -> void:
 	
 	place_delay_timer.stop()
 	session_timer.start(StatManager.get_session_stat("session_time"))
-	session_data = [0, 0, 0, 0, 0]
+	GameManager.session_data = [0, 0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()
 

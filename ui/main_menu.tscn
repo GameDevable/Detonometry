@@ -77,7 +77,7 @@ anchor_right = 0.6917969
 anchor_bottom = 0.15833333
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 76
 text = "Detonometry"
 metadata/_edit_use_anchors_ = true
 
@@ -231,7 +231,6 @@ speed = Vector2(100, 40)
 rotation_speed = 0.5
 
 [node name="Buttons1" type="VBoxContainer" parent="." unique_id=1129812245]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.41210938
@@ -292,7 +291,7 @@ anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.5.1"
+text = "v0.5.3"
 metadata/_edit_use_anchors_ = true
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_6hy05")
 name = "Explosion Damage"
-tier_modifiers = Array[float]([2.0, 3.0, 4.0])
+tier_modifiers = Array[float]([2.0, 3.0])
 base_value = 1.0
 base_price = 85
 description = "Increases the bombs damage"

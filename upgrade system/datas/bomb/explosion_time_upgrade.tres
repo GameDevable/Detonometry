@@ -13,5 +13,5 @@ description = "Decreases the time it takes for a bomb to explode"
 modify_stat_name = "explosion_time"
 extra_character = "s"
 icon = ExtResource("1_vnqfg")
-custom_price_scale = 1.6
+custom_price_scale = 2.1
 metadata/_custom_type_script = "uid://dsonbba73212j"

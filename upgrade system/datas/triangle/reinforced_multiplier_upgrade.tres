@@ -13,4 +13,5 @@ description = "Increases the multiplier given by reinforced shapes"
 modify_stat_name = "reinforced_multiplier"
 extra_character = "x"
 icon = ExtResource("1_5qckp")
+custom_price_scale = 2.8
 metadata/_custom_type_script = "uid://dsonbba73212j"

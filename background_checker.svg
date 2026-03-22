@@ -24,14 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.7172385"
-     inkscape:cx="17.849004"
-     inkscape:cy="73.604139"
+     inkscape:cx="18.217024"
+     inkscape:cy="46.370608"
      inkscape:window-width="1366"
      inkscape:window-height="731"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g3">
+     inkscape:current-layer="g5"
+     showgrid="false">
     <inkscape:page
        x="0"
        y="0"
@@ -55,14 +56,14 @@
         <g
            id="g4">
           <rect
-             style="fill:#050505;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
+             style="fill:#070707;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
              id="rect1"
              width="7.9375"
              height="7.9375"
              x="-1.3877788e-17"
              y="-1.2212453e-15" />
           <rect
-             style="fill:#080808;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
+             style="fill:#0e0e0e;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
              id="rect2"
              width="7.9375"
              height="7.9375"
@@ -73,14 +74,14 @@
            id="g5"
            transform="matrix(-0.9987555,0,0,1,15.855244,7.9375)">
           <rect
-             style="fill:#050505;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
+             style="fill:#070707;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
              id="rect4"
              width="7.9375"
              height="7.9375"
              x="-1.3877788e-17"
              y="-1.2212453e-15" />
           <rect
-             style="fill:#080808;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
+             style="fill:#0e0e0e;fill-opacity:1;stroke:#f2f2f2;stroke-width:0"
              id="rect5"
              width="7.9375"
              height="7.9375"

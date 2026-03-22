@@ -7,7 +7,7 @@
 script = ExtResource("1_n4h61")
 name = "Bouncy Ball"
 tier_modifiers = Array[float]([4.0, 8.0, 12.0])
-base_price = 450
+base_price = 700
 description = "Increases the chance for a bouncy circle to appear"
 modify_stat_name = "bouncy_ball_chance"
 extra_character = "%"

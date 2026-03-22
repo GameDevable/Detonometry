@@ -3,7 +3,6 @@ var is_dragging: bool = false
 var can_drag: bool = true
 var mouse_inside_button: bool = false
 var base_button_minimum_size: Vector2 = Vector2.ZERO
-var cached_points: int = 0
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
 const MIN_SCALE: Vector2 = Vector2(0.5, 0.5)
@@ -23,9 +22,9 @@ const DRAG_BOUNDS: Array[float] = [-250, 250, -600, 275]
 
 func _ready() -> void:
 	visible = false
-	SignalManager.points_changed.connect(_on_points_changed)
+	#SignalManager.points_changed.connect(_on_points_changed)
 	SignalManager.upgrade_unlocked.connect(func(_upgrade: Upgrade) -> void:
-		var purchasable_node_count: int = _update_buttons(upgrade_nodes, cached_points)
+		var purchasable_node_count: int = _update_buttons(upgrade_nodes, GameManager.total_points)
 		SignalManager.purchase_amount_changed.emit(purchasable_node_count)
 		)
 	
@@ -51,7 +50,7 @@ func _input(event: InputEvent) -> void:
 				is_dragging = true
 				SignalManager.mouse_dragging.emit(is_dragging)
 				UiManager.set_custom_mouse_cursor(Constants.DRAG_HAND_CURSOR_ICON)
-		if Input.is_action_just_released("bomb_place_action") and is_dragging and UiManager.active_menu.name == name:
+		if Input.is_action_just_released("drag") and is_dragging and UiManager.active_menu.name == name:
 			is_dragging = false
 			SignalManager.mouse_dragging.emit(is_dragging)
 			
@@ -106,6 +105,7 @@ func handle_entered() -> void:
 	UiManager.set_mouse_cursor_visible(true)
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	UiManager.set_progress_visible(false)
+	points_label.text = "$" + str(GameManager.total_points)
 	draggable_nodes.position = Vector2.ZERO
 
 
@@ -136,15 +136,16 @@ func _set_up_buttons(parent_node: Control) -> void:
 
 
 func _on_points_changed(value: int) -> void:
-	points_label.text = "$ " + str(value)
-	cached_points = value
+
 	# Recursively finds the upgrade nodes and adds the number of upgrades that can be purchased to a variable
 	var purchasable_node_count: int = _update_buttons(upgrade_nodes, value)
 	SignalManager.purchase_amount_changed.emit(purchasable_node_count)
 
+
 func _check_drag() -> bool:
-	return Input.is_action_pressed("bomb_place_action") and can_drag and UiManager.active_menu.name == name
-	
+	return Input.is_action_pressed("drag") and can_drag and UiManager.active_menu.name == name
+
+
 func _update_buttons(parent_node: Control, points_value: int) -> int:
 	if not parent_node:
 		return 0
