@@ -27,7 +27,9 @@ func _ready() -> void:
 		var purchasable_node_count: int = _update_buttons(upgrade_nodes, GameManager.total_points)
 		SignalManager.purchase_amount_changed.emit(purchasable_node_count)
 		)
-	
+	SignalManager.upgrade_purchased.connect(func(_upgrade: Upgrade) -> void:
+		_on_points_changed(GameManager.total_points)
+		)
 	# Recursively loops through the buttons
 	if upgrade_nodes:
 		_set_up_buttons(upgrade_nodes)
@@ -107,6 +109,7 @@ func handle_entered() -> void:
 	UiManager.set_progress_visible(false)
 	points_label.text = "$" + str(GameManager.total_points)
 	draggable_nodes.position = Vector2.ZERO
+	_on_points_changed(GameManager.total_points)
 
 
 func _zoom(direction: int) -> void:
@@ -136,9 +139,9 @@ func _set_up_buttons(parent_node: Control) -> void:
 
 
 func _on_points_changed(value: int) -> void:
-
 	# Recursively finds the upgrade nodes and adds the number of upgrades that can be purchased to a variable
 	var purchasable_node_count: int = _update_buttons(upgrade_nodes, value)
+	points_label.text = "$" + str(value)
 	SignalManager.purchase_amount_changed.emit(purchasable_node_count)
 
 

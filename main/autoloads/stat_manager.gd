@@ -28,16 +28,18 @@ var shape_spawn_stats: Dictionary[String, float] = {
 
 var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 	Enums.ShapeType.TRIANGLE : {"points" : 1, "health" : 1},
-	Enums.ShapeType.SQUARE : {"points" : 5, "health" : 2 },
-	Enums.ShapeType.CIRCLE : {"points" : 10, "health" : 5},
-	Enums.ShapeType.PENTAGON : {"points" : 1, "health" : 1},
+	Enums.ShapeType.SQUARE : {"points" : 3, "health" : 2 },
+	Enums.ShapeType.CIRCLE : {"points" : 8, "health" : 5},
+	Enums.ShapeType.PENTAGON : {"points" : 12, "health" : 9},
 	Enums.ShapeType.HEXAGON : {"points" : 1, "health" : 1},
 }
 
 var special_modifier_stats: Dictionary[String, float] = {
 	"sierpinskies_triangle_chance": 0.0,
 	"fractalization_chance": 0.0,
-	"subtriangle_value" : 2.0,
+	"darted_triangle_chance": 0.0,
+	"piercing_value": 1.0,
+	"dart_damage": 1.0,
 	"bomb_n_box_chance" : 0.0,
 	"lucky_chance" : 0.0,
 	"lucky_multiplier" : 5.0,

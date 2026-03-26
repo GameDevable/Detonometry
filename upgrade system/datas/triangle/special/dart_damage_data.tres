@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dji2k7mmpv8h5"]
+
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_c2p10"]
+[ext_resource type="Texture2D" uid="uid://i7vo6l82lw8e" path="res://upgrade system/assets/upgrade icons/triangle/dart_damage_icon.svg" id="1_fnxkt"]
+
+[resource]
+script = ExtResource("1_c2p10")
+name = "Sharper Darts"
+tier_modifiers = Array[float]([2.0, 3.0, 4.0])
+base_value = 1.0
+description = "Darts do more damage"
+modify_stat_name = "dart_damage"
+icon = ExtResource("1_fnxkt")
+metadata/_custom_type_script = "uid://dsonbba73212j"

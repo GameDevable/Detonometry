@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cfhalmag3dx0k"]
+
+[ext_resource type="Texture2D" uid="uid://b5oh1t1kkrcoc" path="res://upgrade system/assets/upgrade icons/triangle/darted_triangle_chance_icon.svg" id="1_y7jr3"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="2_eksvi"]
+
+[resource]
+script = ExtResource("2_eksvi")
+name = "Darted Triangles"
+tier_modifiers = Array[float]([4.0, 8.0, 14.0])
+base_price = 160
+description = "Increases the chance for triangles to shoot out darts upon destruction"
+modify_stat_name = "darted_traingle_chance"
+extra_character = "%"
+icon = ExtResource("1_y7jr3")
+metadata/_custom_type_script = "uid://dsonbba73212j"

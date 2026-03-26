@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dc1gh88g5fol3"]
 
 [ext_resource type="Script" uid="uid://bep7w0u3oc3e6" path="res://components/shape/bomb_n_box_component.gd" id="1_m6f30"]
-[ext_resource type="Texture2D" uid="uid://byd7o5tp2jxu0" path="res://upgrade system/assets/upgrade_overlays/bomb_n_box_sprite.svg" id="2_qx175"]
+[ext_resource type="Texture2D" uid="uid://byd7o5tp2jxu0" path="res://shapes/assets/sprites/bomb_n_box_sprite.svg" id="2_qx175"]
 
 [node name="BombNBoxComponent" type="Node" unique_id=781952710]
 script = ExtResource("1_m6f30")

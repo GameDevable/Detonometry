@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://chrjjx8xuk56t"]
+
+[ext_resource type="Texture2D" uid="uid://d1otielvtbq7i" path="res://upgrade system/assets/upgrade icons/triangle/dart_piercing_icon.svg" id="1_aexgx"]
+[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_fm10q"]
+
+[resource]
+script = ExtResource("1_fm10q")
+name = "Piercing"
+tier_modifiers = Array[float]([2.0, 3.0, 4.0, 5.0])
+base_value = 1.0
+base_price = 180
+description = "Darts pass through more shapes"
+modify_stat_name = "piercing_value"
+icon = ExtResource("1_aexgx")
+metadata/_custom_type_script = "uid://dsonbba73212j"

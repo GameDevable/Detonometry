@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pp80nb2l0na5" path="res://components/health_system/hitbox.gd" id="1_evp3w"]
 [ext_resource type="Script" uid="uid://2m5mgtulw10y" path="res://shapes/bouncy_ball.gd" id="1_fj41b"]
-[ext_resource type="Texture2D" uid="uid://x4b0kkx1h4r8" path="res://upgrade system/assets/upgrade_overlays/bouncy_ball.svg" id="3_fj41b"]
+[ext_resource type="Texture2D" uid="uid://x4b0kkx1h4r8" path="res://shapes/assets/sprites/bouncy_ball.svg" id="3_fj41b"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="4_onrm3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyo3s"]
