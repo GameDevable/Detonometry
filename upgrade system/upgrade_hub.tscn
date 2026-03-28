@@ -634,7 +634,6 @@ root_node = NodePath("../../../UpgradeNodes/Circle/BouncySize")
 dependent_node = NodePath("../../../UpgradeNodes/Circle/BouncyDmage")
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=39941314]
-visible = false
 modulate = Color(0.30980393, 0.30980393, 0.30980393, 1)
 layout_mode = 1
 anchors_preset = 7

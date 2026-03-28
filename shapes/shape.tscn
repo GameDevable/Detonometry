@@ -4,7 +4,6 @@
 [ext_resource type="Shader" uid="uid://dtfmmrs4rl7c0" path="res://shapes/health_alpha_shader.gdshader" id="2_o1kad"]
 [ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="3_bo2oq"]
 [ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
-[ext_resource type="Texture2D" uid="uid://dsq6l8vot0m28" path="res://upgrade system/assets/upgrade_overlays/triangle_dart_overlay.svg" id="4_8wj2r"]
 [ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="4_o1kad"]
 
@@ -23,9 +22,6 @@ texture = ExtResource("3_bo2oq")
 
 [node name="ModifierOverlaySprites" type="Node2D" parent="." unique_id=1356149085]
 position = Vector2(0, -19)
-
-[node name="Sprite2D" type="Sprite2D" parent="ModifierOverlaySprites" unique_id=1397265960]
-texture = ExtResource("4_8wj2r")
 
 [node name="Hurtbox" parent="." unique_id=977185970 node_paths=PackedStringArray("health_node") instance=ExtResource("3_e6dkk")]
 position = Vector2(0, -19)

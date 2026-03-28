@@ -49,7 +49,9 @@ anchor_left = 0.30625
 anchor_top = 0.08611111
 anchor_right = 0.6765625
 anchor_bottom = 0.71111107
-offset_bottom = 135.00003
+offset_left = 23.0
+offset_right = 59.0
+offset_bottom = 85.00003
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -62,16 +64,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -182.5
-offset_top = -136.5
-offset_right = 182.5
-offset_bottom = 136.5
+offset_left = -234.5
+offset_top = -156.5
+offset_right = 234.5
+offset_bottom = 156.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 48
+theme_override_constants/margin_bottom = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentBackground/ContentMargins" unique_id=744960697]
 layout_mode = 2
@@ -109,12 +111,6 @@ layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 14
 text = "Cluster Mult."
-
-[node name="BlastMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=1419711523]
-layout_mode = 2
-theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 14
-text = "Blast Efficiency Mult."
 
 [node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=423922769]
 layout_mode = 2
@@ -157,13 +153,6 @@ theme_override_font_sizes/font_size = 18
 text = "  0"
 
 [node name="ClusterMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=1837634755]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme = ExtResource("1_fxxow")
-theme_override_font_sizes/font_size = 14
-text = "x0"
-
-[node name="BlastMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=631796599]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
@@ -221,83 +210,63 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -233.5
-offset_top = -210.0
+offset_top = -361.0
 offset_right = 233.5
-offset_bottom = -179.0
+offset_bottom = -330.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_fxxow")
-text = "--------------------------------------------"
+text = "------------------------------------------------"
 
 [node name="DividerLabel2" type="Label" parent="ContentBackground" unique_id=1301482816]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0073839664
-anchor_top = 0.32820514
-anchor_right = 0.99261606
-anchor_bottom = 0.42508012
+anchor_left = 0.042156864
+anchor_top = 0.5906542
+anchor_right = 0.9578431
+anchor_bottom = 0.64859813
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme = ExtResource("1_fxxow")
-text = "--------------------------------------------"
+text = "------------------------------------------------"
 metadata/_edit_use_anchors_ = true
 
 [node name="Buttons" type="Control" parent="ContentBackground" unique_id=556688216]
-anchors_preset = 0
-offset_left = -386.0
-offset_top = 547.0
-offset_right = 894.0
-offset_bottom = 673.0
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.8785047
+anchor_right = 0.5
+anchor_bottom = 0.8785047
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeHubButton" type="Button" parent="ContentBackground/Buttons" unique_id=1190303010]
 modulate = Color(1.6938539, 1.6938539, 1.6938539, 1)
+custom_minimum_size = Vector2(220, 60)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.19593497
-anchor_top = 0.8866348
-anchor_right = 0.4593496
-anchor_bottom = 0.9844869
-offset_left = 161.20325
-offset_top = -154.716
-offset_right = -5.9674683
-offset_bottom = -117.045364
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -23.83532
+offset_right = 91.0
+offset_bottom = 23.83532
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
 theme_override_fonts/font = ExtResource("2_nrnmk")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "Upgrades"
 
 [node name="UpgradeButtonAnimator" parent="ContentBackground/Buttons/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
-
-[node name="ContinueButton" type="Button" parent="ContentBackground/Buttons" unique_id=245183116]
-modulate = Color(1.6938539, 1.6938539, 1.6938539, 1)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = -170.0
-offset_right = 195.0
-offset_bottom = -120.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset_ratio = Vector2(0.5, 1)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("2_s5e34")
-theme_override_fonts/font = ExtResource("2_nrnmk")
-theme_override_font_sizes/font_size = 32
-text = "Continue"
-
-[node name="ContinueButtonAnimator" parent="ContentBackground/Buttons/ContinueButton" unique_id=562678659 instance=ExtResource("5_p51de")]
+trans_type = 5
 
 [connection signal="mouse_entered" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_entered"]
 [connection signal="mouse_exited" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_exited"]
 [connection signal="pressed" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_pressed"]
-[connection signal="mouse_entered" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
-[connection signal="mouse_exited" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_mouse_exited"]
-[connection signal="pressed" from="ContentBackground/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]

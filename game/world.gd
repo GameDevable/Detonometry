@@ -5,6 +5,8 @@ var can_create_bomb: bool = true
 var time_since_bomb_creation: float = 0.0
 var current_run_gain: int = 0
 var total_shapes_destroyed: int = 0
+var shape_det_val: int = 1
+var cluster_det_mult_val: float = 1.65
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
 const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
 const MONEY_GAINED_SOUND = preload("uid://fdmbqs5tq2x5")
@@ -20,15 +22,7 @@ const CLUSTER_BROKE_PARTICLES = preload("uid://fch54yu8d7av")
 func _ready() -> void:
 	Console.add_command("set_points", _command_set_points, ["amount"], 1)
 	Console.add_command("quit_session", _command_quit_session)
-	SignalManager.bomb_detonated.connect(_on_bomb_detonated)
-	SignalManager.upgrade_purchased.connect(func(upgrade: Upgrade) -> void:
-		_set_points(GameManager.total_points - upgrade.get_previous_price())
-	)
-	SignalManager.session_restarted.connect(_on_session_restarted)
-	SignalManager.spawn_bomb.connect(func(spawn_position: Vector2) -> void:
-		spawn_bomb(spawn_position, false)
-		)
-	SignalManager.shape_broken.connect(_on_shape_broken)
+	_connect_signals()
 
 
 func _process(delta: float) -> void:
@@ -101,22 +95,24 @@ func place_bomb() -> void:
 		GameManager.session_data[1] += 1
 
 
-func spawn_floating_text(text: String, text_position: Vector2, visible_time: float, text_scale: Vector2 = Vector2(1, 1)):
-	var floating_text: Marker2D = load(Constants.FLOATING_TEXT_PATH).instantiate()
-	var text_label: Label = floating_text.get_child(0)
-	text_label.scale = text_scale
-	floating_text.exist_time = visible_time
-	text_label.text = text
-	floating_text.position = text_position
-	text_label.add_theme_color_override("font_color", Color.GREEN)
-	add_child(floating_text)
-	await get_tree().create_timer(visible_time).timeout
-	floating_text.queue_free()
-
-
 func spawn_bomb(bomb_position: Vector2, in_hand: bool = true):
 	var bomb_instance: Bomb = create_bomb(bomb_position, in_hand)
 	bomb_instance.call_deferred("handle_placed")
+
+
+func _connect_signals() -> void:
+	SignalManager.bomb_detonated.connect(_on_bomb_detonated)
+	SignalManager.upgrade_purchased.connect(func(upgrade: Upgrade) -> void:
+		_set_points(GameManager.total_points - upgrade.get_previous_price())
+	)
+	SignalManager.session_restarted.connect(_on_session_restarted)
+	SignalManager.spawn_bomb.connect(func(spawn_position: Vector2) -> void:
+		spawn_bomb(spawn_position, false)
+		)
+	SignalManager.shape_broken.connect(func(shape: Shape, by_bomb: bool) -> void:
+		if not by_bomb:
+			_handle_shape_broken(shape)
+		)
 
 
 func _command_set_points(amount: String) -> void:
@@ -137,16 +133,44 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 	var shape_value: int = ceil((shape_instance.get_value() + total_external_bonus) * total_external_multiplier)
 	current_run_gain += shape_value
 	SignalManager.session_points_changed.emit(int(current_run_gain))
+	
 	GameManager.session_data[0] = current_run_gain
 	_set_points(GameManager.total_points + shape_value)
 	var text = "+$" + str(shape_value)
+	
 	total_shapes_destroyed += 1
 	GameManager.session_data[2] = total_shapes_destroyed
 	
 	if not in_cluster:
 		var time: float = 1.15
-		spawn_floating_text(text ,shape_instance.position + Vector2(0, -10.0), time)
+		EffectManager.spawn_floating_text(text ,shape_instance.position + Vector2(0, -10.0), time)
+		# We want cluster to handle adding to the idx 
+		GameManager.detonation_idx_value += shape_det_val
+		SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value)
 	shape_instance.queue_free()
+
+
+func _handle_cluster_broken(shapes_broken: Array[Node2D], total_external_bonus: float, total_external_multiplier) -> void:
+	var total: int = 0
+	var bunch_center_pos: Vector2 = Vector2.ZERO
+	var position_running_total: Vector2 = Vector2.ZERO
+	
+	for shape in shapes_broken:
+		position_running_total += shape.global_position
+		var shape_value: int = ceil((shape.get_value() + total_external_bonus) * total_external_multiplier)
+		total += shape_value
+	GameManager.detonation_idx_value += shape_det_val * shapes_broken.size() * cluster_det_mult_val
+	SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value)
+	camera.shake_component.shake(7, 1.0)
+	bunch_center_pos = position_running_total / shapes_broken.size()
+	
+	var text: String = "+$" + str(total)
+	var time: float = 1.5
+	var text_scale: Vector2 = Vector2(1.0, 1.0) * (1 + (float(shapes_broken.size()) / 8))
+	EffectManager.spawn_floating_text(text, bunch_center_pos, time, text_scale)
+	
+	EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -18, 0.55)
+	EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
 
 
 func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
@@ -162,33 +186,14 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 		 
 	if shapes_broken.size() > 1:
 		in_cluster = true
-		_handle_cluster(shapes_broken, total_external_bonus, total_external_multiplier)
-		
+		_handle_cluster_broken(shapes_broken, total_external_bonus, total_external_multiplier)
+	
+	# Destroys all of the shapes
 	for shape in shapes_broken:
 		if is_instance_valid(shape) and shape is Shape:
 			_handle_shape_broken(shape, total_external_multiplier, total_external_bonus, in_cluster) 
 		else:
 			print("Not Valid")
-
-
-func _handle_cluster(shapes_broken: Array[Node2D], total_external_bonus: float, total_external_multiplier) -> void:
-	var total: int = 0
-	var bunch_center_pos: Vector2 = Vector2.ZERO
-	var position_running_total: Vector2 = Vector2.ZERO
-	
-	for shape in shapes_broken:
-		position_running_total += shape.global_position
-		print(total_external_multiplier)
-		var shape_value: int = ceil((shape.get_value() + total_external_bonus) * total_external_multiplier)
-		total += shape_value
-	camera.shake_component.shake(7, 1.0)
-	bunch_center_pos = position_running_total / shapes_broken.size()
-	var text: String = "+$" + str(total)
-	var time: float = 1.5
-	var text_scale: Vector2 = Vector2(1.0, 1.0) * (1 + (float(shapes_broken.size()) / 8))
-	EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -18, 0.55)
-	EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
-	spawn_floating_text(text, bunch_center_pos, time, text_scale)
 
 
 func _get_cluster_multiplier(cluster_size: int) -> float:
@@ -241,14 +246,10 @@ func _on_session_restarted() -> void:
 	can_create_bomb = true
 	current_run_gain = 0
 	total_shapes_destroyed = 0
-	
+	GameManager.detonation_idx_value = 0
+	SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value) 
 	place_delay_timer.stop()
 	session_timer.start(StatManager.get_session_stat("session_time"))
 	GameManager.session_data = [0, 0, 0, 0]
 	for bomb in bomb_container.get_children():
 		bomb.queue_free()
-
-
-func _on_shape_broken(shape: Shape, by_bomb: bool) -> void:
-	if not by_bomb:
-		_handle_shape_broken(shape)

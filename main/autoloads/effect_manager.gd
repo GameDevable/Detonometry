@@ -4,6 +4,21 @@ var music_node: AudioStreamPlayer2D = null
 var audio_holder: Node = null
 var particle_holder: Node2D = null
 
+
+func spawn_floating_text(text: String, text_position: Vector2, visible_time: float, text_scale: Vector2 = Vector2(1, 1)):
+	var floating_text: Marker2D = load(Constants.FLOATING_TEXT_PATH).instantiate()
+	var text_label: Label = floating_text.get_child(0)
+	text_label.scale = text_scale
+	floating_text.exist_time = visible_time
+	text_label.text = text
+	floating_text.position = text_position
+	text_label.add_theme_color_override("font_color", Color.GREEN)
+	add_child(floating_text)
+	await get_tree().create_timer(visible_time).timeout
+	floating_text.queue_free()
+
+
+
 func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = 10.0, base_pitch: float = 1.0, is_pitch_shifted: bool = false, shift_scale: Vector2 = Vector2(0.9, 1.1)) -> void:
 	var pitch: float = base_pitch
 	if is_pitch_shifted:

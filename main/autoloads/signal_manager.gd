@@ -18,6 +18,7 @@ signal session_points_changed(new_value: int)
 signal place_delay_timer_changed(value: float)
 signal delay_timer_out()
 signal mouse_dragging(is_dragging: bool)
+signal detonation_idx_value_changed(new_value: int)
 # Spawn System
 signal spawn_shape_request(position: Vector2, shape_type: Enums.ShapeType, modifiers: Array[ShapeModifierComponent])
 signal spawn_shape_bunch_request(amount: int, positions: Array[Vector2], shape_types: Array[Enums.ShapeType], modifier_array: Array[Array])
