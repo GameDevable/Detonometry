@@ -41,13 +41,15 @@ script = ExtResource("1_1h7gg")
 keep_detection_active = true
 
 [node name="BombSprite" type="Sprite2D" parent="." unique_id=2088059123]
-z_index = 2
+z_index = 4
 position = Vector2(0, -4)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_f3gsr")
 
 [node name="ExplosionAreaSprite" type="Sprite2D" parent="." unique_id=1069695329]
+modulate = Color(1.3720901, 1.3720901, 1.3720901, 1)
 self_modulate = Color(1, 1, 1, 0.41568628)
+z_index = 3
 texture = ExtResource("3_27ssy")
 
 [node name="ExplosionAreaHitbox" parent="." unique_id=624666355 instance=ExtResource("4_5f04w")]
@@ -80,6 +82,7 @@ stream = SubResource("AudioStreamOggVorbis_1h7gg")
 bus = &"SFX"
 
 [node name="RadiusLight" type="PointLight2D" parent="." unique_id=936152016]
+visible = false
 light_mask = 2
 scale = Vector2(2.75, 2.75)
 color = Color(9.385496e-06, 0.9666987, 0, 1)

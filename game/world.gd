@@ -1,28 +1,30 @@
 class_name World
 extends Node2D 
+const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
+const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
+const CRATE_BREAK = preload("uid://bggl4xban0c58")
+const CLUSTER_BROKE_PARTICLES = preload("uid://fch54yu8d7av")
+
 var held_bomb: Bomb = null
 var can_create_bomb: bool = true
+var timer_over: bool = false
 var time_since_bomb_creation: float = 0.0
 var current_run_gain: int = 0
 var total_shapes_destroyed: int = 0
 var shape_det_val: int = 1
 var cluster_det_mult_val: float = 1.65
-const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
-const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
-const MONEY_GAINED_SOUND = preload("uid://fdmbqs5tq2x5")
-const CRATE_BREAK = preload("uid://bggl4xban0c58")
 
 @onready var bomb_container: Node2D = $BombContainer
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 @onready var session_timer: Timer = $SessionTimer
 @onready var camera: Camera2D = $Camera
 
-const CLUSTER_BROKE_PARTICLES = preload("uid://fch54yu8d7av")
 
 func _ready() -> void:
 	Console.add_command("set_points", _command_set_points, ["amount"], 1)
 	Console.add_command("quit_session", _command_quit_session)
 	_connect_signals()
+	
 
 
 func _process(delta: float) -> void:
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 		SignalManager.place_delay_timer_changed.emit(snapped(place_delay_timer.time_left, 0.1))
 	if held_bomb:
 		time_since_bomb_creation += delta
-	if not session_timer.is_stopped():
+	if not session_timer.is_stopped() and not timer_over:
 		SignalManager.session_timer_updated.emit(session_timer.time_left)
 
 
@@ -39,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_position: Vector2 = get_global_mouse_position()
 		# The bomb will be created when the bomb_action is pressed
 		if Input.is_action_just_pressed("bomb_place_action") and not held_bomb:
-			if can_create_bomb:
+			if can_create_bomb or (GameManager.in_frenzy and not can_create_bomb):
 				held_bomb = create_bomb(mouse_position)
 				can_create_bomb = false
 			else:
@@ -48,7 +50,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_just_released("bomb_place_action") and held_bomb:
 			place_bomb()
 			time_since_bomb_creation = 0.0
-			place_delay_timer.start(StatManager.get_bomb_stat("place_delay"))
+			if not GameManager.in_frenzy:
+				place_delay_timer.start(StatManager.get_bomb_stat("place_delay"))
+			else:
+				place_delay_timer.start(0.4)
 			SignalManager.bomb_placed.emit()
 	elif event is InputEventMouseMotion:
 		if held_bomb:
@@ -113,6 +118,10 @@ func _connect_signals() -> void:
 		if not by_bomb:
 			_handle_shape_broken(shape)
 		)
+	SignalManager.frenzy_ended.connect(func() -> void:
+		if timer_over:
+			_on_session_timer_timeout()
+	)
 
 
 func _command_set_points(amount: String) -> void:
@@ -140,7 +149,8 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 	
 	total_shapes_destroyed += 1
 	GameManager.session_data[2] = total_shapes_destroyed
-	
+	var volume: float = -19 
+	EffectManager.play_sfx(CRATE_BREAK, 0.0, volume, 0.6, true, Vector2(0.55, 0.6))
 	if not in_cluster:
 		var time: float = 1.15
 		EffectManager.spawn_floating_text(text ,shape_instance.position + Vector2(0, -10.0), time)
@@ -154,6 +164,7 @@ func _handle_cluster_broken(shapes_broken: Array[Node2D], total_external_bonus: 
 	var total: int = 0
 	var bunch_center_pos: Vector2 = Vector2.ZERO
 	var position_running_total: Vector2 = Vector2.ZERO
+	var volume: float = -19 
 	
 	for shape in shapes_broken:
 		position_running_total += shape.global_position
@@ -169,9 +180,12 @@ func _handle_cluster_broken(shapes_broken: Array[Node2D], total_external_bonus: 
 	var text_scale: Vector2 = Vector2(1.0, 1.0) * (1 + (float(shapes_broken.size()) / 8))
 	EffectManager.spawn_floating_text(text, bunch_center_pos, time, text_scale)
 	
-	EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -18, 0.55)
-	EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
-
+	#EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -18, 0.55)
+	for i in range(shapes_broken.size()):
+		await get_tree().create_timer(randf_range(0.005, 0.007)).timeout
+		EffectManager.play_sfx(CRATE_BREAK, 0.0, volume, 0.6, true, Vector2(0.57, 0.6))
+		EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
+	
 
 func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 	var total_external_multiplier: float = 1.0
@@ -180,9 +194,6 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 	var in_cluster: bool = false
 	total_external_multiplier *= _get_cluster_multiplier(shapes_broken.size())
 	total_external_bonus += _get_cluster_bonus(shapes_broken.size())
-	if shapes_broken.size() > 0:
-		var volume: float = -21 + shapes_broken.size() * 0.9
-		EffectManager.play_sfx(CRATE_BREAK, 0.0, volume, 0.6, true, Vector2(0.55, 0.6))
 		 
 	if shapes_broken.size() > 1:
 		in_cluster = true
@@ -222,6 +233,9 @@ func _on_place_delay_timer_timeout() -> void:
 
 
 func _on_session_timer_timeout() -> void:
+	timer_over = true
+	if GameManager.in_frenzy:
+		return
 	session_timer.stop()
 	if bomb_container.get_child_count() > 0:
 		await bomb_container.emptied
@@ -241,9 +255,9 @@ func _on_session_timer_timeout() -> void:
 
 func _on_session_restarted() -> void:
 	can_create_bomb = true
+	timer_over = false
 	time_since_bomb_creation = 0.0
 	held_bomb = null
-	can_create_bomb = true
 	current_run_gain = 0
 	total_shapes_destroyed = 0
 	GameManager.detonation_idx_value = 0

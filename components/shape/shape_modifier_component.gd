@@ -10,6 +10,7 @@ extends Node
 @export var sound: AudioStream = null
 @export var is_specific_to_one_shape: bool = false
 @export var specific_shape: Enums.ShapeType
+@export var z_index: int = 0
 var shape: Shape = null
 
 func _ready() -> void:
@@ -35,5 +36,5 @@ func swap_textures() -> void:
 		shape.add_modifier_overlay(overlay_texture, overlay_name)
 	elif not overlay_path == "":
 		var texture_path: String = overlay_path + Enums.ShapeType.keys()[shape.shape_data.shape_type].to_lower() + "_overlay.svg"
-		shape.add_modifier_overlay(load(texture_path), overlay_name)
+		shape.add_modifier_overlay(load(texture_path), overlay_name, z_index)
 		

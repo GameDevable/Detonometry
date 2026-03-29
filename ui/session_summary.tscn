@@ -202,33 +202,27 @@ text = "Round Over"
 
 [node name="UiEffectComponent" parent="ContentBackground" unique_id=960086942 instance=ExtResource("5_p51de")]
 
-[node name="DividerLabel" type="Label" parent="ContentBackground" unique_id=63604836]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -233.5
-offset_top = -361.0
-offset_right = 233.5
-offset_bottom = -330.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("1_fxxow")
-text = "------------------------------------------------"
-
-[node name="DividerLabel2" type="Label" parent="ContentBackground" unique_id=1301482816]
+[node name="DividerLine" type="ColorRect" parent="ContentBackground" unique_id=641881620]
+custom_minimum_size = Vector2(490, 3)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.042156864
-anchor_top = 0.5906542
-anchor_right = 0.9578431
-anchor_bottom = 0.64859813
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_fxxow")
-text = "------------------------------------------------"
+anchor_left = 0.019607844
+anchor_top = 0.34766355
+anchor_right = 1.0196079
+anchor_bottom = 0.35327104
+offset_right = -20.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DividerLine2" type="ColorRect" parent="ContentBackground" unique_id=794607404]
+custom_minimum_size = Vector2(490, 3)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.018627452
+anchor_top = 0.6280374
+anchor_right = 1.0186274
+anchor_bottom = 0.6336449
+offset_left = 0.5
+offset_right = -19.5
 metadata/_edit_use_anchors_ = true
 
 [node name="Buttons" type="Control" parent="ContentBackground" unique_id=556688216]

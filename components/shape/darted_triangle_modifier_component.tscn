@@ -9,3 +9,4 @@ overlay_texture = ExtResource("2_fffqp")
 overlay_name = "DartedTriangleOverlay"
 modifier_weight_name = "darted_triangle_chance"
 is_specific_to_one_shape = true
+z_index = 1

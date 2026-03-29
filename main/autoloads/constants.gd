@@ -29,5 +29,5 @@ const BUTTON_CLICK_VOLUME: float = -15.0
 const BUTTON_CLICK_PITCH: float = 0.47
 
 
-const GAME_MUSIC = preload("uid://cveyrt0b6bu53")
-const GAME_MUSIC_2 = preload("uid://dim1e62fq3om8")
+const GAME_MUSIC = preload("uid://blfyrn5f36j0a")
+const GAME_MUSIC_2 = preload("uid://fbfnmarp7o2h")

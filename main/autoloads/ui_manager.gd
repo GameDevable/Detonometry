@@ -82,6 +82,7 @@ func transition_to(menu_key: String) -> void:
 		SignalManager.session_restarted.emit()
 	swap_menu(menu_key)
 	if menu_key == "None":
+		#EffectManager.start_music(Constants.GAME_MUSIC_2, -15)
 		world.handle_entered()
 	EffectManager.play_sfx(WHOOSH, 0.1, whoosh_volume, whoosh_pitch)
 	await transition_effect.transition_position(Vector2(get_viewport().size.x, 0))

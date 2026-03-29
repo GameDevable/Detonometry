@@ -2,11 +2,7 @@ class_name UpgradeNode
 extends Control
 @export var data: UpgradeData
 @export var is_locked: bool = true
-var upgrade: Upgrade = null
-var can_purchase: bool = false
-var base_position: Vector2 = Vector2.ZERO
-var base_display_min_size: Vector2 = Vector2.ZERO
-var base_display_position: Vector2 = Vector2.ZERO
+@export var is_demo: bool = true
 const UPGRADE_NODE_CAN_AFFORD_THEME = preload("uid://bmi00awkluvkt")
 const UPGRADE_NODE_CANT_AFFORD_THEME = preload("uid://cpbqs1ys1nkeb")
 const UPGRADE_NODE_MAXED_THEME = preload("uid://b6ntk2x4lk85")
@@ -26,12 +22,18 @@ const NORMAL_LOCK_TEXTURE: Texture2D = preload("uid://dmpf5mmfqu6gc")
 const HOVER_LOCK_TEXTURE: Texture2D = preload("uid://cexmjh73ifghx")
 const PRESSED_LOCK_TEXTURE: Texture2D = preload("uid://vy6squcty0gf")
 
-@onready var name_display: PanelContainer = $UpgradeDataDisplay/NameDisplay
+var upgrade: Upgrade = null
+var can_purchase: bool = false
+var base_position: Vector2 = Vector2.ZERO
+var base_display_min_size: Vector2 = Vector2.ZERO
+var base_display_position: Vector2 = Vector2.ZERO
 
-@onready var name_label: Label = $UpgradeDataDisplay/NameDisplay/NameLabel
-@onready var description_label: Label = $UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels/DescriptionLabel
-@onready var before_after_label: Label = $UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels/BeforeAfterLabel
-@onready var price_label: Label = $UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels/PriceLabel
+@onready var name_display: PanelContainer = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/NamePanel
+
+@onready var name_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/NamePanel/NameMargins/NameLabel
+@onready var description_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/DescriptionLabel
+@onready var before_after_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/BeforeAfterLabel
+@onready var price_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/PriceLabel
 
 @onready var purchase_button: Button = $PurchaseButton
 @onready var upgrade_data_display: VBoxContainer = $UpgradeDataDisplay
@@ -49,9 +51,9 @@ func _ready() -> void:
 		upgrade = Upgrade.new()
 		upgrade.data = data
 		name_label.text = str(upgrade.get_name())
-		before_after_label.text = upgrade.get_before_after()
-		description_label.text = upgrade.data.description
-		price_label.text = "$" + str(upgrade.get_current_price())
+		before_after_label.text = "??? -> ???"
+		description_label.text = "????????????????????????"
+		price_label.text = "???"
 		button_icon.texture = data.icon
 		update_theme()
 		if not is_locked:
@@ -141,8 +143,11 @@ func _update_display() -> void:
 	if upgrade.has_reached_max_tier():
 		price_label.text  = "MAXED"
 		return
+	if is_locked:
+		pass
 	name_label.text = str(upgrade.data.name)
 	price_label.text = "$" + str(upgrade.get_current_price())
+	description_label.text = upgrade.data.description
 
 
 func _on_purchase_button_mouse_entered() -> void:

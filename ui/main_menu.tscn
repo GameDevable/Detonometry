@@ -82,7 +82,8 @@ text = "Detonometry"
 metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle" type="TextureRect" parent="." unique_id=1428283947]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.190625
 anchor_top = 0.32944444
 anchor_right = 0.265625
@@ -110,7 +111,8 @@ speed = Vector2(100, -40)
 rotation_speed = -0.6
 
 [node name="MenuTriangle3" type="TextureRect" parent="." unique_id=1867130059]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.6890625
 anchor_top = 0.32527778
 anchor_right = 0.7640625
@@ -143,7 +145,8 @@ texture = ExtResource("2_rmr83")
 script = ExtResource("3_8uxxo")
 
 [node name="MenuSquare" type="TextureRect" parent="." unique_id=2120643090]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.7015625
 anchor_top = 0.7252778
 anchor_right = 0.7765626
@@ -160,7 +163,8 @@ speed = Vector2(100, 40)
 rotation_speed = 0.5
 
 [node name="MenuSquare2" type="TextureRect" parent="." unique_id=1674589122]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.42578125
 anchor_top = 0.18916667
 anchor_right = 0.50078124
@@ -240,7 +244,6 @@ anchor_bottom = 0.725
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
-metadata/_edit_use_anchors_ = true
 
 [node name="NewGameButton" parent="Buttons1" unique_id=456011415 instance=ExtResource("5_ubpvv")]
 layout_mode = 2
@@ -291,7 +294,7 @@ anchor_bottom = 0.9736111
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 40
-text = "v0.5.3"
+text = "v0.6.0"
 metadata/_edit_use_anchors_ = true
 
 [node name="FeedbackLabel" type="Label" parent="." unique_id=2053016278]

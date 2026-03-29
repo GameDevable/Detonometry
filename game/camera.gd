@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var base_shake_intensity: float = 3.45
+@export var base_shake_intensity: float = 4.2
 @export var shake_time: float = 0.8
 @onready var shake_component: ShakeComponent = $ShakeComponent
 

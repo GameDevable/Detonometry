@@ -245,15 +245,11 @@ text = "Full Screen"
 [node name="BackButton" type="Button" parent="." unique_id=1032040572]
 custom_minimum_size = Vector2(160, 45)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -57.0
-offset_right = 80.0
-offset_bottom = -12.0
+anchors_preset = -1
+anchor_left = 0.4375
+anchor_top = 0.9013889
+anchor_right = 0.5625
+anchor_bottom = 0.9777778
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
@@ -261,6 +257,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("4_2ty5h")
 text = "Back"
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonScaleEffect" parent="BackButton" unique_id=1259690829 instance=ExtResource("5_tog15")]
 anim_duration = 0.4

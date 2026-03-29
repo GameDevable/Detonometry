@@ -63,7 +63,7 @@ var multiplier_stats: Dictionary[String, float] = {
 
 var session_stats: Dictionary[String, float] = {
 	"session_time" : 30.0,
-	
+	"frenzy_time" : 6
 }
 
 var shape_type_weights: Dictionary[Enums.ShapeType, float] = {

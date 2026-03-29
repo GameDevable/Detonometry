@@ -186,7 +186,11 @@ func _on_health_changed(health_node: Health, _diff: int) -> void:
 				if reinforced_overlay.visible:
 					EffectManager.spawn_particles(REINFORCED_BREAK_PARTICLES, position)
 					EffectManager.play_sfx(CRATE_BREAK, 0.0, -16, 0.35)
-					EffectManager.play_sfx(METAL_BREAK, 0.0, -32, 0.45)
+					EffectManager.play_sfx(METAL_BREAK, 0.0, -35, 0.40)
+					const PATH_BEGIN: String = "res://upgrade system/assets/upgrade_overlays/broken_reinforced_"
+					var path_end: String = str(Enums.ShapeType.keys()[shape_data.shape_type]).to_lower() + "_overlay.svg"
+					var broken_reinforced_overlay_texture_path: String = PATH_BEGIN + path_end
+					add_modifier_overlay(load(broken_reinforced_overlay_texture_path), "BrokenReinforcedOverlay", 1)
 				reinforced_overlay.visible = false
 				
 		if health.health != 0 and health.health != health.max_health:

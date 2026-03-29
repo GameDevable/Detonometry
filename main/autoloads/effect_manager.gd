@@ -19,7 +19,7 @@ func spawn_floating_text(text: String, text_position: Vector2, visible_time: flo
 
 
 
-func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = 10.0, base_pitch: float = 1.0, is_pitch_shifted: bool = false, shift_scale: Vector2 = Vector2(0.9, 1.1)) -> void:
+func play_sfx(stream: AudioStream, play_at_time: float = 0.0, volume: float = -10.0, base_pitch: float = 1.0, is_pitch_shifted: bool = false, shift_scale: Vector2 = Vector2(0.9, 1.1)) -> void:
 	var pitch: float = base_pitch
 	if is_pitch_shifted:
 		pitch = _get_pitch_shift(shift_scale.x, shift_scale.y)
@@ -43,8 +43,9 @@ func set_audio_contianer(node: Node) -> void:
 	audio_holder = node
 
 
-func start_music(stream: AudioStream) -> void:
+func start_music(stream: AudioStream, volume: float = 0.0) -> void:
 	music_node.stream = stream
+	music_node.volume_db = volume
 	music_node.play()
 
 

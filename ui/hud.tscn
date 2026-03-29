@@ -5,20 +5,7 @@
 [ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_546lt"]
 [ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="5_1v5rv"]
 [ext_resource type="Texture2D" uid="uid://dyk83uiiw75cf" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2x2"]
-bg_color = Color(0.4, 0.4, 0.4, 0.8352941)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1v5rv"]
-bg_color = Color(0.9720685, 0.9720686, 0.9720686, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[ext_resource type="PackedScene" uid="uid://bpecnjfwch8te" path="res://ui/frenzy_bar_handler.tscn" id="6_1v5rv"]
 
 [node name="Hud" type="Control" unique_id=579881151]
 layout_mode = 3
@@ -83,22 +70,13 @@ theme_override_font_sizes/font_size = 48
 text = "$0"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=471916799]
-z_as_relative = false
+[node name="FrenzyBarHandler" parent="." unique_id=1205259984 instance=ExtResource("6_1v5rv")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01875
-anchor_top = 0.12777779
-anchor_right = 0.0421875
-anchor_bottom = 0.83194447
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_en2x2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1v5rv")
-value = 10.0
-fill_mode = 3
-show_percentage = false
+anchor_left = 0.02890625
+anchor_top = 0.15277778
+anchor_right = 0.08359375
+anchor_bottom = 0.8472222
+offset_right = 0.0
+offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true

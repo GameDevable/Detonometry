@@ -6,22 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5x3gqve5sar" path="res://upgrade system/assets/upgrade icons/bomb/bomb_place_delay_icon.svg" id="3_timap"]
 [ext_resource type="Texture2D" uid="uid://dmpf5mmfqu6gc" path="res://ui/assets/base_lock.svg" id="4_q8yqo"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="5_q8yqo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timap"]
-bg_color = Color(0.1847857, 0.18478566, 0.18478566, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="Theme" id="Theme_q8yqo"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_timap")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qim07"]
+[ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="6_q8yqo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qim07"]
 bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
@@ -29,6 +14,14 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8yqo"]
+bg_color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="Theme" id="Theme_601ce"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_q8yqo")
 
 [node name="UpgradeNode" type="Control" unique_id=1630547048]
 z_index = 1
@@ -65,6 +58,7 @@ texture = ExtResource("3_timap")
 metadata/_edit_use_anchors_ = true
 
 [node name="LockIcon" type="TextureRect" parent="PurchaseButton" unique_id=1762686721]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,25 +97,7 @@ pivot_offset_ratio = Vector2(0.5, 1)
 mouse_filter = 2
 theme_override_constants/separation = -2
 
-[node name="NameDisplay" type="PanelContainer" parent="UpgradeDataDisplay" unique_id=1842079204]
-z_index = 3
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-mouse_filter = 2
-theme = SubResource("Theme_q8yqo")
-metadata/_edit_use_anchors_ = true
-
-[node name="NameLabel" type="Label" parent="UpgradeDataDisplay/NameDisplay" unique_id=1200388976]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = ExtResource("2_m2iyk")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qim07")
-text = "Explosive Power"
-
-[node name="NumberDataDisplay" type="PanelContainer" parent="UpgradeDataDisplay" unique_id=453386313]
+[node name="DisplayBackground" type="PanelContainer" parent="UpgradeDataDisplay" unique_id=453386313]
 z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -129,19 +105,38 @@ size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qim07")
 
-[node name="InfoContainer" type="MarginContainer" parent="UpgradeDataDisplay/NumberDataDisplay" unique_id=1298820906]
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDataDisplay/DisplayBackground" unique_id=174754496]
+layout_mode = 2
+
+[node name="NamePanel" type="PanelContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer" unique_id=1331904449]
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_601ce")
+
+[node name="NameMargins" type="MarginContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/NamePanel" unique_id=421531339]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="NameLabel" type="Label" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/NamePanel/NameMargins" unique_id=1984678452]
+layout_mode = 2
+theme = ExtResource("6_q8yqo")
+theme_override_font_sizes/font_size = 24
+text = "asdfasdf"
+horizontal_alignment = 1
+
+[node name="InfoContainer" type="MarginContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer" unique_id=1298820906]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Labels" type="VBoxContainer" parent="UpgradeDataDisplay/NumberDataDisplay/InfoContainer" unique_id=126671918]
+[node name="Labels" type="VBoxContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer" unique_id=126671918]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="DescriptionLabel" type="Label" parent="UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels" unique_id=2020267842]
+[node name="DescriptionLabel" type="Label" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=2020267842]
 layout_mode = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 14.02
@@ -151,19 +146,23 @@ text = "Increases explosion_power"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BeforeAfterLabel" type="Label" parent="UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels" unique_id=1363175856]
+[node name="BeforeAfterLabel" type="Label" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=1363175856]
 layout_mode = 2
 theme = ExtResource("2_m2iyk")
 theme_override_font_sizes/font_size = 16
 text = "100% -> 125%"
 horizontal_alignment = 1
 
-[node name="LineSpaceLabel" type="Label" parent="UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels" unique_id=715520947]
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=690874306]
 layout_mode = 2
-text = "---------------------------------------------------------"
-horizontal_alignment = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 10
 
-[node name="PriceLabel" type="Label" parent="UpgradeDataDisplay/NumberDataDisplay/InfoContainer/Labels" unique_id=1608821440]
+[node name="DividerLine" type="ColorRect" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/MarginContainer" unique_id=2064315691]
+custom_minimum_size = Vector2(400, 3)
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=1608821440]
 layout_mode = 2
 theme = ExtResource("2_m2iyk")
 theme_override_font_sizes/font_size = 18

@@ -39,7 +39,7 @@ func handle_shown() -> void:
 	tween_int(largest_cluster_value_labels, 0, GameManager.session_data[3], regular_tween_time, false, false)
 	
 	tween_int(money_earned_value_label, 0, GameManager.session_data[0], regular_tween_time, true, false)
-	await get_tree().create_timer(0.5)
+	await get_tree().create_timer(0.5).timeout
 	tween_int(total_money_value_label, 0, GameManager.total_points, regular_tween_time, true, false)
 
 

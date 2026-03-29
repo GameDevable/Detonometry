@@ -30,6 +30,7 @@ signal unsuccessful_bomb_place
 signal session_restarted
 signal session_timer_updated(value: float)
 signal session_ended(session_data)
+signal frenzy_ended 
 # Upgrades
 signal upgrade_purchased(upgrade: Upgrade)
 signal upgrade_advanced(upgrade: Upgrade)

@@ -10,8 +10,8 @@ point_count = 2
 curve = SubResource("Curve_pp8cu")
 
 [sub_resource type="Gradient" id="Gradient_pp8cu"]
-offsets = PackedFloat32Array(0, 0.38268158, 0.8072626, 0.9636871)
-colors = PackedColorArray(1, 0.25237823, 0, 1, 1, 0.5198238, 0, 1, 1, 1, 0, 1, 0.9999996, 0.98914975, 0.821922, 1)
+offsets = PackedFloat32Array(0, 0.42307693, 0.87362635)
+colors = PackedColorArray(0.9999996, 0.98914975, 0.821922, 1, 1, 0.9882353, 0, 1, 1, 0.18039216, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_kj07g"]
 gradient = SubResource("Gradient_pp8cu")
