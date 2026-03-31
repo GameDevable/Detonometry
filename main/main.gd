@@ -7,6 +7,9 @@ const BLAST_PARTICLE = preload("uid://db1td87mfq0rt")
 const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
 const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
 const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
+const LUCKY_TRIANGLE_PARTICLES = preload("uid://cywo1eoh606v7")
+const REINFORCED_BREAK_PARTICLES = preload("uid://dx8qftu7xipko")
+
 
 func _ready() -> void:
 	SaveManager.load_game()
@@ -38,3 +41,5 @@ func _load_particles() -> void:
 	EffectManager.spawn_particles(EXPLOSION_PARTICLES, Vector2.ZERO)
 	EffectManager.spawn_particles(BLAST_PARTICLE, Vector2.ZERO)
 	EffectManager.spawn_particles(BREAK_PARTICLES, Vector2.ZERO)
+	EffectManager.spawn_particles(LUCKY_TRIANGLE_PARTICLES, Vector2.ZERO)
+	EffectManager.spawn_particles(REINFORCED_BREAK_PARTICLES, Vector2.ZERO)

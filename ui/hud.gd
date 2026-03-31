@@ -3,8 +3,10 @@ extends Control
 @export var world: World = null
 
 const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg")
+
 @onready var session_time_label: Label = $SessionTimeLabel
 @onready var session_value_label: Label = $SessionValueLabel
+@onready var frenzy_bar_handler: Control = $FrenzyBarHandler
 
 func _ready() -> void:
 	
@@ -24,6 +26,7 @@ func _ready() -> void:
 
 func handle_shown() -> void:
 	session_value_label.text  = "$" + str(0)
+	frenzy_bar_handler.reset()
 
 
 func _on_bomb_detonated(_shapes_broken: Array[Node2D]) -> void:

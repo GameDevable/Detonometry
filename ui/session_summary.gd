@@ -1,10 +1,19 @@
 extends Control
 
-@onready var money_earned_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataContainer/MoneyEarnedMargins/MoneyEarnedValueLabel
-@onready var shapes_destroyed_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataContainer/ShapesDestroyedValueLabel
-@onready var largest_cluster_value_labels: Label = $ContentBackground/ContentMargins/HBoxContainer/DataContainer/LargestClusterValueLabels
-@onready var cluster_mult_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataContainer/ClusterMultLabel
-@onready var total_money_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataContainer/TotalMoneyLabelMargins/TotalMoneyValueLabel
+var total_multiplier: float = 1.0
+
+@onready var money_earned_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/MoneyEarnedValueLabel
+@onready var shapes_destroyed_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/ShapesDestroyedValueLabel
+@onready var largest_cluster_value_labels: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/LargestClusterValueLabels
+@onready var highest_bomb_profit_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/HighestBombProfitValueLabel
+@onready var total_money_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/TotalMoneyLabelMargins/TotalMoneyValueLabel
+@onready var multiplier_value_label: Label = $ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/MultiplierValueLabel
+
+@onready var earned_record_notify: Panel = $ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer/EarnedRecordNotify
+@onready var destroyed_record_notify: Panel = $ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer/DestroyedRecordNotify
+@onready var cluster_record_notify: Panel = $ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer/ClusterRecordNotify
+@onready var profit_record_notify: Panel = $ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer/ProfitRecordNotify
+
 
 @onready var upgrade_hub_button: Button = $ContentBackground/Buttons/UpgradeHubButton
 @onready var upgrade_button_animator: UiEffectComponent = $ContentBackground/Buttons/UpgradeHubButton/UpgradeButtonAnimator
@@ -21,38 +30,49 @@ func _ready() -> void:
 
 
 func handle_shown() -> void:
-	reset_labels()
+	_reset_labels()
+	_reset_notifiers()
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	content_background.scale = Vector2(0.01, 0.01)
 	ui_effect_component.scale_ui(Vector2(0.01, 0.01), Vector2(1.0, 1.0), Tween.TRANS_EXPO)
-	var bombs_placed: int = GameManager.session_data[1]
-	var shapes_destroyed: int = GameManager.session_data[2]
+	var session_earned: int = GameManager.session_data[0]
+	var shapes_destroyed: int = GameManager.session_data[1]
+	var largest_cluster_value: int = GameManager.session_data[2]
+	var highest_bomb_profit: int = GameManager.session_data[3]
 	
-	var cluster_multiplier: float = 1.0 + GameManager.session_data[3] / 12.0
-	
-	var multiplier_tween_time: float = 0.2
 	var regular_tween_time: float = 0.4
+	var record_time: float = 0.35
 	await get_tree().create_timer(1.2).timeout
-	tween_float(cluster_mult_label, 0.0, cluster_multiplier, multiplier_tween_time, false, true)
 	
 	tween_int(shapes_destroyed_value_label, 0, shapes_destroyed, regular_tween_time, false, false)
-	tween_int(largest_cluster_value_labels, 0, GameManager.session_data[3], regular_tween_time, false, false)
+	tween_int(largest_cluster_value_labels, 0, largest_cluster_value, regular_tween_time, false, false)
 	
-	tween_int(money_earned_value_label, 0, GameManager.session_data[0], regular_tween_time, true, false)
+	tween_int(money_earned_value_label, 0, session_earned, regular_tween_time, true, false)
+	tween_int(highest_bomb_profit_value_label, 0, highest_bomb_profit, regular_tween_time, true, false)
+	await get_tree().create_timer(0.6).timeout
+	
+	_check_and_show_record(Constants.MAX_SESSION_POINTS_SAVE_KEY, session_earned, earned_record_notify)
+	await get_tree().create_timer(record_time).timeout
+	_check_and_show_record(Constants.MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY, shapes_destroyed, destroyed_record_notify)
+	await get_tree().create_timer(record_time).timeout
+	_check_and_show_record(Constants.MAX_LARGEST_CLUSTER_SAVE_KEY, largest_cluster_value, cluster_record_notify)
+	await get_tree().create_timer(record_time).timeout
+	_check_and_show_record(Constants.MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY, highest_bomb_profit, profit_record_notify)
+	var session_points: int = GameManager.session_data[0]
+	GameManager.total_points += session_points * total_multiplier
+	
+	await get_tree().create_timer(0.35).timeout
+	
+	tween_float(multiplier_value_label, 1.0, total_multiplier, 0.2, false, true)
+	
 	await get_tree().create_timer(0.5).timeout
 	tween_int(total_money_value_label, 0, GameManager.total_points, regular_tween_time, true, false)
-
+	
 
 func _on_session_ended(_data: Array[int]) -> void:
-	var bombs_placed: int = GameManager.session_data[1]
-	var shapes_destroyed: int = GameManager.session_data[2]
-	
-	var do_good_multiplier: float = 1.0 + (shapes_destroyed - bombs_placed) / 8.0
-	var cluster_multiplier: float = 1.0 + GameManager.session_data[3] / 10.0
-	var session_points: int = GameManager.session_data[0]
-	GameManager.total_points += (session_points * int(do_good_multiplier * cluster_multiplier))
-	
-	reset_labels()
+	total_multiplier = 1.0
+	_reset_labels()
+	_reset_notifiers()
 
 
 func tween_float(label: Label, start: float, end: float, duration: float, is_money: bool, is_multiplier: bool) -> void:
@@ -75,6 +95,19 @@ func tween_int(label: Label, start: int, end: int, duration: float, is_money: bo
 	)
 
 
+func _check_and_show_record(record_name: String, value: int, notify_node: Control) -> void:
+	if GameManager.session_number == 0:
+		GameManager.set(record_name, value)
+		return
+	if value <= GameManager.get(record_name):
+		return
+		
+	GameManager.set(record_name, value)
+	notify_node.visible = true
+	total_multiplier += 0.2
+
+
+
 func _format_float(value: float, is_money: bool, is_multiplier: bool) -> String:
 	if is_money:
 		return "$%.2f" % value
@@ -91,14 +124,20 @@ func _format_int(value: int, is_money: bool, is_multiplier: bool) -> String:
 	return "%d" % value
 
 
-func reset_labels() -> void:
+func _reset_labels() -> void:
 	money_earned_value_label.text = "$0"
 	total_money_value_label.text = "$0"
 	
 	shapes_destroyed_value_label.text = "0"
 	largest_cluster_value_labels.text = "0"
-	
-	cluster_mult_label.text = "x0.00"
+	multiplier_value_label.text = "x1.00"
+
+
+func _reset_notifiers() -> void:
+	earned_record_notify.visible = false
+	profit_record_notify.visible = false
+	cluster_record_notify.visible = false
+	destroyed_record_notify.visible = false
 
 
 func _on_upgrade_hub_button_pressed() -> void:
@@ -106,6 +145,7 @@ func _on_upgrade_hub_button_pressed() -> void:
 	UiManager.transition_to("UpgradeHub")
 	await get_tree().create_timer(0.01).timeout
 	UiManager.hide_overlay("SessionSummary")
+	GameManager.session_number += 1
 
 
 func _on_upgrade_hub_button_mouse_entered() -> void:

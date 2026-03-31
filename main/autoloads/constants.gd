@@ -31,3 +31,9 @@ const BUTTON_CLICK_PITCH: float = 0.47
 
 const GAME_MUSIC = preload("uid://blfyrn5f36j0a")
 const GAME_MUSIC_2 = preload("uid://fbfnmarp7o2h")
+
+var POINTS_SAVE_KEY: String = "points"
+var MAX_SESSION_POINTS_SAVE_KEY: String = "max_session_points"
+var MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY: String = "max_highest_bomb_profit"
+var MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY: String = "max_session_shapes_destroyed"
+var MAX_LARGEST_CLUSTER_SAVE_KEY: String = "max_largest_cluster"

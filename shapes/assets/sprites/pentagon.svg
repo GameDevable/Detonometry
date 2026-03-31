@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="16.5mm"
-   height="16.5mm"
-   viewBox="0 0 16.5 16.5"
+   width="18.520834mm"
+   height="18.520832mm"
+   viewBox="0 0 18.520834 18.520832"
    version="1.1"
    id="svg1"
    sodipodi:docname="pentagon.svg"
@@ -53,8 +53,26 @@
        inkscape:rounded="0"
        inkscape:randomized="0"
        d="M 8.0977056,9.9486097 1.3189581,10.178477 -0.99440664,3.8025375 4.3546029,-0.36787666 9.9738373,3.4306048 Z"
-       inkscape:transform-center-x="-0.021003254"
-       inkscape:transform-center-y="-0.73251749"
-       transform="matrix(1.502433,0.05915367,-0.05632382,1.5779192,1.7082027,0.32288885)" />
+       inkscape:transform-center-x="-0.023575766"
+       inkscape:transform-center-y="-0.82223251"
+       transform="matrix(1.6864431,0.0663985,-0.06322206,1.7711744,1.9174144,0.36243458)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#e2a9f1;fill-opacity:1;stroke:#ffffff;stroke-width:0"
+       id="path2"
+       inkscape:flatsided="true"
+       sodipodi:sides="5"
+       sodipodi:cx="4.5501394"
+       sodipodi:cy="5.3984704"
+       sodipodi:r1="5.7696614"
+       sodipodi:r2="4.6677542"
+       sodipodi:arg1="0.90858083"
+       sodipodi:arg2="1.5368994"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 8.0977056,9.9486097 1.3189581,10.178477 -0.99440664,3.8025375 4.3546029,-0.36787666 9.9738373,3.4306048 Z"
+       inkscape:transform-center-x="-0.023575766"
+       inkscape:transform-center-y="-0.82223251"
+       transform="matrix(1.6864431,0.0663985,-0.06322206,1.7711744,1.9174144,0.36243458)" />
   </g>
 </svg>

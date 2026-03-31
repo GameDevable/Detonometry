@@ -33,7 +33,9 @@ var base_display_position: Vector2 = Vector2.ZERO
 @onready var name_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/NamePanel/NameMargins/NameLabel
 @onready var description_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/DescriptionLabel
 @onready var before_after_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/BeforeAfterLabel
+@onready var level_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/LevelLabel
 @onready var price_label: Label = $UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels/PriceLabel
+
 
 @onready var purchase_button: Button = $PurchaseButton
 @onready var upgrade_data_display: VBoxContainer = $UpgradeDataDisplay
@@ -142,12 +144,14 @@ func _update_display() -> void:
 	update_theme()
 	if upgrade.has_reached_max_tier():
 		price_label.text  = "MAXED"
+		level_label.text = "Lv " + str(upgrade.current_purchased_tier) + "/" + str(upgrade.current_purchased_tier)
 		return
 	if is_locked:
 		pass
 	name_label.text = str(upgrade.data.name)
 	price_label.text = "$" + str(upgrade.get_current_price())
 	description_label.text = upgrade.data.description
+	level_label.text = "Lv " + str(upgrade.current_purchased_tier) + "/" + str(upgrade.data.tier_modifiers.size())
 
 
 func _on_purchase_button_mouse_entered() -> void:

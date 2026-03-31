@@ -14,6 +14,8 @@ var total_shapes_destroyed: int = 0
 var shape_det_val: int = 1
 var cluster_det_mult_val: float = 1.65
 
+
+
 @onready var bomb_container: Node2D = $BombContainer
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 @onready var session_timer: Timer = $SessionTimer
@@ -24,7 +26,7 @@ func _ready() -> void:
 	Console.add_command("set_points", _command_set_points, ["amount"], 1)
 	Console.add_command("quit_session", _command_quit_session)
 	_connect_signals()
-	
+
 
 
 func _process(delta: float) -> void:
@@ -67,11 +69,24 @@ func handle_entered() -> void:
 
 
 func save() -> Dictionary:
-	return {"points" : GameManager.total_points}
+	return {
+		Constants.POINTS_SAVE_KEY: GameManager.total_points,
+		Constants.MAX_SESSION_POINTS_SAVE_KEY: GameManager.max_session_points,
+		Constants.MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY: GameManager.max_session_shapes_destroyed,
+		Constants.MAX_LARGEST_CLUSTER_SAVE_KEY: GameManager.max_largest_cluster,
+		Constants.MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY: GameManager.max_highest_bomb_profit,
+		"session_number" : GameManager.session_number
+	}
 
 
 func load_save_data(data: Dictionary) -> void:
-	GameManager.total_points = data["points"]
+	GameManager.total_points = data[Constants.POINTS_SAVE_KEY]
+
+	GameManager.max_session_points = data[Constants.MAX_SESSION_POINTS_SAVE_KEY]
+	GameManager.max_session_shapes_destroyed = data[Constants.MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY]
+	GameManager.max_largest_cluster = data[Constants.MAX_LARGEST_CLUSTER_SAVE_KEY]
+	GameManager.max_highest_bomb_profit = data[Constants.MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY]
+	GameManager.session_number = data["session_number"]
 	SignalManager.points_changed.emit(GameManager.total_points)
 
 
@@ -97,7 +112,6 @@ func place_bomb() -> void:
 		held_bomb.call_deferred("handle_placed")
 		# This effectively "places" the bomb by not resetting its position to the mouse
 		held_bomb = null 
-		GameManager.session_data[1] += 1
 
 
 func spawn_bomb(bomb_position: Vector2, in_hand: bool = true):
@@ -144,12 +158,12 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 	SignalManager.session_points_changed.emit(int(current_run_gain))
 	
 	GameManager.session_data[0] = current_run_gain
-	_set_points(GameManager.total_points + shape_value)
+	#_set_points(GameManager.total_points + shape_value)
 	var text = "+$" + str(shape_value)
 	
 	total_shapes_destroyed += 1
-	GameManager.session_data[2] = total_shapes_destroyed
-	var volume: float = -19 
+	GameManager.session_data[1] = total_shapes_destroyed
+	var volume: float = -21
 	EffectManager.play_sfx(CRATE_BREAK, 0.0, volume, 0.6, true, Vector2(0.55, 0.6))
 	if not in_cluster:
 		var time: float = 1.15
@@ -157,6 +171,8 @@ func _handle_shape_broken(shape_instance: Shape, total_external_multiplier: floa
 		# We want cluster to handle adding to the idx 
 		GameManager.detonation_idx_value += shape_det_val
 		SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value)
+		if GameManager.session_data[3] < shape_value:
+			GameManager.session_data[3] = shape_value
 	shape_instance.queue_free()
 
 
@@ -170,6 +186,10 @@ func _handle_cluster_broken(shapes_broken: Array[Node2D], total_external_bonus: 
 		position_running_total += shape.global_position
 		var shape_value: int = ceil((shape.get_value() + total_external_bonus) * total_external_multiplier)
 		total += shape_value
+	var highest_bomb_profit: int = GameManager.session_data[3]
+	if highest_bomb_profit < total:
+		GameManager.session_data[3] = total
+	
 	GameManager.detonation_idx_value += shape_det_val * shapes_broken.size() * cluster_det_mult_val
 	SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value)
 	camera.shake_component.shake(7, 1.0)
@@ -208,9 +228,11 @@ func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:
 
 
 func _get_cluster_multiplier(cluster_size: int) -> float:
-	var largest_cluster_size: int = GameManager.session_data[3]
+	var largest_cluster_size: int = GameManager.session_data[2]
+	
 	if largest_cluster_size < cluster_size and cluster_size > 1:
-		GameManager.session_data[3] = cluster_size
+		GameManager.session_data[2] = cluster_size
+	
 	
 	if cluster_size >= StatManager.get_multiplier_stat("cluster_threshold"):
 		return StatManager.get_multiplier_stat("cluster_multiplier")
@@ -247,10 +269,11 @@ func _on_session_timer_timeout() -> void:
 	UiManager.set_mouse_cursor_visible(true)
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
 	
-	UiManager.show_overlay("SessionSummary")
 	#UiManager.transition_to("UpgradeHub")
-	UiManager.hide_overlay("Hud")
 	SaveManager.save_game()
+	UiManager.hide_overlay("Hud")
+	await get_tree().create_timer(0.6).timeout
+	UiManager.show_overlay("SessionSummary")
 
 
 func _on_session_restarted() -> void:

@@ -153,6 +153,13 @@ theme_override_font_sizes/font_size = 16
 text = "100% -> 125%"
 horizontal_alignment = 1
 
+[node name="LevelLabel" type="Label" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=1322939612]
+layout_mode = 2
+theme = ExtResource("6_q8yqo")
+theme_override_font_sizes/font_size = 18
+text = "Lv 0/5"
+horizontal_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="UpgradeDataDisplay/DisplayBackground/VBoxContainer/InfoContainer/Labels" unique_id=690874306]
 layout_mode = 2
 theme_override_constants/margin_top = 2

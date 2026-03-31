@@ -2,17 +2,41 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="19.844mm"
-   height="19.844mm"
-   viewBox="0 0 19.844 19.844"
+   width="70"
+   height="70"
+   viewBox="0 0 18.520834 18.520834"
    version="1.1"
    id="svg1"
+   sodipodi:docname="broken_reinforced_pentagon_overlay.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="4.2763104"
+     inkscape:cx="10.640013"
+     inkscape:cy="39.753896"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
   <defs
      id="defs1" />
   <g
-     id="layer1">
+     id="layer1"
+     transform="matrix(0.93333333,0,0,0.93333333,0.06187187,-0.10096128)">
     <path
        d="m 14.478703,16.833598 -0.164848,0.526583 -3.753776,-0.01395 1.593184,2.483053 3.859196,0.01447 0.329696,-1.053682 z m 0.680578,1.336352 a 0.66145855,0.66145855 0 0 1 0.661459,0.661459 0.66145855,0.66145855 0 0 1 -0.661459,0.661458 0.66145855,0.66145855 0 0 1 -0.661458,-0.661458 0.66145855,0.66145855 0 0 1 0.661458,-0.661459 z"
        style="fill:#eeeeee;stroke:#ffffff;stroke-width:0"

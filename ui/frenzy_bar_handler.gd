@@ -1,5 +1,5 @@
 extends Control
-const thresholds: Array[int] = [1, 65, 170, 420]
+const thresholds: Array[int] = [18, 46, 120, 300]
 var current_threshold_idx: int = 0
 
 @onready var detonation_idx_bar: ProgressBar = $DetonationIdxBar
@@ -23,13 +23,20 @@ func _ready() -> void:
 			GameManager.detonation_idx_value = difference
 			activate_frenzy()
 			return
-		detonation_idx_bar.value = new_value
+		
+		var tween = get_tree().create_tween()
+		tween.tween_property(detonation_idx_bar, "value", new_value, 0.2)
 		)
 
 
 func _process(_delta: float) -> void:
 	if GameManager.in_frenzy:
 		frenzy_bar.value = frenzy_timer.time_left
+
+
+func reset() -> void:
+	detonation_idx_bar.value = 0
+	frenzy_bar.value = 0
 
 
 func activate_frenzy() -> void:
@@ -50,4 +57,5 @@ func _on_frenzy_timer_timeout() -> void:
 	detonation_idx_bar.visible = true
 	bar_animator.scale_ui(frenzy_bar.scale, Vector2(1.0, 1.0), Tween.TRANS_LINEAR)
 	SignalManager.detonation_idx_value_changed.emit(GameManager.detonation_idx_value)
+	
 	SignalManager.frenzy_ended.emit()

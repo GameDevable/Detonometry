@@ -1,1 +1,3 @@
-{"UpgradeHub":{"unlocked_upgrades":{}},"World":{"points":0}}
+{"UpgradeHub":{"unlocked_upgrades":{}},"World":{"points":0, "max_session_points":0, 
+"max_session_shapes_destroyed":0, "max_largest_cluster":0, 
+"max_highest_bomb_profit" : 0, "session_number": 0}}

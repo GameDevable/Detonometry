@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_nrnmk"]
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="2_s5e34"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="5_p51de"]
+[ext_resource type="PackedScene" uid="uid://ctrpmcfhex81r" path="res://ui/record_notify.tscn" id="6_p51de"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxxow"]
 bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.43529412)
@@ -70,25 +71,19 @@ offset_right = 234.5
 offset_bottom = 156.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentBackground/ContentMargins" unique_id=744960697]
 layout_mode = 2
-theme_override_constants/separation = 170
 
 [node name="LabelContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=1630108077]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MoneyEarnedMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=856965267]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 12
-
-[node name="MoneyEarnedLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer/MoneyEarnedMargins" unique_id=439487326]
+[node name="MoneyEarnedLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=439487326]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 18
@@ -106,11 +101,17 @@ theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 18
 text = "Largest Cluster"
 
-[node name="ClustertMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=1487123677]
+[node name="HighestBombProfitLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=1014537696]
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 16
+text = "Highest Single Bomb Profit"
+
+[node name="MultiplierLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=831364501]
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 14
-text = "Cluster Mult."
+text = "Multiplier"
 
 [node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/LabelContainer" unique_id=423922769]
 layout_mode = 2
@@ -122,56 +123,86 @@ theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 24
 text = "Total Money"
 
-[node name="DataContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=1740513851]
+[node name="DataMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=604236637]
+layout_mode = 2
+theme_override_constants/margin_left = 180
+
+[node name="DataContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins" unique_id=1740513851]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MoneyEarnedMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=611472511]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 12
-
-[node name="MoneyEarnedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer/MoneyEarnedMargins" unique_id=1626236075]
+[node name="MoneyEarnedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=1626236075]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 18
 text = "$0"
 
-[node name="ShapesDestroyedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=967879392]
+[node name="ShapesDestroyedValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=967879392]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 18
 text = "  0"
 
-[node name="LargestClusterValueLabels" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=355199280]
+[node name="LargestClusterValueLabels" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=355199280]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 18
 text = "  0"
 
-[node name="ClusterMultLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=1837634755]
+[node name="HighestBombProfitValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=2081739752]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme = ExtResource("1_fxxow")
+theme_override_font_sizes/font_size = 18
+text = "$0"
+
+[node name="MultiplierValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=1016830016]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 14
-text = "x0"
+text = "x0.0"
 
-[node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer" unique_id=630656691]
+[node name="TotalMoneyLabelMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer" unique_id=630656691]
 layout_mode = 2
 theme_override_constants/margin_left = -10
 theme_override_constants/margin_top = 20
 
-[node name="TotalMoneyValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataContainer/TotalMoneyLabelMargins" unique_id=1352246143]
+[node name="TotalMoneyValueLabel" type="Label" parent="ContentBackground/ContentMargins/HBoxContainer/DataMargins/DataContainer/TotalMoneyLabelMargins" unique_id=1352246143]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_fxxow")
 theme_override_font_sizes/font_size = 24
 text = "$0"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins" unique_id=1882687291]
+[node name="RecordMargins" type="MarginContainer" parent="ContentBackground/ContentMargins/HBoxContainer" unique_id=815113566]
+layout_mode = 2
+theme_override_constants/margin_left = -35
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = -20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentBackground/ContentMargins/HBoxContainer/RecordMargins" unique_id=158931834]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EarnedRecordNotify" parent="ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer" unique_id=1799714162 instance=ExtResource("6_p51de")]
+visible = false
+layout_mode = 2
+
+[node name="DestroyedRecordNotify" parent="ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer" unique_id=920132245 instance=ExtResource("6_p51de")]
+visible = false
+layout_mode = 2
+
+[node name="ClusterRecordNotify" parent="ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer" unique_id=39197168 instance=ExtResource("6_p51de")]
+visible = false
+layout_mode = 2
+
+[node name="ProfitRecordNotify" parent="ContentBackground/ContentMargins/HBoxContainer/RecordMargins/VBoxContainer" unique_id=1400434000 instance=ExtResource("6_p51de")]
+visible = false
 layout_mode = 2
 
 [node name="TitleBackground" type="Panel" parent="ContentBackground" unique_id=2109118570]
@@ -202,25 +233,14 @@ text = "Round Over"
 
 [node name="UiEffectComponent" parent="ContentBackground" unique_id=960086942 instance=ExtResource("5_p51de")]
 
-[node name="DividerLine" type="ColorRect" parent="ContentBackground" unique_id=641881620]
-custom_minimum_size = Vector2(490, 3)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.019607844
-anchor_top = 0.34766355
-anchor_right = 1.0196079
-anchor_bottom = 0.35327104
-offset_right = -20.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DividerLine2" type="ColorRect" parent="ContentBackground" unique_id=794607404]
+[node name="DividerLine" type="ColorRect" parent="ContentBackground" unique_id=794607404]
 custom_minimum_size = Vector2(490, 3)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.018627452
-anchor_top = 0.6280374
+anchor_top = 0.63925236
 anchor_right = 1.0186274
-anchor_bottom = 0.6336449
+anchor_bottom = 0.6448598
 offset_left = 0.5
 offset_right = -19.5
 metadata/_edit_use_anchors_ = true

@@ -52,7 +52,7 @@ func _set_radii(explosion_radius: float) -> void:
 
 
 func _handle_explosion_effects() -> void:
-	var volume: float = -2.0
+	var volume: float = 0.5
 	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	var scale_factor: float = StatManager.get_bomb_stat("explosion_radius_size_percent") / 100.0

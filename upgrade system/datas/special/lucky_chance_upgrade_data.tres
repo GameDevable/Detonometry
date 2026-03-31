@@ -7,7 +7,7 @@
 script = ExtResource("2_lg0tk")
 name = "Lucky Shape Chance"
 tier_modifiers = Array[float]([5.0, 10.0, 15.0])
-base_price = 92
+base_price = 80
 description = "Lucky shapes spawn more often"
 modify_stat_name = "lucky_chance"
 extra_character = "%"

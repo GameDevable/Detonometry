@@ -73,9 +73,9 @@ metadata/_edit_use_anchors_ = true
 [node name="FrenzyBarHandler" parent="." unique_id=1205259984 instance=ExtResource("6_1v5rv")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.02890625
+anchor_left = 0.01640625
 anchor_top = 0.15277778
-anchor_right = 0.08359375
+anchor_right = 0.07109375
 anchor_bottom = 0.8472222
 offset_right = 0.0
 offset_bottom = 0.0
