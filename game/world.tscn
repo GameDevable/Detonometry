@@ -97,7 +97,6 @@ shape = SubResource("RectangleShape2D_m4twg")
 
 [node name="SessionTimer" type="Timer" parent="." unique_id=2032151156]
 wait_time = 30.0
-autostart = true
 
 [node name="ClusterBrokeParticles" parent="." unique_id=1528278692 instance=ExtResource("7_m4twg")]
 

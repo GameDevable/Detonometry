@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="133.60001"
+   height="182.71999"
+   viewBox="0 0 35.348334 48.344662"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   sodipodi:docname="fuse_sprite.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.361198"
+     inkscape:cx="46.798278"
+     inkscape:cy="40.233814"
+     inkscape:window-width="1366"
+     inkscape:window-height="731"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1"
+       transform="matrix(1.9999427,0,0,1.9999427,12.616966,-2.2505155)">
+      <path
+         d="M 3.62131,1.12529 C 2.69381,1.13779 1.87396,1.55074 1.34264,2.15612 1.02703,2.51571 0.76177,3.00119 0.65487,3.54591 0.54455,4.10786 0.60697,4.63627 0.60067,5.2223 L 2.13184,5.05187 C 2.11944,4.37925 2.06644,3.72673 2.44093,3.23792 2.79553,2.77509 3.4251,2.46655 4.17432,2.73757 4.81661,2.96989 5.18419,3.48702 5.21775,4.13448 5.25485,4.85232 5.40091,5.37168 5.75536,5.88048 6.10217,6.37812 6.55447,6.75005 7.20488,6.99625 7.92541,7.269 8.66619,7.23569 9.28517,7.05055 10.36516,6.72748 11.34228,5.66803 11.36601,4.0852 11.15723,3.52661 9.90039,3.58085 9.82004,4.0822 9.84364,5.16937 8.98867,5.76131 8.12391,5.6753 7.34323,5.5978 6.79051,4.99118 6.74838,4.2203 6.70668,3.45867 6.49853,2.77853 6.03759,2.23263 5.65643,1.78119 5.09022,1.36441 4.35188,1.20015 4.2464,1.17665 4.13716,1.15785 4.02471,1.14535 3.88832,1.13015 3.75387,1.12385 3.62136,1.12565 Z"
+         style="fill-rule:evenodd;stroke-width:0.0583251"
+         id="path7"
+         sodipodi:nodetypes="sccccccccsccccccscs" />
+    </g>
+  </g>
+</svg>

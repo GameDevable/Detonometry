@@ -4,6 +4,8 @@ const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg
 const BOMB_PLACE_SOUND2 = preload("res://bomb/assets/audio/bomb_place_sound2.ogg")
 const CRATE_BREAK = preload("uid://bggl4xban0c58")
 const CLUSTER_BROKE_PARTICLES = preload("uid://fch54yu8d7av")
+const FUSE_LIGHT_SOUND_1 = preload("uid://bbevtgy7k6s4t")
+const FUSE_LIGHT_SOUND_2 = preload("uid://wuqqihnsq5jp")
 
 var held_bomb: Bomb = null
 var can_create_bomb: bool = true
@@ -64,9 +66,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func handle_entered() -> void:
 	SignalManager.session_timer_updated.emit(StatManager.get_session_stat("session_time"))
-	await get_tree().create_timer(1.0).timeout
+	session_timer.stop()
 	get_tree().paused = false
-
+	await get_tree().create_timer(1.5).timeout
+	session_timer.start(StatManager.get_session_stat("session_time"))
 
 func save() -> Dictionary:
 	return {
@@ -97,6 +100,7 @@ func create_bomb(spawn_position: Vector2, in_hand: bool = true) -> Bomb:
 	bomb_instance.position = spawn_position
 	# I get a bunch of errors if it is not deferred
 	bomb_container.call_deferred("add_child", bomb_instance)
+	
 	if in_hand:
 		SignalManager.bomb_created.emit()
 	return bomb_instance
@@ -201,10 +205,12 @@ func _handle_cluster_broken(shapes_broken: Array[Node2D], total_external_bonus: 
 	EffectManager.spawn_floating_text(text, bunch_center_pos, time, text_scale)
 	
 	#EffectManager.play_sfx(MONEY_GAINED_SOUND, 0.0, -18, 0.55)
+	for i in range(int(shapes_broken.size() / 2)):
+		EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
+		
 	for i in range(shapes_broken.size()):
 		await get_tree().create_timer(randf_range(0.005, 0.007)).timeout
 		EffectManager.play_sfx(CRATE_BREAK, 0.0, volume, 0.6, true, Vector2(0.57, 0.6))
-		EffectManager.spawn_particles(CLUSTER_BROKE_PARTICLES, bunch_center_pos, 0.1)
 	
 
 func _on_bomb_detonated(shapes_broken: Array[Node2D]) -> void:

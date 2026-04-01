@@ -30,12 +30,13 @@ z_index = 4
 emitting = false
 amount = 1
 texture = ExtResource("1_m7eu1")
-lifetime = 0.11
+lifetime = 0.08
 one_shot = true
+speed_scale = 3.2
 process_material = SubResource("ParticleProcessMaterial_onhj7")
 
 [node name="BlastLight" type="PointLight2D" parent="." unique_id=1445692821]
-scale = Vector2(2.5625, 2.65625)
+scale = Vector2(2.1875, 2.1562498)
 energy = 12.0
 texture = SubResource("GradientTexture2D_onhj7")
 

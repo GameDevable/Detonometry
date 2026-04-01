@@ -18,16 +18,16 @@ spread = 180.0
 initial_velocity_min = 175.0
 initial_velocity_max = 225.0
 gravity = Vector3(0, 0, 0)
-scale_max = 2.0
+scale_min = 0.9
+scale_max = 1.75
 scale_curve = SubResource("CurveTexture_dwnxn")
 
 [node name="ClusterBrokeParticles" type="GPUParticles2D" unique_id=1528278692]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
 self_modulate = Color(3.8147569, 3.8147569, 3.8147569, 1)
 emitting = false
-amount = 9
 texture = ExtResource("1_dwnxn")
-lifetime = 1.25
+lifetime = 1.1
 one_shot = true
 speed_scale = 2.8
 explosiveness = 0.77

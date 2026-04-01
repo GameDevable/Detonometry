@@ -11,6 +11,7 @@ var shape_type_lookup: Dictionary[Enums.ShapeType, String] = {
 var shape_containers: Dictionary[Enums.ShapeType, Node2D] = {}
 var can_spawn: bool = true
 
+
 const REINFORCED_COMPONENT = preload("uid://di7k4eb3imi33")
 const LUCKY_COMPONENT = preload("uid://dh8j4i14eauhe")
 
@@ -240,3 +241,13 @@ func _on_session_restarted() -> void:
 			continue
 		for shape in container.get_children():
 			shape.queue_free()
+	
+	for shape_key in Enums.ShapeType.keys():
+		var modifier_var_name: String = shape_key.to_lower() + "_spawn_limit"
+		for i in range(int(StatManager.get_shape_spawn_stat(modifier_var_name) / 2.5)):
+			var type: Enums.ShapeType = Enums.ShapeType[shape_key]
+			var x_limit: float = get_viewport_rect().size.x / 2.15
+			var y_limit: float = get_viewport_rect().size.x / 2.4
+			var world_bounds: Array[int] = [-x_limit, x_limit, -y_limit, y_limit]
+			var spawn_position: Vector2 = _choose_random_pos(world_bounds)
+			spawn_shape(spawn_position, type)

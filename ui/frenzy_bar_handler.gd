@@ -13,7 +13,7 @@ const FRENZY_START_SOUND = preload("uid://36q1qoi4ed7q")
 func _ready() -> void:
 	detonation_idx_bar.max_value = thresholds[0]
 	SignalManager.detonation_idx_value_changed.connect(func(new_value: int) -> void:
-			
+		return
 		if new_value >= thresholds[current_threshold_idx]:
 			current_threshold_idx += 1
 			

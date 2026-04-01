@@ -1,9 +1,20 @@
 [gd_scene format=4 uid="uid://ct3xcei10tcq0"]
 
 [ext_resource type="Script" uid="uid://dbo8hmxfu2l6x" path="res://bomb/bomb.gd" id="1_1h7gg"]
+[ext_resource type="Texture2D" uid="uid://c23iodecjbuda" path="res://bomb/assets/fuse_sprite.svg" id="2_5f04w"]
+[ext_resource type="Shader" uid="uid://b30kmyb421hvc" path="res://bomb/fuse_shader.gdshader" id="2_et5p4"]
 [ext_resource type="Texture2D" uid="uid://bss8tmln0vxq8" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
-[ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/green_circle.svg" id="3_27ssy"]
+[ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/explosion_area_sprites.svg" id="3_27ssy"]
+[ext_resource type="Texture2D" uid="uid://co3udofav8e8y" path="res://bomb/assets/radial_dashed_border.svg" id="3_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://diivo8pqh7pnw" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
+[ext_resource type="Texture2D" uid="uid://ct2f4g8iquwow" path="res://bomb/assets/fuse_spark_sprite.svg" id="7_et5p4"]
+[ext_resource type="AudioStream" uid="uid://bbevtgy7k6s4t" path="res://bomb/assets/audio/fuse_light_sound_1.mp3" id="9_mdkb4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkb4"]
+shader = ExtResource("2_et5p4")
+shader_parameter/burn_progress = 1.0
+shader_parameter/keep_start = 0.0
+shader_parameter/keep_end = 0.48
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_00hdp"]
 radius = 68.0
@@ -36,18 +47,101 @@ gradient = SubResource("Gradient_f3gsr")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve2D" id="Curve2D_mdkb4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 30, -37, 0, 0, 0, 0, 22, -29, 0, 0, 0, 0, 15, -31, 0, 0, 0, 0, 11, -43, 0, 0, 0, 0, 3, -50, 0, 0, 0, 0, -5, -36)
+}
+point_count = 6
+
+[sub_resource type="Gradient" id="Gradient_2mi53"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_da634"]
+gradient = SubResource("Gradient_2mi53")
+
+[sub_resource type="Gradient" id="Gradient_33y0u"]
+offsets = PackedFloat32Array(0, 0.22527473, 0.3901099, 0.7307692, 1)
+colors = PackedColorArray(0.87058824, 0.09803922, 0, 1, 0.87795734, 0.21103211, 0, 1, 0.89191985, 0.4251239, 0, 1, 0.92941177, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_urila"]
+gradient = SubResource("Gradient_33y0u")
+
+[sub_resource type="Curve" id="Curve_u5sd0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7354086), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hk17v"]
+curve = SubResource("Curve_u5sd0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hing6"]
+lifetime_randomness = 0.21
+particle_flag_disable_z = true
+angle_min = -179.99998
+angle_max = 180.00002
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.707001
+damping_max = 55.519
+scale_min = 0.14
+scale_max = 0.26
+scale_curve = SubResource("CurveTexture_hk17v")
+color_ramp = SubResource("GradientTexture1D_urila")
+color_initial_ramp = SubResource("GradientTexture1D_da634")
+
+[sub_resource type="Gradient" id="Gradient_et5p4"]
+offsets = PackedFloat32Array(0.12637363, 0.34615386, 0.75274724, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.39615846, 0, 1, 1, 0.7764706, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mdkb4"]
+gradient = SubResource("Gradient_et5p4")
+
+[sub_resource type="Curve" id="Curve_et5p4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.43968874), 0.0, 0.0, 0, 0, Vector2(1, 0.2996109), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mdkb4"]
+curve = SubResource("Curve_et5p4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2mi53"]
+particle_flag_disable_z = true
+angle_min = -180.09999
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 55.0
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 7.0
+scale_max = 9.0
+scale_curve = SubResource("CurveTexture_mdkb4")
+color_ramp = SubResource("GradientTexture1D_mdkb4")
+
 [node name="Bomb" type="Node2D" unique_id=1924273752]
 script = ExtResource("1_1h7gg")
 keep_detection_active = true
 
-[node name="BombSprite" type="Sprite2D" parent="." unique_id=2088059123]
+[node name="FuseSprite" type="Sprite2D" parent="." unique_id=1776597487]
 z_index = 4
+material = SubResource("ShaderMaterial_mdkb4")
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5f04w")
+
+[node name="BombSprite" type="Sprite2D" parent="." unique_id=2088059123]
+z_index = 6
 position = Vector2(0, -4)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_f3gsr")
 
+[node name="DashedBorderSprite" type="Sprite2D" parent="." unique_id=1642533877]
+z_index = 4
+texture = ExtResource("3_f3gsr")
+
 [node name="ExplosionAreaSprite" type="Sprite2D" parent="." unique_id=1069695329]
-modulate = Color(1.3720901, 1.3720901, 1.3720901, 1)
+modulate = Color(1.3720901, 1.3720901, 1.3720901, 0.21176471)
 self_modulate = Color(1, 1, 1, 0.41568628)
 z_index = 3
 texture = ExtResource("3_27ssy")
@@ -76,6 +170,7 @@ shape = SubResource("CircleShape2D_5rd10")
 disabled = true
 
 [node name="DetonationTimer" type="Timer" parent="." unique_id=1026349839]
+one_shot = true
 
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=2120746864]
 stream = SubResource("AudioStreamOggVorbis_1h7gg")
@@ -88,6 +183,44 @@ scale = Vector2(2.75, 2.75)
 color = Color(9.385496e-06, 0.9666987, 0, 1)
 range_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_27ssy")
+
+[node name="FuseLightedPath" type="Path2D" parent="." unique_id=2066972895]
+curve = SubResource("Curve2D_mdkb4")
+
+[node name="FusePathFollower" type="PathFollow2D" parent="FuseLightedPath" unique_id=532651986]
+position = Vector2(30, -37)
+rotation = 2.3561945
+rotates = false
+loop = false
+
+[node name="FuseLightedParticles" type="GPUParticles2D" parent="FuseLightedPath/FusePathFollower" unique_id=731535911]
+visible = false
+z_index = 7
+position = Vector2(-0.7071085, -0.70710635)
+amount = 20
+texture = ExtResource("7_et5p4")
+preprocess = 3.58
+local_coords = true
+draw_order = 2
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_hing6")
+
+[node name="EmberParticles" type="GPUParticles2D" parent="FuseLightedPath/FusePathFollower" unique_id=1839318669]
+visible = false
+z_index = 7
+position = Vector2(-0.7071037, -0.70710564)
+rotation = 0.7853982
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_2mi53")
+
+[node name="BurnProgressShader" type="Sprite2D" parent="." unique_id=358734560]
+position = Vector2(4, -5)
+
+[node name="FuseSound" type="AudioStreamPlayer2D" parent="." unique_id=498533627]
+stream = ExtResource("9_mdkb4")
+volume_db = -1.0
+pitch_scale = 0.9
+bus = &"SFX"
 
 [connection signal="body_entered" from="ExplosionPushArea" to="." method="_on_explosion_push_area_body_entered"]
 [connection signal="timeout" from="DetonationTimer" to="." method="_on_detonation_timer_timeout"]

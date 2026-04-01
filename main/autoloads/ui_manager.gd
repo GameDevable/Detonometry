@@ -80,6 +80,7 @@ func transition_to(menu_key: String) -> void:
 	
 	if menu_key == "None":
 		SignalManager.session_restarted.emit()
+		
 	swap_menu(menu_key)
 	if menu_key == "None":
 		#EffectManager.start_music(Constants.GAME_MUSIC_2, -15)

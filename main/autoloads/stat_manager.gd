@@ -122,6 +122,8 @@ func get_shape_spawn_stat(key: String) -> float:
 		var upgrade: Upgrade = unlocked_upgrades[key]
 		var upgraded_stat: float = upgrade.get_upgraded_stat()
 		return upgraded_stat
+	if not shape_spawn_stats.has(key):
+		return 0.0
 	return shape_spawn_stats[key]
 
 

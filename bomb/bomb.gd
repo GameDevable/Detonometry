@@ -4,6 +4,8 @@ extends Node2D
 var pulse_time: float = 0.35
 var is_up_pulse: bool = false
 var is_pulsing: bool = true
+var radius_rotation_speed: float = 55.0
+
 const RED_CIRCLE_TEXTURE = preload("res://bomb/assets/red_circle.svg")
 const EXPLOSION_SOUND = preload("res://bomb/assets/audio/explosion-01.ogg")
 
@@ -14,7 +16,9 @@ const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
 
 
 
+
 @onready var bomb_sprite: Sprite2D = $BombSprite
+@onready var fuse_sprite: Sprite2D = $FuseSprite
 @onready var explosion_area_sprite: Sprite2D = $ExplosionAreaSprite
 @onready var explosion_area_hitbox: Hitbox = $ExplosionAreaHitbox
 
@@ -24,23 +28,43 @@ const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
 @onready var push_area_collider: CollisionShape2D = $ExplosionPushArea/PushAreaCollider
 @onready var detonation_timer: Timer = $DetonationTimer
 
+@onready var dashed_border_sprite: Sprite2D = $DashedBorderSprite
+
+@onready var fuse_lighted_path: Path2D = $FuseLightedPath
+@onready var fuse_path_follower: PathFollow2D = $FuseLightedPath/FusePathFollower
+@onready var fuse_lighted_particles: GPUParticles2D = $FuseLightedPath/FusePathFollower/FuseLightedParticles
+@onready var ember_particles: GPUParticles2D = $FuseLightedPath/FusePathFollower/EmberParticles
+
+
 func _ready() -> void:
 	var radius: float = StatManager.get_bomb_stat("explosion_radius")
 	bomb_sprite.scale = Vector2(Constants.SPRITE_SCALE, Constants.SPRITE_SCALE)
+	fuse_sprite.material.set_shader_parameter("burn_progress", 1.0)
+	#fuse_lighted_particles.visible = false
+	#ember_particles.visible = false
 	_set_radii(radius)
 
 
+func _process(delta: float) -> void:
+	dashed_border_sprite.rotation_degrees -= radius_rotation_speed * delta
+	if not detonation_timer.is_stopped() :
+		fuse_path_follower.progress_ratio =  1 - (detonation_timer.time_left / StatManager.bomb_stats["explosion_time"])
+		fuse_sprite.material.set_shader_parameter("burn_progress", (detonation_timer.time_left / StatManager.bomb_stats["explosion_time"]))
+
+
 func handle_placed() -> void:
+	$FuseSound.play(1.6)
+	$FuseSound.pitch_scale = 0.9
+	$FuseSound.volume_db = -1
+	fuse_lighted_particles.visible = true
+	ember_particles.visible = true
+	
 	detonation_timer.start(StatManager.bomb_stats["explosion_time"])
 
 	if not keep_detection_active:
 		explosion_detection_area.monitorable = false
 		explosion_detection_area.monitoring = false
-		
-	explosion_area_sprite.texture = RED_CIRCLE_TEXTURE
-	$RadiusLight.color = Color(1.0, 0.195, 0.145, 1.0)
 	var transparency_value: float = 0.47
-	_start_pulse(Vector2(0.9, 0.9) * Constants.SPRITE_SCALE, transparency_value)
 
 
 func _set_radii(explosion_radius: float) -> void:
@@ -48,6 +72,15 @@ func _set_radii(explosion_radius: float) -> void:
 	explosion_area_sprite.scale = Vector2(scale_factor, scale_factor)
 	hitbox_collider.shape.radius = explosion_radius
 	detection_area_collider.shape.radius = explosion_radius
+	dashed_border_sprite.scale = Vector2(scale_factor, scale_factor)
+	# Just kind of guesswork
+	var bomb_scale: Vector2 = Vector2(scale_factor / 1.5, scale_factor / 1.5) / 2
+	bomb_sprite.scale = bomb_scale
+	fuse_sprite.scale = bomb_scale
+	# Because the bomb and fuse sprite scales are 0.5, we need to multiplyer by two
+	fuse_lighted_path.scale = bomb_scale * 2
+	fuse_lighted_particles.scale = bomb_scale * 2
+	print(bomb_scale)
 	$RadiusLight.texture_scale = scale_factor
 
 
@@ -100,6 +133,7 @@ func _turn_off_colliders() -> void:
 	$ExplosionAreaHitbox/HitboxCollider.disabled = true
 	$ExplosionDetectionArea/DetectionAreaCollider.disabled = true
 	$ExplosionPushArea/PushAreaCollider.disabled = true
+
 
 func _on_pulse_tween_finished() -> void:
 	if not is_pulsing:

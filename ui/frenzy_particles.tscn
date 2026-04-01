@@ -26,6 +26,7 @@ color = Color(1, 1, 0.14509805, 1)
 alpha_curve = SubResource("CurveTexture_5feou")
 
 [node name="FrenzyParticles" type="GPUParticles2D" unique_id=1783862989]
+visible = false
 z_index = 5
 amount = 12
 amount_ratio = 0.9
