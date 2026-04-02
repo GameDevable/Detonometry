@@ -49,23 +49,28 @@ func handle_shown() -> void:
 	
 	tween_int(money_earned_value_label, 0, session_earned, regular_tween_time, true, false)
 	tween_int(highest_bomb_profit_value_label, 0, highest_bomb_profit, regular_tween_time, true, false)
-	await get_tree().create_timer(0.6).timeout
-	
-	_check_and_show_record(Constants.MAX_SESSION_POINTS_SAVE_KEY, session_earned, earned_record_notify)
-	await get_tree().create_timer(record_time).timeout
-	_check_and_show_record(Constants.MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY, shapes_destroyed, destroyed_record_notify)
-	await get_tree().create_timer(record_time).timeout
-	_check_and_show_record(Constants.MAX_LARGEST_CLUSTER_SAVE_KEY, largest_cluster_value, cluster_record_notify)
-	await get_tree().create_timer(record_time).timeout
-	_check_and_show_record(Constants.MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY, highest_bomb_profit, profit_record_notify)
+	if highest_bomb_profit != 0 and shapes_destroyed != 0 and largest_cluster_value != 0:
+		await get_tree().create_timer(0.5).timeout
+	if highest_bomb_profit != 0:
+		_check_and_show_record(Constants.MAX_SESSION_POINTS_SAVE_KEY, session_earned, earned_record_notify)
+		await get_tree().create_timer(record_time).timeout
+	if shapes_destroyed != 0:
+		_check_and_show_record(Constants.MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY, shapes_destroyed, destroyed_record_notify)
+		await get_tree().create_timer(record_time).timeout
+	if largest_cluster_value != 0:
+		_check_and_show_record(Constants.MAX_LARGEST_CLUSTER_SAVE_KEY, largest_cluster_value, cluster_record_notify)
+		await get_tree().create_timer(record_time).timeout
+	if highest_bomb_profit != 0:
+		_check_and_show_record(Constants.MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY, highest_bomb_profit, profit_record_notify)
 	var session_points: int = GameManager.session_data[0]
 	GameManager.total_points += session_points * total_multiplier
 	
-	await get_tree().create_timer(0.35).timeout
+	if total_multiplier > 1:
+		await get_tree().create_timer(0.35).timeout
+		
+		tween_float(multiplier_value_label, 1.0, total_multiplier, 0.2, false, true)
 	
-	tween_float(multiplier_value_label, 1.0, total_multiplier, 0.2, false, true)
-	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.25).timeout
 	tween_int(total_money_value_label, 0, GameManager.total_points, regular_tween_time, true, false)
 	
 

@@ -36,7 +36,7 @@ speed_scale = 3.2
 process_material = SubResource("ParticleProcessMaterial_onhj7")
 
 [node name="BlastLight" type="PointLight2D" parent="." unique_id=1445692821]
-scale = Vector2(2.1875, 2.1562498)
+scale = Vector2(1.1874999, 1.1875)
 energy = 12.0
 texture = SubResource("GradientTexture2D_onhj7")
 

@@ -12,14 +12,14 @@ bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.43529412)
 border_color = Color(0.07058824, 0.07058824, 0.07058824, 0.12156863)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b553"]
-bg_color = Color(0.11735486, 0.11735479, 0.1173548, 1)
+bg_color = Color(0.14165324, 0.14165312, 0.14165315, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p51de"]
-bg_color = Color(0.07683582, 0.07683582, 0.0768358, 1)
+bg_color = Color(0.09239707, 0.09239706, 0.09239706, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 
@@ -256,7 +256,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeHubButton" type="Button" parent="ContentBackground/Buttons" unique_id=1190303010]
-modulate = Color(1.6938539, 1.6938539, 1.6938539, 1)
+modulate = Color(1.9365749, 1.9365749, 1.9365749, 1)
 custom_minimum_size = Vector2(220, 60)
 layout_mode = 1
 anchors_preset = 8

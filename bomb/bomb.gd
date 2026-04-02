@@ -72,9 +72,11 @@ func _set_radii(explosion_radius: float) -> void:
 	explosion_area_sprite.scale = Vector2(scale_factor, scale_factor)
 	hitbox_collider.shape.radius = explosion_radius
 	detection_area_collider.shape.radius = explosion_radius
-	dashed_border_sprite.scale = Vector2(scale_factor, scale_factor)
+	dashed_border_sprite.scale = Vector2(scale_factor, scale_factor) * Constants.SPRITE_SCALE
 	# Just kind of guesswork
-	var bomb_scale: Vector2 = Vector2(scale_factor / 1.5, scale_factor / 1.5) / 2
+	var bomb_scale: Vector2 = Vector2(scale_factor, scale_factor)  * Constants.SPRITE_SCALE
+	if scale_factor > 1:
+		bomb_scale *= 0.8
 	bomb_sprite.scale = bomb_scale
 	fuse_sprite.scale = bomb_scale
 	# Because the bomb and fuse sprite scales are 0.5, we need to multiplyer by two
@@ -89,9 +91,9 @@ func _handle_explosion_effects() -> void:
 	var pitch: float = 1.0
 	EffectManager.play_sfx(EXPLOSION_SOUND, 0.0, volume, pitch)
 	var scale_factor: float = StatManager.get_bomb_stat("explosion_radius_size_percent") / 100.0
-	EffectManager.spawn_particles(BLAST_PARTICLE, position, 0.0, null, Vector2(scale_factor, scale_factor))
+	EffectManager.spawn_particles(BLAST_PARTICLE, position, 0.0, null, Vector2(scale_factor * 0.9, scale_factor * 0.9))
 	
-	var delay: float = 0.03 
+	var delay: float = 0.0
 	EffectManager.spawn_particles(SPARK_PARTICLES, position, delay, null, Vector2(scale_factor, scale_factor))
 	EffectManager.spawn_particles(DEBRIS_PARTICLES, position + Vector2(0, 20), delay, null, Vector2(scale_factor, scale_factor))
 	EffectManager.spawn_particles(EXPLOSION_PARTICLES, position, delay, null, Vector2(scale_factor, scale_factor))
@@ -169,7 +171,7 @@ func _on_detonation_timer_timeout() -> void:
 	push_area_collider.disabled = false
 	is_pulsing = false
 	var tween_time: float = 0.08
-	var final_scale: Vector2 = Vector2(1.6, 1.6) * Constants.SPRITE_SCALE
+	var final_scale: Vector2 = Vector2(1.0, 1.0) 
 	
 	var scale_up_explosion_tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
 	scale_up_explosion_tween.tween_property(bomb_sprite, "scale", final_scale, tween_time)

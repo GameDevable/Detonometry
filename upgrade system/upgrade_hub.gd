@@ -3,32 +3,27 @@ var is_dragging: bool = false
 var can_drag: bool = true
 var mouse_inside_button: bool = false
 var base_button_minimum_size: Vector2 = Vector2.ZERO
-var original_buttons_position: Vector2 = Vector2.ZERO
+#var original_buttons_position: Vector2 = Vector2.ZERO
 const DRAG_SPEED: float = 1.1
 const BUTTON_SCALE_TIME: float = 0.4
-const MIN_SCALE: Vector2 = Vector2(0.5, 0.5)
+const MIN_SCALE: Vector2 = Vector2(0.6, 0.6)
 const MAX_SCALE: Vector2 = Vector2(1.0, 1.0)
 const SCROLL_SPEED: float = 1.0
 # Left, right, Bottom, Top
 const DRAG_BOUNDS: Array[float] = [-250, 250, -600, 275]
-@onready var points_label: Label = $PointsLabel
+
+@onready var points_label: Label = $BottomPanel/PointsLabel
 @onready var upgrade_nodes: Control = $DraggableNodes/UpgradeNodes
 @onready var draggable_nodes: Control = $DraggableNodes
+@onready var continue_button: Button = $BottomPanel/ContinueButton
+@onready var settings_button: Button = $BottomPanel/SettingsButton
+@onready var button_animator: UiEffectComponent = $BottomPanel/ButtonAnimator
 
-@onready var settings_button: Button = $Buttons/SettingsButton
-@onready var back_to_game_button: Button = $Buttons/ContinueButton
-@onready var continue_button: Button = $Buttons/ContinueButton
-@onready var buttons: HBoxContainer = $Buttons
-@onready var button_animator: UiEffectComponent = $Buttons/ButtonAnimator
-
-
-@onready var main_menu_button: Button = $Buttons/MainMenuButton
 @onready var background_panel: Panel = $BackgroundPanel
 
 
 func _ready() -> void:
 	visible = false
-	original_buttons_position = buttons.global_position
 	#SignalManager.points_changed.connect(_on_points_changed)
 	SignalManager.upgrade_unlocked.connect(func(_upgrade: Upgrade) -> void:
 		var purchasable_node_count: int = _update_buttons(upgrade_nodes, GameManager.total_points)
@@ -121,11 +116,13 @@ func handle_entered() -> void:
 
 
 func _show_buttons() -> void:
-	button_animator.move_ui(buttons.global_position, original_buttons_position)
+	pass
+	#button_animator.move_ui(buttons.global_position, original_buttons_position)
 
 
 func _hide_buttons() -> void:
-	button_animator.move_ui(original_buttons_position, original_buttons_position + Vector2(0, 100))
+	pass
+	#button_animator.move_ui(original_buttons_position, original_buttons_position + Vector2(0, 100))
 
 
 func _zoom(direction: int) -> void:
@@ -196,22 +193,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	can_drag = true
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
-
-
-func _on_main_menu_button_mouse_entered() -> void:
-	can_drag = false
-	mouse_inside_button = true
-	var base_pitch: float = 1.0
-	EffectManager.play_sfx(Constants.BUTTON_HOVER_SOUND, 0.0, Constants.ENTER_BUTTON_VOLUME, base_pitch, true, Constants.ENTER_PITCH_RANGE)
-	var end_scale: Vector2 = Vector2(1.1, 1.1)
-	$BackgroundPanel/MainMenuButton/ButtonScaleEffect.scale_ui(main_menu_button.scale, end_scale)
-
-
-func _on_main_menu_button_mouse_exited() -> void:
-	can_drag = true
-	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
-	var end_scale: Vector2 = Vector2(1.0, 1.0)
-	$BackgroundPanel/MainMenuButton/ButtonScaleEffect.scale_ui(main_menu_button.scale, end_scale, Tween.TRANS_EXPO)
 
 
 func _on_settings_button_mouse_entered() -> void:
