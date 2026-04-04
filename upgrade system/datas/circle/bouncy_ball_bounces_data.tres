@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cpv23n8mbkm23"]
 
 [ext_resource type="Texture2D" uid="uid://c5pp1hgxsylgq" path="res://upgrade system/assets/upgrade icons/circle/bouncy_ball_bounces_icon.svg" id="1_cobn5"]
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_xr5tm"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_xr5tm"]
 
 [resource]
 script = ExtResource("1_xr5tm")
@@ -12,4 +12,3 @@ base_price = 850
 description = "The bouncy ball bounces a few more times"
 modify_stat_name = "bouncy_ball_bounces"
 icon = ExtResource("1_cobn5")
-metadata/_custom_type_script = "uid://dsonbba73212j"

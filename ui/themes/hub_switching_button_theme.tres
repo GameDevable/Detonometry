@@ -1,11 +1,11 @@
 [gd_resource type="Theme" format=3 uid="uid://xjd8b8pp0sja"]
 
-[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="1_y0wwx"]
+[ext_resource type="FontFile" uid="uid://7k2v6eoxfkm5" path="res://leaguespartan-bold.ttf" id="1_y0wwx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0vmu3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0wwx"]
-bg_color = Color(0.19426021, 0.19426021, 0.19426021, 1)
+bg_color = Color(0.288518, 0.288518, 0.2885179, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -16,7 +16,7 @@ expand_margin_right = 6.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxrst"]
-bg_color = Color(0.11288986, 0.11288986, 0.11288986, 1)
+bg_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -27,7 +27,7 @@ expand_margin_right = 6.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdk3p"]
-bg_color = Color(0.04169083, 0.04169083, 0.04169083, 1)
+bg_color = Color(0.08468992, 0.08468994, 0.08468989, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5

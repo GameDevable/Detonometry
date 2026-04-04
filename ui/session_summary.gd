@@ -23,6 +23,7 @@ var total_multiplier: float = 1.0
 
 @onready var content_background: Panel = $ContentBackground
 
+@onready var detonation_progress_bar: ProgressBar = $ContentBackground/DetonationProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,8 +34,13 @@ func handle_shown() -> void:
 	_reset_labels()
 	_reset_notifiers()
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
+	detonation_progress_bar.value = 0
 	content_background.scale = Vector2(0.01, 0.01)
 	ui_effect_component.scale_ui(Vector2(0.01, 0.01), Vector2(1.0, 1.0), Tween.TRANS_EXPO)
+	await ui_effect_component.tween.finished
+	
+	detonation_progress_bar.anim_to_current_threshold()
+	
 	var session_earned: int = GameManager.session_data[0]
 	var shapes_destroyed: int = GameManager.session_data[1]
 	var largest_cluster_value: int = GameManager.session_data[2]

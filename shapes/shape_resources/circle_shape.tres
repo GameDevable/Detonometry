@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ShapeData" format=3 uid="uid://bq80ha4x1vdco"]
 
-[ext_resource type="Script" uid="uid://jdn1dbvehnav" path="res://shapes/shape_data.gd" id="1_fyoe0"]
+[ext_resource type="Script" uid="uid://bhpkjuxwpxj06" path="res://shapes/shape_data.gd" id="1_fyoe0"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="2_m5jgh"]
-[ext_resource type="Texture2D" uid="uid://dmaov6xdbdbn8" path="res://shapes/assets/sprites/circle.svg" id="3_o43p8"]
+[ext_resource type="Texture2D" uid="uid://1t8xjtcqw1uu" path="res://shapes/assets/sprites/circle.svg" id="3_o43p8"]
 
 [resource]
 script = ExtResource("1_fyoe0")

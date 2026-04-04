@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ciifuw606nbf0"]
 
-[ext_resource type="Script" uid="uid://cawwxnbxw4a5p" path="res://components/shape/darted_triangle_modifier_component.gd" id="1_mkejt"]
-[ext_resource type="Texture2D" uid="uid://dsq6l8vot0m28" path="res://upgrade system/assets/upgrade_overlays/triangle_dart_overlay.svg" id="2_fffqp"]
+[ext_resource type="Script" uid="uid://cdprdxcvh8hk3" path="res://components/shape/darted_triangle_modifier_component.gd" id="1_mkejt"]
+[ext_resource type="Texture2D" uid="uid://8orkfm27pxh8" path="res://upgrade system/assets/upgrade_overlays/triangle_dart_overlay.svg" id="2_fffqp"]
 
 [node name="DartedTriangleModifierComponent" type="Node" unique_id=1852599904]
 script = ExtResource("1_mkejt")

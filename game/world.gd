@@ -22,6 +22,8 @@ var cluster_det_mult_val: float = 1.65
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 @onready var session_timer: Timer = $SessionTimer
 @onready var camera: Camera2D = $Camera
+@onready var frenzy_light_1: PointLight2D = $FrenzyLight1
+@onready var frenzy_light_2: PointLight2D = $FrenzyLight2
 
 
 func _ready() -> void:
@@ -139,6 +141,14 @@ func _connect_signals() -> void:
 	SignalManager.frenzy_ended.connect(func() -> void:
 		if timer_over:
 			_on_session_timer_timeout()
+	)
+	SignalManager.frenzy_started.connect(func() -> void:
+		frenzy_light_1.visible = true
+		frenzy_light_2.visible = true
+	)
+	SignalManager.frenzy_ended.connect(func() -> void:
+		frenzy_light_1.visible = false
+		frenzy_light_2.visible = false
 	)
 
 

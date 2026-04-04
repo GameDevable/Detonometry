@@ -6,7 +6,7 @@ void fragment() {
     vec4 tex_color = texture(TEXTURE, UV);
 
     // Choose left or right half
-    float local_alpha = UV.y < opaque_ratio ? 1.0 : 0.7;
+    float local_alpha = UV.y < opaque_ratio ? 1.0 : 0.55;
 
     // Multiply texture alpha by local_alpha and parent modulate
     COLOR.rgb = tex_color.rgb * COLOR.rgb;           // tint with parent modulate

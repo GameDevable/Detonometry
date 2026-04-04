@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://da4oqddqo13o3"]
 
-[ext_resource type="Texture2D" uid="uid://b3ugjpkl4kbyg" path="res://upgrade system/assets/upgrade icons/shape spawning/lucky_chance_icon.svg" id="1_rwspt"]
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="2_lg0tk"]
+[ext_resource type="Texture2D" uid="uid://c08wer2wsrkhg" path="res://upgrade system/assets/upgrade icons/shape spawning/lucky_chance_icon.svg" id="1_rwspt"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="2_lg0tk"]
 
 [resource]
 script = ExtResource("2_lg0tk")

@@ -26,14 +26,14 @@ buses/default_bus_layout="uid://cj3esdr506ogs"
 [autoload]
 
 SignalManager="*res://main/autoloads/signal_manager.gd"
-Constants="*uid://difv8cof3ylbc"
 Enums="*res://main/autoloads/enums.gd"
 UiManager="*res://main/autoloads/ui_manager.gd"
 StatManager="*res://main/autoloads/stat_manager.gd"
-Console="*uid://qca3sqetpnah"
-EffectManager="*uid://cmcev4gfav1il"
-SaveManager="*uid://cc6vfhvcxktyq"
-GameManager="*uid://h82oxfx2upoe"
+Console="*uid://cfqh4wn0yfcwc"
+Constants="*uid://bpw0hlqfum56b"
+GameManager="*uid://osgs2q01gm8l"
+EffectManager="*uid://bjcmrew8peudv"
+SaveManager="*uid://cmrjamyn4dxo"
 
 [debug]
 

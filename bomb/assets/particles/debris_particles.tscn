@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwvgah0m7wfey"]
 
-[ext_resource type="Texture2D" uid="uid://7sv6fn65aqoa" path="res://bomb/assets/particles/textures/debris_particle_texture.svg" id="1_hqhnu"]
+[ext_resource type="Texture2D" uid="uid://bdw0khj6nbh3m" path="res://bomb/assets/particles/textures/debris_particle_texture.svg" id="1_hqhnu"]
 
 [sub_resource type="Gradient" id="Gradient_hqhnu"]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b6ck0c6sbq4fh"]
 
-[ext_resource type="Texture2D" uid="uid://b5vnghchrr30y" path="res://upgrade system/assets/upgrade icons/triangle/sierpinskies_triangle_chance_icon.svg" id="1_jt2vo"]
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_n8o3j"]
+[ext_resource type="Texture2D" uid="uid://dobrc6qt5f26t" path="res://upgrade system/assets/upgrade icons/triangle/sierpinskies_triangle_chance_icon.svg" id="1_jt2vo"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_n8o3j"]
 
 [resource]
 script = ExtResource("1_n8o3j")

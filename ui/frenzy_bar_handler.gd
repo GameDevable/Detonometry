@@ -1,5 +1,4 @@
 extends Control
-const thresholds: Array[int] = [18, 46, 120, 300]
 var current_threshold_idx: int = 0
 
 @onready var detonation_idx_bar: ProgressBar = $DetonationIdxBar
@@ -11,21 +10,20 @@ const FRENZY_START_SOUND = preload("uid://36q1qoi4ed7q")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	detonation_idx_bar.max_value = thresholds[0]
+	detonation_idx_bar.max_value = GameManager.detonation_thresholds[0]
 	SignalManager.detonation_idx_value_changed.connect(func(new_value: int) -> void:
-		return
-		if new_value >= thresholds[current_threshold_idx]:
+		if new_value >= GameManager.detonation_thresholds[current_threshold_idx]:
 			current_threshold_idx += 1
-			
-			detonation_idx_bar.max_value = thresholds[current_threshold_idx]
-			var difference: int = new_value - thresholds[current_threshold_idx - 1]
+			GameManager.current_met_threshold = current_threshold_idx
+			detonation_idx_bar.max_value = GameManager.detonation_thresholds[current_threshold_idx]
+			var difference: int = new_value - GameManager.detonation_thresholds[current_threshold_idx - 1]
 			detonation_idx_bar.value = difference
 			GameManager.detonation_idx_value = difference
 			activate_frenzy()
 			return
 		
-		var tween = get_tree().create_tween()
-		tween.tween_property(detonation_idx_bar, "value", new_value, 0.2)
+		var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+		tween.tween_property(detonation_idx_bar, "value", new_value, 0.5)
 		)
 
 

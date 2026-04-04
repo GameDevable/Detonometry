@@ -55,3 +55,23 @@ func move_ui(initial_pos: Vector2, final_pos: Vector2, trans_override: Tween.Tra
 		easing_type = ease_override
 	reset_tween(easing_type, transition_type)
 	tween.tween_property(ui, "global_position", final_pos, anim_duration).from(initial_pos)
+
+
+func scale_font(init_val: int, final_val: int, trans_override: Tween.TransitionType = trans_type, ease_override: Tween.EaseType = ease_type) -> void:
+	var easing_type: Tween.EaseType = ease_type
+	var transition_type: Tween.TransitionType = trans_type
+	if trans_override != trans_type:
+		transition_type = trans_override
+
+	if ease_override != ease_type:
+		easing_type = ease_override
+	reset_tween(easing_type, transition_type)
+	ui = ui as Label
+	ui.add_theme_font_size_override("font_size", init_val)
+
+	tween.tween_property(
+		ui,
+		"theme_override_font_sizes/font_size",
+		final_val,
+		anim_duration
+	)

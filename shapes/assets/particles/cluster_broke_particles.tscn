@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fch54yu8d7av"]
 
-[ext_resource type="Texture2D" uid="uid://dj0qtr3h4twh1" path="res://shapes/assets/particles/textures/lucky_particle_texture.svg" id="1_dwnxn"]
+[ext_resource type="Texture2D" uid="uid://6md4dfsyq1w1" path="res://shapes/assets/particles/textures/lucky_particle_texture.svg" id="1_dwnxn"]
 
 [sub_resource type="Curve" id="Curve_vvfpn"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6111111, 0.84435797), 0.0, 0.0, 0, 0, Vector2(1, 0.36186773), 0.0, 0.0, 0, 0]

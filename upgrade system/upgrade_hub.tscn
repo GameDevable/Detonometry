@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0p1igqr57bjq"]
 
-[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="1_fd50i"]
-[ext_resource type="Script" uid="uid://bnflhpemd7tex" path="res://upgrade system/upgrade_hub.gd" id="1_t07eb"]
+[ext_resource type="FontFile" uid="uid://7k2v6eoxfkm5" path="res://leaguespartan-bold.ttf" id="1_fd50i"]
+[ext_resource type="Script" uid="uid://d00sv36p80bj5" path="res://upgrade system/upgrade_hub.gd" id="1_t07eb"]
 [ext_resource type="PackedScene" uid="uid://dsc11tbnd1lbv" path="res://ui/menu_buttons/settings_button.tscn" id="2_qppun"]
 [ext_resource type="Theme" uid="uid://dpyaxj1kf2ib2" path="res://ui/themes/background_panel.tres" id="2_vs24g"]
 [ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="3_xsyck"]
@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://b32dbo5wg88xq" path="res://upgrade system/datas/bomb/explosion_time_upgrade.tres" id="5_65mf6"]
 [ext_resource type="Resource" uid="uid://cwj2k3aew66ln" path="res://upgrade system/datas/bomb/explosion_area_upgrade_data.tres" id="6_1eihh"]
 [ext_resource type="Resource" uid="uid://ck8675fg5a5g2" path="res://upgrade system/datas/bomb/explosion_damage_upgrade_data.tres" id="7_1eihh"]
-[ext_resource type="Script" uid="uid://i7jpquifwgkb" path="res://components/editor/editor_upgrade_node_updater.gd" id="7_d2kyv"]
+[ext_resource type="Script" uid="uid://bsqppk8ak8axm" path="res://components/editor/editor_upgrade_node_updater.gd" id="7_d2kyv"]
 [ext_resource type="Resource" uid="uid://bgkrxghbgkg24" path="res://upgrade system/datas/bomb/cluster_exceed_bonus_upgrade.tres" id="8_8rb21"]
 [ext_resource type="Resource" uid="uid://bunbyvt2wyp7i" path="res://upgrade system/datas/bomb/cluster_multiplier_upgrade.tres" id="9_g0dhu"]
 [ext_resource type="Resource" uid="uid://dj1gg3ys2qwx6" path="res://upgrade system/datas/spawning/bunch_spawn_chance_data.tres" id="10_6kss2"]
@@ -41,10 +41,10 @@
 [ext_resource type="Resource" uid="uid://cpv23n8mbkm23" path="res://upgrade system/datas/circle/bouncy_ball_bounces_data.tres" id="31_8uihe"]
 [ext_resource type="Resource" uid="uid://deqifs3xovarp" path="res://upgrade system/datas/circle/bouncy_ball_damage_data.tres" id="32_3rwlj"]
 [ext_resource type="Resource" uid="uid://dy0n4hfyvpq7b" path="res://upgrade system/datas/pentagon/pentagons_limit_data.tres" id="34_5u7os"]
-[ext_resource type="Script" uid="uid://lm5xhpovbe72" path="res://components/editor/line_updater_component.gd" id="34_h5flq"]
+[ext_resource type="Script" uid="uid://du4ybexlj74uw" path="res://components/editor/line_updater_component.gd" id="34_h5flq"]
 [ext_resource type="Texture2D" uid="uid://dwl8ewkd3l4bj" path="res://ui/assets/click_mouse_icon.svg" id="42_bgxg2"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="42_c1ps8"]
-[ext_resource type="Texture2D" uid="uid://ddmde3rodm6up" path="res://ui/assets/scroll_mouse_icon.svg" id="43_5dcvk"]
+[ext_resource type="Texture2D" uid="uid://dlfsavsc3ccre" path="res://ui/assets/scroll_mouse_icon.svg" id="43_5dcvk"]
 [ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="43_w7l68"]
 [ext_resource type="Texture2D" uid="uid://dghvx2i534c7y" path="res://ui/assets/drag_mouse_icon.svg" id="44_5dcvk"]
 
@@ -654,7 +654,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ContinueButton" parent="BottomPanel" unique_id=1342725064 instance=ExtResource("3_xsyck")]
-modulate = Color(1.5510235, 1.5510235, 1.5510235, 1)
 z_index = 1
 custom_minimum_size = Vector2(180, 60)
 layout_mode = 1

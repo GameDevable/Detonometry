@@ -23,10 +23,9 @@ const METAL_BREAK = preload("uid://bgrvdb72tv8w0")
 
 const BREAK_PARTICLES = preload("uid://bj1jgl6835u7y")
 const REINFORCED_BREAK_PARTICLES = preload("uid://dx8qftu7xipko")
-
+const BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET = preload("uid://by5dw66tpv113")
 const BREAK_CIRCLE_PARTICLES_TEXTURE_SHEET = preload("uid://hgty7lnbyr77")
 const BREAK_SQUARE_PARTICLES_TEXTURE_SHEET = preload("uid://bet2jldxif1tm")
-const BREAK_TRIANGLE_PARTICLES_TEXTURE_SHEET = preload("uid://b5wyw4gfsynki")
 
 @onready var shape_sprite: Sprite2D = $ShapeSprite
 @onready var modifier_overlay_sprites: Node2D = $ModifierOverlaySprites

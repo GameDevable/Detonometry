@@ -15,12 +15,11 @@ const UPGRADE_NODE_LOCKED_THEME = preload("uid://brntsa6831d7c")
 const SCALE_TIME: float = 0.6
 const EASING_TYPE: Tween.EaseType = Tween.EASE_IN
 const TRANSITOIN_TYPE: Tween.TransitionType = Tween.TRANS_BOUNCE
+const PURCHASE_SOUND = preload("uid://bjfprnmwdmsfx")
 
-const PURCHASE_SOUND = preload("uid://bgqnendordq35")
-
-const NORMAL_LOCK_TEXTURE: Texture2D = preload("uid://dmpf5mmfqu6gc")
+const NORMAL_LOCK_TEXTURE = preload("uid://bbh311wdplytv")
 const HOVER_LOCK_TEXTURE: Texture2D = preload("uid://cexmjh73ifghx")
-const PRESSED_LOCK_TEXTURE: Texture2D = preload("uid://vy6squcty0gf")
+const PRESSED_LOCK_TEXTURE = preload("uid://ddk65fi0yfwe0")
 
 var upgrade: Upgrade = null
 var can_purchase: bool = false
@@ -95,10 +94,10 @@ func unlock() -> void:
 	is_locked = false
 	SignalManager.upgrade_unlocked.emit(upgrade)
 	lock_icon.visible = false
-	var intensity: int = 2 # >1 brightens, <1 darkens
-	modulate.r =  intensity
-	modulate.g =  intensity
-	modulate.b =  intensity
+	var intensity: float = 1.8 # >1 brightens, <1 darkens
+	modulate.r = intensity
+	modulate.g = intensity
+	modulate.b = intensity
 	upgrade_data_display.modulate.r = 1
 	upgrade_data_display.modulate.g = 1
 	upgrade_data_display.modulate.b = 1

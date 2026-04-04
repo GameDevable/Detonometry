@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://chwsq4umi4syg"]
 
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_6xy82"]
-[ext_resource type="Texture2D" uid="uid://en8mf82axyqj" path="res://upgrade system/assets/upgrade icons/shape spawning/shapes/circle_regeneration_icon.svg" id="1_yoc13"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_6xy82"]
+[ext_resource type="Texture2D" uid="uid://bdh8ci037v883" path="res://upgrade system/assets/upgrade icons/shape spawning/shapes/circle_regeneration_icon.svg" id="1_yoc13"]
 
 [resource]
 script = ExtResource("1_6xy82")
@@ -13,4 +13,3 @@ description = "Reduces the time it takes for circles to respawn"
 modify_stat_name = "circle_spawn_rate"
 extra_character = "s"
 icon = ExtResource("1_yoc13")
-metadata/_custom_type_script = "uid://dsonbba73212j"

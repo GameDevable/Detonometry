@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cw1imw7chr2ul"]
 
 [ext_resource type="PackedScene" uid="uid://k7nqsblly5gs" path="res://game/world.tscn" id="1_53q0u"]
-[ext_resource type="Script" uid="uid://gloui5xno38j" path="res://main/main.gd" id="1_pjrb6"]
+[ext_resource type="Script" uid="uid://bnfd2vj7qckik" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://b0p1igqr57bjq" path="res://upgrade system/upgrade_hub.tscn" id="3_c651c"]
 [ext_resource type="PackedScene" uid="uid://cjusof64q6j8a" path="res://ui/hud.tscn" id="3_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://cfqg1n3m3o6ab" path="res://ui/settings_menu.tscn" id="4_kfbq2"]
-[ext_resource type="Script" uid="uid://da0o0f4mlbpgr" path="res://game/transition_effect.gd" id="5_3wy1v"]
+[ext_resource type="Script" uid="uid://c42phhqois7bo" path="res://game/transition_effect.gd" id="5_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://cseoj1s61cxu4" path="res://ui/main_menu.tscn" id="5_4dugh"]
 [ext_resource type="PackedScene" uid="uid://ctk4el1qe4c6c" path="res://ui/custom_mouse_overlay.tscn" id="8_67ri8"]
 [ext_resource type="PackedScene" uid="uid://dilbliwg6ruo7" path="res://ui/session_summary.tscn" id="8_grrlh"]

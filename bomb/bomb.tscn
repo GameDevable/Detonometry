@@ -1,13 +1,13 @@
 [gd_scene format=4 uid="uid://ct3xcei10tcq0"]
 
-[ext_resource type="Script" uid="uid://dbo8hmxfu2l6x" path="res://bomb/bomb.gd" id="1_1h7gg"]
-[ext_resource type="Texture2D" uid="uid://c23iodecjbuda" path="res://bomb/assets/fuse_sprite.svg" id="2_5f04w"]
-[ext_resource type="Shader" uid="uid://b30kmyb421hvc" path="res://bomb/fuse_shader.gdshader" id="2_et5p4"]
-[ext_resource type="Texture2D" uid="uid://bss8tmln0vxq8" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
-[ext_resource type="Texture2D" uid="uid://cnrqeqs2noh7g" path="res://bomb/assets/explosion_area_sprites.svg" id="3_27ssy"]
-[ext_resource type="Texture2D" uid="uid://co3udofav8e8y" path="res://bomb/assets/radial_dashed_border.svg" id="3_f3gsr"]
+[ext_resource type="Script" uid="uid://cpcgh8r63myta" path="res://bomb/bomb.gd" id="1_1h7gg"]
+[ext_resource type="Texture2D" uid="uid://2gxovv0kyb53" path="res://bomb/assets/fuse_sprite.svg" id="2_5f04w"]
+[ext_resource type="Shader" uid="uid://dr11vpbm62jls" path="res://bomb/fuse_shader.gdshader" id="2_et5p4"]
+[ext_resource type="Texture2D" uid="uid://c5huigw4ll50r" path="res://bomb/assets/bomb_sprite.svg" id="2_f3gsr"]
+[ext_resource type="Texture2D" uid="uid://dbyegwpp41p6b" path="res://bomb/assets/explosion_area_sprites.svg" id="3_27ssy"]
+[ext_resource type="Texture2D" uid="uid://dvq6nnoq32gw1" path="res://bomb/assets/radial_dashed_border.svg" id="3_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://diivo8pqh7pnw" path="res://components/health_system/hitbox.tscn" id="4_5f04w"]
-[ext_resource type="Texture2D" uid="uid://ct2f4g8iquwow" path="res://bomb/assets/fuse_spark_sprite.svg" id="7_et5p4"]
+[ext_resource type="Texture2D" uid="uid://lw6risolc1pb" path="res://bomb/assets/fuse_spark_sprite.svg" id="7_et5p4"]
 [ext_resource type="AudioStream" uid="uid://bbevtgy7k6s4t" path="res://bomb/assets/audio/fuse_light_sound_1.mp3" id="9_mdkb4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkb4"]
@@ -138,6 +138,7 @@ texture = ExtResource("2_f3gsr")
 
 [node name="DashedBorderSprite" type="Sprite2D" parent="." unique_id=1642533877]
 z_index = 4
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_f3gsr")
 
 [node name="ExplosionAreaSprite" type="Sprite2D" parent="." unique_id=1069695329]

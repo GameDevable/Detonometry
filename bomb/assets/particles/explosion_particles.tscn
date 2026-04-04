@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cc8hnlp15466b"]
 
-[ext_resource type="Texture2D" uid="uid://cd5tv534uwf6r" path="res://bomb/assets/particles/textures/dust_particle_texture.svg" id="1_i0brs"]
+[ext_resource type="Texture2D" uid="uid://cncdjnc0rl6y8" path="res://bomb/assets/particles/textures/dust_particle_texture.svg" id="1_i0brs"]
 
 [sub_resource type="Curve" id="Curve_27ssy"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5797666), 0.0, 0.0, 0, 0]

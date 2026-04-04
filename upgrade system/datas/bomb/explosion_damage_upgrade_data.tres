@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ck8675fg5a5g2"]
 
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_6hy05"]
-[ext_resource type="Texture2D" uid="uid://br1iqridqxl51" path="res://upgrade system/assets/upgrade icons/bomb/bomb_damage_icon.svg" id="1_vjcfs"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_6hy05"]
+[ext_resource type="Texture2D" uid="uid://btkj7yr7h0420" path="res://upgrade system/assets/upgrade icons/bomb/bomb_damage_icon.svg" id="1_vjcfs"]
 
 [resource]
 script = ExtResource("1_6hy05")

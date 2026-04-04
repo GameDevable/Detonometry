@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://btmk54xyeo44e"]
 
-[ext_resource type="Script" uid="uid://dgyejygdgv0fw" path="res://shapes/shape.gd" id="1_4fy8l"]
-[ext_resource type="Shader" uid="uid://dtfmmrs4rl7c0" path="res://shapes/health_alpha_shader.gdshader" id="2_o1kad"]
-[ext_resource type="Texture2D" uid="uid://dyg21yfmdr8ob" path="res://shapes/assets/sprites/pentagon.svg" id="3_bo2oq"]
+[ext_resource type="Script" uid="uid://dmrvfjvt02f72" path="res://shapes/shape.gd" id="1_4fy8l"]
+[ext_resource type="Shader" uid="uid://c2k0iws7u8e8k" path="res://shapes/health_alpha_shader.gdshader" id="2_o1kad"]
+[ext_resource type="Texture2D" uid="uid://ds2ctcq5moumf" path="res://shapes/assets/sprites/pentagon.svg" id="3_bo2oq"]
 [ext_resource type="PackedScene" uid="uid://rw8hfp2bieqe" path="res://components/health_system/hurtbox.tscn" id="3_e6dkk"]
-[ext_resource type="Script" uid="uid://6koly58hiaj" path="res://components/health_system/health.gd" id="4_bo2oq"]
+[ext_resource type="Script" uid="uid://b2mmv1j8bqvfd" path="res://components/health_system/health.gd" id="4_bo2oq"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="4_o1kad"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e6dkk"]
@@ -23,17 +23,17 @@ texture = ExtResource("3_bo2oq")
 [node name="ModifierOverlaySprites" type="Node2D" parent="." unique_id=1356149085]
 position = Vector2(0, -19)
 
-[node name="Hurtbox" parent="." unique_id=977185970 node_paths=PackedStringArray("health_node") instance=ExtResource("3_e6dkk")]
-position = Vector2(0, -19)
-health_node = NodePath("../Health")
-
-[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox" unique_id=1323193065]
-shape = ExtResource("4_o1kad")
-
 [node name="ExplosionDetector" type="Area2D" parent="." unique_id=1606969675]
 position = Vector2(0, -19)
 
 [node name="DetectorCollider" type="CollisionShape2D" parent="ExplosionDetector" unique_id=1053692255]
+
+[node name="Hurtbox" parent="." unique_id=977185970 node_paths=PackedStringArray("health_node") instance=ExtResource("3_e6dkk")]
+position = Vector2(0, -19)
+health_node = NodePath("../Health")
+
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox" unique_id=1368565616]
+shape = ExtResource("4_o1kad")
 
 [node name="Health" type="Node" parent="." unique_id=79317347]
 script = ExtResource("4_bo2oq")

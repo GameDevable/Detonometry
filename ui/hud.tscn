@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cjusof64q6j8a"]
 
-[ext_resource type="Script" uid="uid://pp45ai3654ql" path="res://ui/hud.gd" id="1_rbyyf"]
-[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="2_276te"]
-[ext_resource type="Script" uid="uid://bsevp85xybr4k" path="res://components/shake_component.gd" id="3_546lt"]
+[ext_resource type="Script" uid="uid://u3uxg1ho22sb" path="res://ui/hud.gd" id="1_rbyyf"]
+[ext_resource type="FontFile" uid="uid://7k2v6eoxfkm5" path="res://leaguespartan-bold.ttf" id="2_276te"]
+[ext_resource type="Script" uid="uid://p7ddrqxh1iud" path="res://components/shake_component.gd" id="3_546lt"]
 [ext_resource type="Theme" uid="uid://clwtuapj1bdr" path="res://ui/themes/session_summary_label_theme.tres" id="5_1v5rv"]
-[ext_resource type="Texture2D" uid="uid://dyk83uiiw75cf" path="res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg" id="5_en2x2"]
 [ext_resource type="PackedScene" uid="uid://bpecnjfwch8te" path="res://ui/frenzy_bar_handler.tscn" id="6_1v5rv"]
 
 [node name="Hud" type="Control" unique_id=579881151]
@@ -18,6 +17,7 @@ mouse_filter = 2
 script = ExtResource("1_rbyyf")
 
 [node name="MouseFollowerWrapper" type="Control" parent="." unique_id=1837705660]
+z_index = 1
 layout_mode = 1
 anchors_preset = 0
 mouse_filter = 2
@@ -37,9 +37,9 @@ grow_vertical = 2
 mouse_filter = 2
 value = 100.0
 fill_mode = 4
-texture_progress = ExtResource("5_en2x2")
 
 [node name="SessionTimeLabel" type="Label" parent="." unique_id=1830259486]
+z_index = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -58,25 +58,38 @@ horizontal_alignment = 1
 script = ExtResource("3_546lt")
 
 [node name="SessionValueLabel" type="Label" parent="." unique_id=327227513]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.9195312
 anchor_top = 0.023611112
 anchor_right = 0.971875
 anchor_bottom = 0.108333334
-grow_horizontal = 0
+grow_vertical = 2
 theme = ExtResource("5_1v5rv")
 theme_override_font_sizes/font_size = 48
 text = "$0"
-metadata/_edit_use_anchors_ = true
 
-[node name="FrenzyBarHandler" parent="." unique_id=1205259984 instance=ExtResource("6_1v5rv")]
+[node name="FrenzyBarHandler" parent="." unique_id=1167972765 instance=ExtResource("6_1v5rv")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01640625
-anchor_top = 0.15277778
-anchor_right = 0.07109375
-anchor_bottom = 0.8472222
+anchor_left = 0.01796875
+anchor_top = 0.4722222
+anchor_right = 0.04921875
+anchor_bottom = 0.5277778
 offset_right = 0.0
 offset_bottom = 0.0
+grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1343732106]
+visible = false
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 0, 0.1254902)

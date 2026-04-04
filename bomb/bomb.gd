@@ -11,8 +11,8 @@ const EXPLOSION_SOUND = preload("res://bomb/assets/audio/explosion-01.ogg")
 
 const DEBRIS_PARTICLES = preload("uid://cwvgah0m7wfey")
 const BLAST_PARTICLE = preload("uid://db1td87mfq0rt")
-const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
 const SPARK_PARTICLES = preload("uid://jjxpg78gpkdj")
+const EXPLOSION_PARTICLES = preload("uid://cc8hnlp15466b")
 
 
 
@@ -76,7 +76,7 @@ func _set_radii(explosion_radius: float) -> void:
 	# Just kind of guesswork
 	var bomb_scale: Vector2 = Vector2(scale_factor, scale_factor)  * Constants.SPRITE_SCALE
 	if scale_factor > 1:
-		bomb_scale *= 0.8
+		bomb_scale *= 0.7
 	bomb_sprite.scale = bomb_scale
 	fuse_sprite.scale = bomb_scale
 	# Because the bomb and fuse sprite scales are 0.5, we need to multiplyer by two

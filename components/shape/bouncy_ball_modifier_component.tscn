@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://coxbmwij4usst"]
 
-[ext_resource type="Script" uid="uid://b2rdmqunxro4i" path="res://components/shape/bouncy_ball_modifier_component.gd" id="1_kcnha"]
-[ext_resource type="Texture2D" uid="uid://x4b0kkx1h4r8" path="res://shapes/assets/sprites/bouncy_ball.svg" id="2_0t3v1"]
+[ext_resource type="Script" uid="uid://b25dincuobmp7" path="res://components/shape/bouncy_ball_modifier_component.gd" id="1_kcnha"]
+[ext_resource type="Texture2D" uid="uid://chff1osf6hnnt" path="res://shapes/assets/sprites/bouncy_ball.svg" id="2_0t3v1"]
 
 [node name="BouncyBallModifierComponent" type="Node" unique_id=1971919729]
 script = ExtResource("1_kcnha")

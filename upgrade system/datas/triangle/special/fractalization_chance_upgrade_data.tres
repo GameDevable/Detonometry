@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://87nxhpxrfg6b"]
 
-[ext_resource type="Texture2D" uid="uid://ca2qbuvvg0otb" path="res://upgrade system/assets/upgrade icons/triangle/fractalization_chance_icon.svg" id="1_cmh30"]
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_i7yvt"]
+[ext_resource type="Texture2D" uid="uid://dqyo3hb6ixynb" path="res://upgrade system/assets/upgrade icons/triangle/fractalization_chance_icon.svg" id="1_cmh30"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_i7yvt"]
 
 [resource]
 script = ExtResource("1_i7yvt")

@@ -2,9 +2,10 @@ extends Control
 var is_handling_unsuccessful_place: bool = false
 var progress_bar_cancel: bool = false
 
-const RING_FILL_RED: Texture2D = preload("res://ui/assets/radial_progress_bar_textures/ring_fill_red.svg")
-const RING_FILL_WHITE: Texture2D = preload("res://ui/assets/radial_progress_bar_textures/ring_fill_white.svg")
-const RING_FILL_YELLOW: Texture2D = preload("res://ui/assets/radial_progress_bar_textures/ring_fill_yellow.svg")
+const RING_FILL_RED = preload("uid://bnoqm7bkdw8v5")
+const RING_FILL_WHITE = preload("uid://byw21jcpmptof")
+const RING_FILL_YELLOW = preload("uid://cjgaji1bkqohg")
+
 const CANT_PLACE = preload("res://bomb/assets/audio/cant_place.ogg")
 
 @onready var place_delay_progress_bar: TextureProgressBar = $MouseFollowerWrapper/PlaceDelayProgressBar

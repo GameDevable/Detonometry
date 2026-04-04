@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://cseoj1s61cxu4"]
 
-[ext_resource type="Script" uid="uid://bui6elmn3yo3d" path="res://ui/main_menu.gd" id="1_ei257"]
-[ext_resource type="FontFile" uid="uid://rkq0pwi80up6" path="res://leaguespartan-bold.ttf" id="1_t7e0r"]
+[ext_resource type="Script" uid="uid://c2eiunwy07ovp" path="res://ui/main_menu.gd" id="1_ei257"]
+[ext_resource type="FontFile" uid="uid://7k2v6eoxfkm5" path="res://leaguespartan-bold.ttf" id="1_t7e0r"]
 [ext_resource type="Theme" uid="uid://dpyaxj1kf2ib2" path="res://ui/themes/background_panel.tres" id="2_0nobx"]
-[ext_resource type="Texture2D" uid="uid://dj5rsdmguqf5u" path="res://shapes/assets/sprites/triangle.svg" id="2_rmr83"]
-[ext_resource type="Script" uid="uid://cibcoomtn1wvd" path="res://ui/menu_shape.gd" id="3_8uxxo"]
+[ext_resource type="Texture2D" uid="uid://hxwii1qnlirx" path="res://shapes/assets/sprites/triangle.svg" id="2_rmr83"]
+[ext_resource type="Script" uid="uid://brgojcd4vk1m7" path="res://ui/menu_shape.gd" id="3_8uxxo"]
 [ext_resource type="PackedScene" uid="uid://dg0tcxlvxbk1p" path="res://ui/menu_buttons/new_game_button.tscn" id="5_ubpvv"]
 [ext_resource type="PackedScene" uid="uid://dsc11tbnd1lbv" path="res://ui/menu_buttons/settings_button.tscn" id="6_arv2f"]
-[ext_resource type="Texture2D" uid="uid://dq4y8l8iee5pc" path="res://shapes/assets/sprites/square.svg" id="6_iyrh0"]
+[ext_resource type="Texture2D" uid="uid://cqje550x060vw" path="res://shapes/assets/sprites/square.svg" id="6_iyrh0"]
 [ext_resource type="PackedScene" uid="uid://bq6mtaqygkwbo" path="res://ui/menu_buttons/quit_button.tscn" id="7_5klac"]
-[ext_resource type="Texture2D" uid="uid://dmaov6xdbdbn8" path="res://shapes/assets/sprites/circle.svg" id="7_8jgmr"]
-[ext_resource type="Texture2D" uid="uid://dyg21yfmdr8ob" path="res://shapes/assets/sprites/pentagon.svg" id="8_0i0gl"]
+[ext_resource type="Texture2D" uid="uid://1t8xjtcqw1uu" path="res://shapes/assets/sprites/circle.svg" id="7_8jgmr"]
+[ext_resource type="Texture2D" uid="uid://ds2ctcq5moumf" path="res://shapes/assets/sprites/pentagon.svg" id="8_0i0gl"]
 [ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="8_lsdqh"]
 [ext_resource type="PackedScene" uid="uid://bxly8wh0ukwp5" path="res://ui/confirmation_box.tscn" id="18_q75kt"]
 
@@ -43,7 +43,8 @@ anchor_bottom = 0.15833333
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_t7e0r")
 theme_override_font_sizes/font_size = 76
-text = "Detonometry"
+text = "Polyboom"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="MenuTriangle" type="TextureRect" parent="." unique_id=1428283947]
@@ -217,7 +218,7 @@ script = ExtResource("3_8uxxo")
 speed = Vector2(100, 40)
 rotation_speed = 0.5
 
-[node name="Buttons1" type="VBoxContainer" parent="." unique_id=1129812245]
+[node name="Buttons1" type="VBoxContainer" parent="." unique_id=1337587752]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.41210938
@@ -283,7 +284,15 @@ metadata/_edit_use_anchors_ = true
 [node name="ConfirmationBox" parent="." unique_id=2098163199 instance=ExtResource("18_q75kt")]
 visible = false
 layout_mode = 1
-offset_top = -115.5
-offset_bottom = 115.5
+anchors_preset = -1
+anchor_left = 0.2625
+anchor_top = 0.31944445
+anchor_right = 0.7375
+anchor_bottom = 0.6805556
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = -3.0517578e-05
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Buttons2/NewGameButton" to="." method="_on_new_game_button_pressed"]

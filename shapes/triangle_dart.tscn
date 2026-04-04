@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b5w7t2o7lckpe"]
 
-[ext_resource type="Script" uid="uid://dlcqydp6oeob7" path="res://shapes/triangle_dart.gd" id="1_0q0ax"]
-[ext_resource type="Script" uid="uid://pp80nb2l0na5" path="res://components/health_system/hitbox.gd" id="1_n6sok"]
-[ext_resource type="Texture2D" uid="uid://cptc2fsosomhx" path="res://shapes/assets/sprites/triangle_dart_sprite.svg" id="2_e87v5"]
+[ext_resource type="Script" uid="uid://i0nw6b4syomd" path="res://shapes/triangle_dart.gd" id="1_0q0ax"]
+[ext_resource type="Script" uid="uid://blekq4coqdbh6" path="res://components/health_system/hitbox.gd" id="1_n6sok"]
+[ext_resource type="Texture2D" uid="uid://cdaemr4tawb3e" path="res://shapes/assets/sprites/triangle_dart_sprite.svg" id="2_e87v5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q0ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e87v5"]
-size = Vector2(24, 37)
+size = Vector2(114, 117)
 
 [node name="TriangleDart" type="CharacterBody2D" unique_id=440145379]
 script = ExtResource("1_0q0ax")
@@ -19,12 +19,9 @@ disabled = true
 [node name="DartSprite" type="Sprite2D" parent="." unique_id=651217869]
 texture = ExtResource("2_e87v5")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=197716431]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1952681768]
 script = ExtResource("1_n6sok")
-metadata/_custom_type_script = "uid://pp80nb2l0na5"
 
-[node name="HitboxCollider" type="CollisionShape2D" parent="Hitbox" unique_id=139646641]
-position = Vector2(0, 0.5)
+[node name="HitboxCollider" type="CollisionShape2D" parent="Hitbox" unique_id=428909070]
+position = Vector2(0, 16.5)
 shape = SubResource("RectangleShape2D_e87v5")
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

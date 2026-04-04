@@ -7,6 +7,7 @@ const BOMB_PLACE_SOUND1 = preload("res://bomb/assets/audio/bomb_place_sound1.ogg
 @onready var session_time_label: Label = $SessionTimeLabel
 @onready var session_value_label: Label = $SessionValueLabel
 @onready var frenzy_bar_handler: Control = $FrenzyBarHandler
+@onready var color_rect: ColorRect = $ColorRect
 
 func _ready() -> void:
 	
@@ -23,6 +24,11 @@ func _ready() -> void:
 		session_value_label.text = "$" + str(int(new_value))
 		
 		)
+	SignalManager.frenzy_started.connect(func() -> void:
+		color_rect.visible = true
+		)
+	SignalManager.frenzy_ended.connect(func() -> void:
+		color_rect.visible = false)
 
 func handle_shown() -> void:
 	session_value_label.text  = "$" + str(0)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dj1gg3ys2qwx6"]
 
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_miwv1"]
-[ext_resource type="Texture2D" uid="uid://dmxdr5h0uhe4m" path="res://upgrade system/assets/upgrade icons/shape spawning/bunch_spawn_chance_icon.svg" id="1_rrwpu"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_miwv1"]
+[ext_resource type="Texture2D" uid="uid://dnkbwgwunvr5y" path="res://upgrade system/assets/upgrade icons/shape spawning/bunch_spawn_chance_icon.svg" id="1_rrwpu"]
 
 [resource]
 script = ExtResource("1_miwv1")

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cegm36xr2lexh"]
 
-[ext_resource type="Script" uid="uid://pp80nb2l0na5" path="res://components/health_system/hitbox.gd" id="1_evp3w"]
-[ext_resource type="Script" uid="uid://2m5mgtulw10y" path="res://shapes/bouncy_ball.gd" id="1_fj41b"]
-[ext_resource type="Texture2D" uid="uid://x4b0kkx1h4r8" path="res://shapes/assets/sprites/bouncy_ball.svg" id="3_fj41b"]
+[ext_resource type="Script" uid="uid://blekq4coqdbh6" path="res://components/health_system/hitbox.gd" id="1_evp3w"]
+[ext_resource type="Script" uid="uid://8vfkynt42gai" path="res://shapes/bouncy_ball.gd" id="1_fj41b"]
+[ext_resource type="Texture2D" uid="uid://chff1osf6hnnt" path="res://shapes/assets/sprites/bouncy_ball.svg" id="3_fj41b"]
 [ext_resource type="Shape2D" uid="uid://dc3er24rdufh0" path="res://shapes/collision_shapes/circle_collision_shape.tres" id="4_onrm3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyo3s"]
@@ -11,16 +11,15 @@ radius = 35.0
 [node name="BouncyBall" type="CharacterBody2D" unique_id=156732585]
 script = ExtResource("1_fj41b")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1907052839]
-script = ExtResource("1_evp3w")
-metadata/_custom_type_script = "uid://pp80nb2l0na5"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1786731705]
-shape = SubResource("CircleShape2D_lyo3s")
-
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1374908961]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_fj41b")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=340659176]
+script = ExtResource("1_evp3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1235089966]
+shape = SubResource("CircleShape2D_lyo3s")
 
 [node name="WallRays" type="Node2D" parent="." unique_id=369410845]
 

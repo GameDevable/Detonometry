@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://xa83n738b2k4"]
 
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_2oula"]
-[ext_resource type="Texture2D" uid="uid://5x3gqve5sar" path="res://upgrade system/assets/upgrade icons/bomb/bomb_place_delay_icon.svg" id="1_nqm75"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_2oula"]
+[ext_resource type="Texture2D" uid="uid://sg1wr0sywarj" path="res://upgrade system/assets/upgrade icons/bomb/bomb_place_delay_icon.svg" id="1_nqm75"]
 
 [resource]
 script = ExtResource("1_2oula")
