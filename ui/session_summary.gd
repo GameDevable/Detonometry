@@ -23,7 +23,6 @@ var total_multiplier: float = 1.0
 
 @onready var content_background: Panel = $ContentBackground
 
-@onready var detonation_progress_bar: ProgressBar = $ContentBackground/DetonationProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,12 +33,10 @@ func handle_shown() -> void:
 	_reset_labels()
 	_reset_notifiers()
 	UiManager.set_custom_mouse_cursor(Constants.NORMAL_CURSOR_ICON)
-	detonation_progress_bar.value = 0
 	content_background.scale = Vector2(0.01, 0.01)
 	ui_effect_component.scale_ui(Vector2(0.01, 0.01), Vector2(1.0, 1.0), Tween.TRANS_EXPO)
 	await ui_effect_component.tween.finished
 	
-	detonation_progress_bar.anim_to_current_threshold()
 	
 	var session_earned: int = GameManager.session_data[0]
 	var shapes_destroyed: int = GameManager.session_data[1]
@@ -48,7 +45,7 @@ func handle_shown() -> void:
 	
 	var regular_tween_time: float = 0.4
 	var record_time: float = 0.35
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(0.3).timeout
 	
 	tween_int(shapes_destroyed_value_label, 0, shapes_destroyed, regular_tween_time, false, false)
 	tween_int(largest_cluster_value_labels, 0, largest_cluster_value, regular_tween_time, false, false)
@@ -137,11 +134,13 @@ func _format_int(value: int, is_money: bool, is_multiplier: bool) -> String:
 
 func _reset_labels() -> void:
 	money_earned_value_label.text = "$0"
+	highest_bomb_profit_value_label.text = "$0"
 	total_money_value_label.text = "$0"
 	
 	shapes_destroyed_value_label.text = "0"
 	largest_cluster_value_labels.text = "0"
 	multiplier_value_label.text = "x1.00"
+	total_multiplier = 1.0
 
 
 func _reset_notifiers() -> void:

@@ -8,6 +8,7 @@ script = ExtResource("1_c2p10")
 name = "Sharper Darts"
 tier_modifiers = Array[float]([2.0, 3.0, 4.0])
 base_value = 1.0
+base_price = 200
 description = "Darts do more damage"
 modify_stat_name = "dart_damage"
 icon = ExtResource("1_fnxkt")

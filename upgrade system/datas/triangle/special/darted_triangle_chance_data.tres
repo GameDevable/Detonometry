@@ -7,7 +7,7 @@
 script = ExtResource("2_eksvi")
 name = "Darted Triangles"
 tier_modifiers = Array[float]([4.0, 8.0, 14.0])
-base_price = 160
+base_price = 122
 description = "Increases the chance for triangles to shoot out darts upon destruction"
 modify_stat_name = "darted_traingle_chance"
 extra_character = "%"

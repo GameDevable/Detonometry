@@ -12,3 +12,4 @@ base_price = 20
 description = "Adds more triangles to destroy"
 modify_stat_name = "triangle_spawn_limit"
 icon = ExtResource("1_cs5ba")
+custom_price_scale = 2.6

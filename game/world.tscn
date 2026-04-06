@@ -111,17 +111,17 @@ wait_time = 30.0
 
 [node name="FrenzyLight1" type="PointLight2D" parent="." unique_id=1217506510]
 visible = false
-position = Vector2(637, 718)
+position = Vector2(-2, 367)
 scale = Vector2(48.15625, 3.5625)
-color = Color(1, 1, 0.13333334, 1)
+color = Color(1, 1, 0.09803922, 0.7294118)
 energy = 1.5
 texture = SubResource("GradientTexture2D_m4twg")
 
 [node name="FrenzyLight2" type="PointLight2D" parent="." unique_id=250327587]
 visible = false
-position = Vector2(637, 1)
+position = Vector2(0, -369)
 scale = Vector2(48.15625, 3.5625)
-color = Color(1, 1, 0.13333334, 1)
+color = Color(1, 1, 0.09803922, 0.7294118)
 energy = 1.5
 texture = SubResource("GradientTexture2D_m4twg")
 

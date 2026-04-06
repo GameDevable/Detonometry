@@ -29,8 +29,8 @@ var shape_spawn_stats: Dictionary[String, float] = {
 var shape_stats: Dictionary[Enums.ShapeType, Dictionary] = {
 	Enums.ShapeType.TRIANGLE : {"points" : 1, "health" : 1},
 	Enums.ShapeType.SQUARE : {"points" : 3, "health" : 2 },
-	Enums.ShapeType.CIRCLE : {"points" : 8, "health" : 5},
-	Enums.ShapeType.PENTAGON : {"points" : 12, "health" : 9},
+	Enums.ShapeType.CIRCLE : {"points" : 8, "health" : 4},
+	Enums.ShapeType.PENTAGON : {"points" : 12, "health" : 8},
 	Enums.ShapeType.HEXAGON : {"points" : 1, "health" : 1},
 }
 
@@ -63,7 +63,7 @@ var multiplier_stats: Dictionary[String, float] = {
 
 var session_stats: Dictionary[String, float] = {
 	"session_time" : 30.0,
-	"frenzy_time" : 6
+
 }
 
 var shape_type_weights: Dictionary[Enums.ShapeType, float] = {

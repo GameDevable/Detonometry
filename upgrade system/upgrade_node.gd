@@ -94,7 +94,7 @@ func unlock() -> void:
 	is_locked = false
 	SignalManager.upgrade_unlocked.emit(upgrade)
 	lock_icon.visible = false
-	var intensity: float = 1.8 # >1 brightens, <1 darkens
+	var intensity: float = 1.5 # >1 brightens, <1 darkens
 	modulate.r = intensity
 	modulate.g = intensity
 	modulate.b = intensity

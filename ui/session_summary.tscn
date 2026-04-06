@@ -6,37 +6,55 @@
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="2_s5e34"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="5_p51de"]
 [ext_resource type="PackedScene" uid="uid://ctrpmcfhex81r" path="res://ui/record_notify.tscn" id="6_p51de"]
-[ext_resource type="Script" uid="uid://b56uf2w6smvct" path="res://ui/detonation_progress_bar.gd" id="7_wscy1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxxow"]
 bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.43529412)
 border_color = Color(0.07058824, 0.07058824, 0.07058824, 0.12156863)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b553"]
-bg_color = Color(0.14165324, 0.14165312, 0.14165315, 1)
+bg_color = Color(0.13682574, 0.13682574, 0.13682568, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p51de"]
-bg_color = Color(0.025363795, 0.025363805, 0.02536378, 1)
+bg_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wscy1"]
-bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 2.0
+expand_margin_right = 6.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74dhp"]
-bg_color = Color(0.9691369, 0.9691369, 0.9691368, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.12225217, 0.12225228, 0.12225217, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 2.0
+expand_margin_right = 6.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3hl6"]
+bg_color = Color(0.4006977, 0.40069774, 0.40069756, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 2.0
+expand_margin_right = 6.0
+expand_margin_bottom = 2.0
 
 [node name="SessionSummary" type="Control" unique_id=326003256]
 layout_mode = 3
@@ -67,7 +85,7 @@ anchor_right = 0.6765625
 anchor_bottom = 0.71111107
 offset_left = 23.0
 offset_right = 59.0
-offset_bottom = 155.00003
+offset_bottom = 81.00003
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -87,7 +105,6 @@ offset_bottom = 156.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 70
-theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 40
 
@@ -253,9 +270,9 @@ custom_minimum_size = Vector2(490, 3)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.020588236
-anchor_top = 0.661157
+anchor_top = 0.6045198
 anchor_right = 1.0205883
-anchor_bottom = 0.6667645
+anchor_bottom = 0.6101695
 offset_left = 0.5
 offset_right = -19.5
 metadata/_edit_use_anchors_ = true
@@ -290,42 +307,13 @@ size_flags_vertical = 4
 theme = ExtResource("2_s5e34")
 theme_override_fonts/font = ExtResource("2_nrnmk")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_wscy1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_74dhp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t3hl6")
 text = "Upgrades"
 
 [node name="UpgradeButtonAnimator" parent="ContentBackground/Buttons/UpgradeHubButton" unique_id=1259690829 instance=ExtResource("5_p51de")]
 trans_type = 5
-
-[node name="DetonationTitle" type="Label" parent="ContentBackground" unique_id=1299564234]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -197.5
-offset_right = 84.0
-offset_bottom = -166.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_fxxow")
-text = "Baby Boomer"
-
-[node name="DetonationProgressBar" type="ProgressBar" parent="ContentBackground" unique_id=100178765 node_paths=PackedStringArray("label")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.029411765
-anchor_top = 0.23460418
-anchor_right = 0.9518208
-anchor_bottom = 0.2677686
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_wscy1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_74dhp")
-show_percentage = false
-script = ExtResource("7_wscy1")
-label = NodePath("../DetonationTitle")
-metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_entered"]
 [connection signal="mouse_exited" from="ContentBackground/Buttons/UpgradeHubButton" to="." method="_on_upgrade_hub_button_mouse_exited"]

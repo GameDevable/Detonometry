@@ -1,15 +1,14 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bgkrxghbgkg24"]
 
-[ext_resource type="Texture2D" uid="uid://co12yqahmcbmw" path="res://upgrade system/assets/upgrade icons/bomb/cluster_exceed_bonus_icon.svg" id="1_a3tfv"]
-[ext_resource type="Script" uid="uid://dsonbba73212j" path="res://game/upgrade_data.gd" id="1_yvo7h"]
+[ext_resource type="Texture2D" uid="uid://s7wcxr1it223" path="res://upgrade system/assets/upgrade icons/bomb/cluster_exceed_bonus_icon.svg" id="1_a3tfv"]
+[ext_resource type="Script" uid="uid://c5ep17d7h27pk" path="res://game/upgrade_data.gd" id="1_yvo7h"]
 
 [resource]
 script = ExtResource("1_yvo7h")
 name = "Cluster Bonus"
 tier_modifiers = Array[float]([2.0, 3.0])
-base_price = 440
+base_price = 300
 description = "Rewards extra points for every shape destroyed by a single bomb over 2"
 modify_stat_name = "cluster_exceed_bonus"
 icon = ExtResource("1_a3tfv")
-custom_price_scale = 2.2
-metadata/_custom_type_script = "uid://dsonbba73212j"
+custom_price_scale = 4.2

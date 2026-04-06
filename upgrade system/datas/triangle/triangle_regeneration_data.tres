@@ -13,3 +13,4 @@ description = "Reduces the time it takes for triangles to respawn"
 modify_stat_name = "triangle_spawn_rate"
 extra_character = "s"
 icon = ExtResource("1_fi5wr")
+custom_price_scale = 2.8

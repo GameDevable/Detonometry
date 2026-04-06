@@ -6,10 +6,10 @@
 [resource]
 script = ExtResource("2_d48bg")
 name = "Square Value"
-tier_modifiers = Array[float]([8.0, 10.0, 12.0])
-base_value = 5.0
+tier_modifiers = Array[float]([5.0, 10.0, 12.0])
+base_value = 3.0
 base_price = 130
 description = "Increases the amount of money gained by squares"
 modify_stat_name = "square_value"
 icon = ExtResource("1_i06b4")
-custom_price_scale = 2.5
+custom_price_scale = 3.2

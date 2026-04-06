@@ -22,8 +22,6 @@ var cluster_det_mult_val: float = 1.65
 @onready var place_delay_timer: Timer = $PlaceDelayTimer
 @onready var session_timer: Timer = $SessionTimer
 @onready var camera: Camera2D = $Camera
-@onready var frenzy_light_1: PointLight2D = $FrenzyLight1
-@onready var frenzy_light_2: PointLight2D = $FrenzyLight2
 
 
 func _ready() -> void:
@@ -47,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_position: Vector2 = get_global_mouse_position()
 		# The bomb will be created when the bomb_action is pressed
 		if Input.is_action_just_pressed("bomb_place_action") and not held_bomb:
-			if can_create_bomb or (GameManager.in_frenzy and not can_create_bomb):
+			if can_create_bomb:
 				held_bomb = create_bomb(mouse_position)
 				can_create_bomb = false
 			else:
@@ -56,10 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_just_released("bomb_place_action") and held_bomb:
 			place_bomb()
 			time_since_bomb_creation = 0.0
-			if not GameManager.in_frenzy:
-				place_delay_timer.start(StatManager.get_bomb_stat("place_delay"))
-			else:
-				place_delay_timer.start(0.4)
+			place_delay_timer.start(StatManager.get_bomb_stat("place_delay"))
 			SignalManager.bomb_placed.emit()
 	elif event is InputEventMouseMotion:
 		if held_bomb:
@@ -138,18 +133,7 @@ func _connect_signals() -> void:
 		if not by_bomb:
 			_handle_shape_broken(shape)
 		)
-	SignalManager.frenzy_ended.connect(func() -> void:
-		if timer_over:
-			_on_session_timer_timeout()
-	)
-	SignalManager.frenzy_started.connect(func() -> void:
-		frenzy_light_1.visible = true
-		frenzy_light_2.visible = true
-	)
-	SignalManager.frenzy_ended.connect(func() -> void:
-		frenzy_light_1.visible = false
-		frenzy_light_2.visible = false
-	)
+
 
 
 func _command_set_points(amount: String) -> void:
@@ -272,8 +256,7 @@ func _on_place_delay_timer_timeout() -> void:
 
 func _on_session_timer_timeout() -> void:
 	timer_over = true
-	if GameManager.in_frenzy:
-		return
+
 	session_timer.stop()
 	if bomb_container.get_child_count() > 0:
 		await bomb_container.emptied

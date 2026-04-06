@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0fwik5w87jwj"]
 
-[ext_resource type="Shader" uid="uid://c3tghnr3ylvvh" path="res://upgrade system/upgrade_connector_shader.gdshader" id="1_50i5w"]
-[ext_resource type="Script" uid="uid://b4kab64nff6na" path="res://upgrade system/upgrade_connector.gd" id="1_ys1ix"]
+[ext_resource type="Shader" uid="uid://cjtski8asvjrk" path="res://upgrade system/upgrade_connector_shader.gdshader" id="1_50i5w"]
+[ext_resource type="Script" uid="uid://dya8pnumxfcp7" path="res://upgrade system/upgrade_connector.gd" id="1_ys1ix"]
 [ext_resource type="Texture2D" uid="uid://cwtjb0b2h84u5" path="res://ui/line_texture.svg" id="2_wnldc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wnldc"]

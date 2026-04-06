@@ -12,3 +12,4 @@ description = "Lucky shapes spawn more often"
 modify_stat_name = "lucky_chance"
 extra_character = "%"
 icon = ExtResource("1_rwspt")
+custom_price_scale = 3.6

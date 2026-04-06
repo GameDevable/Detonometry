@@ -14,12 +14,13 @@ func _ready() -> void:
 
 	threshold = unlock_threshold
 	material = material.duplicate()
-	var intensity: float = 2
+	var intensity: float = 1.0
 	modulate.r = intensity
 	modulate.b = intensity
 	modulate.g = intensity
 	SignalManager.upgrade_advanced.connect(_on_upgrade_advanced)
 	SignalManager.upgrade_unlocked.connect(_on_upgrade_unlocked)
+
 
 
 func _on_upgrade_locked(upgrade: Upgrade) -> void:
@@ -29,11 +30,21 @@ func _on_upgrade_locked(upgrade: Upgrade) -> void:
 
 
 func _on_upgrade_advanced(upgrade: Upgrade) -> void:
+	if root_node.upgrade == upgrade:
+		var ratio = float(upgrade.current_purchased_tier) / float(unlock_threshold)  
+		if ratio > 1:
+			ratio = 1
+		material.set_shader_parameter("opaque_ratio", ratio)
 	if root_node.upgrade == upgrade and upgrade.current_purchased_tier >= unlock_threshold:
 		dependent_node.unlock()
+		material.set_shader_parameter("opaque_ratio", 1.0)
 
 
 func _on_upgrade_unlocked(upgrade: Upgrade) -> void:
 	if root_node.upgrade == upgrade:
 		visible = true
 		dependent_node.visible = true
+		var ratio = float(upgrade.current_purchased_tier) / float(unlock_threshold)  
+		if ratio > 1:
+			ratio = 1
+		material.set_shader_parameter("opaque_ratio", ratio)

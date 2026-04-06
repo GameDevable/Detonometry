@@ -13,3 +13,4 @@ description = "Increases the explosion radius"
 modify_stat_name = "explosion_radius_size_percent"
 extra_character = "%"
 icon = ExtResource("1_2dddg")
+custom_price_scale = 2.3

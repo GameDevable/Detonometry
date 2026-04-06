@@ -11,5 +11,4 @@ var session_number: int = 0
 
 var detonation_idx_value: int = 0
 var current_met_threshold: int = 0
-var detonation_thresholds: Array[int] = [24, 80, 190]
-var in_frenzy: bool = false
+var detonation_thresholds: Array[int] = [12, 80, 190]

@@ -20,4 +20,4 @@ func _update_connector(connector: UpgradeConnector) -> void:
 	var point_a: Vector2 = connector.to_local(purchase_button_a.global_position + center_offset)
 	var point_b: Vector2 = connector.to_local(purchase_button_b.global_position + center_offset )
 	#print(point_a, " ", point_b, " ", connector.root_node.global_position, " ", connector.dependent_node.global_position)
-	connector.points = [point_a, point_b]
+	connector.points = [point_b, point_a]

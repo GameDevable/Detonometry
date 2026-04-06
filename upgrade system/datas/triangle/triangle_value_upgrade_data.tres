@@ -6,10 +6,10 @@
 [resource]
 script = ExtResource("1_r4636")
 name = "Triangle Value"
-tier_modifiers = Array[float]([2.0, 4.0, 6.0])
+tier_modifiers = Array[float]([2.0, 3.0, 4.0])
 base_value = 1.0
-base_price = 62
+base_price = 42
 description = "Increases the value of the triangle shapes"
 modify_stat_name = "triangle_value"
 icon = ExtResource("1_d5edu")
-custom_price_scale = 2.5
+custom_price_scale = 3.2
