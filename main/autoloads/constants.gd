@@ -37,3 +37,5 @@ var MAX_SESSION_POINTS_SAVE_KEY: String = "max_session_points"
 var MAX_HIGHEST_BOMB_PROFIT_SAVE_KEY: String = "max_highest_bomb_profit"
 var MAX_SESSION_SHAPES_DESTROYED_SAVE_KEY: String = "max_session_shapes_destroyed"
 var MAX_LARGEST_CLUSTER_SAVE_KEY: String = "max_largest_cluster"
+var MIN_BUTTON_BOUNCE: Vector2 = Vector2(0.95, 0.95)
+var MAX_BUTTON_BOUNCE: Vector2 = Vector2(1.15, 1.15)

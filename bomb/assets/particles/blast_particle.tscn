@@ -26,6 +26,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="BlastParticle" type="GPUParticles2D" unique_id=1219778156]
+self_modulate = Color(1.8984075, 1.8984075, 1.8984075, 1)
 z_index = 4
 emitting = false
 amount = 1

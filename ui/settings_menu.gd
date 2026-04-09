@@ -19,6 +19,7 @@ var settings_data: Dictionary = {}
 @onready var resolution_options: OptionButton = $ContentMargins/ContentLayout/Display/ResolutionOptions
 @onready var fullscreen_checkbox: CheckBox = $ContentMargins/ContentLayout/Display/FullscreenCheckbox
 @onready var resolution_label: Label = $ContentMargins/ContentLayout/Display/ResolutionLabel
+@onready var bounce_animator: UiEffectComponent = $BackButton/BounceAnimator
 
 
 # Called when the node enters the scene tree for the first time.
@@ -79,6 +80,7 @@ func _load_saved_data(data: Dictionary) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	bounce_animator.bounce_ui(scale, Constants.MIN_BUTTON_BOUNCE, Constants.MAX_BUTTON_BOUNCE)
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.transition_to(UiManager.previous_menu)
 	SaveManager.save_settings(_get_settings_data())

@@ -17,6 +17,7 @@ var total_multiplier: float = 1.0
 
 @onready var upgrade_hub_button: Button = $ContentBackground/Buttons/UpgradeHubButton
 @onready var upgrade_button_animator: UiEffectComponent = $ContentBackground/Buttons/UpgradeHubButton/UpgradeButtonAnimator
+@onready var bounce_animator: UiEffectComponent = $ContentBackground/Buttons/UpgradeHubButton/BounceAnimator
 
 
 @onready var ui_effect_component: UiEffectComponent = $ContentBackground/UiEffectComponent
@@ -151,6 +152,7 @@ func _reset_notifiers() -> void:
 
 
 func _on_upgrade_hub_button_pressed() -> void:
+	bounce_animator.bounce_ui(upgrade_hub_button.scale, Constants.MIN_BUTTON_BOUNCE, Constants.MAX_BUTTON_BOUNCE)
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.transition_to("UpgradeHub")
 	await get_tree().create_timer(0.01).timeout

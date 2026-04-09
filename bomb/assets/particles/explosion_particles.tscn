@@ -56,6 +56,7 @@ hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
 [node name="ExplosionParticles" type="GPUParticles2D" unique_id=993033139]
+self_modulate = Color(1.1291975, 1.1291975, 1.1291975, 1)
 z_index = 3
 emitting = false
 amount = 20

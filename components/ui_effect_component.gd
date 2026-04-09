@@ -75,3 +75,21 @@ func scale_font(init_val: int, final_val: int, trans_override: Tween.TransitionT
 		final_val,
 		anim_duration
 	)
+
+
+func bounce_ui(initial_scale: Vector2, min_scale: Vector2, max_scale: Vector2, trans_override: Tween.TransitionType = trans_type, ease_override: Tween.EaseType = ease_type) -> void:
+	# The font will need to be scaled if it is a button
+	if ui is Button:
+		pass
+	var easing_type: Tween.EaseType = ease_type
+	var transition_type: Tween.TransitionType = trans_type
+	if trans_override != trans_type:
+		transition_type = trans_override
+
+	if ease_override != ease_type:
+		easing_type = ease_override
+	scale_ui(initial_scale, min_scale, transition_type, easing_type)
+	await tween.finished
+	scale_ui(ui.scale, max_scale, transition_type, easing_type)
+	await tween.finished
+	scale_ui(ui.scale, initial_scale, transition_type, easing_type)

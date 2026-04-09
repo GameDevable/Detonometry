@@ -26,15 +26,6 @@ size = Vector2(1280, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4twg"]
 size = Vector2(10, 720)
 
-[sub_resource type="Gradient" id="Gradient_en2x2"]
-offsets = PackedFloat32Array(0, 0.6987952)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m4twg"]
-gradient = SubResource("Gradient_en2x2")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="World" type="Node2D" unique_id=1062341711 groups=["Persist"]]
 light_mask = 15
 script = ExtResource("1_vn0wg")
@@ -108,22 +99,6 @@ shape = SubResource("RectangleShape2D_m4twg")
 wait_time = 30.0
 
 [node name="ClusterBrokeParticles" parent="." unique_id=1528278692 instance=ExtResource("7_m4twg")]
-
-[node name="FrenzyLight1" type="PointLight2D" parent="." unique_id=1217506510]
-visible = false
-position = Vector2(-2, 367)
-scale = Vector2(48.15625, 3.5625)
-color = Color(1, 1, 0.09803922, 0.7294118)
-energy = 1.5
-texture = SubResource("GradientTexture2D_m4twg")
-
-[node name="FrenzyLight2" type="PointLight2D" parent="." unique_id=250327587]
-visible = false
-position = Vector2(0, -369)
-scale = Vector2(48.15625, 3.5625)
-color = Color(1, 1, 0.09803922, 0.7294118)
-energy = 1.5
-texture = SubResource("GradientTexture2D_m4twg")
 
 [connection signal="child_exiting_tree" from="BombContainer" to="BombContainer" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="PlaceDelayTimer" to="." method="_on_place_delay_timer_timeout"]

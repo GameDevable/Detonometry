@@ -14,6 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://dnajflx3ikxdh" path="res://ui/menu_buttons/continue_button.tscn" id="8_lsdqh"]
 [ext_resource type="PackedScene" uid="uid://bxly8wh0ukwp5" path="res://ui/confirmation_box.tscn" id="18_q75kt"]
 
+[sub_resource type="Environment" id="Environment_bgtsx"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 4.45
+
 [node name="MainMenu" type="Control" unique_id=1380756693 groups=["Persist"]]
 layout_mode = 3
 anchors_preset = 15
@@ -294,5 +299,8 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = -3.0517578e-05
 metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=549756099]
+environment = SubResource("Environment_bgtsx")
 
 [connection signal="pressed" from="Buttons2/NewGameButton" to="." method="_on_new_game_button_pressed"]

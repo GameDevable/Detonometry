@@ -1,6 +1,7 @@
 extends Button
 @export var end_button_scale: Vector2 = Vector2(1.1, 1.1)
 @onready var continue_button_animator: UiEffectComponent = $ContinueButtonAnimator
+@onready var bounce_animator: UiEffectComponent = $BounceAnimator
 
 
 func _on_mouse_entered() -> void:
@@ -15,6 +16,7 @@ func _on_mouse_exited() -> void:
 
 
 func _on_pressed() -> void:
+	bounce_animator.bounce_ui(scale, Constants.MIN_BUTTON_BOUNCE, Constants.MAX_BUTTON_BOUNCE)
 	EffectManager.play_sfx(Constants.BUTTON_CLICK_SOUND, 0.0, Constants.BUTTON_CLICK_VOLUME, Constants.BUTTON_CLICK_PITCH)
 	UiManager.transition_to("None")
 	UiManager.hide_overlay("SessionSummary")

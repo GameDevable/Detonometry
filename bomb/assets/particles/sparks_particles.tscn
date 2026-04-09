@@ -42,6 +42,7 @@ color_initial_ramp = SubResource("GradientTexture1D_kj07g")
 alpha_curve = SubResource("CurveTexture_kj07g")
 
 [node name="SparksParticles" type="GPUParticles2D" unique_id=1783862989]
+self_modulate = Color(2.055, 2.055, 2.055, 1)
 z_index = 5
 emitting = false
 amount = 15

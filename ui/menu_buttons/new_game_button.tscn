@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dg0tcxlvxbk1p"]
 
 [ext_resource type="Theme" uid="uid://xjd8b8pp0sja" path="res://ui/themes/hub_switching_button_theme.tres" id="1_ccgb4"]
-[ext_resource type="Script" uid="uid://dd5gfl4j07c86" path="res://ui/menu_buttons/new_game_button.gd" id="2_g3pox"]
+[ext_resource type="Script" uid="uid://3mo6gwgxtq5u" path="res://ui/menu_buttons/new_game_button.gd" id="2_g3pox"]
 [ext_resource type="PackedScene" uid="uid://cd4h0wnidkafg" path="res://components/ui_effect_component.tscn" id="2_o50tb"]
 
 [node name="NewGameButton" type="Button" unique_id=456011415]
@@ -21,6 +21,10 @@ script = ExtResource("2_g3pox")
 
 [node name="GameButtonAnimator" parent="." unique_id=1259690829 instance=ExtResource("2_o50tb")]
 trans_type = 9
+
+[node name="BounceAnimator" parent="." unique_id=1792786689 instance=ExtResource("2_o50tb")]
+anim_duration = 0.12
+trans_type = 5
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -31,7 +31,6 @@ scale_max = 0.79999995
 scale_curve = SubResource("CurveTexture_wty36")
 
 [node name="LuckyParticles" type="GPUParticles2D" unique_id=1119926768]
-position = Vector2(-1, 0)
 amount = 4
 amount_ratio = 0.9
 texture = ExtResource("1_ravm8")

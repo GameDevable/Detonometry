@@ -44,6 +44,7 @@ var base_display_position: Vector2 = Vector2.ZERO
 
 @onready var button_scale_effect: UiEffectComponent = $PurchaseButton/ButtonScaleEffect
 @onready var display_scale_effect: UiEffectComponent = $UpgradeDataDisplay/DisplayScaleEffect
+@onready var bounce_animator: UiEffectComponent = $PurchaseButton/BounceAnimator
 
 
 func _ready() -> void:
@@ -154,6 +155,7 @@ func _update_display() -> void:
 
 
 func _on_purchase_button_mouse_entered() -> void:
+	print("Entered")
 	if global_position.y < get_viewport_rect().size.y / 4:
 		upgrade_data_display.position.y = -base_display_position.y - 10
 	else:
@@ -168,6 +170,7 @@ func _on_purchase_button_mouse_entered() -> void:
 
 
 func _on_purchase_button_mouse_exited() -> void:
+	print("Exited")
 	lock_icon.texture = NORMAL_LOCK_TEXTURE
 	var end_scale: Vector2 = Vector2(0.5, 0.5) 
 	button_scale_effect.scale_ui(purchase_button.scale, end_scale, Tween.TRANS_EXPO)
@@ -185,6 +188,7 @@ func _on_mouse_dragging(is_dragging: bool) -> void:
 
 
 func _on_purchase_button_pressed() -> void:
+	bounce_animator.bounce_ui(purchase_button.scale, Constants.MIN_BUTTON_BOUNCE / 2, Constants.MAX_BUTTON_BOUNCE / 2)
 	if can_purchase:
 		# Purchases the tier above 
 		purchase_tier(upgrade.current_unpurchased_tier)

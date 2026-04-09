@@ -263,6 +263,10 @@ metadata/_edit_use_anchors_ = true
 anim_duration = 0.4
 trans_type = 9
 
+[node name="BounceAnimator" parent="BackButton" unique_id=524520773 instance=ExtResource("5_tog15")]
+anim_duration = 0.12
+trans_type = 5
+
 [connection signal="value_changed" from="ContentMargins/ContentLayout/Audio/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="ContentMargins/ContentLayout/Audio/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="value_changed" from="ContentMargins/ContentLayout/Audio/MusicSlider" to="." method="_on_music_slider_value_changed"]

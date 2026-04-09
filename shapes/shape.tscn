@@ -16,6 +16,7 @@ collision_mask = 6
 script = ExtResource("1_4fy8l")
 
 [node name="ShapeSprite" type="Sprite2D" parent="." unique_id=1865982620]
+self_modulate = Color(1.1755697, 1.1755697, 1.1755697, 1)
 material = SubResource("ShaderMaterial_e6dkk")
 position = Vector2(0, -19)
 texture = ExtResource("3_bo2oq")
